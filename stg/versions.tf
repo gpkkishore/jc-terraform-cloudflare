@@ -13,7 +13,7 @@ terraform {
     organization = "jumpcloud"
 
     workspaces {
-      name = "awsstg-cloudflare"
+      name = "stg-cloudflare"
     }
   }
 }
