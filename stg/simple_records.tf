@@ -1,4 +1,4 @@
-// Simple dns records from jumpcloud.com
+// Simple dns records from awsstg.jumpcloud.com
 
 resource "cloudflare_record" "terraform_managed_resource_5f436ab20a0aa3376823dd43bd149ce4" {
   name    = "awsstg-vpn.jumpcloud.com"
