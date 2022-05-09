@@ -1068,38 +1068,38 @@ resource "cloudflare_record" "terraform_managed_resource_f4de492c3a3b1877d98d68f
 }
 
 resource "cloudflare_record" "terraform_managed_resource_ade89019080bb4b31eb53b0ad287f81a" {
-  name    = "radius.jumpcloud.com"
+  name    = "radius"
   proxied = false
   ttl     = 300
   type    = "NS"
-  value   = "ns-1931.awsdns-49.co.uk.jumpcloud.com"
+  value   = "ns-1931.awsdns-49.co.uk"
   zone_id = "0333d0c0d39e92ca6aa9550c360bbfef"
 }
 
 resource "cloudflare_record" "terraform_managed_resource_a3fbf4d5324ba12ea6a97b11b7b2487c" {
-  name    = "radius.jumpcloud.com"
+  name    = "radius"
   proxied = false
   ttl     = 300
   type    = "NS"
-  value   = "ns-1434.awsdns-51.org.jumpcloud.com"
+  value   = "ns-1434.awsdns-51.org"
   zone_id = "0333d0c0d39e92ca6aa9550c360bbfef"
 }
 
 resource "cloudflare_record" "terraform_managed_resource_e54d194dbaeec3292cd2eb7614a19027" {
-  name    = "radius.jumpcloud.com"
+  name    = "radius"
   proxied = false
   ttl     = 300
   type    = "NS"
-  value   = "ns-465.awsdns-58.com.jumpcloud.com"
+  value   = "ns-465.awsdns-58.com"
   zone_id = "0333d0c0d39e92ca6aa9550c360bbfef"
 }
 
 resource "cloudflare_record" "terraform_managed_resource_f1843f5f077219f4888a3334c9b6c54c" {
-  name    = "radius.jumpcloud.com"
+  name    = "radius"
   proxied = false
   ttl     = 300
   type    = "NS"
-  value   = "ns-585.awsdns-09.net.jumpcloud.com"
+  value   = "ns-585.awsdns-09.net"
   zone_id = "0333d0c0d39e92ca6aa9550c360bbfef"
 }
 
