@@ -1,7 +1,7 @@
 // Simple dns records from jumpcloud.com
 
 resource "cloudflare_record" "terraform_managed_resource_5f436ab20a0aa3376823dd43bd149ce4" {
-  name    = "awsstg-vpn.jumpcloud.com"
+  name    = "awsstg-vpn"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -10,7 +10,7 @@ resource "cloudflare_record" "terraform_managed_resource_5f436ab20a0aa3376823dd4
 }
 
 resource "cloudflare_record" "terraform_managed_resource_fafd89e1b989f6f5447d44a83205c37d" {
-  name    = "delfingen-ldap.jumpcloud.com"
+  name    = "delfingen-ldap"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -19,7 +19,7 @@ resource "cloudflare_record" "terraform_managed_resource_fafd89e1b989f6f5447d44a
 }
 
 resource "cloudflare_record" "terraform_managed_resource_20be7eae4a23e65e4d9db0e322fab64d" {
-  name    = "devopsdays.jumpcloud.com"
+  name    = "devopsdays"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -37,7 +37,7 @@ resource "cloudflare_record" "terraform_managed_resource_187cc1676e95faa5c4527de
 }
 
 resource "cloudflare_record" "terraform_managed_resource_68f8090abf2e83b932a06ba20edcb76f" {
-  name    = "kanban.jumpcloud.com"
+  name    = "kanban"
   proxied = false
   ttl     = 300
   type    = "A"
@@ -46,7 +46,7 @@ resource "cloudflare_record" "terraform_managed_resource_68f8090abf2e83b932a06ba
 }
 
 resource "cloudflare_record" "terraform_managed_resource_d3a487f5cc49f0a674e7622cb1af09f5" {
-  name    = "logging-rmq-use1b.jumpcloud.com"
+  name    = "logging-rmq-use1b"
   proxied = false
   ttl     = 60
   type    = "A"
@@ -55,7 +55,7 @@ resource "cloudflare_record" "terraform_managed_resource_d3a487f5cc49f0a674e7622
 }
 
 resource "cloudflare_record" "terraform_managed_resource_066e155f08e8eb05ce73e42687d425db" {
-  name    = "mgmt.jumpcloud.com"
+  name    = "mgmt"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -64,7 +64,7 @@ resource "cloudflare_record" "terraform_managed_resource_066e155f08e8eb05ce73e42
 }
 
 resource "cloudflare_record" "terraform_managed_resource_8090221c6d5fed3e1061bbfd51edbf93" {
-  name    = "nat1b.jumpcloud.com"
+  name    = "nat1b"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -73,7 +73,7 @@ resource "cloudflare_record" "terraform_managed_resource_8090221c6d5fed3e1061bbf
 }
 
 resource "cloudflare_record" "terraform_managed_resource_506256035f6f51779936219d52d49799" {
-  name    = "nat1c.jumpcloud.com"
+  name    = "nat1c"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -82,7 +82,7 @@ resource "cloudflare_record" "terraform_managed_resource_506256035f6f51779936219
 }
 
 resource "cloudflare_record" "terraform_managed_resource_acfce0cbe9f80ff8c9ca89b934d784b1" {
-  name    = "nat1d.jumpcloud.com"
+  name    = "nat1d"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -91,7 +91,7 @@ resource "cloudflare_record" "terraform_managed_resource_acfce0cbe9f80ff8c9ca89b
 }
 
 resource "cloudflare_record" "terraform_managed_resource_24a0bb2e2309ea82a8ea65b23e87b2fa" {
-  name    = "o1.em.jumpcloud.com"
+  name    = "o1.em"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -100,7 +100,7 @@ resource "cloudflare_record" "terraform_managed_resource_24a0bb2e2309ea82a8ea65b
 }
 
 resource "cloudflare_record" "terraform_managed_resource_873149644be01908b3b0fdd77e91bf12" {
-  name    = "o2.ptr1370.test.jumpcloud.com"
+  name    = "o2.ptr1370.test"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -109,7 +109,7 @@ resource "cloudflare_record" "terraform_managed_resource_873149644be01908b3b0fdd
 }
 
 resource "cloudflare_record" "terraform_managed_resource_184ca453ac6b691e1cb640b5c81d59ca" {
-  name    = "prd-jumpcloud-logging-rmq-use1c-02.jumpcloud.com"
+  name    = "prd-jumpcloud-logging-rmq-use1c-02"
   proxied = false
   ttl     = 60
   type    = "A"
@@ -118,7 +118,7 @@ resource "cloudflare_record" "terraform_managed_resource_184ca453ac6b691e1cb640b
 }
 
 resource "cloudflare_record" "terraform_managed_resource_d007e34993baf7d5e0fae95320e01674" {
-  name    = "radius-proxy-1.jumpcloud.com"
+  name    = "radius-proxy-1"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -127,7 +127,7 @@ resource "cloudflare_record" "terraform_managed_resource_d007e34993baf7d5e0fae95
 }
 
 resource "cloudflare_record" "terraform_managed_resource_59045fc6dee170a234942eb504e2d5a9" {
-  name    = "radius-proxy-2.jumpcloud.com"
+  name    = "radius-proxy-2"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -136,7 +136,7 @@ resource "cloudflare_record" "terraform_managed_resource_59045fc6dee170a234942eb
 }
 
 resource "cloudflare_record" "terraform_managed_resource_e2190ff1e1c5b0b3cbb4aee94849b637" {
-  name    = "radius-proxy-3.jumpcloud.com"
+  name    = "radius-proxy-3"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -145,7 +145,7 @@ resource "cloudflare_record" "terraform_managed_resource_e2190ff1e1c5b0b3cbb4aee
 }
 
 resource "cloudflare_record" "terraform_managed_resource_f390ac979105f232b937c3c2b736d77f" {
-  name    = "radius-proxy-4.jumpcloud.com"
+  name    = "radius-proxy-4"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -154,7 +154,7 @@ resource "cloudflare_record" "terraform_managed_resource_f390ac979105f232b937c3c
 }
 
 resource "cloudflare_record" "terraform_managed_resource_18f7188113420fbc8a634c828551a7c0" {
-  name    = "remote.jumpcloud.com"
+  name    = "remote"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -163,7 +163,7 @@ resource "cloudflare_record" "terraform_managed_resource_18f7188113420fbc8a634c8
 }
 
 resource "cloudflare_record" "terraform_managed_resource_915c7212287f0cfc2ea26b0d1093ea67" {
-  name    = "staging.jumpcloud.com"
+  name    = "staging"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -172,7 +172,7 @@ resource "cloudflare_record" "terraform_managed_resource_915c7212287f0cfc2ea26b0
 }
 
 resource "cloudflare_record" "terraform_managed_resource_5d06d0acc6f9abbb36f2a6034f01a478" {
-  name    = "staging-radius-proxy.jumpcloud.com"
+  name    = "staging-radius-proxy"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -181,7 +181,7 @@ resource "cloudflare_record" "terraform_managed_resource_5d06d0acc6f9abbb36f2a60
 }
 
 resource "cloudflare_record" "terraform_managed_resource_21947a021697e4c65ea91317b9bbde93" {
-  name    = "staging-vpn.jumpcloud.com"
+  name    = "staging-vpn"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -190,7 +190,7 @@ resource "cloudflare_record" "terraform_managed_resource_21947a021697e4c65ea9131
 }
 
 resource "cloudflare_record" "terraform_managed_resource_2f9d433d0f1d4a1c80a48bbfaa782b60" {
-  name    = "test.jumpcloud.com"
+  name    = "test"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -199,7 +199,7 @@ resource "cloudflare_record" "terraform_managed_resource_2f9d433d0f1d4a1c80a48bb
 }
 
 resource "cloudflare_record" "terraform_managed_resource_17bb370277f9302263200c7bf04d770f" {
-  name    = "test-vpn.jumpcloud.com"
+  name    = "test-vpn"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -208,7 +208,7 @@ resource "cloudflare_record" "terraform_managed_resource_17bb370277f9302263200c7
 }
 
 resource "cloudflare_record" "terraform_managed_resource_f1a325db4bb779d9214cea728ffe2d3a" {
-  name    = "ti.jumpcloud.com"
+  name    = "ti"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -217,7 +217,7 @@ resource "cloudflare_record" "terraform_managed_resource_f1a325db4bb779d9214cea7
 }
 
 resource "cloudflare_record" "terraform_managed_resource_f3ee1b1580af6f658e90784d66745b1d" {
-  name    = "ti.jumpcloud.com"
+  name    = "ti"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -226,7 +226,7 @@ resource "cloudflare_record" "terraform_managed_resource_f3ee1b1580af6f658e90784
 }
 
 resource "cloudflare_record" "terraform_managed_resource_1a3a74927c5538d7f2b3bf8c91c7e5b1" {
-  name    = "ti.jumpcloud.com"
+  name    = "ti"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -235,7 +235,7 @@ resource "cloudflare_record" "terraform_managed_resource_1a3a74927c5538d7f2b3bf8
 }
 
 resource "cloudflare_record" "terraform_managed_resource_5789efcdaf41097073a9b6ee861d38d8" {
-  name    = "ti.jumpcloud.com"
+  name    = "ti"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -244,7 +244,7 @@ resource "cloudflare_record" "terraform_managed_resource_5789efcdaf41097073a9b6e
 }
 
 resource "cloudflare_record" "terraform_managed_resource_797569126c60298d37016985e6cc1d3d" {
-  name    = "titanium.jumpcloud.com"
+  name    = "titanium"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -253,7 +253,7 @@ resource "cloudflare_record" "terraform_managed_resource_797569126c60298d3701698
 }
 
 resource "cloudflare_record" "terraform_managed_resource_6042f1baf2282d2d29931d87f1fdffac" {
-  name    = "titanium.jumpcloud.com"
+  name    = "titanium"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -262,7 +262,7 @@ resource "cloudflare_record" "terraform_managed_resource_6042f1baf2282d2d29931d8
 }
 
 resource "cloudflare_record" "terraform_managed_resource_b57e23ae6f725bc81c86854844080837" {
-  name    = "titanium.jumpcloud.com"
+  name    = "titanium"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -271,7 +271,7 @@ resource "cloudflare_record" "terraform_managed_resource_b57e23ae6f725bc81c86854
 }
 
 resource "cloudflare_record" "terraform_managed_resource_429c7a509ea774bee6efde5548b96bdc" {
-  name    = "titanium.jumpcloud.com"
+  name    = "titanium"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -280,7 +280,7 @@ resource "cloudflare_record" "terraform_managed_resource_429c7a509ea774bee6efde5
 }
 
 resource "cloudflare_record" "terraform_managed_resource_995ab471a928898407d6a4506fb7e562" {
-  name    = "vpn.jumpcloud.com"
+  name    = "vpn"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -289,7 +289,7 @@ resource "cloudflare_record" "terraform_managed_resource_995ab471a928898407d6a45
 }
 
 resource "cloudflare_record" "terraform_managed_resource_ab1632ed5b757d0e3d1318d8a35464f7" {
-  name    = "www.jumpcloud.com"
+  name    = "www"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -298,7 +298,7 @@ resource "cloudflare_record" "terraform_managed_resource_ab1632ed5b757d0e3d1318d
 }
 
 resource "cloudflare_record" "terraform_managed_resource_7d6b90d45221724d9606b8b6f55cc71e" {
-  name    = "www-old-maintain-sl-presence.jumpcloud.com"
+  name    = "www-old-maintain-sl-presence"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -325,7 +325,7 @@ resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4fa
 }
 
 resource "cloudflare_record" "terraform_managed_resource_4c6f01019af68cd95d9dd58de5b0d535" {
-  name    = "www.jumpcloud.com"
+  name    = "www"
   proxied = false
   ttl     = 1
   type    = "AAAA"
@@ -334,7 +334,7 @@ resource "cloudflare_record" "terraform_managed_resource_4c6f01019af68cd95d9dd58
 }
 
 resource "cloudflare_record" "terraform_managed_resource_ea02ae8f814b241e0a1a5f6cc2b13d13" {
-  name    = "www.jumpcloud.com"
+  name    = "www"
   proxied = false
   ttl     = 1
   type    = "AAAA"
@@ -343,7 +343,7 @@ resource "cloudflare_record" "terraform_managed_resource_ea02ae8f814b241e0a1a5f6
 }
 
 resource "cloudflare_record" "terraform_managed_resource_19f2a955a373028fdff7ae5a80ef1f8f" {
-  name    = "_1c43a89d54ecbba5174b070a2993b0fc.thirdparty.jumpcloud.com"
+  name    = "_1c43a89d54ecbba5174b070a2993b0fc.thirdparty"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -352,7 +352,7 @@ resource "cloudflare_record" "terraform_managed_resource_19f2a955a373028fdff7ae5
 }
 
 resource "cloudflare_record" "terraform_managed_resource_1af12d9d3217f7f893995add3578f862" {
-  name    = "_45568eea00d494e516c6c642168f901e.links.jumpcloud.com"
+  name    = "_45568eea00d494e516c6c642168f901e.links"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -361,7 +361,7 @@ resource "cloudflare_record" "terraform_managed_resource_1af12d9d3217f7f893995ad
 }
 
 resource "cloudflare_record" "terraform_managed_resource_011e8c315f043a4a9d355f3cc8e95396" {
-  name    = "4i6erhepmezi.community.jumpcloud.com"
+  name    = "4i6erhepmezi.community"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -370,7 +370,7 @@ resource "cloudflare_record" "terraform_managed_resource_011e8c315f043a4a9d355f3
 }
 
 resource "cloudflare_record" "terraform_managed_resource_6bbed24ca84f9c48f12d38cc2cbb1684" {
-  name    = "4nplil46eu5vyxptxoqivkbrl4jgmbfq._domainkey.jumpcloud.com"
+  name    = "4nplil46eu5vyxptxoqivkbrl4jgmbfq._domainkey"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -379,7 +379,7 @@ resource "cloudflare_record" "terraform_managed_resource_6bbed24ca84f9c48f12d38c
 }
 
 resource "cloudflare_record" "terraform_managed_resource_248ebc70ec3eaa995881489b7969c580" {
-  name    = "515119.test.jumpcloud.com"
+  name    = "515119.test"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -388,7 +388,7 @@ resource "cloudflare_record" "terraform_managed_resource_248ebc70ec3eaa995881489
 }
 
 resource "cloudflare_record" "terraform_managed_resource_abe9935d1c0c0ded29809e4ef4d21145" {
-  name    = "515119.tr.jumpcloud.com"
+  name    = "515119.tr"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -397,7 +397,7 @@ resource "cloudflare_record" "terraform_managed_resource_abe9935d1c0c0ded29809e4
 }
 
 resource "cloudflare_record" "terraform_managed_resource_ae74cf004ad85ee1aa913a002adc6abc" {
-  name    = "817177.jumpcloud.com"
+  name    = "817177"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -406,7 +406,7 @@ resource "cloudflare_record" "terraform_managed_resource_ae74cf004ad85ee1aa913a0
 }
 
 resource "cloudflare_record" "terraform_managed_resource_041f8716b92ffd088c02737beb92d76a" {
-  name    = "_acme-challenge.jumpcloud.com"
+  name    = "_acme-challenge"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -415,7 +415,7 @@ resource "cloudflare_record" "terraform_managed_resource_041f8716b92ffd088c02737
 }
 
 resource "cloudflare_record" "terraform_managed_resource_f138f6bc0232afb96e4ad99c77f3791d" {
-  name    = "assets.jumpcloud.com"
+  name    = "assets"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -424,7 +424,7 @@ resource "cloudflare_record" "terraform_managed_resource_f138f6bc0232afb96e4ad99
 }
 
 resource "cloudflare_record" "terraform_managed_resource_a97126eec97cf5b9b4c82a87cdb98e5e" {
-  name    = "_c4b3516c6ad01381f7a93f5afdd63a0e.segmentcdn.jumpcloud.com"
+  name    = "_c4b3516c6ad01381f7a93f5afdd63a0e.segmentcdn"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -433,7 +433,7 @@ resource "cloudflare_record" "terraform_managed_resource_a97126eec97cf5b9b4c82a8
 }
 
 resource "cloudflare_record" "terraform_managed_resource_6378795c5f238a3c756aa63783da243b" {
-  name    = "cdn.jumpcloud.com"
+  name    = "cdn"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -442,7 +442,7 @@ resource "cloudflare_record" "terraform_managed_resource_6378795c5f238a3c756aa63
 }
 
 resource "cloudflare_record" "terraform_managed_resource_2991c735592625d5afd735ad05774f06" {
-  name    = "_ce6f4c628c5c139a7c72aed4f779dc5e.segment.jumpcloud.com"
+  name    = "_ce6f4c628c5c139a7c72aed4f779dc5e.segment"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -451,7 +451,7 @@ resource "cloudflare_record" "terraform_managed_resource_2991c735592625d5afd735a
 }
 
 resource "cloudflare_record" "terraform_managed_resource_aba0bdf715cdef7d44839267e216fabb" {
-  name    = "cloud.jumpcloud.com"
+  name    = "cloud"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -460,7 +460,7 @@ resource "cloudflare_record" "terraform_managed_resource_aba0bdf715cdef7d4483926
 }
 
 resource "cloudflare_record" "terraform_managed_resource_89761a0e22d8247457d436b304bad4e2" {
-  name    = "community.jumpcloud.com"
+  name    = "community"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -469,7 +469,7 @@ resource "cloudflare_record" "terraform_managed_resource_89761a0e22d8247457d436b
 }
 
 resource "cloudflare_record" "terraform_managed_resource_99dc7103b3184ac953e7eed95884b0de" {
-  name    = "communitystage.jumpcloud.com"
+  name    = "communitystage"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -478,7 +478,7 @@ resource "cloudflare_record" "terraform_managed_resource_99dc7103b3184ac953e7eed
 }
 
 resource "cloudflare_record" "terraform_managed_resource_31c2ad14c9eb58b89742af16f6164f37" {
-  name    = "console-backup.jumpcloud.com"
+  name    = "console-backup"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -487,7 +487,7 @@ resource "cloudflare_record" "terraform_managed_resource_31c2ad14c9eb58b89742af1
 }
 
 resource "cloudflare_record" "terraform_managed_resource_e20d8799bc85500b136de13c7c89a6fd" {
-  name    = "_d21b7f7fe0a7da98155f2b96ee86ae4d.demo.jumpcloud.com"
+  name    = "_d21b7f7fe0a7da98155f2b96ee86ae4d.demo"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -496,7 +496,7 @@ resource "cloudflare_record" "terraform_managed_resource_e20d8799bc85500b136de13
 }
 
 resource "cloudflare_record" "terraform_managed_resource_62dac75ee5252f1e2b857c46a573be68" {
-  name    = "daas.jumpcloud.com"
+  name    = "daas"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -505,7 +505,7 @@ resource "cloudflare_record" "terraform_managed_resource_62dac75ee5252f1e2b857c4
 }
 
 resource "cloudflare_record" "terraform_managed_resource_16de8503224915e6829aa7466c7f96d6" {
-  name    = "demo.jumpcloud.com"
+  name    = "demo"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -514,7 +514,7 @@ resource "cloudflare_record" "terraform_managed_resource_16de8503224915e6829aa74
 }
 
 resource "cloudflare_record" "terraform_managed_resource_79f400a7aab7cd7a3039f9abe32aeafc" {
-  name    = "docs.jumpcloud.com"
+  name    = "docs"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -523,7 +523,7 @@ resource "cloudflare_record" "terraform_managed_resource_79f400a7aab7cd7a3039f9a
 }
 
 resource "cloudflare_record" "terraform_managed_resource_2070206938cb86527aa465b3f8d46fe9" {
-  name    = "_e6d6616ef2dd3189f067881600a8b4de.cdn.jumpcloud.com"
+  name    = "_e6d6616ef2dd3189f067881600a8b4de.cdn"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -532,7 +532,7 @@ resource "cloudflare_record" "terraform_managed_resource_2070206938cb86527aa465b
 }
 
 resource "cloudflare_record" "terraform_managed_resource_9aa55619eae18afc2b818d092f64a1cf" {
-  name    = "_ea68bad0dbad6ca638e3d732d7af47d3.links.tr.jumpcloud.com"
+  name    = "_ea68bad0dbad6ca638e3d732d7af47d3.links.tr"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -541,7 +541,7 @@ resource "cloudflare_record" "terraform_managed_resource_9aa55619eae18afc2b818d0
 }
 
 resource "cloudflare_record" "terraform_managed_resource_c9adecaea55588155a9eb02cc2867d3e" {
-  name    = "_ec5ddd489ea1118a8fdf339eb040ca8c.assets.jumpcloud.com"
+  name    = "_ec5ddd489ea1118a8fdf339eb040ca8c.assets"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -550,7 +550,7 @@ resource "cloudflare_record" "terraform_managed_resource_c9adecaea55588155a9eb02
 }
 
 resource "cloudflare_record" "terraform_managed_resource_8b8013d35a70ae8fab4c2e8dbc4b2633" {
-  name    = "em5874.test.jumpcloud.com"
+  name    = "em5874.test"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -559,7 +559,7 @@ resource "cloudflare_record" "terraform_managed_resource_8b8013d35a70ae8fab4c2e8
 }
 
 resource "cloudflare_record" "terraform_managed_resource_2beec8571f03ab26effe5a16d7f4f19a" {
-  name    = "email.jumpcloud.com"
+  name    = "email"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -568,7 +568,7 @@ resource "cloudflare_record" "terraform_managed_resource_2beec8571f03ab26effe5a1
 }
 
 resource "cloudflare_record" "terraform_managed_resource_26cb3313b5cdda93c24847b8f6872d26" {
-  name    = "em.tr.jumpcloud.com"
+  name    = "em.tr"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -577,7 +577,7 @@ resource "cloudflare_record" "terraform_managed_resource_26cb3313b5cdda93c24847b
 }
 
 resource "cloudflare_record" "terraform_managed_resource_69b95140ba56a54b8eb31680e49a5fbd" {
-  name    = "_f53885b8fdfd5ff0946f2d8a218907ab.links.test.jumpcloud.com"
+  name    = "_f53885b8fdfd5ff0946f2d8a218907ab.links.test"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -586,7 +586,7 @@ resource "cloudflare_record" "terraform_managed_resource_69b95140ba56a54b8eb3168
 }
 
 resource "cloudflare_record" "terraform_managed_resource_aef719f57736d135b9e78e7cf828ad49" {
-  name    = "hello.jumpcloud.com"
+  name    = "hello"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -595,7 +595,7 @@ resource "cloudflare_record" "terraform_managed_resource_aef719f57736d135b9e78e7
 }
 
 resource "cloudflare_record" "terraform_managed_resource_4611fbb8385b3cc10420062d7de7f485" {
-  name    = "helpdesk.jumpcloud.com"
+  name    = "helpdesk"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -604,7 +604,7 @@ resource "cloudflare_record" "terraform_managed_resource_4611fbb8385b3cc10420062
 }
 
 resource "cloudflare_record" "terraform_managed_resource_b5764b5759279399fff0c4a6d2f4b034" {
-  name    = "hmjo4qtf7j7w4mclfnvk7ohprauna75y._domainkey.jumpcloud.com"
+  name    = "hmjo4qtf7j7w4mclfnvk7ohprauna75y._domainkey"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -613,7 +613,7 @@ resource "cloudflare_record" "terraform_managed_resource_b5764b5759279399fff0c4a
 }
 
 resource "cloudflare_record" "terraform_managed_resource_aeaefb544bba716355e93e7a68fd9b5b" {
-  name    = "iyz6sj6s6ncqdpx6o7esq2bc5p4zqvmd._domainkey.jumpcloud.com"
+  name    = "iyz6sj6s6ncqdpx6o7esq2bc5p4zqvmd._domainkey"
   proxied = false
   ttl     = 600
   type    = "CNAME"
@@ -622,7 +622,7 @@ resource "cloudflare_record" "terraform_managed_resource_aeaefb544bba716355e93e7
 }
 
 resource "cloudflare_record" "terraform_managed_resource_2f4cc444493304fcbcc3d3a57cd4dde5" {
-  name    = "ldap.jumpcloud.com"
+  name    = "ldap"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -631,7 +631,7 @@ resource "cloudflare_record" "terraform_managed_resource_2f4cc444493304fcbcc3d3a
 }
 
 resource "cloudflare_record" "terraform_managed_resource_dd4745a68d9d6320a094cfea1cb7db55" {
-  name    = "links.jumpcloud.com"
+  name    = "links"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -640,7 +640,7 @@ resource "cloudflare_record" "terraform_managed_resource_dd4745a68d9d6320a094cfe
 }
 
 resource "cloudflare_record" "terraform_managed_resource_692e56edaec4fbfed9bca08e90ed7646" {
-  name    = "links.test.jumpcloud.com"
+  name    = "links.test"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -649,7 +649,7 @@ resource "cloudflare_record" "terraform_managed_resource_692e56edaec4fbfed9bca08
 }
 
 resource "cloudflare_record" "terraform_managed_resource_d35f764fe26513cd935fde82596d14ae" {
-  name    = "links.tr.jumpcloud.com"
+  name    = "links.tr"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -658,7 +658,7 @@ resource "cloudflare_record" "terraform_managed_resource_d35f764fe26513cd935fde8
 }
 
 resource "cloudflare_record" "terraform_managed_resource_27b58c46d286ef15fe73b7aff75cee7a" {
-  name    = "mulesoft-api-dev.jumpcloud.com"
+  name    = "mulesoft-api-dev"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -667,7 +667,7 @@ resource "cloudflare_record" "terraform_managed_resource_27b58c46d286ef15fe73b7a
 }
 
 resource "cloudflare_record" "terraform_managed_resource_b0d6eae94f8ba08d4e997bd3aecd8083" {
-  name    = "mulesoft-api.jumpcloud.com"
+  name    = "mulesoft-api"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -676,7 +676,7 @@ resource "cloudflare_record" "terraform_managed_resource_b0d6eae94f8ba08d4e997bd
 }
 
 resource "cloudflare_record" "terraform_managed_resource_648d3f4b32a54743f148fc4002918aa7" {
-  name    = "mulesoft-api-qa.jumpcloud.com"
+  name    = "mulesoft-api-qa"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -685,7 +685,7 @@ resource "cloudflare_record" "terraform_managed_resource_648d3f4b32a54743f148fc4
 }
 
 resource "cloudflare_record" "terraform_managed_resource_35a34470fd4cc8edef2ee96d3675f23f" {
-  name    = "newton.jumpcloud.com"
+  name    = "newton"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -694,7 +694,7 @@ resource "cloudflare_record" "terraform_managed_resource_35a34470fd4cc8edef2ee96
 }
 
 resource "cloudflare_record" "terraform_managed_resource_fb1cb32f6f5f2ad4c5d4727e9e65a383" {
-  name    = "nrxzskeboxtp.support.jumpcloud.com"
+  name    = "nrxzskeboxtp.support"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -703,7 +703,7 @@ resource "cloudflare_record" "terraform_managed_resource_fb1cb32f6f5f2ad4c5d4727
 }
 
 resource "cloudflare_record" "terraform_managed_resource_e4a7ba3ebbfefd18c326d7e85426b45b" {
-  name    = "nwt2._domainkey.jumpcloud.com"
+  name    = "nwt2._domainkey"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -712,7 +712,7 @@ resource "cloudflare_record" "terraform_managed_resource_e4a7ba3ebbfefd18c326d7e
 }
 
 resource "cloudflare_record" "terraform_managed_resource_a3006d2bba2694f1190fda832b40ed48" {
-  name    = "nwt._domainkey.jumpcloud.com"
+  name    = "nwt._domainkey"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -721,7 +721,7 @@ resource "cloudflare_record" "terraform_managed_resource_a3006d2bba2694f1190fda8
 }
 
 resource "cloudflare_record" "terraform_managed_resource_5dea83309fe6314655c584cf5dbe9447" {
-  name    = "q3uro2isnkiaop4shvw355m2qxcovuft._domainkey.jumpcloud.com"
+  name    = "q3uro2isnkiaop4shvw355m2qxcovuft._domainkey"
   proxied = false
   ttl     = 600
   type    = "CNAME"
@@ -730,7 +730,7 @@ resource "cloudflare_record" "terraform_managed_resource_5dea83309fe6314655c584c
 }
 
 resource "cloudflare_record" "terraform_managed_resource_8d379570e0b9225f3af54beae3dcf85f" {
-  name    = "s1._domainkey.jumpcloud.com"
+  name    = "s1._domainkey"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -739,7 +739,7 @@ resource "cloudflare_record" "terraform_managed_resource_8d379570e0b9225f3af54be
 }
 
 resource "cloudflare_record" "terraform_managed_resource_1e6785467a92ceb24118cfbdedcb2dd1" {
-  name    = "s1._domainkey.test.jumpcloud.com"
+  name    = "s1._domainkey.test"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -748,7 +748,7 @@ resource "cloudflare_record" "terraform_managed_resource_1e6785467a92ceb24118cfb
 }
 
 resource "cloudflare_record" "terraform_managed_resource_9cdd2372e6326ec91f042470d49e4b31" {
-  name    = "s1._domainkey.tr.jumpcloud.com"
+  name    = "s1._domainkey.tr"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -757,7 +757,7 @@ resource "cloudflare_record" "terraform_managed_resource_9cdd2372e6326ec91f04247
 }
 
 resource "cloudflare_record" "terraform_managed_resource_cf3bd80a8ddb9830722d551dae55e946" {
-  name    = "s2._domainkey.jumpcloud.com"
+  name    = "s2._domainkey"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -766,7 +766,7 @@ resource "cloudflare_record" "terraform_managed_resource_cf3bd80a8ddb9830722d551
 }
 
 resource "cloudflare_record" "terraform_managed_resource_7ff1fa266b87409056138999ef3d281d" {
-  name    = "s2._domainkey.test.jumpcloud.com"
+  name    = "s2._domainkey.test"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -775,7 +775,7 @@ resource "cloudflare_record" "terraform_managed_resource_7ff1fa266b8740905613899
 }
 
 resource "cloudflare_record" "terraform_managed_resource_144f3da3aea07ebab7fac2f340075c2e" {
-  name    = "s2._domainkey.tr.jumpcloud.com"
+  name    = "s2._domainkey.tr"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -784,7 +784,7 @@ resource "cloudflare_record" "terraform_managed_resource_144f3da3aea07ebab7fac2f
 }
 
 resource "cloudflare_record" "terraform_managed_resource_c234cdf50b2b3a958404290c5614e208" {
-  name    = "sales.jumpcloud.com"
+  name    = "sales"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -793,7 +793,7 @@ resource "cloudflare_record" "terraform_managed_resource_c234cdf50b2b3a958404290
 }
 
 resource "cloudflare_record" "terraform_managed_resource_887006e0d9dd57c6f3d65afd218f3134" {
-  name    = "segmentcdn.jumpcloud.com"
+  name    = "segmentcdn"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -802,7 +802,7 @@ resource "cloudflare_record" "terraform_managed_resource_887006e0d9dd57c6f3d65af
 }
 
 resource "cloudflare_record" "terraform_managed_resource_f4c223cba0c33fecb2ec4e44c73b5fb5" {
-  name    = "segment.jumpcloud.com"
+  name    = "segment"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -811,7 +811,7 @@ resource "cloudflare_record" "terraform_managed_resource_f4c223cba0c33fecb2ec4e4
 }
 
 resource "cloudflare_record" "terraform_managed_resource_f1a5bc8d591ba2d8798677e4da077063" {
-  name    = "spg2._domainkey.jumpcloud.com"
+  name    = "spg2._domainkey"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -820,7 +820,7 @@ resource "cloudflare_record" "terraform_managed_resource_f1a5bc8d591ba2d8798677e
 }
 
 resource "cloudflare_record" "terraform_managed_resource_0f0ed435ffa17a80fe410bd7167c8af7" {
-  name    = "spg._domainkey.jumpcloud.com"
+  name    = "spg._domainkey"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -829,7 +829,7 @@ resource "cloudflare_record" "terraform_managed_resource_0f0ed435ffa17a80fe410bd
 }
 
 resource "cloudflare_record" "terraform_managed_resource_83e4f09660002d49d248dfa03f4f0c94" {
-  name    = "stage2-kickstart.jumpcloud.com"
+  name    = "stage2-kickstart"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -838,7 +838,7 @@ resource "cloudflare_record" "terraform_managed_resource_83e4f09660002d49d248dfa
 }
 
 resource "cloudflare_record" "terraform_managed_resource_c342113c612a98d25e7ef0d21026d563" {
-  name    = "staging-sso.jumpcloud.com"
+  name    = "staging-sso"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -847,7 +847,7 @@ resource "cloudflare_record" "terraform_managed_resource_c342113c612a98d25e7ef0d
 }
 
 resource "cloudflare_record" "terraform_managed_resource_c6e3def0628a6b5d920b89b273cce849" {
-  name    = "static.jumpcloud.com"
+  name    = "static"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -856,7 +856,7 @@ resource "cloudflare_record" "terraform_managed_resource_c6e3def0628a6b5d920b89b
 }
 
 resource "cloudflare_record" "terraform_managed_resource_0233ea603c4836c8cb4f7157fc0f815b" {
-  name    = "status.jumpcloud.com"
+  name    = "status"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -865,7 +865,7 @@ resource "cloudflare_record" "terraform_managed_resource_0233ea603c4836c8cb4f715
 }
 
 resource "cloudflare_record" "terraform_managed_resource_5a15dd18982f1c35e15f47345f5ca9ec" {
-  name    = "statuspage-notifications.jumpcloud.com"
+  name    = "statuspage-notifications"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -874,7 +874,7 @@ resource "cloudflare_record" "terraform_managed_resource_5a15dd18982f1c35e15f473
 }
 
 resource "cloudflare_record" "terraform_managed_resource_6204ef0607766b7a63af00e7a4d3853d" {
-  name    = "support.jumpcloud.com"
+  name    = "support"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -883,7 +883,7 @@ resource "cloudflare_record" "terraform_managed_resource_6204ef0607766b7a63af00e
 }
 
 resource "cloudflare_record" "terraform_managed_resource_35646c78a004b1612c5f6007057fde9b" {
-  name    = "test-sso.jumpcloud.com"
+  name    = "test-sso"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -892,7 +892,7 @@ resource "cloudflare_record" "terraform_managed_resource_35646c78a004b1612c5f600
 }
 
 resource "cloudflare_record" "terraform_managed_resource_8ccbfb943be031b928fba31ff468c210" {
-  name    = "thirdparty.jumpcloud.com"
+  name    = "thirdparty"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -901,7 +901,7 @@ resource "cloudflare_record" "terraform_managed_resource_8ccbfb943be031b928fba31
 }
 
 resource "cloudflare_record" "terraform_managed_resource_3c3a0dbd2ffd6db42f2e21ff01d34712" {
-  name    = "university.jumpcloud.com"
+  name    = "university"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -910,7 +910,7 @@ resource "cloudflare_record" "terraform_managed_resource_3c3a0dbd2ffd6db42f2e21f
 }
 
 resource "cloudflare_record" "terraform_managed_resource_096c1ad2a5e8880e70fa8e6b76015a96" {
-  name    = "uo7y2yqujn3utbzkkb4igs6irxlqozmf._domainkey.jumpcloud.com"
+  name    = "uo7y2yqujn3utbzkkb4igs6irxlqozmf._domainkey"
   proxied = false
   ttl     = 300
   type    = "CNAME"
@@ -919,7 +919,7 @@ resource "cloudflare_record" "terraform_managed_resource_096c1ad2a5e8880e70fa8e6
 }
 
 resource "cloudflare_record" "terraform_managed_resource_7195378e41bb445179b3be2adce92b14" {
-  name    = "w3gu2leg5uo3s625hrirxvcc54qxix7p._domainkey.jumpcloud.com"
+  name    = "w3gu2leg5uo3s625hrirxvcc54qxix7p._domainkey"
   proxied = false
   ttl     = 600
   type    = "CNAME"
@@ -928,7 +928,7 @@ resource "cloudflare_record" "terraform_managed_resource_7195378e41bb445179b3be2
 }
 
 resource "cloudflare_record" "terraform_managed_resource_c0aabb38e0e06c6bf71a0e16a2ea4ed3" {
-  name    = "w7qhqhyrfq5h.communitymail.jumpcloud.com"
+  name    = "w7qhqhyrfq5h.communitymail"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -937,7 +937,7 @@ resource "cloudflare_record" "terraform_managed_resource_c0aabb38e0e06c6bf71a0e1
 }
 
 resource "cloudflare_record" "terraform_managed_resource_904bcd7219b436818ee7179063c04a1c" {
-  name    = "zb14758130.jumpcloud.com"
+  name    = "zb14758130"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -996,7 +996,7 @@ resource "cloudflare_record" "terraform_managed_resource_b8243683bc1e47302a9ac36
 }
 
 resource "cloudflare_record" "terraform_managed_resource_b1115f3910db3230cd9fc5a17ddcdb6d" {
-  name    = "awsstg.jumpcloud.com"
+  name    = "awsstg"
   proxied = false
   ttl     = 86400
   type    = "NS"
@@ -1005,7 +1005,7 @@ resource "cloudflare_record" "terraform_managed_resource_b1115f3910db3230cd9fc5a
 }
 
 resource "cloudflare_record" "terraform_managed_resource_adb9c6a7aa7a5b4ede8580207cc2add6" {
-  name    = "awsstg.jumpcloud.com"
+  name    = "awsstg"
   proxied = false
   ttl     = 86400
   type    = "NS"
@@ -1014,7 +1014,7 @@ resource "cloudflare_record" "terraform_managed_resource_adb9c6a7aa7a5b4ede85802
 }
 
 resource "cloudflare_record" "terraform_managed_resource_4a3bd21c04ae1d0cf362d5c39ff32e27" {
-  name    = "awsstg.jumpcloud.com"
+  name    = "awsstg"
   proxied = false
   ttl     = 86400
   type    = "NS"
@@ -1023,7 +1023,7 @@ resource "cloudflare_record" "terraform_managed_resource_4a3bd21c04ae1d0cf362d5c
 }
 
 resource "cloudflare_record" "terraform_managed_resource_ed61c1709913db8488e0684b2e2675ff" {
-  name    = "awsstg.jumpcloud.com"
+  name    = "awsstg"
   proxied = false
   ttl     = 86400
   type    = "NS"
@@ -1032,7 +1032,7 @@ resource "cloudflare_record" "terraform_managed_resource_ed61c1709913db8488e0684
 }
 
 resource "cloudflare_record" "terraform_managed_resource_196b1c537db0885f8ab54f3619d2f8b1" {
-  name    = "production.jumpcloud.com"
+  name    = "production"
   proxied = false
   ttl     = 300
   type    = "NS"
@@ -1041,7 +1041,7 @@ resource "cloudflare_record" "terraform_managed_resource_196b1c537db0885f8ab54f3
 }
 
 resource "cloudflare_record" "terraform_managed_resource_e5fcc59da5b3577e9869cf976ebe0877" {
-  name    = "production.jumpcloud.com"
+  name    = "production"
   proxied = false
   ttl     = 300
   type    = "NS"
@@ -1050,7 +1050,7 @@ resource "cloudflare_record" "terraform_managed_resource_e5fcc59da5b3577e9869cf9
 }
 
 resource "cloudflare_record" "terraform_managed_resource_f5cd841f35f3196d3f722b15fe90239f" {
-  name    = "production.jumpcloud.com"
+  name    = "production"
   proxied = false
   ttl     = 300
   type    = "NS"
@@ -1059,7 +1059,7 @@ resource "cloudflare_record" "terraform_managed_resource_f5cd841f35f3196d3f722b1
 }
 
 resource "cloudflare_record" "terraform_managed_resource_f4de492c3a3b1877d98d68fa8c118fa2" {
-  name    = "production.jumpcloud.com"
+  name    = "production"
   proxied = false
   ttl     = 300
   type    = "NS"
@@ -1104,7 +1104,7 @@ resource "cloudflare_record" "terraform_managed_resource_f1843f5f077219f4888a333
 }
 
 resource "cloudflare_record" "terraform_managed_resource_bd48a9e812a76fb7263d3b6d8e6bdd0e" {
-  name    = "200608._domainkey.jumpcloud.com"
+  name    = "200608._domainkey"
   proxied = false
   ttl     = 300
   type    = "TXT"
@@ -1113,7 +1113,7 @@ resource "cloudflare_record" "terraform_managed_resource_bd48a9e812a76fb7263d3b6
 }
 
 resource "cloudflare_record" "terraform_managed_resource_11cf036842c018ea1eded1b3ef6f26f6" {
-  name    = "20160415172154pm._domainkey.jumpcloud.com"
+  name    = "20160415172154pm._domainkey"
   proxied = false
   ttl     = 300
   type    = "TXT"
@@ -1122,7 +1122,7 @@ resource "cloudflare_record" "terraform_managed_resource_11cf036842c018ea1eded1b
 }
 
 resource "cloudflare_record" "terraform_managed_resource_bd6ecbe74de74a7c176daacd14c0036a" {
-  name    = "_amazonses.jumpcloud.com"
+  name    = "_amazonses"
   proxied = false
   ttl     = 300
   type    = "TXT"
@@ -1131,7 +1131,7 @@ resource "cloudflare_record" "terraform_managed_resource_bd6ecbe74de74a7c176daac
 }
 
 resource "cloudflare_record" "terraform_managed_resource_f1008f6e7c88aa00b40f46e63c94fc8f" {
-  name    = "communitymail.jumpcloud.com"
+  name    = "communitymail"
   proxied = false
   ttl     = 300
   type    = "TXT"
@@ -1140,7 +1140,7 @@ resource "cloudflare_record" "terraform_managed_resource_f1008f6e7c88aa00b40f46e
 }
 
 resource "cloudflare_record" "terraform_managed_resource_96841f2813c7d0b36753e4b912e5b237" {
-  name    = "_dashlane-challenge.jumpcloud.com"
+  name    = "_dashlane-challenge"
   proxied = false
   ttl     = 300
   type    = "TXT"
@@ -1149,7 +1149,7 @@ resource "cloudflare_record" "terraform_managed_resource_96841f2813c7d0b36753e4b
 }
 
 resource "cloudflare_record" "terraform_managed_resource_b6745265fb5900f34fe566fb54904d55" {
-  name    = "_dmarc.communitymail.jumpcloud.com"
+  name    = "_dmarc.communitymail"
   proxied = false
   ttl     = 300
   type    = "TXT"
@@ -1158,7 +1158,7 @@ resource "cloudflare_record" "terraform_managed_resource_b6745265fb5900f34fe566f
 }
 
 resource "cloudflare_record" "terraform_managed_resource_342389f98b5a39967ddadfe86484269a" {
-  name    = "_dmarc.jumpcloud.com"
+  name    = "_dmarc"
   proxied = false
   ttl     = 60
   type    = "TXT"
@@ -1167,7 +1167,7 @@ resource "cloudflare_record" "terraform_managed_resource_342389f98b5a39967ddadfe
 }
 
 resource "cloudflare_record" "terraform_managed_resource_466ea8525a178d633d4f0b00f6335456" {
-  name    = "_domainkey.jumpcloud.com"
+  name    = "_domainkey"
   proxied = false
   ttl     = 300
   type    = "TXT"
@@ -1176,7 +1176,7 @@ resource "cloudflare_record" "terraform_managed_resource_466ea8525a178d633d4f0b0
 }
 
 resource "cloudflare_record" "terraform_managed_resource_7dfe328ea58e2a28975d11d265a4c011" {
-  name    = "dzc.jumpcloud.com"
+  name    = "dzc"
   proxied = false
   ttl     = 60
   type    = "TXT"
@@ -1185,7 +1185,7 @@ resource "cloudflare_record" "terraform_managed_resource_7dfe328ea58e2a28975d11d
 }
 
 resource "cloudflare_record" "terraform_managed_resource_be7fafec261e4934e8b3f81718c2b7a1" {
-  name    = "f1._domainkey.jumpcloud.com"
+  name    = "f1._domainkey"
   proxied = false
   ttl     = 300
   type    = "TXT"
@@ -1194,7 +1194,7 @@ resource "cloudflare_record" "terraform_managed_resource_be7fafec261e4934e8b3f81
 }
 
 resource "cloudflare_record" "terraform_managed_resource_305251ee693a921d76c5da9553ceb09d" {
-  name    = "_github-pages-challenge-thejumpcloud.docs.jumpcloud.com"
+  name    = "_github-pages-challenge-thejumpcloud.docs"
   proxied = false
   ttl     = 300
   type    = "TXT"
@@ -1203,7 +1203,7 @@ resource "cloudflare_record" "terraform_managed_resource_305251ee693a921d76c5da9
 }
 
 resource "cloudflare_record" "terraform_managed_resource_da389867fc7bd425b2a9fadaf7b5b689" {
-  name    = "google._domainkey.jumpcloud.com"
+  name    = "google._domainkey"
   proxied = false
   ttl     = 300
   type    = "TXT"
@@ -1329,7 +1329,7 @@ resource "cloudflare_record" "terraform_managed_resource_4b34a9e4f391034c786a982
 }
 
 resource "cloudflare_record" "terraform_managed_resource_d811ccc1d298c6d95a5f32e5326583c0" {
-  name    = "mx._domainkey.jumpcloud.com"
+  name    = "mx._domainkey"
   proxied = false
   ttl     = 300
   type    = "TXT"
@@ -1338,7 +1338,7 @@ resource "cloudflare_record" "terraform_managed_resource_d811ccc1d298c6d95a5f32e
 }
 
 resource "cloudflare_record" "terraform_managed_resource_54dc2f77fec4832a10e895c67511fb04" {
-  name    = "smtpapi._domainkey.email.jumpcloud.com"
+  name    = "smtpapi._domainkey.email"
   proxied = false
   ttl     = 300
   type    = "TXT"
@@ -1347,7 +1347,7 @@ resource "cloudflare_record" "terraform_managed_resource_54dc2f77fec4832a10e895c
 }
 
 resource "cloudflare_record" "terraform_managed_resource_e22b4971e2d2dde4241dadcb86cdeea4" {
-  name    = "smtpapi._domainkey.jumpcloud.com"
+  name    = "smtpapi._domainkey"
   proxied = false
   ttl     = 300
   type    = "TXT"
