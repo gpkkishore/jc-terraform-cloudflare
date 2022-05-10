@@ -1,5 +1,9 @@
-variable "account_id" {
+variable "account_email" {
     description = "Cloudflare user account email"
+}
+
+variable "account_id" {
+    description = "Cloudflare user account id"
 }
 
 variable "cloudflare_api_key" {
