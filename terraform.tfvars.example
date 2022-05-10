@@ -1,0 +1,4 @@
+account_email = "some.user@jumpcloud.com"
+account_id = "aaaaaa"
+cloudflare_api_key =  "changeme"
+zone_name = "testcloudfarejc.com"

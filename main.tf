@@ -1,5 +1,6 @@
 provider "cloudflare" {
     email = var.account_email
+    account_id = var.account_id
     api_key = var.cloudflare_api_key
 }
 
