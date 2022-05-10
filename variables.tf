@@ -7,7 +7,7 @@ variable "account_id" {
 }
 
 variable "cloudflare_api_key" {
-    description = "Cloudflare API access key"  
+    description = "Cloudflare API access key"
 }
 
 variable "zone_name" {
