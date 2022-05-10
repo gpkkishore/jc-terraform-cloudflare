@@ -1,5 +1,5 @@
 variable "account_id" {
-    description = "Cloudflare user account email"
+    description = "Enterprise account ID"
 }
 
 variable "cloudflare_api_key" {
@@ -8,4 +8,8 @@ variable "cloudflare_api_key" {
 
 variable "zone_name" {
     description = "Domain name"
+}
+
+variable "account_email" {
+    description = "Cloud user accoutn email"
 }
