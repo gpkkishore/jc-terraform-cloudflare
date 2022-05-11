@@ -4,18 +4,19 @@ provider "cloudflare" {
     api_key = var.cloudflare_api_key
 }
 
-resource "cloudflare_zone" "this" {
+resource "cloudflare_zone" "cloudflare_zone_resource" {
+    paused = false
+    plan   = "enterprise"
+    type   = "full"
     zone = var.zone_name
 }
 
-
 module "dns" {
     source = "./modules/dns"
-    zone_id = cloudflare_zone.this.id
+    zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
-
 
 module "security" {
     source = "./modules/security"
-    zone_id = cloudflare_zone.this.id
+    zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
