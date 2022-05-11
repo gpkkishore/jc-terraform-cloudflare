@@ -308,7 +308,7 @@ resource "cloudflare_record" "terraform_managed_resource_b8243683bc1e47302a9ac36
 }
 
 # Original NS records from jumpcloud.com
-
+/*
 resource "cloudflare_record" "terraform_managed_resource_b1115f3910db3230cd9fc5a17ddcdb6d" {
   name    = "awsstg"
   proxied = false
@@ -344,7 +344,7 @@ resource "cloudflare_record" "terraform_managed_resource_ed61c1709913db8488e0684
   value   = "ns-241.awsdns-30.com"
   zone_id = var.zone_id
 }
-
+*/ 
 resource "cloudflare_record" "terraform_managed_resource_196b1c537db0885f8ab54f3619d2f8b1" {
   name    = "production"
   proxied = false
