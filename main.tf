@@ -6,7 +6,7 @@ provider "cloudflare" {
 
 resource "cloudflare_zone" "cloudflare_zone_resource" {
     paused = false
-    plan   = "enterprise"
+    plan   = var.zone_plan
     type   = "full"
     zone   = var.zone_name
 }
