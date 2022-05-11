@@ -1,11 +1,38 @@
-resource "cloudflare_filter" "default" {
+# Filter Russia and Belarus
+resource "cloudflare_filter" "russia_belarus" {
     zone_id = var.zone_id
+    description = "Filter Russia and Belarus"
     expression = "(ip.geoip.country eq \"RU\") or (ip.geoip.country eq \"BY\")"
 }
 
-resource "cloudflare_firewall_rule" "default" {
+# Block Russia and Belarus
+resource "cloudflare_firewall_rule" "block_russia_belarus" {
     zone_id = var.zone_id
-    action = "block"
-    filter_id = cloudflare_filter.default.id
+    filter_id = cloudflare_filter.russia_belarus.id
     description = "Block Russia and Belarus"
+    action = "block"
+}
+
+# Forward Russia and Belarus http traffic to 3.122.247.12 (451 Unavailable For Legal Reasons)
+resource "cloudflare_ruleset" "transform_uri_russia_belarus" {
+    zone_id = var.zone_id
+    name = "Forward Russia and Belarus"
+    description = "Transform rule to change the URI path for Russia and Belarus http traffic to a new static path"
+    kind = "zone"
+    phase = "http_request_transform"
+
+    rules {
+        action = "rewrite"
+        action_parameters {
+            uri {
+                path {
+                    value = "/3.122.247.12"
+                }
+            }
+        }
+
+        expression = "(ip.geoip.country eq \"RU\") or (ip.geoip.country eq \"BY\")"
+        description = "URI path transform rule"
+        enabled = true
+    }
 }
