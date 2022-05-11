@@ -8,7 +8,7 @@ resource "cloudflare_zone" "cloudflare_zone_resource" {
     paused = false
     plan   = "enterprise"
     type   = "full"
-    zone = var.zone_name
+    zone   = var.zone_name
 }
 
 module "dns" {
