@@ -43,3 +43,6 @@ terraform.rc
 
 # Exclude terraform plan files
 *.plan
+
+# Local credential files
+creds.json

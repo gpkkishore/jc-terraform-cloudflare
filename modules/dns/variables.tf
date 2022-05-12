@@ -9,3 +9,5 @@ variable "enable_awsstg" {
   type    = bool
   default = false
 }
+
+variable "zone_name" {}
