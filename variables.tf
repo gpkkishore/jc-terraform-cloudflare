@@ -28,3 +28,8 @@ variable "enable_awsstg" {
   type        = bool
   default     = true
 }
+
+variable "ldap_aws_ns" {
+    description = "LDAP nameserver for subdomain delegation"
+    type    = list(string)
+}
