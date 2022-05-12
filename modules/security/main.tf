@@ -17,7 +17,7 @@ resource "cloudflare_firewall_rule" "block_russia_belarus" {
 resource "cloudflare_ruleset" "transform_uri_russia_belarus" {
     zone_id = var.zone_id
     name = "Forward Russia and Belarus"
-    description = "Transform rule to for the URI path for Russia and Belarus http traffic to a new static path"
+    description = "Transform URI path for Russia and Belarus http traffic to a new static path"
     kind = "zone"
     phase = "http_request_transform"
 
@@ -32,7 +32,7 @@ resource "cloudflare_ruleset" "transform_uri_russia_belarus" {
         }
 
         expression = "(ip.geoip.country eq \"RU\") or (ip.geoip.country eq \"BY\")"
-        description = "URI path transform rule"
+        description = "Forward Russia and Belarus"
         enabled = true
     }
 }
