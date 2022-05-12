@@ -28,5 +28,3 @@ variable "enable_awsstg" {
   type        = bool
   default     = true
 }
-
-variable "a_records" {}
