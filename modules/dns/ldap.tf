@@ -7,6 +7,17 @@ resource "cloudflare_record" "terraform_managed_resource_fafd89e1b989f6f5447d44a
   zone_id = var.zone_id
 }
 
+#ldap ns for subdomain delegation
+resource "cloudflare_record" "ldap_aws_ns" {
+  for_each  = toset(var.ldap_aws_ns)
+  zone_id   = var.zone_id
+  name      = "ldap"
+  value     = each.value
+  type      = "NS"
+  ttl       = 300
+}
+
+
 # DNS records for the new ldap.jumpcloud.com subdomain in Route 53
 /*
 resource "cloudflare_record" "terraform_managed_resource_2f4cc444493304fcbcc3d3a57cd4dde5" {

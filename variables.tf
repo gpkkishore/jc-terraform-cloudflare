@@ -13,3 +13,8 @@ variable "cloudflare_api_key" {
 variable "zone_name" {
     description = "Domain name"
 }
+
+variable "ldap_aws_ns" {
+    description = "LDAP nameserver for subdomain delegation"
+    type    = list(string)
+}

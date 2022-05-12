@@ -14,6 +14,7 @@ resource "cloudflare_zone" "cloudflare_zone_resource" {
 module "dns" {
     source = "./modules/dns"
     zone_id = cloudflare_zone.cloudflare_zone_resource.id
+    ldap_aws_ns = var.ldap_aws_ns
 }
 
 module "security" {

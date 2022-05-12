@@ -202,33 +202,6 @@ resource "cloudflare_record" "kickstart" {
   zone_id = var.zone_id
 }
 
-resource "cloudflare_record" "asia_ldap" {
-  name = "asia.ldap"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-openldap-haproxy-97006fce924c2aa2.elb.ap-northeast-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "aws-us_ldap" {
-  name = "aws-us.ldap"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-openldap-haproxy-b6684a1c843e9d58.elb.us-east-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "eu_ldap" {
-  name = "eu.ldap"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-openldap-haproxy-5e177b641df725c8.elb.eu-central-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
 resource "cloudflare_record" "apple_mdm" {
   name = "apple.mdm"
   proxied = false
