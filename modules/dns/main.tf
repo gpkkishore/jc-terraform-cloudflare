@@ -1,31 +1,14 @@
 # AWSSTG Records
 
-locals {
-  awsstg_a_records     = var.awsstg_dnsrecords.a_records
-  awsstg_cname_records = var.awsstg_dnsrecords.cname_records
-}
-
-
-resource "cloudflare_record" "awsstg_a_records" {
-  for_each = var.enable_awsstg == true ? local.awsstg_a_records : {}
-  name     = format("%s.awsstg", each.key)
-  value    = each.value
-  ttl      = 1
-  type     = "A"
+resource "cloudflare_record" "awsstg_dns_records" {
+  for_each = var.enable_awsstg == true ? { for record in var.awsstg_dns_records : record.name => record } : {}
+  name     = format("%s.awsstg", each.value.name)
+  value    = each.value.value
+  ttl      = each.value.ttl
+  type     = each.value.type
+  proxied  = each.value.proxied
   zone_id  = var.zone_id
 }
-
-resource "cloudflare_record" "awsstg_cname_records" {
-  for_each = var.enable_awsstg == true ? local.awsstg_cname_records : {}
-  name     = format("%s.awsstg", each.key)
-  proxied  = false
-  ttl      = 1
-  type     = "CNAME"
-  value    = each.value
-  zone_id  = var.zone_id
-}
-
-# Original jumpcloud.com A Records
 
 resource "cloudflare_record" "events-internal-writes" {
   name    = "events-internal-writes"

@@ -19,7 +19,7 @@ variable "zone_plan" {
   description = "Cloudflare plan type specification for zone"
 }
 
-variable "awsstg_dnsrecords" {
+variable "awsstg_dns_records" {
   description = "Map variable of input DNS records for AWSSTG environment."
 }
 

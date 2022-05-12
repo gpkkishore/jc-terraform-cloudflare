@@ -12,10 +12,10 @@ resource "cloudflare_zone" "cloudflare_zone_resource" {
 }
 
 module "dns" {
-  source            = "./modules/dns"
-  zone_id           = cloudflare_zone.cloudflare_zone_resource.id
-  awsstg_dnsrecords = var.awsstg_dnsrecords
-  enable_awsstg     = var.enable_awsstg
+  source             = "./modules/dns"
+  zone_id            = cloudflare_zone.cloudflare_zone_resource.id
+  awsstg_dns_records = var.awsstg_dns_records
+  enable_awsstg      = var.enable_awsstg
 }
 
 module "security" {

@@ -2,7 +2,7 @@ variable "zone_id" {
   description = "Zone ID from Cloudflare Zone"
 }
 
-variable "awsstg_dnsrecords" {
+variable "awsstg_dns_records" {
 }
 
 variable "enable_awsstg" {
