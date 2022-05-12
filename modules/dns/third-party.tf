@@ -607,7 +607,7 @@ resource "cloudflare_record" "terraform_managed_resource_904bcd7219b436818ee7179
 }
 
 # Original TXT records from jumpcloud.com
-
+/*
 resource "cloudflare_record" "terraform_managed_resource_bd48a9e812a76fb7263d3b6d8e6bdd0e" {
   name    = "200608._domainkey"
   proxied = false
@@ -859,3 +859,4 @@ resource "cloudflare_record" "terraform_managed_resource_e22b4971e2d2dde4241dadc
   value   = "k=rsa; t=s; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDPtW5iwpXVPiH5FzJ7Nrl8USzuY9zqqzjE0D1r04xDN6qwziDnmgcFNNfMewVKN2D1O+2J9N14hRprzByFwfQW76yojh54Xu3uSbQ3JP0A7k8o8GutRF8zbFUA8n0ZH2y0cIEjMliXY4W4LwPA7m4q0ObmvSjhd63O9d8z1XkUBwIDAQAB"
   zone_id = var.zone_id
 }
+*/
