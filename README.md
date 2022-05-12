@@ -26,7 +26,9 @@ Cloudflare features.
  zone_name | string | Domain/Website to be used and provisioned |
 
 ### CLI
-
+```
+terraform validate
+```
 
 ### Terraform Cloud via CLI
 
