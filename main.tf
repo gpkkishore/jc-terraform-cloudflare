@@ -17,6 +17,7 @@ module "dns" {
   awsstg_dns_records = var.awsstg_dns_records
   enable_awsstg      = var.enable_awsstg
   zone_name          = var.zone_name
+  enable_nonprod     = var.enable_nonprod
 }
 
 module "security" {

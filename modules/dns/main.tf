@@ -10,6 +10,13 @@ resource "cloudflare_record" "awsstg_dns_records" {
   zone_id  = var.zone_id
 }
 
+# NonPRD Records
+module "non_prd_dns" {
+  count   = var.enable_nonprod == true ? 1 : 0
+  source  = "./nonprod"
+  zone_id = var.zone_id
+}
+
 resource "cloudflare_record" "events-internal-writes" {
   name    = "events-internal-writes"
   proxied = false
