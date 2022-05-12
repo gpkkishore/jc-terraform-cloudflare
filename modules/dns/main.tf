@@ -1,13 +1,13 @@
 # AWSSTG Records
 
 locals {
-  awsstg_arecords = var.awsstg_dnsrecords.arecords
+  awsstg_a_records = var.awsstg_dnsrecords.a_records
   awsstg_cname_records = var.awsstg_dnsrecords.cname_records 
 }
 
 
 resource "cloudflare_record" "awsstg_a_records" {
-    for_each = var.enable_awsstg == true ? local.awsstg_arecords : {}
+    for_each = var.enable_awsstg == true ? local.awsstg_a_records : {}
     name = format("%s.awsstg", each.key)
     value = each.value
     ttl = 1

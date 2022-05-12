@@ -1,5 +1,5 @@
 awsstg_dnsrecords = {
-    arecords = {
+    a_records = {
         awsstg-events-elasticsearch-usw2b-01 = "10.20.1.127"
         awsstg-events-elasticsearch-usw2b-02 = "10.20.1.179"
         awsstg-events-elasticsearch-usw2b-03 = "10.20.1.104"
