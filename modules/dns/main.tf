@@ -195,7 +195,7 @@ resource "cloudflare_record" "bss" {
 
 resource "cloudflare_record" "console" {
   name = "console"
-  proxied = false
+  proxied = true
   ttl     = 1
   type    = "CNAME"
   value   = "prd-console-haproxy-7e5666187f103747.elb.us-east-1.amazonaws.com"
