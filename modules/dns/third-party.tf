@@ -427,7 +427,7 @@ resource "cloudflare_record" "terraform_managed_resource_0233ea603c4836c8cb4f715
 }
 
 resource "cloudflare_record" "statuspage-notifications" {
-  name = "statuspage-notifications"
+  name    = "statuspage-notifications"
   proxied = false
   ttl     = 1
   type    = "CNAME"

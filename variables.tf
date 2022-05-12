@@ -1,30 +1,32 @@
 variable "account_email" {
-    description = "Cloudflare user account email"
+  description = "Cloudflare user account email"
 }
 
 variable "account_id" {
-    description = "Cloudflare user account id"
+  description = "Cloudflare user account id"
 }
 
 variable "cloudflare_api_key" {
-    description = "Cloudflare API access key"
+  description = "Cloudflare API access key"
 }
 
 variable "zone_name" {
-    description = "Domain name"
+  description = "Domain name"
 }
 
 variable "zone_plan" {
-    default = "enterprise"
-    description = "Cloudflare plan type specification for zone"
+  default     = "enterprise"
+  description = "Cloudflare plan type specification for zone"
 }
 
 variable "awsstg_dnsrecords" {
-    description = "Map variable of input DNS records for AWSSTG environment."
+  description = "Map variable of input DNS records for AWSSTG environment."
 }
 
 variable "enable_awsstg" {
-    description = "Feature flag for enabling the AWSSTG DNS records for the current AWSSTG environment in the Production AWS account"
-    type = bool
-    default = true
+  description = "Feature flag for enabling the AWSSTG DNS records for the current AWSSTG environment in the Production AWS account"
+  type        = bool
+  default     = true
 }
+
+variable "a_records" {}
