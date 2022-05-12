@@ -11,7 +11,6 @@ variable "enable_awsstg" {
   type    = bool
   default = false
 }
-<<<<<<< HEAD
 
 variable "zone_name" {}
 
@@ -20,5 +19,3 @@ variable "enable_nonprod" {
   type        = bool
   default     = false
 }
-=======
->>>>>>> 68dfaf328e3c4a5d0984e2725bbafaab292d824a
