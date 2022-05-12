@@ -1,12 +1,22 @@
-# Original jumpcloud.com A Records
+# AWSSTG Records
+
+resource "cloudflare_record" "awsstg_dns_records" {
+  for_each = var.enable_awsstg == true ? { for record in var.awsstg_dns_records : record.name => record } : {}
+  name     = format("%s.awsstg", each.value.name)
+  value    = each.value.value
+  ttl      = each.value.ttl
+  type     = each.value.type
+  proxied  = each.value.proxied
+  zone_id  = var.zone_id
+}
 
 resource "cloudflare_record" "events-internal-writes" {
-    name = "events-internal-writes"
-    proxied = false
-    ttl = 1
-    type = "CNAME"
-    value = "dualstack.internal-prd-event-internal-writes-998198845.us-east-1.elb.amazonaws.com"
-    zone_id = var.zone_id
+  name    = "events-internal-writes"
+  proxied = false
+  ttl     = 1
+  type    = "CNAME"
+  value   = "dualstack.internal-prd-event-internal-writes-998198845.us-east-1.elb.amazonaws.com"
+  zone_id = var.zone_id
 }
 
 resource "cloudflare_record" "marketing_website" {
@@ -28,7 +38,7 @@ resource "cloudflare_record" "www" {
 }
 
 resource "cloudflare_record" "logging-rmq-admin-panel" {
-  name = "logging-rmq-admin-panel"
+  name    = "logging-rmq-admin-panel"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -37,7 +47,7 @@ resource "cloudflare_record" "logging-rmq-admin-panel" {
 }
 
 resource "cloudflare_record" "logging-rmq-use1b" {
-  name = "logging-rmq-use1b"
+  name    = "logging-rmq-use1b"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -113,7 +123,7 @@ resource "cloudflare_record" "terraform_managed_resource_18f7188113420fbc8a634c8
 
 # Original Geolocation A Records
 resource "cloudflare_record" "adbridge-kickstart" {
-  name = "adbridge-kickstart"
+  name    = "adbridge-kickstart"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -122,7 +132,7 @@ resource "cloudflare_record" "adbridge-kickstart" {
 }
 
 resource "cloudflare_record" "adbridge" {
-  name = "adbridge"
+  name    = "adbridge"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -131,7 +141,7 @@ resource "cloudflare_record" "adbridge" {
 }
 
 resource "cloudflare_record" "agent" {
-  name = "agent"
+  name    = "agent"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -140,7 +150,7 @@ resource "cloudflare_record" "agent" {
 }
 
 resource "cloudflare_record" "api" {
-  name = "api"
+  name    = "api"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -149,7 +159,7 @@ resource "cloudflare_record" "api" {
 }
 
 resource "cloudflare_record" "apple-mdm" {
-  name = "apple-mdm"
+  name    = "apple-mdm"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -158,7 +168,7 @@ resource "cloudflare_record" "apple-mdm" {
 }
 
 resource "cloudflare_record" "bss" {
-  name = "bss"
+  name    = "bss"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -167,7 +177,7 @@ resource "cloudflare_record" "bss" {
 }
 
 resource "cloudflare_record" "console" {
-  name = "console"
+  name    = "console"
   proxied = true
   ttl     = 1
   type    = "CNAME"
@@ -176,7 +186,7 @@ resource "cloudflare_record" "console" {
 }
 
 resource "cloudflare_record" "device-cert" {
-  name = "device-cert"
+  name    = "device-cert"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -185,7 +195,7 @@ resource "cloudflare_record" "device-cert" {
 }
 
 resource "cloudflare_record" "elastic" {
-  name = "elastic"
+  name    = "elastic"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -194,7 +204,7 @@ resource "cloudflare_record" "elastic" {
 }
 
 resource "cloudflare_record" "kickstart" {
-  name = "kickstart"
+  name    = "kickstart"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -203,7 +213,7 @@ resource "cloudflare_record" "kickstart" {
 }
 
 resource "cloudflare_record" "asia_ldap" {
-  name = "asia.ldap"
+  name    = "asia.ldap"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -212,7 +222,7 @@ resource "cloudflare_record" "asia_ldap" {
 }
 
 resource "cloudflare_record" "aws-us_ldap" {
-  name = "aws-us.ldap"
+  name    = "aws-us.ldap"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -221,7 +231,7 @@ resource "cloudflare_record" "aws-us_ldap" {
 }
 
 resource "cloudflare_record" "eu_ldap" {
-  name = "eu.ldap"
+  name    = "eu.ldap"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -230,7 +240,7 @@ resource "cloudflare_record" "eu_ldap" {
 }
 
 resource "cloudflare_record" "apple_mdm" {
-  name = "apple.mdm"
+  name    = "apple.mdm"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -239,7 +249,7 @@ resource "cloudflare_record" "apple_mdm" {
 }
 
 resource "cloudflare_record" "private-kickstart" {
-  name = "private-kickstart"
+  name    = "private-kickstart"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -248,7 +258,7 @@ resource "cloudflare_record" "private-kickstart" {
 }
 
 resource "cloudflare_record" "sso" {
-  name = "sso"
+  name    = "sso"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -308,7 +318,7 @@ resource "cloudflare_record" "terraform_managed_resource_b8243683bc1e47302a9ac36
 }
 
 # Original NS records from jumpcloud.com
-
+/*
 resource "cloudflare_record" "terraform_managed_resource_b1115f3910db3230cd9fc5a17ddcdb6d" {
   name    = "awsstg"
   proxied = false
@@ -344,7 +354,7 @@ resource "cloudflare_record" "terraform_managed_resource_ed61c1709913db8488e0684
   value   = "ns-241.awsdns-30.com"
   zone_id = var.zone_id
 }
-
+*/
 resource "cloudflare_record" "terraform_managed_resource_196b1c537db0885f8ab54f3619d2f8b1" {
   name    = "production"
   proxied = false
