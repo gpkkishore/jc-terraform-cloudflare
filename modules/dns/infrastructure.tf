@@ -17,21 +17,21 @@ resource "cloudflare_record" "terraform_managed_resource_20be7eae4a23e65e4d9db0e
 }
 
 resource "cloudflare_record" "devvpn" {
-    name =  "devvpn"
-    proxied = false
-    ttl = 1
-    type = "CNAME"
-    value = "mgmt.jumpcloud.com"
-    zone_id = var.zone_id
+  name    = "devvpn"
+  proxied = false
+  ttl     = 1
+  type    = "CNAME"
+  value   = "mgmt.jumpcloud.com"
+  zone_id = var.zone_id
 }
 
 resource "cloudflare_record" "do-1241-test" {
-    name =  "do-1241-test"
-    proxied = false
-    ttl = 1
-    type = "CNAME"
-    value = "s3-website.us-east-2.amazonaws.com"
-    zone_id = var.zone_id
+  name    = "do-1241-test"
+  proxied = false
+  ttl     = 1
+  type    = "CNAME"
+  value   = "s3-website.us-east-2.amazonaws.com"
+  zone_id = var.zone_id
 }
 
 resource "cloudflare_record" "terraform_managed_resource_68f8090abf2e83b932a06ba20edcb76f" {
@@ -91,7 +91,7 @@ resource "cloudflare_record" "terraform_managed_resource_873149644be01908b3b0fdd
 }
 
 resource "cloudflare_record" "staging-agent" {
-  name = "staging-agent"
+  name    = "staging-agent"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -100,7 +100,7 @@ resource "cloudflare_record" "staging-agent" {
 }
 
 resource "cloudflare_record" "staging-kickstart" {
-  name = "staging-kickstart"
+  name    = "staging-kickstart"
   proxied = false
   ttl     = 1
   type    = "CNAME"
@@ -136,39 +136,39 @@ resource "cloudflare_record" "terraform_managed_resource_915c7212287f0cfc2ea26b0
 }
 
 resource "cloudflare_record" "sysvpn" {
-    name = "sysvpn"
-    proxied = false
-    ttl     = 1
-    type    = "CNAME"
-    value   = "mgmt.jumpcloud.com"
-    zone_id = var.zone_id
+  name    = "sysvpn"
+  proxied = false
+  ttl     = 1
+  type    = "CNAME"
+  value   = "mgmt.jumpcloud.com"
+  zone_id = var.zone_id
 }
 
 resource "cloudflare_record" "test-agent" {
-    name = "test-agent"
-    proxied = false
-    ttl     = 1
-    type    = "CNAME"
-    value   = "test.jumpcloud.com"
-    zone_id = var.zone_id
+  name    = "test-agent"
+  proxied = false
+  ttl     = 1
+  type    = "CNAME"
+  value   = "test.jumpcloud.com"
+  zone_id = var.zone_id
 }
 
 resource "cloudflare_record" "test-console" {
-    name = "test-console"
-    proxied = false
-    ttl     = 1
-    type    = "CNAME"
-    value   = "test.jumpcloud.com"
-    zone_id = var.zone_id
+  name    = "test-console"
+  proxied = false
+  ttl     = 1
+  type    = "CNAME"
+  value   = "test.jumpcloud.com"
+  zone_id = var.zone_id
 }
 
 resource "cloudflare_record" "test-kickstart" {
-    name = "test-kickstart"
-    proxied = false
-    ttl     = 1
-    type    = "CNAME"
-    value   = "test.jumpcloud.com"
-    zone_id = var.zone_id
+  name    = "test-kickstart"
+  proxied = false
+  ttl     = 1
+  type    = "CNAME"
+  value   = "test.jumpcloud.com"
+  zone_id = var.zone_id
 }
 
 resource "cloudflare_record" "terraform_managed_resource_17bb370277f9302263200c7bf04d770f" {

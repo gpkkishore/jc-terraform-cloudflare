@@ -3,3 +3,11 @@ variable "zone_id" {
 }
 
 variable "ldap_aws_ns" {}
+
+variable "awsstg_dns_records" {
+}
+
+variable "enable_awsstg" {
+  type    = bool
+  default = false
+}
