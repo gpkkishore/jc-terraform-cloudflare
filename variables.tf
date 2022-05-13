@@ -20,7 +20,7 @@ variable "zone_plan" {
 }
 
 variable "awsstg_dns_records" {
-  description = "Map variable of input DNS records for AWSSTG environment."
+  description = "List of maps variable of input DNS records for AWSSTG environment."
 }
 
 variable "enable_awsstg" {
@@ -35,6 +35,10 @@ variable "enable_nonprod" {
   default     = false
 }
 variable "ldap_aws_ns" {
-    description = "LDAP nameserver for subdomain delegation"
-    type    = list(string)
+  description = "LDAP nameserver for subdomain delegation"
+  type        = list(string)
+}
+
+variable "prd_dns_records" {
+  description = "List of maps variable of input DNS records for PRD environment."
 }

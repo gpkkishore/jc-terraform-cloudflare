@@ -17,13 +17,16 @@ module "non_prd_dns" {
   zone_id = var.zone_id
 }
 
-resource "cloudflare_record" "events-internal-writes" {
-  name    = "events-internal-writes"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "dualstack.internal-prd-event-internal-writes-998198845.us-east-1.elb.amazonaws.com"
-  zone_id = var.zone_id
+# PRD Records
+
+resource "cloudflare_record" "prd_dns_records" {
+  for_each = { for record in var.prd_dns_records : record.name => record }
+  name     = each.value.name
+  value    = each.value.value
+  ttl      = each.value.ttl
+  type     = each.value.type
+  proxied  = each.value.proxied
+  zone_id  = var.zone_id
 }
 
 resource "cloudflare_record" "marketing_website" {
@@ -32,217 +35,6 @@ resource "cloudflare_record" "marketing_website" {
   ttl     = 1
   type    = "A"
   value   = "23.185.0.1"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "www" {
-  name    = "www"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "jumpcloud.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "logging-rmq-admin-panel" {
-  name    = "logging-rmq-admin-panel"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "dualstack.prd-logging-rmq-admin-panel-500485683.us-east-1.elb.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "logging-rmq-use1b" {
-  name    = "logging-rmq-use1b"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "10.31.1.25"
-  zone_id = var.zone_id
-}
-
-# What is this a management inferface for?
-resource "cloudflare_record" "terraform_managed_resource_066e155f08e8eb05ce73e42687d425db" {
-  name    = "mgmt"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "54.235.213.34"
-  zone_id = var.zone_id
-}
-
-# Is this RabbitMQ???
-resource "cloudflare_record" "terraform_managed_resource_184ca453ac6b691e1cb640b5c81d59ca" {
-  name    = "prd-jumpcloud-logging-rmq-use1c-02"
-  proxied = false
-  ttl     = 60
-  type    = "A"
-  value   = "10.30.3.24"
-  zone_id = var.zone_id
-}
-
-# Are these the HAProxy boxes?
-resource "cloudflare_record" "terraform_managed_resource_d007e34993baf7d5e0fae95320e01674" {
-  name    = "radius-proxy-1"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "104.197.52.17"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_59045fc6dee170a234942eb504e2d5a9" {
-  name    = "radius-proxy-2"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "130.211.179.88"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_e2190ff1e1c5b0b3cbb4aee94849b637" {
-  name    = "radius-proxy-3"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "130.211.141.152"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_f390ac979105f232b937c3c2b736d77f" {
-  name    = "radius-proxy-4"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "130.211.178.171"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_18f7188113420fbc8a634c828551a7c0" {
-  name    = "remote"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "3.90.90.234"
-  zone_id = var.zone_id
-}
-
-# Original Geolocation A Records
-resource "cloudflare_record" "adbridge-kickstart" {
-  name    = "adbridge-kickstart"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-adbridge-kickstart-hap-15cdca89ba728b61.elb.us-east-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "adbridge" {
-  name    = "adbridge"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-adbridge-haproxy-95a0127e2a51ca9c.elb.us-east-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "agent" {
-  name    = "agent"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-agent-haproxy-b20d9869679d351a.elb.us-east-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "api" {
-  name    = "api"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-api-haproxy-26b2f6dff2b6c74e.elb.us-east-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "apple-mdm" {
-  name    = "apple-mdm"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-apple-mdm-haproxy-d05a7a9d47266a34.elb.us-east-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "bss" {
-  name    = "bss"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-si-bss-api-haproxy-6e046266a51cbefa.elb.us-east-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "console" {
-  name    = "console"
-  proxied = true
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-console-haproxy-7e5666187f103747.elb.us-east-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "device-cert" {
-  name    = "device-cert"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-device-cert-haproxy-4d41711b05fd478e.elb.us-east-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "elastic" {
-  name    = "elastic"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-nlb-kibana-haproxy-e27a67d6237121da.elb.us-east-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "kickstart" {
-  name    = "kickstart"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-kickstart-public-haproxy-a6276758df0978b6.elb.us-east-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "apple_mdm" {
-  name    = "apple.mdm"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-apple-mdm-haproxy-d05a7a9d47266a34.elb.us-east-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "private-kickstart" {
-  name    = "private-kickstart"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-kickstart-priv-haproxy-51a0179c97e2d9d8.elb.us-east-1.amazonaws.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "sso" {
-  name    = "sso"
-  proxied = false
-  ttl     = 1
-  type    = "CNAME"
-  value   = "prd-sso-haproxy-f6664e7167075b59.elb.us-east-1.amazonaws.com"
   zone_id = var.zone_id
 }
 
@@ -298,43 +90,6 @@ resource "cloudflare_record" "terraform_managed_resource_b8243683bc1e47302a9ac36
 }
 
 # Original NS records from jumpcloud.com
-/*
-resource "cloudflare_record" "terraform_managed_resource_b1115f3910db3230cd9fc5a17ddcdb6d" {
-  name    = "awsstg"
-  proxied = false
-  ttl     = 86400
-  type    = "NS"
-  value   = "ns-1192.awsdns-21.org"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_adb9c6a7aa7a5b4ede8580207cc2add6" {
-  name    = "awsstg"
-  proxied = false
-  ttl     = 86400
-  type    = "NS"
-  value   = "ns-1689.awsdns-19.co.uk"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_4a3bd21c04ae1d0cf362d5c39ff32e27" {
-  name    = "awsstg"
-  proxied = false
-  ttl     = 86400
-  type    = "NS"
-  value   = "ns-811.awsdns-37.net"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_ed61c1709913db8488e0684b2e2675ff" {
-  name    = "awsstg"
-  proxied = false
-  ttl     = 86400
-  type    = "NS"
-  value   = "ns-241.awsdns-30.com"
-  zone_id = var.zone_id
-}
-*/
 resource "cloudflare_record" "terraform_managed_resource_196b1c537db0885f8ab54f3619d2f8b1" {
   name    = "production"
   proxied = false
@@ -406,6 +161,44 @@ resource "cloudflare_record" "terraform_managed_resource_f1843f5f077219f4888a333
   value   = "ns-585.awsdns-09.net"
   zone_id = var.zone_id
 }
+
+/*
+resource "cloudflare_record" "terraform_managed_resource_b1115f3910db3230cd9fc5a17ddcdb6d" {
+  name    = "awsstg"
+  proxied = false
+  ttl     = 86400
+  type    = "NS"
+  value   = "ns-1192.awsdns-21.org"
+  zone_id = var.zone_id
+}
+
+resource "cloudflare_record" "terraform_managed_resource_adb9c6a7aa7a5b4ede8580207cc2add6" {
+  name    = "awsstg"
+  proxied = false
+  ttl     = 86400
+  type    = "NS"
+  value   = "ns-1689.awsdns-19.co.uk"
+  zone_id = var.zone_id
+}
+
+resource "cloudflare_record" "terraform_managed_resource_4a3bd21c04ae1d0cf362d5c39ff32e27" {
+  name    = "awsstg"
+  proxied = false
+  ttl     = 86400
+  type    = "NS"
+  value   = "ns-811.awsdns-37.net"
+  zone_id = var.zone_id
+}
+
+resource "cloudflare_record" "terraform_managed_resource_ed61c1709913db8488e0684b2e2675ff" {
+  name    = "awsstg"
+  proxied = false
+  ttl     = 86400
+  type    = "NS"
+  value   = "ns-241.awsdns-30.com"
+  zone_id = var.zone_id
+}
+*/
 
 # Original AAAA records
 resource "cloudflare_record" "terraform_managed_resource_9bb19a7d138fd2f365a0035c42f872ce" {
