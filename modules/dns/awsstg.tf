@@ -4,7 +4,7 @@
 
 resource "cloudflare_record" "terraform_managed_resource_608bc6ffdcb06e692954b600db1f4d82" {
   count   = var.enable_awsstg == true ? 1 : 0
-  name    = "awsstg.jumpcloud.com"
+  name    = format("awsstg.%s", var.zone_name)
   proxied = false
   ttl     = 300
   type    = "TXT"

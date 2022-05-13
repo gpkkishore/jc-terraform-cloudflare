@@ -16,6 +16,8 @@ module "dns" {
   zone_id            = cloudflare_zone.cloudflare_zone_resource.id
   awsstg_dns_records = var.awsstg_dns_records
   enable_awsstg      = var.enable_awsstg
+  zone_name          = var.zone_name
+  enable_nonprod     = var.enable_nonprod
   ldap_aws_ns        = var.ldap_aws_ns
 }
 
@@ -23,3 +25,4 @@ module "security" {
   source  = "./modules/security"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
+

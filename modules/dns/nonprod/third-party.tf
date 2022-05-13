@@ -607,6 +607,15 @@ resource "cloudflare_record" "terraform_managed_resource_904bcd7219b436818ee7179
 }
 
 # Original TXT records from jumpcloud.com
+resource "cloudflare_record" "main_txt" {
+  name    = "@"
+  proxied = false
+  ttl     = 60
+  type    = "TXT"
+  zone_id = var.zone_id
+  value   = "\"pardot876401=925d26cf398317c201a38d2521074b25d5544b9b41a44339862494fd8a69abdb\"\"MS=ms60341697\"\"docusign=97988400-ba87-45ce-af9d-c12fcba2eb30\"\"00dg0000000jusyma2\"\"apple-domain-verification=T2kDmjmutRnHcBwJ\"\"google-site-verification=OVH-nf622AF6JVSC49PR_nwU50w-9AoskX-oyTCzCoY\"\"mongodb-site-verification=sQTETMZ1NBS8MxdjoHZowywB56OjQOAL\"\"pardot876401=b67cb78a7919e17e35bdfc0f418eee0ad75889c61f0d9f08435be858071da6ed\"\"teamviewer-sso-verification=6598ee28a09f4163a0de02d66ccd1100\"\"atlassian-domain-verification=S7cYemHK6CEnnMSf+rh0HwhhCEhj18DbxhqgfQ3+FzKOqahD77KJvLx1bpfD3VHG\"\"keybase-site-verification=7zIYg7WmRMTATjxDjmsyfZ1mDSQt32qvLLqueITtRWc\"\"v=spf1 ip4:198.37.147.129 ip4:198.21.2.137 include:aspmx.pardot.com include:mktomail.com include:_spf.google.com include:spf.zoho.com include:stspg-customer.com include:_spf.salesforce.com ~all\"\"status-page-domain-verification=95l12jw930wv\""
+}
+
 
 resource "cloudflare_record" "terraform_managed_resource_bd48a9e812a76fb7263d3b6d8e6bdd0e" {
   name    = "200608._domainkey"
@@ -616,6 +625,7 @@ resource "cloudflare_record" "terraform_managed_resource_bd48a9e812a76fb7263d3b6
   value   = "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDGoQCNwAQdJBy23MrShs1EuHqK/dtDC33QrTqgWd9CJmtM3CK2ZiTYugkhcxnkEtGbzg+IJqcDRNkZHyoRezTf6QbinBB2dbyANEuwKI5DVRBFowQOj9zvM3IvxAEboMlb0szUjAoML94HOkKuGuCkdZ1gbVEi3GcVwrIQphal1QIDAQAB;"
   zone_id = var.zone_id
 }
+
 
 resource "cloudflare_record" "terraform_managed_resource_11cf036842c018ea1eded1b3ef6f26f6" {
   name    = "20160415172154pm._domainkey"
@@ -713,123 +723,6 @@ resource "cloudflare_record" "terraform_managed_resource_da389867fc7bd425b2a9fad
   ttl     = 300
   type    = "TXT"
   value   = "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDgdCANvNf4qNowdE3mVwU21s3p9PELOh7vtPvdMCUHn0XNQNZfmUmPMeEdz3a9w+EJLJXAZpUEwcB8cIyuEEBNIfZbdYXUL5vap9zGeZuetUFjEkgBiQa1R4WFzmvmmYwxAmP68qJuiUNEvmwZku5PGYmyigm29KejfsDdvz2+RwIDAQAB"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_0945e039d096e58dd0970864c0c47ba2" {
-  name    = "jumpcloud.com"
-  proxied = false
-  ttl     = 60
-  type    = "TXT"
-  value   = "status-page-domain-verification=95l12jw930wv"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_13be4d279d95737596e627d598fe1e74" {
-  name    = "jumpcloud.com"
-  proxied = false
-  ttl     = 60
-  type    = "TXT"
-  value   = "v=spf1 ip4:198.37.147.129 ip4:198.21.2.137 include:aspmx.pardot.com include:mktomail.com include:_spf.google.com include:spf.zoho.com include:stspg-customer.com include:_spf.salesforce.com ~all"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_b1da1956a6a3b4b93f7c8c2a14815b5d" {
-  name    = "jumpcloud.com"
-  proxied = false
-  ttl     = 60
-  type    = "TXT"
-  value   = "keybase-site-verification=7zIYg7WmRMTATjxDjmsyfZ1mDSQt32qvLLqueITtRWc"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_e7e9e30fae021eaf7c02c4b3e930da41" {
-  name    = "jumpcloud.com"
-  proxied = false
-  ttl     = 60
-  type    = "TXT"
-  value   = "atlassian-domain-verification=S7cYemHK6CEnnMSf+rh0HwhhCEhj18DbxhqgfQ3+FzKOqahD77KJvLx1bpfD3VHG"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_378248b15ea32fd7cf1fe4cee98995c0" {
-  name    = "jumpcloud.com"
-  proxied = false
-  ttl     = 60
-  type    = "TXT"
-  value   = "teamviewer-sso-verification=6598ee28a09f4163a0de02d66ccd1100"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_e410eb9b0e2f1810e0ed93203a2d2299" {
-  name    = "jumpcloud.com"
-  proxied = false
-  ttl     = 60
-  type    = "TXT"
-  value   = "pardot876401=b67cb78a7919e17e35bdfc0f418eee0ad75889c61f0d9f08435be858071da6ed"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_7f1cca46d399d4c3d8805e1380f7d543" {
-  name    = "jumpcloud.com"
-  proxied = false
-  ttl     = 60
-  type    = "TXT"
-  value   = "mongodb-site-verification=sQTETMZ1NBS8MxdjoHZowywB56OjQOAL"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_68d6c6e51b3bcbeb71ff599e14fe2fec" {
-  name    = "jumpcloud.com"
-  proxied = false
-  ttl     = 60
-  type    = "TXT"
-  value   = "google-site-verification=OVH-nf622AF6JVSC49PR_nwU50w-9AoskX-oyTCzCoY"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_a7d50100f09bc492c4c5cbea9ebb2591" {
-  name    = "jumpcloud.com"
-  proxied = false
-  ttl     = 60
-  type    = "TXT"
-  value   = "apple-domain-verification=T2kDmjmutRnHcBwJ"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_c6447d05d545f13fc61dc089ea8c9552" {
-  name    = "jumpcloud.com"
-  proxied = false
-  ttl     = 60
-  type    = "TXT"
-  value   = "00dg0000000jusyma2"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_ea49ff702f136c6a872ebdff9031e4ee" {
-  name    = "jumpcloud.com"
-  proxied = false
-  ttl     = 60
-  type    = "TXT"
-  value   = "docusign=97988400-ba87-45ce-af9d-c12fcba2eb30"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_56c3349b4f29d61f65cc8021a439f9b8" {
-  name    = "jumpcloud.com"
-  proxied = false
-  ttl     = 60
-  type    = "TXT"
-  value   = "MS=ms60341697"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_4b34a9e4f391034c786a982c12d63768" {
-  name    = "jumpcloud.com"
-  proxied = false
-  ttl     = 60
-  type    = "TXT"
-  value   = "pardot876401=925d26cf398317c201a38d2521074b25d5544b9b41a44339862494fd8a69abdb"
   zone_id = var.zone_id
 }
 

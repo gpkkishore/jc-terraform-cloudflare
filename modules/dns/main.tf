@@ -10,6 +10,13 @@ resource "cloudflare_record" "awsstg_dns_records" {
   zone_id  = var.zone_id
 }
 
+# NonPRD Records
+module "non_prd_dns" {
+  count   = var.enable_nonprod == true ? 1 : 0
+  source  = "./nonprod"
+  zone_id = var.zone_id
+}
+
 resource "cloudflare_record" "events-internal-writes" {
   name    = "events-internal-writes"
   proxied = false
@@ -20,7 +27,7 @@ resource "cloudflare_record" "events-internal-writes" {
 }
 
 resource "cloudflare_record" "marketing_website" {
-  name    = "jumpcloud.com"
+  name    = "@"
   proxied = false
   ttl     = 1
   type    = "A"
@@ -241,7 +248,7 @@ resource "cloudflare_record" "sso" {
 
 # Original MX records from jumpcloud.com
 resource "cloudflare_record" "terraform_managed_resource_b768e60dc1d41bb15d089ccb1db859e0" {
-  name     = "jumpcloud.com"
+  name     = "@"
   priority = 20
   proxied  = false
   ttl      = 300
@@ -251,7 +258,7 @@ resource "cloudflare_record" "terraform_managed_resource_b768e60dc1d41bb15d089cc
 }
 
 resource "cloudflare_record" "terraform_managed_resource_c5bce7b1ac03f4eccafa9955e47c0d60" {
-  name     = "jumpcloud.com"
+  name     = "@"
   priority = 15
   proxied  = false
   ttl      = 300
@@ -261,7 +268,7 @@ resource "cloudflare_record" "terraform_managed_resource_c5bce7b1ac03f4eccafa995
 }
 
 resource "cloudflare_record" "terraform_managed_resource_d7693e2bb7f516ade6bba363b7152e1a" {
-  name     = "jumpcloud.com"
+  name     = "@"
   priority = 10
   proxied  = false
   ttl      = 300
@@ -271,7 +278,7 @@ resource "cloudflare_record" "terraform_managed_resource_d7693e2bb7f516ade6bba36
 }
 
 resource "cloudflare_record" "terraform_managed_resource_cb8166958ff9523ef5ec730250808304" {
-  name     = "jumpcloud.com"
+  name     = "@"
   priority = 5
   proxied  = false
   ttl      = 300
@@ -281,7 +288,7 @@ resource "cloudflare_record" "terraform_managed_resource_cb8166958ff9523ef5ec730
 }
 
 resource "cloudflare_record" "terraform_managed_resource_b8243683bc1e47302a9ac3693ecfe41a" {
-  name     = "jumpcloud.com"
+  name     = "@"
   priority = 1
   proxied  = false
   ttl      = 300
@@ -402,7 +409,7 @@ resource "cloudflare_record" "terraform_managed_resource_f1843f5f077219f4888a333
 
 # Original AAAA records
 resource "cloudflare_record" "terraform_managed_resource_9bb19a7d138fd2f365a0035c42f872ce" {
-  name    = "jumpcloud.com"
+  name    = "@"
   proxied = false
   ttl     = 1
   type    = "AAAA"
@@ -411,7 +418,7 @@ resource "cloudflare_record" "terraform_managed_resource_9bb19a7d138fd2f365a0035
 }
 
 resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4faf2da71199" {
-  name    = "jumpcloud.com"
+  name    = "@"
   proxied = false
   ttl     = 1
   type    = "AAAA"

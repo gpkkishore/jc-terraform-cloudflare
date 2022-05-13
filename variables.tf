@@ -29,6 +29,11 @@ variable "enable_awsstg" {
   default     = true
 }
 
+variable "enable_nonprod" {
+  description = "Feature flag for the jumpcloud.com non-production, non-customer facing records"
+  type        = bool
+  default     = false
+}
 variable "ldap_aws_ns" {
     description = "LDAP nameserver for subdomain delegation"
     type    = list(string)
