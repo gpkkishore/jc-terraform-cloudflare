@@ -1,1 +1,1 @@
-ldap_aws_ns = ["ns-12.awsdns-01.com." , "ns-1647.awsdns-13.co.uk.", "ns-1406.awsdns-47.org.", "ns-784.awsdns-34.net."]
+ldap_aws_ns = ["ns-12.awsdns-01.com", "ns-1647.awsdns-13.co.uk", "ns-1406.awsdns-47.org", "ns-784.awsdns-34.net"]

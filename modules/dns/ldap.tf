@@ -9,12 +9,12 @@ resource "cloudflare_record" "terraform_managed_resource_fafd89e1b989f6f5447d44a
 
 #ldap ns for subdomain delegation
 resource "cloudflare_record" "ldap_aws_ns" {
-  for_each  = toset(var.ldap_aws_ns)
-  zone_id   = var.zone_id
-  name      = "ldap"
-  value     = each.value
-  type      = "NS"
-  ttl       = 300
+  for_each = toset(var.ldap_aws_ns)
+  zone_id  = var.zone_id
+  name     = "ldap"
+  value    = each.value
+  type     = "NS"
+  ttl      = 300
 }
 
 

@@ -19,6 +19,7 @@ module "dns" {
   zone_name          = var.zone_name
   enable_nonprod     = var.enable_nonprod
   ldap_aws_ns        = var.ldap_aws_ns
+  prd_dns_records    = var.prd_dns_records
 }
 
 module "security" {
