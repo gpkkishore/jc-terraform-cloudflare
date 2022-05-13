@@ -1,0 +1,2 @@
+ldap_aws_ns = ["ns-12.awsdns-01.com", "ns-1647.awsdns-13.co.uk", "ns-1406.awsdns-47.org", "ns-784.awsdns-34.net"]
+radius_aws_ns = ["ns-1931.awsdns-49.co.uk", "ns-1434.awsdns-51.org", "ns-465.awsdns-58.com", "ns-585.awsdns-09.net"]

@@ -23,3 +23,5 @@ variable "enable_nonprod" {
 variable "prd_dns_records" {
 
 }
+
+variable "radius_aws_ns" {}

@@ -42,3 +42,8 @@ variable "ldap_aws_ns" {
 variable "prd_dns_records" {
   description = "List of maps variable of input DNS records for PRD environment."
 }
+
+variable "radius_aws_ns" {
+  description = "Radius nameserver for subdomain delegation"
+  type        = list(string)
+}
