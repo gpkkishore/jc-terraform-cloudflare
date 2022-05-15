@@ -20,6 +20,7 @@ module "dns" {
   enable_nonprod     = var.enable_nonprod
   ldap_aws_ns        = var.ldap_aws_ns
   prd_dns_records    = var.prd_dns_records
+  radius_aws_ns      = var.radius_aws_ns
 }
 
 module "security" {
