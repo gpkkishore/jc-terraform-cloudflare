@@ -47,3 +47,19 @@ variable "radius_aws_ns" {
   description = "Radius nameserver for subdomain delegation"
   type        = list(string)
 }
+
+variable "test_subdomain_delegation" {
+  description = "Testing subdomain delegation, will point ns for radius and ldap to hosted zone in aws Development account"
+  type        = bool
+  default     = false
+}
+
+variable "ldap_aws_ns_test" {
+  description = "LDAP nameserver for subdomain delegation (ldap.cloudjump.dev)"
+  type        = list(string)
+}
+
+variable "radius_aws_ns_test" {
+  description = "Radius nameserver for subdomain delegation (radius.cloudjump.dev)"
+  type        = list(string)
+}
