@@ -173,5 +173,5 @@ prd_dns_records = [
     type    = "CNAME"
     ttl     = 1
     proxied = false
-  },
+  }
 ]
