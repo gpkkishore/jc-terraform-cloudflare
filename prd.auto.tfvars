@@ -167,4 +167,18 @@ prd_dns_records = [
     type    = "CNAME"
     value   = "prd-sso-haproxy-f6664e7167075b59.elb.us-east-1.amazonaws.com"
   },
+  {
+    name    = "sso.awsstg"
+    value   = "internal-awsstg-sso-jumpcloud-com-1395208237.us-west-2.elb.amazonaws.com"
+    type    = "CNAME"
+    ttl     = 1
+    proxied = false
+  },
+  {
+    name    = "console.awsstg"
+    value   = "dualstack.internal-awsstg-console-944155982.us-west-2.elb.amazonaws.com"
+    type    = "CNAME"
+    ttl     = 1
+    proxied = false
+  }
 ]

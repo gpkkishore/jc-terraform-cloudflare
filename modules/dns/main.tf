@@ -38,6 +38,16 @@ resource "cloudflare_record" "marketing_website" {
   zone_id = var.zone_id
 }
 
+resource "cloudflare_record" "www_marketing_website" {
+  name    = "www"
+  proxied = false
+  ttl     = 1
+  type    = "A"
+  value   = "23.185.0.1"
+  zone_id = var.zone_id
+}
+
+
 # Original MX records from jumpcloud.com
 resource "cloudflare_record" "terraform_managed_resource_b768e60dc1d41bb15d089ccb1db859e0" {
   name     = "@"
@@ -88,9 +98,20 @@ resource "cloudflare_record" "terraform_managed_resource_b8243683bc1e47302a9ac36
   value    = "aspmx.l.google.com"
   zone_id  = var.zone_id
 }
+# Original SOA records from jumpcloud.com
 
-# Original NS records from jumpcloud.com
-resource "cloudflare_record" "terraform_managed_resource_196b1c537db0885f8ab54f3619d2f8b1" {
+/*resource "cloudflare_record" "terraform_managed_resource_ed3s3683bc1e47302a9ac3693ecfe41a" {
+  name     = "@"
+  priority = 1
+  proxied  = false
+  ttl      = 300
+  type     = "SOA"
+  value    = "ns-1687.awsdns-18.co.uk. awsdns-hostmaster.amazon.com. 9 7200 900 1209600 86400"
+  zone_id  = var.zone_id
+}*/
+
+# Original NS records from production.jumpcloud.com
+/*resource "cloudflare_record" "terraform_managed_resource_196b1c537db0885f8ab54f3619d2f8b1" {
   name    = "production"
   proxied = false
   ttl     = 300
@@ -124,7 +145,7 @@ resource "cloudflare_record" "terraform_managed_resource_f4de492c3a3b1877d98d68f
   type    = "NS"
   value   = "ns-1536.awsdns-00.co.uk"
   zone_id = var.zone_id
-}
+}*/
 
 /*
 resource "cloudflare_record" "terraform_managed_resource_b1115f3910db3230cd9fc5a17ddcdb6d" {
@@ -176,6 +197,24 @@ resource "cloudflare_record" "terraform_managed_resource_9bb19a7d138fd2f365a0035
 
 resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4faf2da71199" {
   name    = "@"
+  proxied = false
+  ttl     = 1
+  type    = "AAAA"
+  value   = "2620:12a:8000::1"
+  zone_id = var.zone_id
+}
+
+resource "cloudflare_record" "terraform_managed_resource_9bb19a7d138fd2f365a0035c42f872ce1" {
+  name    = "www"
+  proxied = false
+  ttl     = 1
+  type    = "AAAA"
+  value   = "2620:12a:8001::1"
+  zone_id = var.zone_id
+}
+
+resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4faf2da711992" {
+  name    = "www"
   proxied = false
   ttl     = 1
   type    = "AAAA"
