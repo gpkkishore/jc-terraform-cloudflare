@@ -100,7 +100,7 @@ resource "cloudflare_record" "terraform_managed_resource_b8243683bc1e47302a9ac36
 }
 # Original SOA records from jumpcloud.com
 
-resource "cloudflare_record" "terraform_managed_resource_ed3s3683bc1e47302a9ac3693ecfe41a" {
+/*resource "cloudflare_record" "terraform_managed_resource_ed3s3683bc1e47302a9ac3693ecfe41a" {
   name     = "@"
   priority = 1
   proxied  = false
@@ -108,7 +108,7 @@ resource "cloudflare_record" "terraform_managed_resource_ed3s3683bc1e47302a9ac36
   type     = "SOA"
   value    = "ns-1687.awsdns-18.co.uk. awsdns-hostmaster.amazon.com. 9 7200 900 1209600 86400"
   zone_id  = var.zone_id
-}
+}*/
 
 # Original NS records from production.jumpcloud.com
 /*resource "cloudflare_record" "terraform_managed_resource_196b1c537db0885f8ab54f3619d2f8b1" {
