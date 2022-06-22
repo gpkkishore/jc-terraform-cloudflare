@@ -762,3 +762,12 @@ resource "cloudflare_record" "terraform_managed_resource_e22b4971e2d2dde4241dadc
   value   = "k=rsa; t=s; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDPtW5iwpXVPiH5FzJ7Nrl8USzuY9zqqzjE0D1r04xDN6qwziDnmgcFNNfMewVKN2D1O+2J9N14hRprzByFwfQW76yojh54Xu3uSbQ3JP0A7k8o8GutRF8zbFUA8n0ZH2y0cIEjMliXY4W4LwPA7m4q0ObmvSjhd63O9d8z1XkUBwIDAQAB"
   zone_id = var.zone_id
 }
+
+resource "cloudflare_record" "terraform_managed_resource_222b4971e2d2dde4241dadcb86cdeea4" {
+  name    = "try"
+  proxied = false
+  ttl     = 300
+  type    = "CNAME"
+  value   = "unbouncepages.com"
+  zone_id = var.zone_id
+}
