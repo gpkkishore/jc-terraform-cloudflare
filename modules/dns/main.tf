@@ -29,7 +29,7 @@ resource "cloudflare_record" "prd_dns_records" {
   zone_id  = var.zone_id
 }
 
-resource "cloudflare_record" "marketing_website" { leo
+resource "cloudflare_record" "marketing_website" { 
   name    = "@"
   proxied = false
   ttl     = 1
