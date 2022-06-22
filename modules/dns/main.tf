@@ -29,23 +29,23 @@ resource "cloudflare_record" "prd_dns_records" {
   zone_id  = var.zone_id
 }
 
-# resource "cloudflare_record" "marketing_website" { leo
-#   name    = "@"
-#   proxied = false
-#   ttl     = 1
-#   type    = "A"
-#   value   = "23.185.0.1"
-#   zone_id = var.zone_id
-# }
-
-resource "cloudflare_record" "www_marketing_website" {
-  name    = "www"
+resource "cloudflare_record" "marketing_website" { leo
+  name    = "@"
   proxied = false
   ttl     = 1
   type    = "A"
   value   = "23.185.0.1"
   zone_id = var.zone_id
 }
+
+# resource "cloudflare_record" "www_marketing_website" {
+#   name    = "www"
+#   proxied = false
+#   ttl     = 1
+#   type    = "A"
+#   value   = "23.185.0.1"
+#   zone_id = var.zone_id
+# }
 
 
 # Original MX records from jumpcloud.com
