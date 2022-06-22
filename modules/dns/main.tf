@@ -194,20 +194,20 @@ resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4fa
   zone_id = var.zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_9bb19a7d138fd2f365a0035c42f872ce1" {
-  name    = "www"
-  proxied = false
-  ttl     = 1
-  type    = "AAAA"
-  value   = "2620:12a:8001::1"
-  zone_id = var.zone_id
-}
+# resource "cloudflare_record" "terraform_managed_resource_9bb19a7d138fd2f365a0035c42f872ce1" { leo
+#   name    = "www"
+#   proxied = false
+#   ttl     = 1
+#   type    = "AAAA"
+#   value   = "2620:12a:8001::1"
+#   zone_id = var.zone_id
+# }
 
-resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4faf2da711992" {
-  name    = "www"
-  proxied = false
-  ttl     = 1
-  type    = "AAAA"
-  value   = "2620:12a:8000::1"
-  zone_id = var.zone_id
-}
+# resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4faf2da711992" { leo
+#   name    = "www"
+#   proxied = false
+#   ttl     = 1
+#   type    = "AAAA"
+#   value   = "2620:12a:8000::1"
+#   zone_id = var.zone_id
+# }
