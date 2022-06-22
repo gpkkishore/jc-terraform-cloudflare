@@ -38,7 +38,7 @@ resource "cloudflare_record" "marketing_website" {
   zone_id = var.zone_id
 }
 
-resource "cloudflare_record" "marketing_website" {
+resource "cloudflare_record" "www_marketing_website" {
   name    = "www"
   proxied = false
   ttl     = 1
@@ -193,7 +193,7 @@ resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4fa
   zone_id = var.zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_9bb19a7d138fd2f365a0035c42f872ce" {
+resource "cloudflare_record" "terraform_managed_resource_9bb19a7d138fd2f365a0035c42f872ce1" {
   name    = "www"
   proxied = false
   ttl     = 1
@@ -202,7 +202,7 @@ resource "cloudflare_record" "terraform_managed_resource_9bb19a7d138fd2f365a0035
   zone_id = var.zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4faf2da71199" {
+resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4faf2da711992" {
   name    = "www"
   proxied = false
   ttl     = 1
