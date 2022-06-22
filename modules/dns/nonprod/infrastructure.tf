@@ -225,42 +225,42 @@ resource "cloudflare_record" "terraform_managed_resource_f3ee1b1580af6f658e90784
   zone_id = var.zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_797569126c60298d37016985e6cc1d3d" {
-  name    = "titanium"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "151.101.2.132"
-  zone_id = var.zone_id
-}
+# resource "cloudflare_record" "terraform_managed_resource_797569126c60298d37016985e6cc1d3d" { leo
+#   name    = "titanium"
+#   proxied = false
+#   ttl     = 1
+#   type    = "A"
+#   value   = "151.101.2.132"
+#   zone_id = var.zone_id
+# }
 
-# Directs to Fastly
-resource "cloudflare_record" "terraform_managed_resource_6042f1baf2282d2d29931d87f1fdffac" {
-  name    = "titanium"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "151.101.66.132"
-  zone_id = var.zone_id
-}
+# # Directs to Fastly
+# resource "cloudflare_record" "terraform_managed_resource_6042f1baf2282d2d29931d87f1fdffac" { leo
+#   name    = "titanium"
+#   proxied = false
+#   ttl     = 1
+#   type    = "A"
+#   value   = "151.101.66.132"
+#   zone_id = var.zone_id
+# }
 
-resource "cloudflare_record" "terraform_managed_resource_b57e23ae6f725bc81c86854844080837" {
-  name    = "titanium"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "151.101.130.132"
-  zone_id = var.zone_id
-}
+# resource "cloudflare_record" "terraform_managed_resource_b57e23ae6f725bc81c86854844080837" { leo
+#   name    = "titanium"
+#   proxied = false
+#   ttl     = 1
+#   type    = "A"
+#   value   = "151.101.130.132"
+#   zone_id = var.zone_id
+# }
 
-resource "cloudflare_record" "terraform_managed_resource_429c7a509ea774bee6efde5548b96bdc" {
-  name    = "titanium"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "151.101.194.132"
-  zone_id = var.zone_id
-}
+# resource "cloudflare_record" "terraform_managed_resource_429c7a509ea774bee6efde5548b96bdc" { leo
+#   name    = "titanium"
+#   proxied = false
+#   ttl     = 1
+#   type    = "A"
+#   value   = "151.101.194.132"
+#   zone_id = var.zone_id
+# }
 
 resource "cloudflare_record" "terraform_managed_resource_995ab471a928898407d6a4506fb7e562" {
   name    = "vpn"
