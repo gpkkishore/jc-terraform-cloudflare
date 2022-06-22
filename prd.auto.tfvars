@@ -173,5 +173,12 @@ prd_dns_records = [
     type    = "CNAME"
     ttl     = 1
     proxied = false
+  },
+  {
+    name    = "console.awsstg"
+    value   = "dualstack.internal-awsstg-console-944155982.us-west-2.elb.amazonaws.com"
+    type    = "CNAME"
+    ttl     = 1
+    proxied = false
   }
 ]
