@@ -38,7 +38,7 @@ resource "cloudflare_record" "marketing_website" {
   zone_id = var.zone_id
 }
 
-# resource "cloudflare_record" "www_marketing_website" {
+# resource "cloudflare_record" "www_marketing_website" { leo
 #   name    = "www"
 #   proxied = false
 #   ttl     = 1
