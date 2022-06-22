@@ -1,5 +1,4 @@
 resource "cloudflare_record" "terraform_managed_resource_fafd89e1b989f6f5447d44a83205c37d" {
-  count   = var.enable_awsstg == true ? 1 : 0
   name    = "delfingen-ldap"
   proxied = false
   ttl     = 1
@@ -10,7 +9,6 @@ resource "cloudflare_record" "terraform_managed_resource_fafd89e1b989f6f5447d44a
 
 #ldap ns for subdomain delegation
 resource "cloudflare_record" "ldap_aws_ns" {
-  count   = var.enable_awsstg == true ? 1 : 0
   for_each = toset(var.ldap_aws_ns)
   zone_id  = var.zone_id
   name     = "ldap"
