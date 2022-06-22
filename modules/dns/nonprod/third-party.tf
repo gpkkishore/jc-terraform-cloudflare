@@ -726,6 +726,16 @@ resource "cloudflare_record" "terraform_managed_resource_da389867fc7bd425b2a9fad
   zone_id = var.zone_id
 }
 
+resource "cloudflare_record" "terraform_managed_resource_da389867fc7bd425b2a9fadaf7b5b689" {
+  name    = "google._domainkey.get"
+  proxied = false
+  ttl     = 300
+  type    = "TXT"
+  value   = "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRTawG9K7tHX1tAzhyZtAu8MYsyTKRrm0oe2Sat+yT61AYPKeKXUfySU09bV2z3OWLmtzXQ3LoXadbfc4hrjPYNa6JRwkHyCy6tQz0MAhfECfg8p97TzbVu8JoAtB7LmrJsYd1EOuzriwBeOuBtTVmVWxqyxZYHuOe1vN8hZQ7KwIDAQAB"
+  zone_id = var.zone_id
+}
+
+
 resource "cloudflare_record" "terraform_managed_resource_d811ccc1d298c6d95a5f32e5326583c0" {
   name    = "mx._domainkey"
   proxied = false
@@ -737,6 +747,15 @@ resource "cloudflare_record" "terraform_managed_resource_d811ccc1d298c6d95a5f32e
 
 resource "cloudflare_record" "terraform_managed_resource_54dc2f77fec4832a10e895c67511fb04" {
   name    = "smtpapi._domainkey.email"
+  proxied = false
+  ttl     = 300
+  type    = "TXT"
+  value   = "k=rsa; t=s; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDPtW5iwpXVPiH5FzJ7Nrl8USzuY9zqqzjE0D1r04xDN6qwziDnmgcFNNfMewVKN2D1O+2J9N14hRprzByFwfQW76yojh54Xu3uSbQ3JP0A7k8o8GutRF8zbFUA8n0ZH2y0cIEjMliXY4W4LwPA7m4q0ObmvSjhd63O9d8z1XkUBwIDAQAB"
+  zone_id = var.zone_id
+}
+
+resource "cloudflare_record" "terraform_managed_resource_e22b4971e2d2dde4241dadcb86cdeea4" {
+  name    = "smtpapi._domainkey"
   proxied = false
   ttl     = 300
   type    = "TXT"
