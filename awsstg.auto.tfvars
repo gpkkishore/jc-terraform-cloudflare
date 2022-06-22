@@ -72,13 +72,13 @@ awsstg_dns_records = [
   # ldap = "10.20.1.193"
   # ldap = "10.20.33.198",  # Is this supposed replicate regional deployment?
   # radius = "13.57.87.164"
-  {
-    name    = "sso"
-    value   = "awsstg-sso-haproxy-1c5c07d1c09a69bd.elb.us-west-2.amazonaws.com"
-    type    = "CNAME"
-    ttl     = 1
-    proxied = false
-  },
+  # {
+  #   name    = "sso"
+  #   value   = "awsstg-sso-haproxy-1c5c07d1c09a69bd.elb.us-west-2.amazonaws.com"
+  #   type    = "CNAME"
+  #   ttl     = 1
+  #   proxied = false
+  # },
   {
     name    = "assets"
     value   = "d193ib4v2852zx.cloudfront.net"
@@ -149,13 +149,13 @@ awsstg_dns_records = [
     ttl     = 1
     proxied = false
   },
-  {
-    name    = "console"
-    value   = "awsstg-console-haproxy-431fa260ac3793b1.elb.us-west-2.amazonaws.com"
-    type    = "CNAME"
-    ttl     = 1
-    proxied = false
-  },
+  # {
+  #   name    = "console"
+  #   value   = "awsstg-console-haproxy-431fa260ac3793b1.elb.us-west-2.amazonaws.com"
+  #   type    = "CNAME"
+  #   ttl     = 1
+  #   proxied = false
+  # },
   {
     name    = "device-cert"
     value   = "awsstg-device-cert-haproxy-97826775d48c4ee3.elb.us-west-2.amazonaws.com"
