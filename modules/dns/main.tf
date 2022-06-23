@@ -278,7 +278,7 @@ resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4fa
 resource "cloudflare_record" "awsstg_aws_ns" {
   for_each = toset(var.awsstg_aws_ns)
   zone_id  = var.zone_id
-  name     = "ldap"
+  name     = "awsstg"
   value    = each.value
   type     = "NS"
   ttl      = 300
