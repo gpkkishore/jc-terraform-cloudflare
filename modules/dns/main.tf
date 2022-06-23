@@ -55,7 +55,7 @@ resource "cloudflare_record" "terraform_managed_resource_b768e60dc1d41bb15d089cc
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "20 ASPMX3.GOOGLEMAIL.COM"
+  value    = "aspmx3.googlemail.com" #"20 ASPMX3.GOOGLEMAIL.COM"
   zone_id  = var.zone_id
 }
 
@@ -65,7 +65,7 @@ resource "cloudflare_record" "terraform_managed_resource_c5bce7b1ac03f4eccafa995
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "15 ASPMX2.GOOGLEMAIL.COM"
+  value    =  "aspmx2.googlemail.com" #"15 ASPMX2.GOOGLEMAIL.COM"
   zone_id  = var.zone_id
 }
 
@@ -75,7 +75,7 @@ resource "cloudflare_record" "terraform_managed_resource_d7693e2bb7f516ade6bba36
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "10 ALT2.ASPMX.L.GOOGLE.COM"
+  value    = "alt2.aspmx.l.google.com" #"10 ALT2.ASPMX.L.GOOGLE.COM"
   zone_id  = var.zone_id
 }
 
@@ -85,7 +85,7 @@ resource "cloudflare_record" "terraform_managed_resource_cb8166958ff9523ef5ec730
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "5 ALT1.ASPMX.L.GOOGLE.COM"
+  value    = "alt1.aspmx.l.google.com" #"5 ALT1.ASPMX.L.GOOGLE.COM"
   zone_id  = var.zone_id
 }
 
@@ -95,18 +95,18 @@ resource "cloudflare_record" "terraform_managed_resource_b8243683bc1e47302a9ac36
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "1 ASPMX.L.GOOGLE.COM"
+  value    = "aspmx.l.google.com" # "1 ASPMX.L.GOOGLE.COM"
   zone_id  = var.zone_id
 }
 
-# Original MX records from jumpcloud.com
-resource "cloudflare_record" "terraform_managed_resource_c8243683bc1e47302a9ac3693ecfe41a" {
+Original MX records from jumpcloud.com
+resource "cloudflare_record" "terraform_managed_resource_c8243683bc1e47302a9ac3693ecfe41a" { leo
   name     = "get"
   priority = 1
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "10 ASPMX3.GOOGLEMAIL.COM"
+  value    =  "aspmx3.googlemail.com" # "10 ASPMX3.GOOGLEMAIL.COM"
   zone_id  = var.zone_id
 }
 
@@ -116,17 +116,17 @@ resource "cloudflare_record" "terraform_managed_resource_d8243683bc1e47302a8ac36
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "5 ALT2.ASPMX.L.GOOGLE.COM"
+  value    = "alt2.aspmx.l.google.com" #"5 ALT2.ASPMX.L.GOOGLE.COM"
   zone_id  = var.zone_id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_18243683bc1e47302a8ac3693ecf453a" {
+resource "cloudflare_record" "terraform_managed_resource_18243683bc1e47302a8ac3693ecf453a" { leo
   name     = "get"
   priority = 1
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "1 ASPMX.L.GOOGLE.COM"
+  value    =  "aspmx.l.google.com"  #"1 ASPMX.L.GOOGLE.COM"
   zone_id  = var.zone_id
 }
 
@@ -136,7 +136,7 @@ resource "cloudflare_record" "terraform_managed_resource_23244673bc1e47302a8ac36
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "10 ASPMX2.GOOGLEMAIL.COM"
+  value    =  "aspmx2.googlemail.com" #"10 ASPMX2.GOOGLEMAIL.COM"
   zone_id  = var.zone_id
 }
 
@@ -146,7 +146,7 @@ resource "cloudflare_record" "terraform_managed_resource_232423433bc1e47302a8ac3
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "5 ALT1.ASPMX.L.GOOGLE.COM"
+  value    = "alt1.aspmx.l.google.com"  #"5 ALT1.ASPMX.L.GOOGLE.COM"
   zone_id  = var.zone_id
 }
   
