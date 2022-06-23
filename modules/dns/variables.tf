@@ -25,3 +25,5 @@ variable "prd_dns_records" {
 }
 
 variable "radius_aws_ns" {}
+
+variable "awsstg_aws_ns" {}

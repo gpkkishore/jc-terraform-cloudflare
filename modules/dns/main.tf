@@ -273,3 +273,13 @@ resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4fa
   value   = "2620:12a:8000::1"
   zone_id = var.zone_id
 }
+
+#AWSSTG ns for subdomain delegation
+resource "cloudflare_record" "awsstg_aws_ns" {
+  for_each = toset(var.awsstg_aws_ns)
+  zone_id  = var.zone_id
+  name     = "awsstg"
+  value    = each.value
+  type     = "NS"
+  ttl      = 300
+}

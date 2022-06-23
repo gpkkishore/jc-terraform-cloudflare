@@ -63,3 +63,8 @@ variable "radius_aws_ns_test" {
   description = "Radius nameserver for subdomain delegation (radius.cloudjump.dev)"
   type        = list(string)
 }
+
+variable "awsstg_aws_ns" {
+  description = "AWSSTG nameserver for subdomain delegation"
+  type        = list(string)
+}
