@@ -38,6 +38,16 @@ resource "cloudflare_record" "marketing_website" {
   zone_id = var.zone_id
 }
 
+resource "cloudflare_record" "www_marketing_website" { 
+  name    = "www"
+  proxied = false
+  ttl     = 1
+  type    = "A"
+  value   = "23.185.0.1"
+  zone_id = var.zone_id
+}
+
+
 # Original MX records from jumpcloud.com
 resource "cloudflare_record" "terraform_managed_resource_b768e60dc1d41bb15d089ccb1db859e0" {
   name     = "@"
@@ -45,7 +55,7 @@ resource "cloudflare_record" "terraform_managed_resource_b768e60dc1d41bb15d089cc
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "aspmx3.googlemail.com"
+  value    = "aspmx3.googlemail.com" #"20 ASPMX3.GOOGLEMAIL.COM"
   zone_id  = var.zone_id
 }
 
@@ -55,7 +65,7 @@ resource "cloudflare_record" "terraform_managed_resource_c5bce7b1ac03f4eccafa995
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "aspmx2.googlemail.com"
+  value    =  "aspmx2.googlemail.com" #"15 ASPMX2.GOOGLEMAIL.COM"
   zone_id  = var.zone_id
 }
 
@@ -65,7 +75,7 @@ resource "cloudflare_record" "terraform_managed_resource_d7693e2bb7f516ade6bba36
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "alt2.aspmx.l.google.com"
+  value    = "alt2.aspmx.l.google.com" #"10 ALT2.ASPMX.L.GOOGLE.COM"
   zone_id  = var.zone_id
 }
 
@@ -75,7 +85,7 @@ resource "cloudflare_record" "terraform_managed_resource_cb8166958ff9523ef5ec730
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "alt1.aspmx.l.google.com"
+  value    = "alt1.aspmx.l.google.com" #"5 ALT1.ASPMX.L.GOOGLE.COM"
   zone_id  = var.zone_id
 }
 
@@ -85,9 +95,61 @@ resource "cloudflare_record" "terraform_managed_resource_b8243683bc1e47302a9ac36
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "aspmx.l.google.com"
+  value    = "aspmx.l.google.com" # "1 ASPMX.L.GOOGLE.COM"
   zone_id  = var.zone_id
 }
+
+#Original MX records from jumpcloud.com
+resource "cloudflare_record" "terraform_managed_resource_c8243683bc1e47302a9ac3693ecfe41a" {
+  name     = "get"
+  priority = 1
+  proxied  = false
+  ttl      = 300
+  type     = "MX"
+  value    =  "aspmx3.googlemail.com" # "10 ASPMX3.GOOGLEMAIL.COM"
+  zone_id  = var.zone_id
+}
+
+resource "cloudflare_record" "terraform_managed_resource_d8243683bc1e47302a8ac3693ecfe41a" {
+  name     = "get"
+  priority = 1
+  proxied  = false
+  ttl      = 300
+  type     = "MX"
+  value    = "alt2.aspmx.l.google.com" #"5 ALT2.ASPMX.L.GOOGLE.COM"
+  zone_id  = var.zone_id
+}
+
+resource "cloudflare_record" "terraform_managed_resource_18243683bc1e47302a8ac3693ecf453a" {
+  name     = "get"
+  priority = 1
+  proxied  = false
+  ttl      = 300
+  type     = "MX"
+  value    =  "aspmx.l.google.com"  #"1 ASPMX.L.GOOGLE.COM"
+  zone_id  = var.zone_id
+}
+
+resource "cloudflare_record" "terraform_managed_resource_23244673bc1e47302a8ac3693ecf453a" {
+  name     = "get"
+  priority = 1
+  proxied  = false
+  ttl      = 300
+  type     = "MX"
+  value    =  "aspmx2.googlemail.com" #"10 ASPMX2.GOOGLEMAIL.COM"
+  zone_id  = var.zone_id
+}
+
+resource "cloudflare_record" "terraform_managed_resource_232423433bc1e47302a8ac387ecf453a" {
+  name     = "get"
+  priority = 1
+  proxied  = false
+  ttl      = 300
+  type     = "MX"
+  value    = "alt1.aspmx.l.google.com"  #"5 ALT1.ASPMX.L.GOOGLE.COM"
+  zone_id  = var.zone_id
+}
+  
 # Original SOA records from jumpcloud.com
 
 /*resource "cloudflare_record" "terraform_managed_resource_ed3s3683bc1e47302a9ac3693ecfe41a" {
@@ -194,20 +256,13 @@ resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4fa
   zone_id = var.zone_id
 }
 
-# resource "cloudflare_record" "terraform_managed_resource_9bb19a7d138fd2f365a0035c42f872ce1" { leo
-#   name    = "www"
-#   proxied = false
-#   ttl     = 1
-#   type    = "AAAA"
-#   value   = "2620:12a:8001::1"
-#   zone_id = var.zone_id
-# }
+#AWSSTG ns for subdomain delegation
+resource "cloudflare_record" "awsstg_aws_ns" {
+  for_each = toset(var.awsstg_aws_ns)
+  zone_id  = var.zone_id
+  name     = "awsstg"
+  value    = each.value
+  type     = "NS"
+  ttl      = 300
+}
 
-# resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4faf2da711992" { leo
-#   name    = "www"
-#   proxied = false
-#   ttl     = 1
-#   type    = "AAAA"
-#   value   = "2620:12a:8000::1"
-#   zone_id = var.zone_id
-# }

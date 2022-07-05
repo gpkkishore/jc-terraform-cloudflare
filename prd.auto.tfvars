@@ -7,13 +7,6 @@ prd_dns_records = [
     value   = "dualstack.internal-prd-event-internal-writes-998198845.us-east-1.elb.amazonaws.com"
   },
   {
-    name    = "www"
-    proxied = false
-    ttl     = 1
-    type    = "CNAME"
-    value   = "jumpcloud.com"
-  },
-  {
     name    = "logging-rmq-admin-panel"
     proxied = false
     ttl     = 1
