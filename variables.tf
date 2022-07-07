@@ -19,10 +19,6 @@ variable "zone_plan" {
   description = "Cloudflare plan type specification for zone"
 }
 
-variable "awsstg_dns_records" {
-  description = "List of maps variable of input DNS records for AWSSTG environment."
-}
-
 variable "enable_awsstg" {
   description = "Feature flag for enabling the AWSSTG DNS records for the current AWSSTG environment in the Production AWS account"
   type        = bool
@@ -37,10 +33,6 @@ variable "enable_nonprod" {
 variable "ldap_aws_ns" {
   description = "LDAP nameserver for subdomain delegation"
   type        = list(string)
-}
-
-variable "prd_dns_records" {
-  description = "List of maps variable of input DNS records for PRD environment."
 }
 
 variable "radius_aws_ns" {
