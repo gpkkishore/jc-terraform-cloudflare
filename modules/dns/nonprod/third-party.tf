@@ -607,15 +607,112 @@ resource "cloudflare_record" "terraform_managed_resource_904bcd7219b436818ee7179
 }
 
 # Original TXT records from jumpcloud.com
-resource "cloudflare_record" "main_txt" {
+resource "cloudflare_record" "main_txt_1" {
   name    = "@"
   proxied = false
   ttl     = 60
   type    = "TXT"
   zone_id = var.zone_id
-  value   = "\"pardot876401=925d26cf398317c201a38d2521074b25d5544b9b41a44339862494fd8a69abdb\"\"MS=ms60341697\"\"docusign=97988400-ba87-45ce-af9d-c12fcba2eb30\"\"00dg0000000jusyma2\"\"apple-domain-verification=T2kDmjmutRnHcBwJ\"\"google-site-verification=OVH-nf622AF6JVSC49PR_nwU50w-9AoskX-oyTCzCoY\"\"mongodb-site-verification=sQTETMZ1NBS8MxdjoHZowywB56OjQOAL\"\"pardot876401=b67cb78a7919e17e35bdfc0f418eee0ad75889c61f0d9f08435be858071da6ed\"\"teamviewer-sso-verification=6598ee28a09f4163a0de02d66ccd1100\"\"atlassian-domain-verification=S7cYemHK6CEnnMSf+rh0HwhhCEhj18DbxhqgfQ3+FzKOqahD77KJvLx1bpfD3VHG\"\"keybase-site-verification=7zIYg7WmRMTATjxDjmsyfZ1mDSQt32qvLLqueITtRWc\"\"v=spf1 ip4:198.37.147.129 ip4:198.21.2.137 include:aspmx.pardot.com include:mktomail.com include:_spf.google.com include:spf.zoho.com include:stspg-customer.com include:_spf.salesforce.com ~all\"\"status-page-domain-verification=95l12jw930wv\""
+  value   = "pardot876401=925d26cf398317c201a38d2521074b25d5544b9b41a44339862494fd8a69abdb"
 }
 
+resource "cloudflare_record" "main_txt_2" {
+  name    = "@"
+  proxied = false
+  ttl     = 60
+  type    = "TXT"
+  zone_id = var.zone_id
+  value   = "MS=ms60341697"
+}
+
+resource "cloudflare_record" "main_txt_3" {
+  name    = "@"
+  proxied = false
+  ttl     = 60
+  type    = "TXT"
+  zone_id = var.zone_id
+  value   = "docusign=97988400-ba87-45ce-af9d-c12fcba2eb30"
+}
+resource "cloudflare_record" "main_txt_4" {
+  name    = "@"
+  proxied = false
+  ttl     = 60
+  type    = "TXT"
+  zone_id = var.zone_id
+  value   = "00dg0000000jusyma2"
+}
+resource "cloudflare_record" "main_txt_5" {
+  name    = "@"
+  proxied = false
+  ttl     = 60
+  type    = "TXT"
+  zone_id = var.zone_id
+  value   = "apple-domain-verification=T2kDmjmutRnHcBwJ"
+}
+resource "cloudflare_record" "main_txt_6" {
+  name    = "@"
+  proxied = false
+  ttl     = 60
+  type    = "TXT"
+  zone_id = var.zone_id
+  value   = "google-site-verification=OVH-nf622AF6JVSC49PR_nwU50w-9AoskX-oyTCzCoY"
+}
+resource "cloudflare_record" "main_txt_7" {
+  name    = "@"
+  proxied = false
+  ttl     = 60
+  type    = "TXT"
+  zone_id = var.zone_id
+  value   = "mongodb-site-verification=sQTETMZ1NBS8MxdjoHZowywB56OjQOAL"
+}
+resource "cloudflare_record" "main_txt_8" {
+  name    = "@"
+  proxied = false
+  ttl     = 60
+  type    = "TXT"
+  zone_id = var.zone_id
+  value   = "pardot876401=b67cb78a7919e17e35bdfc0f418eee0ad75889c61f0d9f08435be858071da6ed"
+}
+resource "cloudflare_record" "main_txt_9" {
+  name    = "@"
+  proxied = false
+  ttl     = 60
+  type    = "TXT"
+  zone_id = var.zone_id
+  value   = "teamviewer-sso-verification=6598ee28a09f4163a0de02d66ccd1100"
+}
+resource "cloudflare_record" "main_txt_10" {
+  name    = "@"
+  proxied = false
+  ttl     = 60
+  type    = "TXT"
+  zone_id = var.zone_id
+  value   = "atlassian-domain-verification=S7cYemHK6CEnnMSf+rh0HwhhCEhj18DbxhqgfQ3+FzKOqahD77KJvLx1bpfD3VHG"
+}
+resource "cloudflare_record" "main_txt_11" {
+  name    = "@"
+  proxied = false
+  ttl     = 60
+  type    = "TXT"
+  zone_id = var.zone_id
+  value   = "keybase-site-verification=7zIYg7WmRMTATjxDjmsyfZ1mDSQt32qvLLqueITtRWc"
+}
+resource "cloudflare_record" "main_txt_12" {
+  name    = "@"
+  proxied = false
+  ttl     = 60
+  type    = "TXT"
+  zone_id = var.zone_id
+  value   = "v=spf1 ip4:198.37.147.129 ip4:198.21.2.137 include:aspmx.pardot.com include:mktomail.com include:_spf.google.com include:spf.zoho.com include:stspg-customer.com include:_spf.salesforce.com ~all"
+}
+resource "cloudflare_record" "main_txt_13" {
+  name    = "@"
+  proxied = false
+  ttl     = 60
+  type    = "TXT"
+  zone_id = var.zone_id
+  value   = "status-page-domain-verification=95l12jw930wv"
+}
 
 resource "cloudflare_record" "terraform_managed_resource_bd48a9e812a76fb7263d3b6d8e6bdd0e" {
   name    = "200608._domainkey"
