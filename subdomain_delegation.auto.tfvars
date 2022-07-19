@@ -1,5 +1,7 @@
 # update ldap_aws_ns once ldap.jumpcloud.com subdomain is created, currently it is pointint to ldap.cloudjump.dev
 ldap_aws_ns = ["ns-1519.awsdns-61.org.", "ns-1718.awsdns-22.co.uk.", "ns-393.awsdns-49.com.", "nns-869.awsdns-44.net."]
+#ldap-mfa.jumpcloud.com
+ldap_mfa_aws_ns = ["ns-1341.awsdns-39.org.","ns-246.awsdns-30.com.","ns-973.awsdns-57.net.","ns-2007.awsdns-58.co.uk."]
 # ns for radius.jumpcloud.com
 radius_aws_ns = ["ns-1931.awsdns-49.co.uk.", "ns-1434.awsdns-51.org.", "ns-465.awsdns-58.com.", "ns-585.awsdns-09.net."]
 # ns for ldap.cloudjump.dev

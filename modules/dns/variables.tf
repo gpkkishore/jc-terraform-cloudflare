@@ -4,6 +4,8 @@ variable "zone_id" {
 
 variable "ldap_aws_ns" {}
 
+variable "ldap_mfa_aws_ns" {}
+
 variable "awsstg_dns_records" {
 }
 
