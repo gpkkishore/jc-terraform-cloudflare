@@ -23,6 +23,7 @@ module "dns" {
   prd_dns_records           = local.prd_dns_records
   radius_aws_ns             = var.test_subdomain_delegation ? var.radius_aws_ns_test : var.radius_aws_ns
   awsstg_aws_ns             = var.awsstg_aws_ns
+
 }
 
 module "security" {
