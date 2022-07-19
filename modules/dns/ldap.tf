@@ -17,6 +17,16 @@ resource "cloudflare_record" "ldap_aws_ns" {
   ttl      = 300
 }
 
+#ldap ns for subdomain delegation
+resource "cloudflare_record" "ldap_mfa_aws_ns" {
+  for_each = toset(var.ldap_mfa_aws_ns)
+  zone_id  = var.zone_id
+  name     = "ldap-mfa"
+  value    = each.value
+  type     = "NS"
+  ttl      = 300
+}
+
 
 # DNS records for the new ldap.jumpcloud.com subdomain in Route 53
 /*

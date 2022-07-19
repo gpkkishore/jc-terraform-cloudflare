@@ -30,8 +30,15 @@ variable "enable_nonprod" {
   type        = bool
   default     = false
 }
+
 variable "ldap_aws_ns" {
   description = "LDAP nameserver for subdomain delegation"
+  type        = list(string)
+}
+
+
+variable "ldap_mfa_aws_ns" {
+  description = "LDAP-MFA nameserver for subdomain delegation"
   type        = list(string)
 }
 
