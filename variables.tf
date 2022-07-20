@@ -36,6 +36,10 @@ variable "ldap_aws_ns" {
   type        = list(string)
 }
 
+variable "sec_aws_ns" {
+  description = "sec nameserver for subdomain delegation"
+  type        = list(string)
+}
 
 variable "ldap_mfa_aws_ns" {
   description = "LDAP-MFA nameserver for subdomain delegation"
