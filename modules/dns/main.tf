@@ -266,3 +266,13 @@ resource "cloudflare_record" "awsstg_aws_ns" {
   ttl      = 300
 }
 
+#sec ns for subdomain delegation
+resource "cloudflare_record" "sec_aws_ns" {
+  for_each = toset(var.sec_aws_ns)
+  zone_id  = var.zone_id
+  name     = "sec"
+  value    = each.value
+  type     = "NS"
+  ttl      = 300
+}
+

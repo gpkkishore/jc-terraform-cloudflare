@@ -2,7 +2,10 @@ variable "zone_id" {
   description = "Zone ID from Cloudflare Zone"
 }
 
-variable "ldap_aws_ns" {}
+variable "ldap_aws_ns" {
+  description = "LDAP nameserver for subdomain delegation"
+  type        = list(string)
+}
 
 variable "ldap_mfa_aws_ns" {}
 
@@ -29,3 +32,8 @@ variable "prd_dns_records" {
 variable "radius_aws_ns" {}
 
 variable "awsstg_aws_ns" {}
+
+variable "sec_aws_ns" {
+  description = "sec nameserver for subdomain delegation"
+  type        = list(string)
+}
