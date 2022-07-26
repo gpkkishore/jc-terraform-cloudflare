@@ -877,3 +877,13 @@ resource "cloudflare_record" "terraform_managed_resource_322b4971e2d2dde4241dadc
   value   = "google-site-verification=r08R9Bf1v1aOENAAczb6YfRGr6QQt8FvsRoRFl_ySpI"
   zone_id = var.zone_id
 }
+
+
+resource "cloudflare_record" "terraform_managed_resource_322b4971e2d2dde4241dadcb86cdee123" {
+  name    = "get"
+  proxied = false
+  ttl     = 300
+  type    = "TXT"
+  value   = "v=spf1 include:sendgrid.net include:_spf.google.com ~all"
+  zone_id = var.zone_id
+}
