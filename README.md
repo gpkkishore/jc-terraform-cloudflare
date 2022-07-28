@@ -21,8 +21,7 @@ Cloudflare features.
 
 | Input | Type | Description |
 |-------|------|-------------|
-| account_email | string | Email address used to reference Cloudflare account|
-| cloudflare_api_key | string | API Key or API Token |
+| cloudflare_api_token | string | API Token for Cloudflare |
  zone_name | string | Domain/Website to be used and provisioned |
 
 ### CLI

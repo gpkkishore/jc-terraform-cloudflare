@@ -1,7 +1,5 @@
 provider "cloudflare" {
-  email      = var.account_email
-  account_id = var.account_id
-  api_key    = var.cloudflare_api_key
+  api_token    = var.cloudflare_api_token
 }
 
 resource "cloudflare_zone" "cloudflare_zone_resource" {

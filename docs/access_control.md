@@ -18,6 +18,12 @@ Below are the guildlines for access control of this repository:
 | READ | gh-read-all-repos | All of JC? |
 | | jc-engineering | All of JC Engineering |
 
-## Cloudflare Access Control
-
-(To be filled) 
+## Cloudflare Access Control 
+Below are the guidelines for access control to the CloudFlare account: 
+| Role | Team | Notes |
+| ---- | --- | ----- |
+| Admin | Platform - Edge | Service and Repo Owner |
+|       | (Cloud Eng) | Ops and CICD |
+| Incident Response | Security Engineering | Incident Responser and main consumers; has full read access, edit access for the firewall and gateway |
+|       | (IT) |
+| Read only | All of engineering | Full account access, read-only |
