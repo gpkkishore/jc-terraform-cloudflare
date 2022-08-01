@@ -8,6 +8,7 @@ Below are the guildlines for access control of this repository:
 - JC Security will have WRITE access in order to consume Cloudflare features.
 - Cloud Engineering will have ADMIN access to facilitate JC production operations and CICD functions.
 - IT will have WRITE access faciliate their functions and tasks.
+- If you have WRITE access, you also need to submit an #it_support request to be added to the following teams in Terraform Cloud: `dev-terraform-cloud-cloudflare-write`, `stg-terraform-cloud-cloudflare-write`, and `prod-terraform-cloud-cloudflare-write`
 
 | Role | Team | Notes |
 | ---- | --- | ----- |
@@ -22,7 +23,7 @@ Below are the guildlines for access control of this repository:
 Below are the guidelines for access control to the CloudFlare account: 
 | Role | Team | Notes |
 | ---- | --- | ----- |
-| Admin | Platform - Edge | Service and Repo Owner |
+| Admin | Platform - Edge | Service and Repo Owner; full account access (minus billing and membership) |
 |       | (Cloud Eng) | Ops and CICD |
 | Incident Response | Security Engineering | Incident Responser and main consumers; has full read access, edit access for the firewall and gateway |
 |       | (IT) |
