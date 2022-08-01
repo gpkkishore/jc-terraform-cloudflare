@@ -887,3 +887,21 @@ resource "cloudflare_record" "terraform_managed_resource_322b4971e2d2dde4241dadc
   value   = "v=spf1 include:sendgrid.net include:_spf.google.com ~all"
   zone_id = var.zone_id
 }
+
+resource "cloudflare_record" "reachdesk_dkim" {
+  name    = "20220728194105pm._domainkey.jumpcloud.com"
+  proxied = false
+  ttl     = 300
+  type    = "TXT"
+  value   = "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCC7AFqc+rf9Wuw58oNK9KSVhUE2pDjheFtxX3u2ERVmUlVKajAL+Se31KBkdCKoyJffY+t8aYSOqL0bH5lnZdcE2XLlyGddss8h+eWf3gA/9LkXR6P31ueCpjEKzw30xKucEwPDPeJ+Ev2qBNASmrNZb51BXAl6d4YNBMOK1Dy9QIDAQAB"
+  zone_id = var.zone_id
+}
+
+resource "cloudflare_record" "reachdesk_rd_bounce" {
+  name    = "rd-bounce.jumpcloud.com"
+  proxied = false
+  ttl     = 300
+  type    = "CNAME"
+  value   = "pm.mtasv.net"
+  zone_id = var.zone_id
+}
