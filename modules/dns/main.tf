@@ -257,7 +257,7 @@ resource "cloudflare_record" "terraform_managed_resource_ed61c1709913db8488e0684
 # Original AAAA records
 resource "cloudflare_record" "terraform_managed_resource_9bb19a7d138fd2f365a0035c42f872ce" {
   name    = "@"
-  proxied = false
+  proxied = true
   ttl     = 1
   type    = "AAAA"
   value   = "2620:12a:8001::1"
@@ -266,7 +266,7 @@ resource "cloudflare_record" "terraform_managed_resource_9bb19a7d138fd2f365a0035
 
 resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4faf2da71199" {
   name    = "@"
-  proxied = false
+  proxied = true
   ttl     = 1
   type    = "AAAA"
   value   = "2620:12a:8000::1"
