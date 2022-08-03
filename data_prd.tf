@@ -126,7 +126,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   =  data.terraform_remote_state.haproxy_prd.outputs.console_nlb.lb_dns_name
+      value   = data.terraform_remote_state.haproxy_prd.outputs.console_nlb.lb_dns_name
     },
     {
       name    = "device-cert"
@@ -184,6 +184,20 @@ locals {
       type    = "CNAME"
       ttl     = 1
       proxied = false
-    }
+    },
+    {
+      name    = "www"
+      value   = "2620:12a:8001::1"
+      type    = "AAAA"
+      ttl     = "AAAA"
+      proxied = true
+    },
+    {
+      name    = "www"
+      value   = "2620:12a:8000::1"
+      type    = "AAAA"
+      ttl     = "AAAA"
+      proxied = true
+    },
   ]
 }
