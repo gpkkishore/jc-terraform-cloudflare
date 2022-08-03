@@ -29,18 +29,18 @@ resource "cloudflare_record" "prd_dns_records" {
   zone_id  = var.zone_id
 }
 
-resource "cloudflare_record" "marketing_website" { 
+resource "cloudflare_record" "marketing_website" {
   name    = "@"
-  proxied = false
+  proxied = true
   ttl     = 1
   type    = "A"
   value   = "23.185.0.1"
   zone_id = var.zone_id
 }
 
-resource "cloudflare_record" "www_marketing_website" { 
+resource "cloudflare_record" "www_marketing_website" {
   name    = "www"
-  proxied = false
+  proxied = true
   ttl     = 1
   type    = "A"
   value   = "23.185.0.1"
@@ -149,7 +149,7 @@ resource "cloudflare_record" "terraform_managed_resource_232423433bc1e47302a8ac3
   value    = "alt1.aspmx.l.google.com"  #"5 ALT1.ASPMX.L.GOOGLE.COM"
   zone_id  = var.zone_id
 }
-  
+
 # Original SOA records from jumpcloud.com
 
 /*resource "cloudflare_record" "terraform_managed_resource_ed3s3683bc1e47302a9ac3693ecfe41a" {
@@ -275,4 +275,3 @@ resource "cloudflare_record" "sec_aws_ns" {
   type     = "NS"
   ttl      = 300
 }
-
