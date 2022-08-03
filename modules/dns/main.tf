@@ -47,6 +47,23 @@ resource "cloudflare_record" "www_marketing_website" {
   zone_id = var.zone_id
 }
 
+resource "cloudflare_record" "www_aaaa_marketing_website_1" {
+  name    = "www"
+  value   = "2620:12a:8001::1"
+  type    = "AAAA"
+  ttl     = "1"
+  proxied = true
+  zone_id = var.zone_id
+}
+
+resource "cloudflare_record" "www_aaaa_marketing_website_2" {
+  name    = "www"
+  value   = "2620:12a:8000::1"
+  type    = "AAAA"
+  ttl     = "1"
+  proxied = true
+  zone_id = var.zone_id
+}
 
 # Original MX records from jumpcloud.com
 resource "cloudflare_record" "terraform_managed_resource_b768e60dc1d41bb15d089ccb1db859e0" {
@@ -65,7 +82,7 @@ resource "cloudflare_record" "terraform_managed_resource_c5bce7b1ac03f4eccafa995
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    =  "aspmx2.googlemail.com" #"15 ASPMX2.GOOGLEMAIL.COM"
+  value    = "aspmx2.googlemail.com" #"15 ASPMX2.GOOGLEMAIL.COM"
   zone_id  = var.zone_id
 }
 
@@ -106,7 +123,7 @@ resource "cloudflare_record" "terraform_managed_resource_c8243683bc1e47302a9ac36
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    =  "aspmx3.googlemail.com" # "10 ASPMX3.GOOGLEMAIL.COM"
+  value    = "aspmx3.googlemail.com" # "10 ASPMX3.GOOGLEMAIL.COM"
   zone_id  = var.zone_id
 }
 
@@ -126,7 +143,7 @@ resource "cloudflare_record" "terraform_managed_resource_18243683bc1e47302a8ac36
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    =  "aspmx.l.google.com"  #"1 ASPMX.L.GOOGLE.COM"
+  value    = "aspmx.l.google.com" #"1 ASPMX.L.GOOGLE.COM"
   zone_id  = var.zone_id
 }
 
@@ -136,7 +153,7 @@ resource "cloudflare_record" "terraform_managed_resource_23244673bc1e47302a8ac36
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    =  "aspmx2.googlemail.com" #"10 ASPMX2.GOOGLEMAIL.COM"
+  value    = "aspmx2.googlemail.com" #"10 ASPMX2.GOOGLEMAIL.COM"
   zone_id  = var.zone_id
 }
 
@@ -146,7 +163,7 @@ resource "cloudflare_record" "terraform_managed_resource_232423433bc1e47302a8ac3
   proxied  = false
   ttl      = 300
   type     = "MX"
-  value    = "alt1.aspmx.l.google.com"  #"5 ALT1.ASPMX.L.GOOGLE.COM"
+  value    = "alt1.aspmx.l.google.com" #"5 ALT1.ASPMX.L.GOOGLE.COM"
   zone_id  = var.zone_id
 }
 
