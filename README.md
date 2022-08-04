@@ -1,5 +1,9 @@
 # Cloudflare Terraform Module for JumpCloud
 
+## Documentation
+* [Access control](docs/access_control.md)
+* [Contributing](docs/contributing.md)
+
 ## Module Goals
 
 The purpose of this module is to capture, document, and automate the desired
