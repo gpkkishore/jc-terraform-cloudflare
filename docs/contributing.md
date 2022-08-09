@@ -1,3 +1,5 @@
+# Contributing
+
 The purpose of this document is to provide an explanation of the layout of this project along with documentation on how to contribute new code.
 
 The project uses TF cloud and as such all variables are maintained in the respective cloud workspaces. Please see the [access control](access_control.md) documentation for information on getting access to the cloudflare workspaces - if you need to plan or apply any changes, this will be required.
@@ -26,7 +28,7 @@ An example entry in the `dns_records` array:
 **Third party records**:
 A third party record is any DNS record that has a value pointing to a third party (for example, TXT verification records or CNAMEs).
 
-These records should be added as a new `cloudflare_record` resource in the `dns/nonprod/third-party.tf` file. Despite the name, these records _are_ applied to the production zone - in this case, nonprod simply refers to DNS records that are not critical for the core infrastructure. 
+These records should be added as a new `cloudflare_record` resource in the `dns/noncore/third-party.tf` file (see [here](../modules/dns/noncore/third-party.tf). All the records in the noncore workspace _are_ applied to the production zone - the name refers to DNS records that are not critical for the core infrastructure. 
 
 An example entry:
 ```hcl
@@ -48,7 +50,7 @@ Every PR will run a `terraform plan` as a part of the CI process. Please verify 
 When opening a PR, the default branch is `staging`. When a PR is merged into staging, it will auto-apply any changes to the cloudflare stg env (cloudjump.dev).
 
 When the changes have been thoroughly tested in staging, they can be promoted to production by opening a new PR merging `staging` with `master`. Changes merged into `master` 
-_will not_ auto-apply and requires a manual confirmation of the apply in TF cloud.
+_will not_ auto-apply and require a manual confirmation of the apply in TF cloud.
 
 ## Testing
-There are various test domains that can be added to CloudFlare (beyond stg/prod). When doing dev testing, check out a domain from this [sheet](https://docs.google.com/spreadsheets/d/1pObexRFohAkdnYCccnV92GUOOn8ubYQDK_NsnOTIaow/edit). You can experiement on the `dev-cloudflare` workspace in CloudFront. You will need to override the `zone_name` and `cloudflare_api_token` variables with a CLI var (see https://www.terraform.io/cloud-docs/workspaces/variables).
+There are various test domains that can be added to CloudFlare (beyond stg/prod). When doing dev testing, check out a domain from this [sheet](https://docs.google.com/spreadsheets/d/1pObexRFohAkdnYCccnV92GUOOn8ubYQDK_NsnOTIaow/edit). You can experiment on the `dev-cloudflare` workspace in TF Cloud. You will need to override the `zone_name` and `cloudflare_api_token` variables with a CLI var (see the [terraform documentation](https://www.terraform.io/cloud-docs/workspaces/variables) for overriding vars).
