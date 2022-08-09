@@ -126,7 +126,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   =  data.terraform_remote_state.haproxy_prd.outputs.console_nlb.lb_dns_name
+      value   = data.terraform_remote_state.haproxy_prd.outputs.console_nlb.lb_dns_name
     },
     {
       name    = "device-cert"
