@@ -13,7 +13,7 @@ resource "cloudflare_firewall_rule" "block_russia_belarus" {
   action      = "block"
 }
 
-# Forward Russia and Belarus http traffic to 3.122.247.12 (451 Unavailable For Legal Reasons)
+# Forward Russia and Belarus http traffic to security-dmz-alb-prd-eu-north-1-523783178.eu-north-1.elb.amazonaws.com (451 Unavailable For Legal Reasons)
 resource "cloudflare_ruleset" "transform_uri_russia_belarus" {
   zone_id     = var.zone_id
   name        = "Forward Russia and Belarus"
@@ -26,7 +26,7 @@ resource "cloudflare_ruleset" "transform_uri_russia_belarus" {
     action_parameters {
       uri {
         path {
-          value = "/3.122.247.12"
+          value = "/security-dmz-alb-prd-eu-north-1-523783178.eu-north-1.elb.amazonaws.com"
         }
       }
     }
