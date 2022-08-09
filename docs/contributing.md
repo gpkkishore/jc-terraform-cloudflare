@@ -28,7 +28,7 @@ An example entry in the `dns_records` array:
 **Third party records**:
 A third party record is any DNS record that has a value pointing to a third party (for example, TXT verification records or CNAMEs).
 
-These records should be added as a new `cloudflare_record` resource in the `dns/noncore/third-party.tf` file (see [here](../modules/dns/noncore/third-party.tf). All the records in the noncore workspace _are_ applied to the production zone - the name refers to DNS records that are not critical for the core infrastructure. 
+These records should be added as a new `cloudflare_record` resource in the `dns/noncore/third-party.tf` file (see [here](../modules/dns/noncore/third-party.tf). All the records in the noncore directory _are_ applied to the production zone - the name refers to DNS records that are not critical for the core infrastructure. 
 
 An example entry:
 ```hcl
