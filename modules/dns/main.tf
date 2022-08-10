@@ -13,7 +13,7 @@ resource "cloudflare_record" "awsstg_dns_records" {
 # NonPRD Records
 module "non_prd_dns" {
   count   = var.enable_nonprod == true ? 1 : 0
-  source  = "./nonprod"
+  source  = "./noncore"
   zone_id = var.zone_id
 }
 
