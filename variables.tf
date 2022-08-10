@@ -1,13 +1,5 @@
-variable "account_email" {
-  description = "Cloudflare user account email"
-}
-
-variable "account_id" {
-  description = "Cloudflare user account id"
-}
-
-variable "cloudflare_api_key" {
-  description = "Cloudflare API access key"
+variable "cloudflare_api_token" {
+  description = "Cloudflare API token"
 }
 
 variable "zone_name" {
