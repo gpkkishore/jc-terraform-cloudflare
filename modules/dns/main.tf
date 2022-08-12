@@ -1,26 +1,30 @@
-# AWSSTG Records
+# NS Delegation
+### While this expression could be inlined, it was more readable if it was separated - this expression flattens the ns_delegation
+### variable so that there is an object for every NS value, since the "cloudflare_record" only supports 1 value for each resource
+locals {
+  flattened_ns_records = distinct(flatten([
+    for entry in var.ns_delegation : [
+      for record in entry.value : {
+        name = entry.name
+        ttl = entry.ttl
+        value = record
+      }
+    ]
+  ]))
+}
 
-resource "cloudflare_record" "awsstg_dns_records" {
-  for_each = var.enable_awsstg == true ? { for record in var.awsstg_dns_records : record.name => record } : {}
-  name     = format("%s.awsstg", each.value.name)
-  value    = each.value.value
-  ttl      = each.value.ttl
-  type     = each.value.type
-  proxied  = each.value.proxied
+resource "cloudflare_record" "ns_delegation" {
+  for_each = { for record in local.flattened_ns_records : record.name => record }
   zone_id  = var.zone_id
+  name     = each.name
+  value    = each.value
+  ttl      = each.ttl
+  type     = "NS"
 }
 
-# NonPRD Records
-module "non_prd_dns" {
-  count   = var.enable_nonprod == true ? 1 : 0
-  source  = "./noncore"
-  zone_id = var.zone_id
-}
-
-# PRD Records
-
-resource "cloudflare_record" "prd_dns_records" {
-  for_each = { for record in var.prd_dns_records : record.name => record }
+# DNS Records
+resource "cloudflare_record" "dns_records" {
+  for_each = { for record in var.dns_records : record.name => record }
   name     = each.value.name
   value    = each.value.value
   ttl      = each.value.ttl
@@ -29,6 +33,16 @@ resource "cloudflare_record" "prd_dns_records" {
   zone_id  = var.zone_id
 }
 
+# NonPRD Records
+# TODO: Move these into their respective working directories, deprecate/remove this module
+module "non_prd_dns" {
+  count   = var.enable_noncore == true ? 1 : 0
+  source  = "./noncore"
+  zone_id = var.zone_id
+}
+
+# PRD Records
+# TODO: These should be cleaned up and moved into their respective working directories, and just passed in as a part of the dns_records var
 resource "cloudflare_record" "marketing_website" {
   name    = "@"
   proxied = true
@@ -167,93 +181,6 @@ resource "cloudflare_record" "terraform_managed_resource_232423433bc1e47302a8ac3
   zone_id  = var.zone_id
 }
 
-# Original SOA records from jumpcloud.com
-
-/*resource "cloudflare_record" "terraform_managed_resource_ed3s3683bc1e47302a9ac3693ecfe41a" {
-  name     = "@"
-  priority = 1
-  proxied  = false
-  ttl      = 300
-  type     = "SOA"
-  value    = "ns-1687.awsdns-18.co.uk. awsdns-hostmaster.amazon.com. 9 7200 900 1209600 86400"
-  zone_id  = var.zone_id
-}*/
-
-# Original NS records from production.jumpcloud.com
-/*resource "cloudflare_record" "terraform_managed_resource_196b1c537db0885f8ab54f3619d2f8b1" {
-  name    = "production"
-  proxied = false
-  ttl     = 300
-  type    = "NS"
-  value   = "ns-512.awsdns-00.net"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_e5fcc59da5b3577e9869cf976ebe0877" {
-  name    = "production"
-  proxied = false
-  ttl     = 300
-  type    = "NS"
-  value   = "ns-1024.awsdns-00.org"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_f5cd841f35f3196d3f722b15fe90239f" {
-  name    = "production"
-  proxied = false
-  ttl     = 300
-  type    = "NS"
-  value   = "ns-0.awsdns-00.com"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_f4de492c3a3b1877d98d68fa8c118fa2" {
-  name    = "production"
-  proxied = false
-  ttl     = 300
-  type    = "NS"
-  value   = "ns-1536.awsdns-00.co.uk"
-  zone_id = var.zone_id
-}*/
-
-/*
-resource "cloudflare_record" "terraform_managed_resource_b1115f3910db3230cd9fc5a17ddcdb6d" {
-  name    = "awsstg"
-  proxied = false
-  ttl     = 86400
-  type    = "NS"
-  value   = "ns-1192.awsdns-21.org"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_adb9c6a7aa7a5b4ede8580207cc2add6" {
-  name    = "awsstg"
-  proxied = false
-  ttl     = 86400
-  type    = "NS"
-  value   = "ns-1689.awsdns-19.co.uk"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_4a3bd21c04ae1d0cf362d5c39ff32e27" {
-  name    = "awsstg"
-  proxied = false
-  ttl     = 86400
-  type    = "NS"
-  value   = "ns-811.awsdns-37.net"
-  zone_id = var.zone_id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_ed61c1709913db8488e0684b2e2675ff" {
-  name    = "awsstg"
-  proxied = false
-  ttl     = 86400
-  type    = "NS"
-  value   = "ns-241.awsdns-30.com"
-  zone_id = var.zone_id
-}
-*/
-
 # Original AAAA records
 resource "cloudflare_record" "terraform_managed_resource_9bb19a7d138fd2f365a0035c42f872ce" {
   name    = "@"
@@ -271,24 +198,4 @@ resource "cloudflare_record" "terraform_managed_resource_d452c31cc5f76e72f78e4fa
   type    = "AAAA"
   value   = "2620:12a:8000::1"
   zone_id = var.zone_id
-}
-
-#AWSSTG ns for subdomain delegation
-resource "cloudflare_record" "awsstg_aws_ns" {
-  for_each = toset(var.awsstg_aws_ns)
-  zone_id  = var.zone_id
-  name     = "awsstg"
-  value    = each.value
-  type     = "NS"
-  ttl      = 300
-}
-
-#sec ns for subdomain delegation
-resource "cloudflare_record" "sec_aws_ns" {
-  for_each = toset(var.sec_aws_ns)
-  zone_id  = var.zone_id
-  name     = "sec"
-  value    = each.value
-  type     = "NS"
-  ttl      = 300
 }

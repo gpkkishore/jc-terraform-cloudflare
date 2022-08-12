@@ -1,3 +1,4 @@
+# TODO: Move this record into it's respective working directory and remove the ldap.tf file
 resource "cloudflare_record" "terraform_managed_resource_fafd89e1b989f6f5447d44a83205c37d" {
   name    = "delfingen-ldap"
   proxied = false
@@ -6,27 +7,6 @@ resource "cloudflare_record" "terraform_managed_resource_fafd89e1b989f6f5447d44a
   value   = "34.204.118.37"
   zone_id = var.zone_id
 }
-
-#ldap ns for subdomain delegation
-resource "cloudflare_record" "ldap_aws_ns" {
-  for_each = toset(var.ldap_aws_ns)
-  zone_id  = var.zone_id
-  name     = "ldap"
-  value    = each.value
-  type     = "NS"
-  ttl      = 300
-}
-
-#ldap ns for subdomain delegation
-resource "cloudflare_record" "ldap_mfa_aws_ns" {
-  for_each = toset(var.ldap_mfa_aws_ns)
-  zone_id  = var.zone_id
-  name     = "ldap-mfa"
-  value    = each.value
-  type     = "NS"
-  ttl      = 300
-}
-
 
 # DNS records for the new ldap.jumpcloud.com subdomain in Route 53
 /*

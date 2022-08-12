@@ -10,7 +10,7 @@ All DNS records should be added/removed/modified strictly through Terraform code
 **First party records**:
 A first party record is any DNS record that has a value pointing to JumpCloud-managed infrastructure (for example, an A record with a value to an NLB).
 
-All first party records should be added to the `dns_records` array in the `data_prd.tf` (see [here](../data_prd.tf)) or `data_stg.tf` (see [here](../data_stg.tf)) files. If dynamic values from the haproxy formula are necessary, both of these files have a remote state configured to allow access to the haproxy output. 
+All first party records should be added to the `dns_records` array in the `data_prd.tf` (see [here](../prod/data_prd.tf)) or `data_stg.tf` (see [here](../awsstg/data_stg.tf)) files. If dynamic values from the haproxy formula are necessary, both of these files have a remote state configured to allow access to the haproxy output. 
 
 All of these records are passed in as a variable into the local `dns` module. This module will dynamically create a new `cloudflare_record` resource for every value in the array.
 
