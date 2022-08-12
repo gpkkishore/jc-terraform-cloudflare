@@ -7,8 +7,9 @@ data "terraform_remote_state" "haproxy_prd" {
     }
   }
 }
+
 locals {
-  prd_dns_records = [
+  tst_dns_records = [
     {
       name    = "events-internal-writes"
       proxied = false
@@ -184,6 +185,13 @@ locals {
       type    = "CNAME"
       ttl     = 1
       proxied = false
-    }
+    },
+    {
+      name    = "delfingen-ldap"
+      proxied = false
+      ttl     = 1
+      type    = "A"
+      value   = "34.204.118.37"
+    },
   ]
 }

@@ -7,6 +7,7 @@ data "terraform_remote_state" "haproxy_stg" {
     }
   }
 }
+
 locals {
   awsstg_dns_records = [
     {
@@ -79,16 +80,6 @@ locals {
       ttl     = 1
       proxied = false
     },
-    # ldap = "10.20.1.193"
-    # ldap = "10.20.33.198",  # Is this supposed replicate regional deployment?
-    # radius = "13.57.87.164"
-    # {
-    #   name    = "sso"
-    #   value   = "awsstg-sso-haproxy-1c5c07d1c09a69bd.elb.us-west-2.amazonaws.com"
-    #   type    = "CNAME"
-    #   ttl     = 1
-    #   proxied = false
-    # },
     {
       name    = "assets"
       value   = "d193ib4v2852zx.cloudfront.net"

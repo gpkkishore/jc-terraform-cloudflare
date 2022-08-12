@@ -7,6 +7,7 @@ data "terraform_remote_state" "haproxy_prd" {
     }
   }
 }
+
 locals {
   prd_dns_records = [
     {
@@ -170,7 +171,7 @@ locals {
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_prd.outputs.sso_nlb.lb_dns_name
     },
-    # TODO double check 
+    # TODO double check
     {
       name    = "sso.awsstg"
       value   = "internal-awsstg-sso-jumpcloud-com-1395208237.us-west-2.elb.amazonaws.com"
@@ -184,6 +185,13 @@ locals {
       type    = "CNAME"
       ttl     = 1
       proxied = false
-    }
+    },
+    {
+      name    = "delfingen-ldap"
+      proxied = false
+      ttl     = 1
+      type    = "A"
+      value   = "34.204.118.37"
+    },
   ]
 }

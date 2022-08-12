@@ -1,6 +1,6 @@
 # Note that all of these records are assumed to be a "NS" type, thus there is no option to specify otherwise
 locals {
-  prd_ns_delegation_records = [
+  tst_ns_delegation_records = [
     {
       name    = "ldap"
       ttl     = 300

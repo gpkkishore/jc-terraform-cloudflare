@@ -13,8 +13,8 @@ module "dns" {
   source        = "../modules/dns"
   zone_id       = cloudflare_zone.cloudflare_zone_resource.id
   zone_name     = var.zone_name
-  dns_records   = local.prd_dns_records
-  ns_delegation = local.prd_ns_delegation_records
+  dns_records   = local.tst_dns_records
+  ns_delegation = local.tst_ns_delegation_records
 }
 
 module "security" {
