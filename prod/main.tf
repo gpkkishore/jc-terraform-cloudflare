@@ -10,7 +10,7 @@ resource "cloudflare_zone" "cloudflare_zone_resource" {
 }
 
 module "dns" {
-  source         = "./dns"
+  source         = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.0.0"
   zone_id        = cloudflare_zone.cloudflare_zone_resource.id
   zone_name      = var.zone_name
   mx_records     = local.prd_mx_records
@@ -20,7 +20,7 @@ module "dns" {
 }
 
 module "security" {
-  source  = "./security"
+  source  = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/security?ref=v1.0.0"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
 

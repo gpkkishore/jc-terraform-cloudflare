@@ -10,10 +10,10 @@ data "terraform_remote_state" "haproxy_prd" {
 
 # See docs/contributing.md for information on how to add a DNS record.
 # Note that there are the following arrays, and new records should be placed in the correct array
-# prd_a_records     - All the A, AAAA, and ANAME records
-# prd_mx_records    - All the MX records. MX records MUST be in this array as they have additional attributes
-# prd_cname_records - All the CNAME records
-# prd_misc_records  - Misc records that don't fit into the other categories (i.e, TXT, SOA, SPF)
+# tst_a_records     - All the A, AAAA, and ANAME records
+# tst_mx_records    - All the MX records. MX records MUST be in this array as they have additional attributes
+# tst_cname_records - All the CNAME records
+# tst_misc_records  - Misc records that don't fit into the other categories (i.e, TXT, SOA, SPF)
 locals {
   tst_a_records = [
     // START - Marketing website
