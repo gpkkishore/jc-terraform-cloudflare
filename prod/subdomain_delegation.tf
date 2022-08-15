@@ -4,7 +4,7 @@ locals {
     {
       name    = "ldap"
       ttl     = 300
-      value   = ["ns-1519.awsdns-61.org.", "ns-1718.awsdns-22.co.uk.", "ns-393.awsdns-49.com.", "nns-869.awsdns-44.net."]
+      value   = ["ns-1519.awsdns-61.org.", "ns-1718.awsdns-22.co.uk.", "ns-393.awsdns-49.com.", "ns-869.awsdns-44.net."]
     },
     {
       name    = "ldap-mfa"

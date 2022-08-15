@@ -8,22 +8,59 @@ data "terraform_remote_state" "haproxy_prd" {
   }
 }
 
+# See docs/contributing.md for information on how to add a DNS record.
+# Note that there are the following arrays, and new records should be placed in the correct array
+# prd_a_records     - All the A, AAAA, and ANAME records
+# prd_mx_records    - All the MX records. MX records MUST be in this array as they have additional attributes
+# prd_cname_records - All the CNAME records
+# prd_misc_records  - Misc records that don't fit into the other categories (i.e, TXT, SOA, SPF)
 locals {
-  prd_dns_records = [
+  prd_a_records = [
+    // START - Marketing website
     {
-      name    = "events-internal-writes"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "dualstack.internal-prd-event-internal-writes-998198845.us-east-1.elb.amazonaws.com"
+      type = "A",
+      name = "@",
+      value = "23.185.0.1",
+      ttl = 1,
+      proxied = true
     },
     {
-      name    = "logging-rmq-admin-panel"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "dualstack.prd-logging-rmq-admin-panel-500485683.us-east-1.elb.amazonaws.com"
+      type = "A",
+      name = "www",
+      value = "23.185.0.1",
+      ttl = 1,
+      proxied = true
     },
+    {
+      type = "AAAA",
+      name = "www",
+      #
+      value = "2620:12a:8001::1",
+      ttl = 1,
+      proxied = true
+    },
+    {
+      type = "AAAA",
+      name = "www",
+      value = "2620:12a:8000::1",
+      ttl = 1,
+      proxied = true
+    },
+    {
+      type = "AAAA",
+      name = "@",
+      value = "2620:12a:8001::1",
+      ttl = 1,
+      proxied = true
+    },
+    {
+      type = "AAAA",
+      name = "@",
+      value = "2620:12a:8000::1",
+      ttl = 1,
+      proxied = true
+    },
+    // END - Marketing website
     {
       name    = "logging-rmq-use1b"
       proxied = false
@@ -79,6 +116,93 @@ locals {
       ttl     = 1
       type    = "A"
       value   = "3.90.90.234"
+    },
+    {
+      name    = "delfingen-ldap"
+      proxied = false
+      ttl     = 1
+      type    = "A"
+      value   = "34.204.118.37"
+    },
+  ]
+
+  prd_mx_records = [
+    {
+      name     = "@",
+      value    = "aspmx.l.google.com",
+      ttl      = 300,
+      priority = 1
+    },
+    {
+      name     = "@",
+      value    = "alt1.aspmx.l.google.com",
+      ttl      = 300,
+      priority = 5
+    },
+    {
+      name     = "@",
+      value    = "alt2.aspmx.l.google.com",
+      ttl      = 300,
+      priority = 10
+    },
+    {
+      name     = "@",
+      value    = "aspmx2.googlemail.com",
+      ttl      = 300,
+      priority = 15
+    },
+    {
+      name     = "@",
+      value    = "aspmx3.googlemail.com",
+      ttl      = 300,
+      priority = 20
+    },
+    {
+      name     = "get",
+      value    = "aspmx.l.google.com",
+      ttl      = 300,
+      priority = 1
+    },
+    {
+      name     = "get",
+      value    = "alt1.aspmx.l.google.com",
+      ttl      = 300,
+      priority = 5
+    },
+    {
+      name     = "get",
+      value    = "alt2.aspmx.l.google.com",
+      ttl      = 300,
+      priority = 5
+    },
+    {
+      name     = "get",
+      value    = "aspmx2.googlemail.com",
+      ttl      = 300,
+      priority = 10
+    },
+    {
+      name     = "get",
+      value    = "aspmx3.googlemail.com",
+      ttl      = 300,
+      priority = 10
+    },
+  ]
+
+  prd_cname_records = [
+    {
+      name    = "events-internal-writes"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "dualstack.internal-prd-event-internal-writes-998198845.us-east-1.elb.amazonaws.com"
+    },
+    {
+      name    = "logging-rmq-admin-panel"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "dualstack.prd-logging-rmq-admin-panel-500485683.us-east-1.elb.amazonaws.com"
     },
     {
       name    = "adbridge-kickstart"
@@ -171,7 +295,6 @@ locals {
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_prd.outputs.sso_nlb.lb_dns_name
     },
-    # TODO double check
     {
       name    = "sso.awsstg"
       value   = "internal-awsstg-sso-jumpcloud-com-1395208237.us-west-2.elb.amazonaws.com"
@@ -186,12 +309,10 @@ locals {
       ttl     = 1
       proxied = false
     },
-    {
-      name    = "delfingen-ldap"
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "34.204.118.37"
-    },
   ]
+
+  prd_misc_records = [
+  ]
+
+  prd_dns_records = concat(local.prd_a_records, local.prd_cname_records, local.prd_misc_records)
 }
