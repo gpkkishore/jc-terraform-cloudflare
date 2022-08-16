@@ -5,52 +5,79 @@ The purpose of this document is to provide an explanation of the layout of this 
 The project uses TF cloud and as such all variables are maintained in the respective cloud workspaces. Please see the [access control](access_control.md) documentation for information on getting access to the cloudflare workspaces - if you need to plan or apply any changes, this will be required.
 
 ## Adding DNS
-All DNS records should be added/removed/modified strictly through Terraform code. New DNS records are created via the `cloudflare_record` resource. In the context of this project, DNS records are categorized into two groups:
+All DNS records should be added/removed/modified strictly through Terraform code. New DNS records are created via the `cloudflare_record` resource, but most use-cases should not need to manually create the TF resources. Instead, they will be dynamically created with the `dns` module.
 
-**First party records**:
-A first party record is any DNS record that has a value pointing to JumpCloud-managed infrastructure (for example, an A record with a value to an NLB).
+The `dns` module accepts the following variables (note, this is a non-exhaustive list):
 
-All first party records should be added to the `dns_records` array in the `data_prd.tf` (see [here](../prod/data_prd.tf)) or `data_stg.tf` (see [here](../awsstg/data_stg.tf)) files. If dynamic values from the haproxy formula are necessary, both of these files have a remote state configured to allow access to the haproxy output. 
+| Input         | Type          | Description                                                                                |
+|---------------|---------------|--------------------------------------------------------------------------------------------|
+| dns_records   | array (tuple) | A list of DNS records to add to the zone                                                   |
+| mx_records    | array (tuple) | A list of MX records to add to the zone                                                    |
+| ns_delegation | array (tuple) | A list of NS for subdomain delegation. See [Subdomain delegation](###subdomain-delegation) |
 
-All of these records are passed in as a variable into the local `dns` module. This module will dynamically create a new `cloudflare_record` resource for every value in the array.
-
-An example entry in the `dns_records` array: 
+An example input for dns_records:
 ```hcl
-{
-    name    = "dundermifflin"
-    value   = "127.0.0.1"
-    type    = "A"
-    ttl     = 1
-    proxied = false
-}
+dns_records = [
+   {
+      type = "A",
+      name = "@",
+      value = "23.185.0.1",
+      ttl = 1,
+      proxied = true
+   }
+]
 ```
 
-**Third party records**:
-A third party record is any DNS record that has a value pointing to a third party (for example, TXT verification records or CNAMEs).
-
-These records should be added as a new `cloudflare_record` resource in the `dns/noncore/third-party.tf` file (see [here](../modules/dns/noncore/third-party.tf). All the records in the noncore directory _are_ applied to the production zone - the name refers to DNS records that are not critical for the core infrastructure. 
-
-An example entry:
+MX records have the same format, except they have an additional `priority` attribute and don't need to specify a `type` attribute:
 ```hcl
-resource "cloudflare_record" "gsuit_verification" {
-  name    = "get"
-  proxied = false
-  ttl     = 300
-  type    = "TXT"
-  value   = "google-site-verification=1234"
-  zone_id = var.zone_id
-}
+mx_records = [
+   {
+      name     = "@",
+      value    = "aspmx.l.google.com",
+      ttl      = 300,
+      priority = 1
+   }
+]
 ```
 ---
-As a disclaimer, there may be exceptions to these rules with existing DNS records. There is work in-flight to refactor existing records to conform with the new pattern. There is also additional work planned to bring parity between the process of adding first party and third party records.
+When modifying DNS records for the CloudFlare environments (prod, awsstg, or test), records can be added/removed/edited via the `data_env.tf` file (where `env` is the respective environment). 
+This file contains 4 arrays: `a_records`, `mx_records`, `cname_records`, and `misc_records`. Records should be modified directly within these 4 arrays, with the following categorization:
+
+* a_records         - All the A, AAAA, and ANAME records
+* mx_records    - All the MX records. MX records MUST be in this array as they have additional attributes
+* cname_records - All the CNAME records
+* misc_records  - Misc records that don't fit into the other categories (i.e, TXT, SOA, SPF)
+
+Each environment will automatically merge these arrays and they will all be passed in as the `dns_records` variable to the `dns` module.
+
+###Subdomain Delegation
+If you need to create a delegate a new subdomain, you can pass in an array (tuple) for the `ns_delegation` variable to the `dns` module.
+
+This array takes the following form:
+```hcl
+delegation_records = [
+  {
+    name    = "infinity"
+    ttl     = 300
+    value   = ["ns-1519.awsdns-61.org.", "ns-1718.awsdns-22.co.uk.", "ns-393.awsdns-49.com.", "ns-869.awsdns-44.net."]
+  }
+]
+```
+
+The existing workspaces already have a `subdomain_delegation.tf` file which contains local data with this array. For these workspaces, you can just add a new object to the existing array and it will be applied on the next run.
+
+## Module Updates
+All the workspaces use a versioned module source (i.e, `"git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.0.0"`). When making changes to a module, 
+it is a two-step process:
+1) Create a PR with only the module change. Once this is merged into master, a new release can be made [here](https://github.com/TheJumpCloud/terraform-cloudflare/releases). 
+   1) New releases should follow semver and the release notes should be generated automatically (with the "Generate release notes" button)
+   2) The title should be a short description of the new changes
+2) Create another PR which updates the module source version for any resources where appropriate
 
 ## Merging, Planning and Applying TF
-Every PR will run a `terraform plan` as a part of the CI process. Please verify that the plan has only expected changes.
+Every PR will run a `terraform plan` for all the workspaces. Please verify that the plan has only expected changes.
 
-When opening a PR, the default branch is `staging`. When a PR is merged into staging, it will auto-apply any changes to the cloudflare stg env (cloudjump.dev).
-
-When the changes have been thoroughly tested in staging, they can be promoted to production by opening a new PR merging `staging` with `master`. Changes merged into `master` 
-_will not_ auto-apply and require a manual confirmation of the apply in TF cloud.
+When opening a PR, the default branch is `master`. PRs merged into master will auto-apply any changes in the `test` and `awsstg` working directories (`tst-cloudflare` and `stg-cloudflare` workspaces, respectively), however changes in the `prod` workspace _must_ be applied manually in TF cloud.
 
 ## Testing
 There are various test domains that can be added to CloudFlare (beyond stg/prod). When doing dev testing, check out a domain from this [sheet](https://docs.google.com/spreadsheets/d/1pObexRFohAkdnYCccnV92GUOOn8ubYQDK_NsnOTIaow/edit). You can experiment on the `dev-cloudflare` workspace in TF Cloud. You will need to override the `zone_name` and `cloudflare_api_token` variables with a CLI var (see the [terraform documentation](https://www.terraform.io/cloud-docs/workspaces/variables) for overriding vars).
