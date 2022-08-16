@@ -50,6 +50,8 @@ This file contains 4 arrays: `a_records`, `mx_records`, `cname_records`, and `mi
 
 Each environment will automatically merge these arrays and they will all be passed in as the `dns_records` variable to the `dns` module.
 
+_Note: The awsstg environment automatically prefixes all dns records with `awsstg.`, so this should be omitted when adding records._ 
+
 ###Subdomain Delegation
 If you need to create a delegate a new subdomain, you can pass in an array (tuple) for the `ns_delegation` variable to the `dns` module.
 
@@ -73,6 +75,8 @@ it is a two-step process:
    1) New releases should follow semver and the release notes should be generated automatically (with the "Generate release notes" button)
    2) The title should be a short description of the new changes
 2) Create another PR which updates the module source version for any resources where appropriate
+
+_Note: There is a `noncore` submodule within the `dns` module. While this module is still in use, it is deprecated and should no longer be updated._
 
 ## Merging, Planning and Applying TF
 Every PR will run a `terraform plan` for all the workspaces. Please verify that the plan has only expected changes.

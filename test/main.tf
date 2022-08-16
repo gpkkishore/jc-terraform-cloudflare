@@ -23,4 +23,3 @@ module "security" {
   source  = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/security?ref=v1.0.0"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
-

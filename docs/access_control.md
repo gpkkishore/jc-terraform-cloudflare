@@ -8,24 +8,25 @@ Below are the guildlines for access control of this repository:
 - JC Security will have WRITE access in order to consume Cloudflare features.
 - Cloud Engineering will have ADMIN access to facilitate JC production operations and CICD functions.
 - IT will have WRITE access faciliate their functions and tasks.
-- If you have WRITE access, you also need to submit an #it_support request to be added to the following teams in Terraform Cloud: `dev-terraform-cloud-cloudflare-write`, `stg-terraform-cloud-cloudflare-write`, and `prod-terraform-cloud-cloudflare-write`
+- If you have WRITE access, you also need to submit an #it_support request to be added to the `terraform-cloud-cloudflare-write` team in Terraform Cloud.
 
-| Role | Team | Notes |
-| ---- | --- | ----- |
-| ADMIN | jc-platform-edge | Service and Repo Owner |
-|       | (Cloud Eng) | Ops and CICD |
+| Role  | Team                   | Notes                                 |
+|-------|------------------------|---------------------------------------|
+| ADMIN | jc-platform-edge       | Service and Repo Owner                |
+|       | (Cloud Eng)            | Ops and CICD                          |
 | WRITE | jc-securityengineering | Incident Responser and main consumers |
-|       | (IT) |
-| READ | gh-read-all-repos | All of JC? |
-| | jc-engineering | All of JC Engineering |
+|       | (IT)                   |
+| READ  | gh-read-all-repos      | All of JC?                            |
+|       | jc-engineering         | All of JC Engineering                 |
 
 
 ## Cloudflare Access Control 
 Below are the guidelines for access control to the CloudFlare account: 
-| Role | Team | Notes |
-| ---- | --- | ----- |
-| Admin | Platform - Edge | Service and Repo Owner; full account access (minus billing and membership) |
-|       | (Cloud Eng) | Ops and CICD |
+
+| Role              | Team                 | Notes                                                                                                 |
+|-------------------|----------------------|-------------------------------------------------------------------------------------------------------|
+| Admin             | Platform - Edge      | Service and Repo Owner; full account access (minus billing and membership)                            |
+|                   | (Cloud Eng)          | Ops and CICD                                                                                          |
 | Incident Response | Security Engineering | Incident Responser and main consumers; has full read access, edit access for the firewall and gateway |
-|       | (IT) |
-| Read only | All of engineering | Full account access, read-only |
+|                   | (IT)                 |                                                                                                       |
+| Read only         | All of engineering   | Full account access, read-only                                                                        |

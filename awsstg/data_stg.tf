@@ -223,5 +223,6 @@ locals {
   stg_misc_records = [
   ]
 
+  // TODO: Special treatment to add awsstg prefix
   stg_dns_records = concat(local.stg_a_records, local.stg_cname_records, local.stg_misc_records)
 }
