@@ -17,6 +17,36 @@ data "terraform_remote_state" "haproxy_stg" {
 locals {
   stg_a_records = [
     {
+      name = "adbridge-kickstart"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-adbridge-kickstart-hap-80b532e17309fb71.elb.us-west-2.amazonaws.com."
+    },
+    {
+      name = "adbridge"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-adbridge-haproxy-cd77d9c0d55c25b3.elb.us-west-2.amazonaws.com."
+    },
+    {
+      name = "agent"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-agent-haproxy-eaefad6faf4f8e3d.elb.us-west-2.amazonaws.com."
+    },
+    {
+      name = "api"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-api-haproxy-da4156afde33c7f1.elb.us-west-2.amazonaws.com."
+    },
+    {
+      name = "assist"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-assist-haproxy-e45ad0d88c274312.elb.us-west-2.amazonaws.com."
+    },
+    {
       name = "awsstg-events-elasticsearch-usw2b-01"
       ttl = "300"
       type = "A"
@@ -53,10 +83,88 @@ locals {
       value = "10.20.1.254"
     },
     {
+      name = "bss"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-si-bss-api-haproxy-af17284e86128e27.elb.us-west-2.amazonaws.com."
+    },
+    {
+      name = "console"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-console-haproxy-1b0a8f1489bf65fa.elb.us-west-2.amazonaws.com."
+    },
+    {
+      name = "device-cert"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-device-cert-haproxy-97826775d48c4ee3.elb.us-west-2.amazonaws.com."
+    },
+    {
+      name = "elastic"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-nlb-kibana-haproxy-eb196ccbe7191ba0.elb.us-west-2.amazonaws.com."
+    },
+    {
       name = "events"
       ttl = "300"
       type = "A"
       value = "10.20.1.55"
+    },
+    {
+      name = "kickstart"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-kickstart-public-haproxy-87bd34e05ed3b9ab.elb.us-west-2.amazonaws.com."
+    },
+    {
+      name = "usw1.ldap-mfa"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-ldap-mfa-haproxy-fc7b281b227f88a0.elb.us-west-1.amazonaws.com."
+    },
+    {
+      name = "usw2.ldap-mfa"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-ldap-mfa-haproxy-a0e67a2d5f7390ae.elb.us-west-2.amazonaws.com."
+    },
+    {
+      name = "ldap"
+      ttl = "null"
+      type = "A"
+      value = "usw1.ldap.awsstg.jumpcloud.com."
+    },
+    {
+      name = "ldap"
+      ttl = "null"
+      type = "A"
+      value = "usw2.ldap.awsstg.jumpcloud.com."
+    },
+    {
+      name = "usw1.ldap"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-openldap-haproxy-cd9e132d98681e53.elb.us-west-1.amazonaws.com."
+    },
+    {
+      name = "usw2.ldap"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-openldap-haproxy-b8a9eb2905a0484d.elb.us-west-2.amazonaws.com."
+    },
+    {
+      name = "apple.mdm"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-apple-mdm-haproxy-ada1cbff4b84e7d2.elb.us-west-2.amazonaws.com."
+    },
+    {
+      name = "private-kickstart"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-kickstart-priv-haproxy-25cca193df1762ea.elb.us-west-2.amazonaws.com."
     },
     {
       name = "radius"
@@ -82,6 +190,24 @@ locals {
       type = "A"
       value = "13.57.87.164"
     },
+    {
+      name = "sentry"
+      ttl = "null"
+      type = "A"
+      value = "dualstack.internal-awsstg-sentry-1598789881.us-west-2.elb.amazonaws.com."
+    },
+    {
+      name = "sso"
+      ttl = "null"
+      type = "A"
+      value = "awsstg-sso-haproxy-1c5c07d1c09a69bd.elb.us-west-2.amazonaws.com."
+    },
+    {
+      name = "delegated-auth.us-west-2"
+      ttl = "null"
+      type = "A"
+      value = "internal-awsstg-us-west-2-auth-lambda-791991147.us-west-2.elb.amazonaws.com."
+    }
   ]
 
   stg_mx_records = [
@@ -101,7 +227,7 @@ locals {
       value = "_1733e553fa78674dac3d1c6b3b7fc826.nhqijqilxf.acm-validations.aws."
     },
     {
-      name = "cdn.awsstg.jumpcloud.com."
+      name = "cdn"
       ttl = "300"
       type = "CNAME"
       value = "d2008dpdnzrhly.cloudfront.net"
@@ -137,6 +263,12 @@ locals {
       value = "_442fe84fd4a8e2bb5c930e4cc9a1b039.vrztfgqhxj.acm-validations.aws."
     },
     {
+      name = "web-a"
+      ttl = "null"
+      type = "CNAME"
+      value = "web.awsstg.jumpcloud.com."
+    },
+    {
       name = "web"
       ttl = "300"
       type = "CNAME"
@@ -150,7 +282,7 @@ locals {
       ttl = "300"
       type = "TXT"
       value = "google-site-verification=fUOm_FpYJ2K5rcOwrAUxvJRIjl5klKUl11FdvUx-yRw"
-    },
+    }
   ]
 
   // Stg records get a special treatment to format the name to include the awsstg prefix

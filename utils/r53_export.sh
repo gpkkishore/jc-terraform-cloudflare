@@ -7,5 +7,7 @@ aws route53 list-resource-record-sets --hosted-zone-id "$HOSTED_ZONE_ID" | jq -j
   name = \"\(.Name)\"
   ttl = \"\(.TTL)\"
   type = \"\(.Type)\"
-  value = \"\(.ResourceRecords[]?.Value)\"
+  value = \"\(
+    .ResourceRecords[]?.Value // .AliasTarget?.DNSName
+  )\"
 },"' > export.json
