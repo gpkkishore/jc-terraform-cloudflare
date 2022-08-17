@@ -78,6 +78,14 @@ it is a two-step process:
 
 _Note: There is a `noncore` submodule within the `dns` module. While this module is still in use, it is deprecated and should no longer be updated._
 
+If you need to test your module changes locally, you can update the module source to reference your current branch. This requires that your module changes are pushed to a remote branch. For example:
+```hcl
+module "dns" {
+   source = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=TE-123-update-dns-module"
+}
+```
+This allows a module to be tested/verified before it is merged and a new release is cut.
+
 ## Merging, Planning and Applying TF
 Every PR will run a `terraform plan` for all the workspaces. Please verify that the plan has only expected changes.
 
