@@ -29,9 +29,9 @@ src
     ↳ dns  // The DNS module creates all DNS records for the zone
       ↳ noncore  // The noncore module creates DNS records that are not core to the infrastructure (deprecated)
     ↳ security  // The security module creates firewall rules required by security
-  ↳ prod  // Working directory for the production CloudFlare site (jumpcloud.com)
-  ↳ test  // Working directory for the test CloudFlare site (cloudjump.dev)
-  ↳ awsstg  // Working directory for the awsstg CloudFlare site (awsstg.jumpcloud.com)
+  ↳ prd  // Working directory for the production CloudFlare site (jumpcloud.com)
+  ↳ tst  // Working directory for the test CloudFlare site (cloudjump.dev)
+  ↳ stg  // Working directory for the awsstg CloudFlare site (awsstg.jumpcloud.com)
 ```
 
 Please see [Contributing](docs/contributing.md) for additional information along with info on how to add a DNS record.

@@ -14,7 +14,7 @@ module "dns" {
   zone_id       = cloudflare_zone.cloudflare_zone_resource.id
   zone_name     = var.zone_name
   mx_records    = local.stg_mx_records
-  dns_records   = var.enable_awsstg ? local.stg_dns_records : {}
+  dns_records   = local.stg_dns_records
   ns_delegation = {} # No subdomain delegation records yet
 }
 
