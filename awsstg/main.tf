@@ -15,7 +15,7 @@ module "dns" {
   zone_name     = var.zone_name
   mx_records    = local.stg_mx_records
   dns_records   = var.enable_awsstg ? local.stg_dns_records : {}
-  ns_delegation = {} # No subdomain delegation records yet
+  ns_delegation = local.stg_ns_delegation_records
 }
 
 module "security" {
