@@ -7,8 +7,15 @@ data "terraform_remote_state" "haproxy_stg" {
     }
   }
 }
+
+# See docs/contributing.md for information on how to add a DNS record.
+# Note that there are the following arrays, and new records should be placed in the correct array
+# stg_a_records     - All the A, AAAA, and ANAME records
+# stg_mx_records    - All the MX records. MX records MUST be in this array as they have additional attributes
+# stg_cname_records - All the CNAME records
+# stg_misc_records  - Misc records that don't fit into the other categories (i.e, TXT, SOA, SPF)
 locals {
-  awsstg_dns_records = [
+  stg_a_records = [
     {
       name    = "awsstg-events-elasticsearch-usw2b-01"
       value   = "10.20.1.127"
@@ -79,16 +86,12 @@ locals {
       ttl     = 1
       proxied = false
     },
-    # ldap = "10.20.1.193"
-    # ldap = "10.20.33.198",  # Is this supposed replicate regional deployment?
-    # radius = "13.57.87.164"
-    # {
-    #   name    = "sso"
-    #   value   = "awsstg-sso-haproxy-1c5c07d1c09a69bd.elb.us-west-2.amazonaws.com"
-    #   type    = "CNAME"
-    #   ttl     = 1
-    #   proxied = false
-    # },
+  ]
+
+  stg_mx_records = [
+  ]
+
+  stg_cname_records = [
     {
       name    = "assets"
       value   = "d193ib4v2852zx.cloudfront.net"
@@ -214,6 +217,21 @@ locals {
       type    = "CNAME"
       ttl     = 1
       proxied = false
+    }
+  ]
+
+  stg_misc_records = [
+  ]
+
+  // Stg records get a special treatment to format the name to include the awsstg prefix
+  // TODO: In the future when there are misc records, they probably should not get this treatment (only a and cname records)
+  stg_dns_records = [
+    for entry in concat(local.stg_a_records, local.stg_mx_records, local.stg_cname_records, local.stg_misc_records) : {
+      name = format("%s.awsstg", entry.name)
+      value = entry.value
+      type = entry.type
+      ttl = entry.ttl
+      proxied = entry.proxied
     }
   ]
 }
