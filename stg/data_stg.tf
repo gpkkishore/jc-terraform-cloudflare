@@ -65,20 +65,6 @@ locals {
       type    = "A"
       value   = "10.20.1.55"
     },
-    { // TODO: ldap-mfa uses latency routing
-      name    = "usw1.ldap-mfa"
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "awsstg-ldap-mfa-haproxy-fc7b281b227f88a0.elb.us-west-1.amazonaws.com"
-    },
-    { // TODO: ldap-mfa uses latency routing
-      name    = "usw2.ldap-mfa"
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "awsstg-ldap-mfa-haproxy-a0e67a2d5f7390ae.elb.us-west-2.amazonaws.com"
-    },
     {
       name    = "radius"
       proxied = false
@@ -141,12 +127,12 @@ locals {
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_stg.outputs.api_nlb.lb_dns_name
     },
-    { // TODO: assist needs to be outputted
+    {
       name    = "assist"
       proxied = false
       ttl     = 1
-      type   = "CNAME"
-      value   = data.terraform_remote_state.haproxy_stg.outputs.assist_nlb.lb_dns_name
+      type    = "CNAME"
+      value   = "awsstg-assist-haproxy-e45ad0d88c274312.elb.us-west-2.amazonaws.com"
     },
     {
       name    = "bss"
@@ -197,7 +183,7 @@ locals {
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_stg.outputs.agent_private_kickstart.lb_dns_name
     },
-    { // TODO: sentry needs to be outputted
+    {
       name    = "sentry"
       proxied = false
       ttl     = 1
@@ -211,7 +197,7 @@ locals {
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_stg.outputs.sso_nlb.lb_dns_name
     },
-    { // TODO: delegated-auth needs to be outputted.
+    {
       name    = "delegated-auth.us-west-2"
       proxied = false
       ttl     = 1
