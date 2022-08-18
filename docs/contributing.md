@@ -52,7 +52,7 @@ Each environment will automatically merge these arrays and they will all be pass
 
 _Note: The stg environment automatically prefixes all dns records with `awsstg.`, so this should be omitted when adding records._ 
 
-###Subdomain Delegation
+### Subdomain Delegation
 If you need to create a delegate a new subdomain, you can pass in an array (tuple) for the `ns_delegation` variable to the `dns` module.
 
 This array takes the following form:
