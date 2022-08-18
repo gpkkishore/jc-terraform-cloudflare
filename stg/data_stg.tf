@@ -265,7 +265,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "web.awsstg.jumpcloud.com."
+      value   = "web.awsstg.jumpcloud.com"
     },
     {
       name    = "web"
