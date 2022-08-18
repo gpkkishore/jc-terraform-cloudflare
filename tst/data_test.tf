@@ -131,60 +131,80 @@ locals {
       name     = "@",
       value    = "aspmx.l.google.com",
       ttl      = 300,
+      type     = "MX"
+      proxied  = false
       priority = 1
     },
     {
       name     = "@",
       value    = "alt1.aspmx.l.google.com",
       ttl      = 300,
+      type     = "MX"
+      proxied  = false
       priority = 5
     },
     {
       name     = "@",
       value    = "alt2.aspmx.l.google.com",
       ttl      = 300,
+      type     = "MX"
+      proxied  = false
       priority = 10
     },
     {
       name     = "@",
       value    = "aspmx2.googlemail.com",
       ttl      = 300,
+      type     = "MX"
+      proxied  = false
       priority = 15
     },
     {
       name     = "@",
       value    = "aspmx3.googlemail.com",
       ttl      = 300,
+      type     = "MX"
+      proxied  = false
       priority = 20
     },
     {
       name     = "get",
       value    = "aspmx.l.google.com",
       ttl      = 300,
+      type     = "MX"
+      proxied  = false
       priority = 1
     },
     {
       name     = "get",
       value    = "alt1.aspmx.l.google.com",
       ttl      = 300,
+      type     = "MX"
+      proxied  = false
       priority = 5
     },
     {
       name     = "get",
       value    = "alt2.aspmx.l.google.com",
       ttl      = 300,
+      type     = "MX"
+      proxied  = false
       priority = 5
     },
     {
       name     = "get",
       value    = "aspmx2.googlemail.com",
       ttl      = 300,
+      type     = "MX"
+      proxied  = false
       priority = 10
     },
     {
       name     = "get",
       value    = "aspmx3.googlemail.com",
       ttl      = 300,
+      type     = "MX"
+      proxied  = false
       priority = 10
     },
   ]
@@ -314,5 +334,5 @@ locals {
   tst_misc_records = [
   ]
 
-  tst_dns_records = concat(local.tst_a_records, local.tst_cname_records, local.tst_misc_records)
+  tst_dns_records = concat(local.tst_a_records, local.tst_mx_records, local.tst_cname_records, local.tst_misc_records)
 }

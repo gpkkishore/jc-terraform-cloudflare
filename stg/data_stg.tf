@@ -226,7 +226,7 @@ locals {
   // Stg records get a special treatment to format the name to include the awsstg prefix
   // TODO: In the future when there are misc records, they probably should not get this treatment (only a and cname records)
   stg_dns_records = [
-    for entry in concat(local.stg_a_records, local.stg_cname_records, local.stg_misc_records) : {
+    for entry in concat(local.stg_a_records, local.stg_mx_records, local.stg_cname_records, local.stg_misc_records) : {
       name = format("%s.awsstg", entry.name)
       value = entry.value
       type = entry.type

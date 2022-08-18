@@ -22,17 +22,6 @@ resource "cloudflare_record" "ns_delegation" {
   type     = "NS"
 }
 
-# MX Records
-resource "cloudflare_record" "mx_records" {
-  for_each = { for record in var.mx_records : "${record.name}_${record.value}" => record }
-  name     = each.value.name
-  value    = each.value.value
-  ttl      = each.value.ttl
-  priority = each.value.priority
-  type     = "MX"
-  zone_id  = var.zone_id
-}
-
 # DNS Records
 resource "cloudflare_record" "dns_records" {
   for_each = { for record in var.dns_records : "${record.name}_${record.value}" => record }
@@ -41,6 +30,7 @@ resource "cloudflare_record" "dns_records" {
   ttl      = each.value.ttl
   type     = each.value.type
   proxied  = each.value.proxied
+  priority = each.value.type == "MX" ? each.value.priority : null
   zone_id  = var.zone_id
 }
 

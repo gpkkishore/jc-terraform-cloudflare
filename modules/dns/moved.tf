@@ -113,52 +113,52 @@ moved {
 # MX records
 moved {
   from = cloudflare_record.terraform_managed_resource_18243683bc1e47302a8ac3693ecf453a
-  to   = cloudflare_record.mx_records["get_aspmx.l.google.com"]
+  to   = cloudflare_record.dns_records["get_aspmx.l.google.com"]
 }
 
 moved {
   from = cloudflare_record.terraform_managed_resource_232423433bc1e47302a8ac387ecf453a
-  to   = cloudflare_record.mx_records["get_alt1.aspmx.l.google.com"]
+  to   = cloudflare_record.dns_records["get_alt1.aspmx.l.google.com"]
 }
 
 moved {
   from = cloudflare_record.terraform_managed_resource_23244673bc1e47302a8ac3693ecf453a
-  to   = cloudflare_record.mx_records["get_aspmx2.googlemail.com"]
+  to   = cloudflare_record.dns_records["get_aspmx2.googlemail.com"]
 }
 
 moved {
   from = cloudflare_record.terraform_managed_resource_b768e60dc1d41bb15d089ccb1db859e0
-  to   = cloudflare_record.mx_records["@_aspmx3.googlemail.com"]
+  to   = cloudflare_record.dns_records["@_aspmx3.googlemail.com"]
 }
 
 moved {
   from = cloudflare_record.terraform_managed_resource_b8243683bc1e47302a9ac3693ecfe41a
-  to   = cloudflare_record.mx_records["@_aspmx.l.google.com"]
+  to   = cloudflare_record.dns_records["@_aspmx.l.google.com"]
 }
 
 moved {
   from = cloudflare_record.terraform_managed_resource_c5bce7b1ac03f4eccafa9955e47c0d60
-  to   = cloudflare_record.mx_records["@_aspmx2.googlemail.com"]
+  to   = cloudflare_record.dns_records["@_aspmx2.googlemail.com"]
 }
 
 moved {
   from = cloudflare_record.terraform_managed_resource_c8243683bc1e47302a9ac3693ecfe41a
-  to   = cloudflare_record.mx_records["get_aspmx3.googlemail.com"]
+  to   = cloudflare_record.dns_records["get_aspmx3.googlemail.com"]
 }
 
 moved {
   from = cloudflare_record.terraform_managed_resource_cb8166958ff9523ef5ec730250808304
-  to   = cloudflare_record.mx_records["@_alt1.aspmx.l.google.com"]
+  to   = cloudflare_record.dns_records["@_alt1.aspmx.l.google.com"]
 }
 
 moved {
   from = cloudflare_record.terraform_managed_resource_d7693e2bb7f516ade6bba363b7152e1a
-  to   = cloudflare_record.mx_records["@_alt2.aspmx.l.google.com"]
+  to   = cloudflare_record.dns_records["@_alt2.aspmx.l.google.com"]
 }
 
 moved {
   from = cloudflare_record.terraform_managed_resource_d8243683bc1e47302a8ac3693ecfe41a
-  to   = cloudflare_record.mx_records["get_alt2.aspmx.l.google.com"]
+  to   = cloudflare_record.dns_records["get_alt2.aspmx.l.google.com"]
 }
 
 # DNS records
