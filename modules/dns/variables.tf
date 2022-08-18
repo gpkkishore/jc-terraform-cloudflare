@@ -10,10 +10,6 @@ variable "dns_records" {
   description = "An array of DNS records to apply to the zone"
 }
 
-variable "mx_records" {
-  description = "An array of MX records to apply to the zone"
-}
-
 variable "ns_delegation" {
   description = "An array of nameservers for subdomain delegation"
 }

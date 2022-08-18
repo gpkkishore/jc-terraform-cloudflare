@@ -311,5 +311,5 @@ locals {
     }
   ]
 
-  stg_dns_records = concat(local.treated_records, local.stg_misc_records)
+  stg_dns_records = concat(local.treated_records, local.stg_mx_records, local.stg_misc_records)
 }

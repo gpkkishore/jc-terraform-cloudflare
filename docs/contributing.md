@@ -40,7 +40,7 @@ mx_records = [
 ]
 ```
 ---
-When modifying DNS records for the CloudFlare environments (prod, awsstg, or test), records can be added/removed/edited via the `data_env.tf` file (where `env` is the respective environment). 
+When modifying DNS records for the CloudFlare environments (prd, stg, or tst), records can be added/removed/edited via the `data_env.tf` file (where `env` is the respective environment). 
 This file contains 4 arrays: `a_records`, `mx_records`, `cname_records`, and `misc_records`. Records should be modified directly within these 4 arrays, with the following categorization:
 
 * a_records         - All the A, AAAA, and ANAME records
@@ -50,9 +50,9 @@ This file contains 4 arrays: `a_records`, `mx_records`, `cname_records`, and `mi
 
 Each environment will automatically merge these arrays and they will all be passed in as the `dns_records` variable to the `dns` module.
 
-_Note: The awsstg environment automatically prefixes all dns records with `awsstg.`, so this should be omitted when adding records._ 
+_Note: The stg environment automatically prefixes all dns records with `awsstg.`, so this should be omitted when adding records._ 
 
-###Subdomain Delegation
+### Subdomain Delegation
 If you need to create a delegate a new subdomain, you can pass in an array (tuple) for the `ns_delegation` variable to the `dns` module.
 
 This array takes the following form:
@@ -78,10 +78,18 @@ it is a two-step process:
 
 _Note: There is a `noncore` submodule within the `dns` module. While this module is still in use, it is deprecated and should no longer be updated._
 
+If you need to test your module changes locally, you can update the module source to reference your current branch. This requires that your module changes are pushed to a remote branch. For example:
+```hcl
+module "dns" {
+   source = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=TE-123-update-dns-module"
+}
+```
+This allows a module to be tested/verified before it is merged and a new release is cut.
+
 ## Merging, Planning and Applying TF
 Every PR will run a `terraform plan` for all the workspaces. Please verify that the plan has only expected changes.
 
-When opening a PR, the default branch is `master`. PRs merged into master will auto-apply any changes in the `test` and `awsstg` working directories (`tst-cloudflare` and `stg-cloudflare` workspaces, respectively), however changes in the `prod` workspace _must_ be applied manually in TF cloud.
+When opening a PR, the default branch is `master`. PRs merged into master will auto-apply any changes in the `tst` and `stg` working directories (`tst-cloudflare` and `stg-cloudflare` workspaces, respectively), however changes in the `prd` workspace _must_ be applied manually in TF cloud.
 
 ## Testing
-There are various test domains that can be added to CloudFlare (beyond stg/prod). When doing dev testing, check out a domain from this [sheet](https://docs.google.com/spreadsheets/d/1pObexRFohAkdnYCccnV92GUOOn8ubYQDK_NsnOTIaow/edit). You can experiment on the `dev-cloudflare` workspace in TF Cloud. You will need to override the `zone_name` and `cloudflare_api_token` variables with a CLI var (see the [terraform documentation](https://www.terraform.io/cloud-docs/workspaces/variables) for overriding vars).
+There are various test domains that can be added to CloudFlare (beyond stg/prd). When doing dev testing, check out a domain from this [sheet](https://docs.google.com/spreadsheets/d/1pObexRFohAkdnYCccnV92GUOOn8ubYQDK_NsnOTIaow/edit). You can experiment on the `dev-cloudflare` workspace in TF Cloud. You will need to override the `zone_name` and `cloudflare_api_token` variables with a CLI var (see the [terraform documentation](https://www.terraform.io/cloud-docs/workspaces/variables) for overriding vars).
