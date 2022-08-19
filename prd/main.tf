@@ -7,6 +7,8 @@ resource "cloudflare_zone" "cloudflare_zone_resource" {
   plan   = var.zone_plan
   type   = "full"
   zone   = var.zone_name
+  # Temporary workaround for a provider bug, more info: https://github.com/cloudflare/terraform-provider-cloudflare/issues/1711
+  account_id = "3c96d914c0eaa62b7b4c9960e63818f7"
 }
 
 module "dns" {
