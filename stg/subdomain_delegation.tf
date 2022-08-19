@@ -12,6 +12,11 @@ locals {
       value   = ["ns-1998.awsdns-57.co.uk.", "ns-535.awsdns-02.net.", "ns-21.awsdns-02.com.", "ns-1487.awsdns-57.org."]
     },
     {
+      name    = "ldap-mfa"
+      ttl     = 300
+      value   = ["ns-128.awsdns-16.com.", "ns-1292.awsdns-33.org.", "ns-953.awsdns-55.net.", "ns-1820.awsdns-35.co.uk."]
+    }
+    {
       name    = "pwm"
       ttl     = 300
       value   = ["ns-252.awsdns-31.com.", "ns-1314.awsdns-36.org.", "ns-561.awsdns-06.net.", "ns-1572.awsdns-04.co.uk."]
