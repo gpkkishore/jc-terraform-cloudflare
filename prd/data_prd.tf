@@ -18,47 +18,46 @@ locals {
   prd_a_records = [
     // START - Marketing website
     {
-      type = "A",
-      name = "@",
-      value = "23.185.0.1",
-      ttl = 1,
+      name    = "@",
       proxied = true
+      ttl     = 1,
+      type    = "A",
+      value   = "23.185.0.1",
     },
     {
-      type = "A",
-      name = "www",
-      value = "23.185.0.1",
-      ttl = 1,
+      name    = "www",
       proxied = true
+      ttl     = 1,
+      type    = "A",
+      value   = "23.185.0.1",
     },
     {
-      type = "AAAA",
-      name = "www",
-      #
-      value = "2620:12a:8001::1",
-      ttl = 1,
+      name    = "www",
       proxied = true
+      ttl     = 1,
+      type    = "AAAA",
+      value   = "2620:12a:8001::1",
     },
     {
-      type = "AAAA",
-      name = "www",
-      value = "2620:12a:8000::1",
-      ttl = 1,
+      name    = "www",
       proxied = true
+      ttl     = 1,
+      type    = "AAAA",
+      value   = "2620:12a:8000::1",
     },
     {
-      type = "AAAA",
-      name = "@",
-      value = "2620:12a:8001::1",
-      ttl = 1,
+      name    = "@",
       proxied = true
+      ttl     = 1,
+      type    = "AAAA",
+      value   = "2620:12a:8001::1",
     },
     {
-      type = "AAAA",
-      name = "@",
-      value = "2620:12a:8000::1",
-      ttl = 1,
+      name    = "@",
       proxied = true
+      ttl     = 1,
+      type    = "AAAA",
+      value   = "2620:12a:8000::1",
     },
     // END - Marketing website
     {
@@ -129,83 +128,83 @@ locals {
   prd_mx_records = [
     {
       name     = "@",
-      value    = "aspmx.l.google.com",
-      ttl      = 300,
-      type     = "MX"
-      proxied  = false
       priority = 1
+      proxied  = false
+      ttl      = 300,
+      type     = "MX"
+      value    = "aspmx.l.google.com",
     },
     {
       name     = "@",
-      value    = "alt1.aspmx.l.google.com",
-      ttl      = 300,
-      type     = "MX"
-      proxied  = false
       priority = 5
+      proxied  = false
+      ttl      = 300,
+      type     = "MX"
+      value    = "alt1.aspmx.l.google.com",
     },
     {
       name     = "@",
-      value    = "alt2.aspmx.l.google.com",
-      ttl      = 300,
-      type     = "MX"
-      proxied  = false
       priority = 10
+      proxied  = false
+      ttl      = 300,
+      type     = "MX"
+      value    = "alt2.aspmx.l.google.com",
     },
     {
       name     = "@",
-      value    = "aspmx2.googlemail.com",
-      ttl      = 300,
-      type     = "MX"
-      proxied  = false
       priority = 15
+      proxied  = false
+      ttl      = 300,
+      type     = "MX"
+      value    = "aspmx2.googlemail.com",
     },
     {
       name     = "@",
-      value    = "aspmx3.googlemail.com",
-      ttl      = 300,
-      type     = "MX"
-      proxied  = false
       priority = 20
-    },
-    {
-      name     = "get",
-      value    = "aspmx.l.google.com",
+      proxied  = false
       ttl      = 300,
       type     = "MX"
-      proxied  = false
-      priority = 1
-    },
-    {
-      name     = "get",
-      value    = "alt1.aspmx.l.google.com",
-      ttl      = 300,
-      type     = "MX"
-      proxied  = false
-      priority = 5
-    },
-    {
-      name     = "get",
-      value    = "alt2.aspmx.l.google.com",
-      ttl      = 300,
-      type     = "MX"
-      proxied  = false
-      priority = 5
-    },
-    {
-      name     = "get",
-      value    = "aspmx2.googlemail.com",
-      ttl      = 300,
-      type     = "MX"
-      proxied  = false
-      priority = 10
-    },
-    {
-      name     = "get",
       value    = "aspmx3.googlemail.com",
+    },
+    {
+      name     = "get",
+      priority = 1
+      proxied  = false
       ttl      = 300,
       type     = "MX"
+      value    = "aspmx.l.google.com",
+    },
+    {
+      name     = "get",
+      priority = 5
       proxied  = false
+      ttl      = 300,
+      type     = "MX"
+      value    = "alt1.aspmx.l.google.com",
+    },
+    {
+      name     = "get",
+      priority = 5
+      proxied  = false
+      ttl      = 300,
+      type     = "MX"
+      value    = "alt2.aspmx.l.google.com",
+    },
+    {
+      name     = "get",
       priority = 10
+      proxied  = false
+      ttl      = 300,
+      type     = "MX"
+      value    = "aspmx2.googlemail.com",
+    },
+    {
+      name     = "get",
+      priority = 10
+      proxied  = false
+      ttl      = 300,
+      type     = "MX"
+      value    = "aspmx3.googlemail.com",
     },
   ]
 
@@ -317,17 +316,17 @@ locals {
     },
     {
       name    = "sso.awsstg"
-      value   = "internal-awsstg-sso-jumpcloud-com-1395208237.us-west-2.elb.amazonaws.com"
-      type    = "CNAME"
-      ttl     = 1
       proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "internal-awsstg-sso-jumpcloud-com-1395208237.us-west-2.elb.amazonaws.com"
     },
     {
       name    = "console.awsstg"
-      value   = "dualstack.internal-awsstg-console-944155982.us-west-2.elb.amazonaws.com"
-      type    = "CNAME"
-      ttl     = 1
       proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "dualstack.internal-awsstg-console-944155982.us-west-2.elb.amazonaws.com"
     },
   ]
 

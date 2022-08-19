@@ -7,44 +7,48 @@ The project uses TF cloud and as such all variables are maintained in the respec
 ## Adding DNS
 All DNS records should be added/removed/modified strictly through Terraform code. New DNS records are created via the `cloudflare_record` resource, but most use-cases should not need to manually create the TF resources. Instead, they will be dynamically created with the `dns` module.
 
-The `dns` module accepts the following variables (note, this is a non-exhaustive list):
+The `dns` module accepts the following variables (note, this is not an exhaustive list):
 
 | Input         | Type          | Description                                                                                |
 |---------------|---------------|--------------------------------------------------------------------------------------------|
 | dns_records   | array (tuple) | A list of DNS records to add to the zone                                                   |
-| mx_records    | array (tuple) | A list of MX records to add to the zone                                                    |
 | ns_delegation | array (tuple) | A list of NS for subdomain delegation. See [Subdomain delegation](###subdomain-delegation) |
 
 An example input for dns_records:
 ```hcl
 dns_records = [
    {
-      type = "A",
-      name = "@",
-      value = "23.185.0.1",
-      ttl = 1,
+      name    = "@",
       proxied = true
+      ttl     = 1,
+      type    = "A",
+      value   = "23.185.0.1",
    }
 ]
 ```
 
-MX records have the same format, except they have an additional `priority` attribute and don't need to specify a `type` attribute:
+MX records have the same format, except they have an additional `priority` attribute:
 ```hcl
 mx_records = [
    {
       name     = "@",
-      value    = "aspmx.l.google.com",
-      ttl      = 300,
       priority = 1
+      proxied  = false
+      ttl      = 300,
+      type     = "MX"
+      value    = "aspmx.l.google.com",
    }
 ]
 ```
+
+Please alphabetically sort all attributes on new entries, along with making sure the equal signs are all aligned.
+
 ---
 When modifying DNS records for the CloudFlare environments (prd, stg, or tst), records can be added/removed/edited via the `data_env.tf` file (where `env` is the respective environment). 
 This file contains 4 arrays: `a_records`, `mx_records`, `cname_records`, and `misc_records`. Records should be modified directly within these 4 arrays, with the following categorization:
 
 * a_records         - All the A, AAAA, and ANAME records
-* mx_records    - All the MX records. MX records MUST be in this array as they have additional attributes
+* mx_records    - All the MX records
 * cname_records - All the CNAME records
 * misc_records  - Misc records that don't fit into the other categories (i.e, TXT, SOA, SPF)
 
@@ -53,7 +57,7 @@ Each environment will automatically merge these arrays and they will all be pass
 _Note: The stg environment automatically prefixes all dns records with `awsstg.`, so this should be omitted when adding records._ 
 
 ### Subdomain Delegation
-If you need to create a delegate a new subdomain, you can pass in an array (tuple) for the `ns_delegation` variable to the `dns` module.
+If you need to create a new subdomain delegation, you can pass in an array (tuple) for the `ns_delegation` variable to the `dns` module.
 
 This array takes the following form:
 ```hcl
