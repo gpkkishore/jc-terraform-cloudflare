@@ -240,20 +240,6 @@ locals {
       value   = "_a180c18c380e2b126b7428529cb9631a.olprtlswtu.acm-validations.aws"
     },
     {
-      name    = "ldap-mfa"
-      proxied = false
-      ttl     = 60
-      type    = "CNAME"
-      value   = "usw1.ldap-mfa.awsstg.jumpcloud.com"
-    },
-    {
-      name    = "ldap-mfa"
-      proxied = false
-      ttl     = 60
-      type    = "CNAME"
-      value   = "usw2.ldap-mfa.awsstg.jumpcloud.com"
-    },
-    {
       name    = "_0921a601a8d7472ed2fc08c2ec3c0229.delegated-auth.us-west-2"
       proxied = false
       ttl     = 60
