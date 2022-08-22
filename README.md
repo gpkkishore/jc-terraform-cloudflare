@@ -19,7 +19,7 @@ The directory structure is designed to support multiple environments while maint
 There are currently 3 environments:
 1) `production` - jumpcloud.com
 2) `stg` - awsstg.jumpcloud.com (note that awsstg has completely different DNS records than prod)
-3) `test` - cloudjump.dev (identical to production, used to test changes)
+3) `tst` - cloudjump.dev (identical to production, used to test changes)
 
 ```
 src
