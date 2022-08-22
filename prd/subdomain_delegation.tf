@@ -19,7 +19,7 @@ locals {
     {
       name    = "awsstg"
       ttl     = 300
-      value   = ["ns-241.awsdns-30.com.", "ns-811.awsdns-37.net.", "ns-1689.awsdns-19.co.uk.", "ns-1192.awsdns-21.org."]
+      value   = ["blakely.ns.cloudflare.com.", "keenan.ns.cloudflare.com."]
     },
     {
       name    = "sec"
