@@ -251,6 +251,13 @@ locals {
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_prd.outputs.api_nlb.lb_dns_name
     },
+   {
+      name    = "assist"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.haproxy_prd.outputs.assist_nlb.lb_dns_name
+    },
     {
       name    = "apple-mdm"
       proxied = false
