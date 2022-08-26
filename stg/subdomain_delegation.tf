@@ -1,6 +1,6 @@
 # Note that all of these records are assumed to be a "NS" type, thus there is no option to specify otherwise
 locals {
-  ns_delegation_records = [
+  stg_ns_delegation_records = [
     {
       name    = "identity"
       ttl     = 300
@@ -21,13 +21,5 @@ locals {
       ttl     = 300
       value   = ["ns-252.awsdns-31.com.", "ns-1314.awsdns-36.org.", "ns-561.awsdns-06.net.", "ns-1572.awsdns-04.co.uk."]
     },
-  ]
-
-  stg_ns_delegation_records = [
-    for entry in local.ns_delegation_records : {
-      name = format("%s.awsstg", entry.name)
-      ttl = entry.ttl
-      value = entry.value
-    }
   ]
 }
