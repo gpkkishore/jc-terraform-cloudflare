@@ -264,7 +264,7 @@ locals {
 
   stg_misc_records = [
     {
-      name    = "awsstg"
+      name    = "@"
       proxied = false
       ttl     = "300"
       type    = "TXT"
@@ -272,16 +272,5 @@ locals {
     }
   ]
 
-  // Stg records get a special treatment to format the name to include the awsstg prefix
-  treated_records = [
-    for entry in concat(local.stg_a_records, local.stg_cname_records) : {
-      name = format("%s.awsstg", entry.name)
-      value = entry.value
-      type = entry.type
-      ttl = entry.ttl
-      proxied = entry.proxied
-    }
-  ]
-
-  stg_dns_records = concat(local.treated_records, local.stg_mx_records, local.stg_misc_records)
+  stg_dns_records = concat(local.stg_a_records, local.stg_cname_records, local.stg_mx_records, local.stg_misc_records)
 }
