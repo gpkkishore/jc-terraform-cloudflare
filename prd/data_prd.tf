@@ -321,20 +321,6 @@ locals {
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_prd.outputs.sso_nlb.lb_dns_name
     },
-    {
-      name    = "sso.awsstg"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "internal-awsstg-sso-jumpcloud-com-1395208237.us-west-2.elb.amazonaws.com"
-    },
-    {
-      name    = "console.awsstg"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "dualstack.internal-awsstg-console-944155982.us-west-2.elb.amazonaws.com"
-    },
   ]
 
   prd_misc_records = [
