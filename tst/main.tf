@@ -17,6 +17,7 @@ resource "cloudflare_zone_settings_override" "tst_zone_settings_override" {
   settings {
     always_use_https         = "on"
     automatic_https_rewrites = "on"
+    true_client_ip_header    = "on"
   }
 }
 
