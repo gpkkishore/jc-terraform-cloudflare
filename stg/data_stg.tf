@@ -192,7 +192,7 @@ locals {
     },
     {
       name    = "sso"
-      proxied = false
+      proxied = true
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_stg.outputs.sso_nlb.lb_dns_name
