@@ -21,31 +21,6 @@ resource "cloudflare_zone_settings_override" "tst_zone_settings_override" {
   }
 }
 
-# Rewrite HTTP headers with modified values
-resource "cloudflare_ruleset" "transform_uri_http_headers" {
-  zone_id     = cloudflare_zone.cloudflare_zone_resource.id
-  name        = "Transform rule for HTTP headers."
-  description = "Modify HTTP headers before reaching origin."
-  kind        = "zone"
-  phase       = "http_request_late_transform"
-
-  // Rewrite X-Forwarded-For to only contain client IP
-  rules {
-    action = "rewrite"
-    action_parameters {
-      headers {
-        name       = "X-Forwarded-For"
-        operation  = "set"
-        expression = "ip.src"
-      }
-    }
-
-    expression  = "true"
-    description = "http.x_forwarded_for matches \".*\""
-    enabled     = true
-  }
-}
-
 module "dns" {
   source        = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.0.1"
   zone_id       = cloudflare_zone.cloudflare_zone_resource.id
