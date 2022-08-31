@@ -122,7 +122,7 @@ locals {
     },
     {
       name    = "api"
-      proxied = false
+      proxied = true
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_stg.outputs.api_nlb.lb_dns_name
@@ -143,7 +143,6 @@ locals {
     },
     {
       name    = "console"
-      proxied = false
       proxied = true
       ttl     = 1
       type    = "CNAME"
