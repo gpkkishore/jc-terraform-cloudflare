@@ -36,3 +36,77 @@ resource "cloudflare_ruleset" "transform_uri_russia_belarus" {
     enabled     = true
   }
 }
+
+######################################
+# Cloudflare Rate Limiting
+#
+# This feature needs to be enabled through our account representative via cloudflare as it has seprate billing rules seen here:
+# https://support.cloudflare.com/hc/en-us/articles/115000272247
+#
+# This example adds a ruleset for the zone rate limiting waf rule to block requests that break the limit threshold
+# In this case allowing 100 requests per minute with a mitigation timeout of 10 minutes
+######################################
+# resource "cloudflare_ruleset" "zone_rl" {
+#   zone_id     = "ae43596890c7d3eb76a58b08e67cdc78"
+#   name        = "Rate limiting for awsstg.jumpcloud.com"
+#   description = ""
+#   kind        = "zone"
+#   phase       = "http_ratelimit"
+
+#   rules {
+#     action = "block"
+#     ratelimit {
+#       characteristics = ["cf.colo.id", "ip.src"]
+#       period = 60
+#       requests_per_period = 100
+#       mitigation_timeout = 600
+#     }
+#     description = "My rate limiting rule"
+#     enabled = true
+#   }
+# }
+
+
+######################################
+# Cloudflare Managed WAF Settings
+######################################
+resource "cloudflare_ruleset" "zone_level_managed_waf" {
+  zone_id     = "ae43596890c7d3eb76a58b08e67cdc78"
+  name        = "Managed WAF entry point ruleset for awsstg"
+  description = ""
+  kind        = "zone"
+  phase       = "http_request_firewall_managed"
+
+  rules {
+    action = "execute"
+    action_parameters = {
+      id = "c2e184081120413c86c3ab7e14069605"
+      version = "latest"
+    }
+    expression = "true"
+    description = "Cloudflare Exposed Credentials Check Ruleset"
+    enabled = true
+  }
+
+  rules {
+    action = "execute"
+    action_parameters = {
+      id = "4814384a9e5d4991b9815dcfc25d2f1f"
+      version = "latest"
+    }
+    expression = "true"
+    description = "Cloudflare's implementation of the Open Web Application Security Project (OWASP) ModSecurity Core Rule Set."
+    enabled = true
+  }
+
+  rules {
+    action = "execute"
+    action_parameters {
+      id = "efb7b8c949ac4650a09736fc376e9aee"
+      version = "latest"
+    }
+    expression = "true"
+    description = "Created by the Cloudflare security team, this ruleset is designed to provide fast and effective protection for all your applications."
+    enabled = true
+  }
+}
