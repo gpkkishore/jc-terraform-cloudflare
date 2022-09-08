@@ -15,6 +15,14 @@ data "terraform_remote_state" "haproxy_prd" {
 # prd_cname_records - All the CNAME records
 # prd_misc_records  - Misc records that don't fit into the other categories (i.e, TXT, SOA, SPF)
 locals {
+  # This is a list of new zones to create in CF - this is only required for zones that should be managed by TF that don't have their
+  # own workspace in this repo (i.e, not jumpcloud.com, awsstg.jumpcloud.com, and cloudjump.dev)
+  # NOTE: Every zone in this array gets assigned an enterprise license, don't use it for testing!
+  zones = [
+    "pwm.jumpcloud.com",
+    "id.jumpcloud.com"
+  ]
+
   prd_a_records = [
     // START - Marketing website
     {
