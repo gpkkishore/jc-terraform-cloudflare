@@ -30,6 +30,6 @@ module "dns" {
 }
 
 module "security" {
-  source  = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/security?ref=v1.1.0"
+  source  = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/security?ref=v1.1.1"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
