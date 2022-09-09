@@ -47,7 +47,7 @@ resource "cloudflare_ruleset" "zone_level_managed_waf" {
   phase       = "http_request_firewall_managed"
 
   rules {
-    action = "log"
+    action = "execute"
     action_parameters {
       id = "c2e184081120413c86c3ab7e14069605"
       version = "latest"
@@ -58,7 +58,7 @@ resource "cloudflare_ruleset" "zone_level_managed_waf" {
   }
 
   rules {
-    action = "log"
+    action = "execute"
     action_parameters {
       id = "4814384a9e5d4991b9815dcfc25d2f1f"
       version = "latest"
@@ -69,7 +69,7 @@ resource "cloudflare_ruleset" "zone_level_managed_waf" {
   }
 
   rules {
-    action = "log"
+    action = "execute"
     action_parameters {
       id = "efb7b8c949ac4650a09736fc376e9aee"
       version = "latest"
