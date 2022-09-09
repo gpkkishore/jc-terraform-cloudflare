@@ -22,7 +22,7 @@ resource "cloudflare_zone_settings_override" "tst_zone_settings_override" {
 }
 
 module "dns" {
-  source        = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.0.1"
+  source        = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.1.0"
   zone_id       = cloudflare_zone.cloudflare_zone_resource.id
   zone_name     = var.zone_name
   dns_records   = local.stg_dns_records
@@ -30,6 +30,6 @@ module "dns" {
 }
 
 module "security" {
-  source  = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/security?ref=v1.0.1"
+  source  = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/security?ref=v1.1.0"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
