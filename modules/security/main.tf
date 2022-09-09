@@ -65,7 +65,7 @@ resource "cloudflare_ruleset" "zone_level_managed_waf" {
     }
     expression  = "true"
     description = "Cloudflare's implementation of the Open Web Application Security Project (OWASP) ModSecurity Core Rule Set."
-    enabled     = true
+    enabled     = false
   }
 
   rules {
