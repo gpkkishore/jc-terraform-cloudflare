@@ -19,7 +19,6 @@ locals {
   # own workspace in this repo (i.e, not jumpcloud.com, awsstg.jumpcloud.com, and cloudjump.dev)
   # NOTE: Every zone in this array gets assigned an enterprise license, don't use it for testing!
   zones = [
-    "pwm.jumpcloud.com",
     "id.jumpcloud.com"
   ]
 
