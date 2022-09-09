@@ -7,6 +7,11 @@ locals {
       value = ["ns-1692.awsdns-19.co.uk.", "ns-1065.awsdns-05.org.", "ns-456.awsdns-57.com.", "ns-726.awsdns-26.net."]
     },
     {
+      name  = "id"
+      ttl   = 300
+      value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
+    },
+    {
       name  = "ldap"
       ttl   = 300
       value = ["ns-1519.awsdns-61.org.", "ns-1718.awsdns-22.co.uk.", "ns-393.awsdns-49.com.", "ns-869.awsdns-44.net."]
