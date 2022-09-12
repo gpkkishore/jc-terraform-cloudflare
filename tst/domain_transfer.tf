@@ -29,7 +29,7 @@ resource "aws_security_group_rule" "domain_transfer_inbound" {
   from_port         = 80
   to_port           = 80
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0"]
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = lookup(module.vpcs, local.tiered_vpc_names.app).intra_vpc_security_group_id
 }
 
