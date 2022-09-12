@@ -22,3 +22,51 @@ module "vpcs" {
   region_az_labels = var.region_az_labels
   tier             = each.value
 }
+
+# temporarily using intra_vpc_security group to add inbound 80 from anywhere
+resource "aws_security_group_rule" "domain_transfer_inbound" {
+  type              = "ingress"
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
+  cidr_blocks       = [lookup(module.vpcs, local.tiered_vpc_names.app).network]
+  security_group_id = lookup(module.vpcs, local.tiered_vpc_names.app).intra_vpc_security_group_id
+}
+
+locals {
+  # ie local.tiered_vpc_names.app will be "app"
+  tiered_vpc_names = { for vpc_name, this in module.vpcs : vpc_name => vpc_name }
+
+  instances = [
+    {
+      # app-public
+      name = format("%s-%s-public", var.env_prefix, local.tiered_vpc_names.app)
+      # lookup the first public subnet id that belongs to AZ 'a' in the 'app' VPC
+      subnet_id = lookup(lookup(module.vpcs, local.tiered_vpc_names.app).az_to_public_subnet_ids, "a")[0]
+      vpc_security_group_ids = [
+        lookup(module.vpcs, local.tiered_vpc_names.app).default_security_group_id,
+        lookup(module.vpcs, local.tiered_vpc_names.app).intra_vpc_security_group_id
+      ]
+    }
+  ]
+}
+
+resource "aws_instance" "domain_transfer_instances" {
+  for_each = { for i in local.instances : i.name => i }
+
+  ami                    = "ami-0dc2d3e4c0f9ebd18" # AWS Linux 2 us-east-1
+  instance_type          = "t2.micro"
+  key_name               = "domain-transfer-test" # manually created in us-east-1
+  subnet_id              = each.value.subnet_id
+  vpc_security_group_ids = each.value.vpc_security_group_ids
+  user_data              = <<EOF
+#!/bin/bash
+sudo hostname ${each.value.name}
+yum install -y nginx
+echo "hello world" | sudo tee /usr/share/nginx/html/index.html
+sudo systemctl start nginx
+EOF
+  tags = {
+    Name = each.value.name
+  }
+}
