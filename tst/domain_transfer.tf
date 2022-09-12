@@ -29,7 +29,7 @@ resource "aws_security_group_rule" "domain_transfer_inbound" {
   from_port         = 80
   to_port           = 80
   protocol          = "tcp"
-  cidr_blocks       = [lookup(module.vpcs, local.tiered_vpc_names.app).network]
+  cidr_blocks       = ["0.0.0.0"]
   security_group_id = lookup(module.vpcs, local.tiered_vpc_names.app).intra_vpc_security_group_id
 }
 
@@ -62,7 +62,8 @@ resource "aws_instance" "domain_transfer_instances" {
   user_data              = <<EOF
 #!/bin/bash
 sudo hostname ${each.value.name}
-yum install -y nginx
+sudo yum update
+sudo amazon-linux-extras install nginx1
 echo "hello world" | sudo tee /usr/share/nginx/html/index.html
 sudo systemctl start nginx
 EOF
