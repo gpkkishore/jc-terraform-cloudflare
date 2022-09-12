@@ -62,7 +62,7 @@ resource "aws_instance" "domain_transfer_instances" {
   user_data              = <<EOF
 #!/bin/bash
 sudo hostname ${each.value.name}
-sudo yum update
+sudo yum update -y
 sudo amazon-linux-extras install nginx1
 echo "hello world" | sudo tee /usr/share/nginx/html/index.html
 sudo systemctl start nginx
