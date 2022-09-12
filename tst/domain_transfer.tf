@@ -3,9 +3,8 @@ locals {
     {
       azs = {
         a = {
-          enable_natgw = true
-          private      = []
-          public       = ["10.0.1.0/28"]
+          private = []
+          public  = ["10.0.1.0/28"]
         }
       }
       name    = "app"
