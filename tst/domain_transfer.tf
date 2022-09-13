@@ -39,7 +39,7 @@ locals {
 
   instances = [
     {
-      # app-public
+      # tst-app-public
       name = format("%s-%s-public", var.env_prefix, local.tiered_vpc_names.app)
       # lookup the first public subnet id that belongs to AZ 'a' in the 'app' VPC
       subnet_id = lookup(lookup(module.vpcs, local.tiered_vpc_names.app).az_to_public_subnet_ids, "a")[0]
@@ -49,10 +49,12 @@ locals {
       ]
     }
   ]
+
+  instance_name_to_instance = { for i in local.instances : i.name => i }
 }
 
 resource "aws_instance" "domain_transfer_instances" {
-  for_each = { for i in local.instances : i.name => i }
+  for_each = local.instance_name_to_instance
 
   ami                    = "ami-0dc2d3e4c0f9ebd18" # AWS Linux 2 us-east-1
   instance_type          = "t2.micro"
@@ -65,11 +67,20 @@ sudo hostname ${each.value.name}
 sudo yum update -y
 sudo amazon-linux-extras install nginx1
 echo "hello world" | sudo tee /usr/share/nginx/html/index.html
+sudo systemctl enable nginx
 sudo systemctl start nginx
 EOF
   tags = {
     Name = each.value.name
   }
+}
+
+# each ec2 instance will get an EIP
+resource "aws_eip" "domain_transfer_instances" {
+  for_each = local.instance_name_to_instance
+
+  vpc      = true
+  instance = lookup(aws_instance.domain_transfer_instances, each.key).id
 }
 
 locals {
@@ -80,7 +91,7 @@ locals {
       proxied = true
       ttl     = 1,
       type    = "A",
-      value   = "18.234.173.155"
+      value   = lookup(aws_eip.domain_transfer_instances, "tst-app-public").public_ip
     },
   ]
 }
