@@ -71,3 +71,35 @@ EOF
     Name = each.value.name
   }
 }
+
+locals {
+  domain_transfer_zone = "devopsconsortium.org"
+  domain_transfer_tst_a_records = [
+    {
+      name    = "@",
+      proxied = true
+      ttl     = 1,
+      type    = "A",
+      value   = "18.234.173.155"
+    },
+  ]
+}
+
+resource "cloudflare_zone" "devopsconsortium" {
+  # Temporary workaround for a provider bug, more info: https://github.com/cloudflare/terraform-provider-cloudflare/issues/1711
+  account_id = "3c96d914c0eaa62b7b4c9960e63818f7"
+  paused     = false
+  plan       = "free"
+  type       = "full"
+  zone       = local.domain_transfer_zone
+}
+
+module "domain_transfer_devopconsortium_dns" {
+  source = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.0.1"
+
+  zone_id        = cloudflare_zone.devopsconsortium.id
+  zone_name      = local.domain_transfer_zone
+  dns_records    = local.domain_transfer_tst_a_records
+  ns_delegation  = []
+  enable_noncore = false
+}
