@@ -1,3 +1,5 @@
+# This module contains security settings applicable to all zones
+
 # Filter Russia and Belarus
 resource "cloudflare_filter" "russia_belarus" {
   zone_id     = var.zone_id
@@ -13,7 +15,8 @@ resource "cloudflare_firewall_rule" "block_russia_belarus" {
   action      = "block"
 }
 
-# Forward Russia and Belarus http traffic to security-dmz-alb-prd-eu-north-1-523783178.eu-north-1.elb.amazonaws.com (451 Unavailable For Legal Reasons)
+# Forward Russia and Belarus http traffic to
+# security-dmz-alb-prd-eu-north-1-523783178.eu-north-1.elb.amazonaws.com (451 Unavailable For Legal Reasons)
 resource "cloudflare_ruleset" "transform_uri_russia_belarus" {
   zone_id     = var.zone_id
   name        = "Forward Russia and Belarus"
