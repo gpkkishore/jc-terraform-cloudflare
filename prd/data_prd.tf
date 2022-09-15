@@ -18,7 +18,7 @@ locals {
   # This is a list of new zones to create in CF - this is only required for zones that should be managed by TF that don't have their
   # own workspace in this repo (i.e, not jumpcloud.com, awsstg.jumpcloud.com, and cloudjump.dev)
   # NOTE: Every zone in this array gets assigned an enterprise license, don't use it for testing!
-  zones = [
+  cloudflare_zones = [
     "id.jumpcloud.com"
   ]
 
@@ -258,7 +258,7 @@ locals {
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_prd.outputs.api_nlb.lb_dns_name
     },
-   {
+    {
       name    = "assist"
       proxied = false
       ttl     = 1

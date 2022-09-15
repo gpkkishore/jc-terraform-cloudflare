@@ -1,5 +1,5 @@
 provider "cloudflare" {
-  api_token    = var.cloudflare_api_token
+  api_token = var.cloudflare_api_token
 }
 
 locals {
@@ -42,7 +42,7 @@ module "security" {
 # This resource allows for the creation of additional zones that may not necessarily have their own workspace or are managed in other repos.
 # This allows us to centralize zone creation to one repo and limit permission scope on tokens
 resource "cloudflare_zone" "additional_zone" {
-  for_each   = toset(local.zones)
+  for_each   = toset(local.cloudflare_zones)
   account_id = local.account_id
   paused     = false
   plan       = var.zone_plan
