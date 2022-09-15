@@ -14,7 +14,7 @@ then a R53 zone should be created and delegated to from CloudFlare.
 All CloudFlare zones receive an enterprise license. In order to add a new zone, add a new record to the `cloudflare_zone` variable in 
 the `data_prd.tf` file (see [here](../prd/data_prd.tf)). New zones will be dynamically created from this array after the plan is applied (see below for information on planning/applying in the prd workspace).
 2) Creating R53 zones:  
-In order to add a new zone, add a new record to the `r53_zone` variable in the `data_env.tf` file (either in stg or prd, dependent on what environment you're creating the zone for). New zones will
+In order to add a new zone, add a new record to the `r53_zones` variable in the `data_env.tf` file (either in stg or prd, dependent on what environment you're creating the zone for). New zones will
 dynamically created from this array after the plan is applied. Once the zone has been created, the NS will need to be updated in CloudFlare
 to properly delegate back to R53. See the section below titled "Subdomain delegation" for additional information.
 
