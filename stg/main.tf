@@ -4,6 +4,10 @@ provider "cloudflare" {
 
 provider "aws" {
   region = "us-west-2"
+
+  assume_role {
+    role_arn = "arn:aws:iam::712689858297:role/RootAccountAdminAccess"
+  }
 }
 
 resource "cloudflare_zone" "cloudflare_zone_resource" {
