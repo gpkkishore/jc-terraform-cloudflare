@@ -10,3 +10,13 @@ variable "zone_plan" {
   default     = "enterprise"
   description = "Cloudflare plan type specification for zone"
 }
+
+variable "env" {
+  default     = "awsstg"
+  description = "Tag for the current environment"
+}
+
+variable "project_name" {
+  default     = "cloudflare"
+  description = "Short project name for tagged resources"
+}

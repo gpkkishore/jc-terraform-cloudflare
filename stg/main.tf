@@ -1,5 +1,9 @@
 provider "cloudflare" {
-  api_token    = var.cloudflare_api_token
+  api_token = var.cloudflare_api_token
+}
+
+provider "aws" {
+  region = "us-west-2"
 }
 
 resource "cloudflare_zone" "cloudflare_zone_resource" {
@@ -32,4 +36,18 @@ module "dns" {
 module "security" {
   source  = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/security?ref=v1.1.1"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
+}
+
+module "tags" {
+  source     = "git@github.com:TheJumpCloud/terraform-modules//internal/default_tags?ref=v6.4.7"
+  env_prefix = var.env
+  project    = var.project_name
+  managed_by = terraform.workspace
+}
+
+resource "aws_route53_zone" "r53_delegated_zone" {
+  for_each = toset(local.r53_zones)
+  name     = each.key
+
+  tags = module.tags.default_tags
 }

@@ -4,15 +4,29 @@ The purpose of this document is to provide an explanation of the layout of this 
 
 The project uses TF cloud and as such all variables are maintained in the respective cloud workspaces. Please see the [access control](access_control.md) documentation for information on getting access to the cloudflare workspaces - if you need to plan or apply any changes, this will be required.
 
+## Creating New Zones
+This project supports creating new zones in both CloudFlare and Route53 (for subdomain delegation). In general, if an endpoint
+needs to take advantage of CloudFlare features (DDOS, WAF, Rate Limiting, etc) then it should get a CloudFlare zone. If these 
+features are not required (i.e, an internal or stg endpoint) or if specific routing policies from AWS are required (i.e latency routing), 
+then a R53 zone should be created and delegated to from CloudFlare. 
+
+1) Creating CloudFlare zones:  
+All CloudFlare zones receive an enterprise license. In order to add a new zone, add a new record to the `cloudflare_zone` variable in 
+the `data_prd.tf` file (see [here](../prd/data_prd.tf)). New zones will be dynamically created from this array after the plan is applied (see below for information on planning/applying in the prd workspace).
+2) Creating R53 zones:  
+In order to add a new zone, add a new record to the `553_zone` variable in the `data_env.tf` file (either in stg or prd, dependent on what environment you're creating the zone for). New zones will
+dynamically created from this array after the plan is applied. Once the zone has been created, the NS will need to be updated in CloudFlare
+to properly delegate back to R53. See the section below titled "Subdomain delegation" for additional information.
+
 ## Adding DNS
 All DNS records should be added/removed/modified strictly through Terraform code. New DNS records are created via the `cloudflare_record` resource, but most use-cases should not need to manually create the TF resources. Instead, they will be dynamically created with the `dns` module.
 
 The `dns` module accepts the following variables (note, this is not an exhaustive list):
 
-| Input         | Type          | Description                                                                                |
-|---------------|---------------|--------------------------------------------------------------------------------------------|
-| dns_records   | array (tuple) | A list of DNS records to add to the zone                                                   |
-| ns_delegation | array (tuple) | A list of NS for subdomain delegation. See [Subdomain delegation](###subdomain-delegation) |
+| Input         | Type          | Description                                                                              |
+|---------------|---------------|------------------------------------------------------------------------------------------|
+| dns_records   | array (tuple) | A list of DNS records to add to the zone                                                 |
+| ns_delegation | array (tuple) | A list of NS for subdomain delegation. See [Subdomain delegation](#subdomain-delegation) |
 
 An example input for dns_records:
 ```hcl

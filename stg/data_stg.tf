@@ -15,6 +15,10 @@ data "terraform_remote_state" "haproxy_stg" {
 # stg_cname_records - All the CNAME records
 # stg_misc_records  - Misc records that don't fit into the other categories (i.e, TXT, SOA, SPF)
 locals {
+  r53_zones = [
+    "id.awsstg.jumpcloud.com"
+  ]
+
   stg_a_records = [
     {
       name    = "awsstg-events-elasticsearch-usw2b-01"
