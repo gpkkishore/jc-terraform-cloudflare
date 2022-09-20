@@ -117,7 +117,7 @@ locals {
     {
       name    = "@",
       proxied = true
-      ttl     = 120,
+      ttl     = 1,
       type    = "A",
       value   = lookup(aws_eip.domain_transfer_instances, "tst-app-public").public_ip
     },
