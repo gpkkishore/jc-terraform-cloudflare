@@ -93,12 +93,26 @@ resource "aws_eip" "domain_transfer_instances" {
   instance = lookup(aws_instance.domain_transfer_instances, each.key).id
 }
 
+
+locals {
+  domain_transfer_cloudflare_zone = "devopsconsortium.org"
+  domain_transfer_r53_subzone     = format("%s.%s", "stg", local.domain_transfer_cloudflare_zone)
+}
+
 resource "aws_route53_zone" "stg_devopsconsortium_org" {
-  name = "stg.devopsconsortium.org"
+  name = local.domain_transfer_r53_subzone
+}
+
+resource "aws_route53_record" "id_stg_devopsconsortium_org" {
+  name    = "id"
+  ttl     = 120
+  type    = "A"
+  zone_id = aws_route53_zone.stg_devopsconsortium_org.id
+
+  records = [lookup(aws_eip.domain_transfer_instances, "tst-app-public-2").public_ip]
 }
 
 locals {
-  domain_transfer_zone = "devopsconsortium.org"
   domain_transfer_cloudflare_tst_a_records = [
     {
       name    = "@",
@@ -116,15 +130,21 @@ resource "cloudflare_zone" "devopsconsortium" {
   paused     = false
   plan       = "free"
   type       = "full"
-  zone       = local.domain_transfer_zone
+  zone       = local.domain_transfer_cloudflare_zone
 }
 
 module "domain_transfer_devopconsortium_dns" {
   source = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.0.1"
 
-  zone_id        = cloudflare_zone.devopsconsortium.id
-  zone_name      = local.domain_transfer_zone
-  dns_records    = local.domain_transfer_cloudflare_tst_a_records
-  ns_delegation  = []
+  zone_id     = cloudflare_zone.devopsconsortium.id
+  zone_name   = local.domain_transfer_cloudflare_zone
+  dns_records = local.domain_transfer_cloudflare_tst_a_records
+  ns_delegation = [
+    {
+      name  = "stg" # delegating cloudflare NS record to r53 stg.devopconsortium.org zone name servers
+      ttl   = 300
+      value = aws_route53_zone.stg_devopsconsortium_org.name_servers
+    }
+  ]
   enable_noncore = false
 }
