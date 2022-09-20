@@ -47,6 +47,16 @@ locals {
         lookup(module.vpcs, local.tiered_vpc_names.app).default_security_group_id,
         lookup(module.vpcs, local.tiered_vpc_names.app).intra_vpc_security_group_id
       ]
+    },
+    {
+      # tst-app-public-2
+      name = format("%s-%s-public-2", var.env_prefix, local.tiered_vpc_names.app)
+      # lookup the first public subnet id that belongs to AZ 'a' in the 'app' VPC
+      subnet_id = lookup(lookup(module.vpcs, local.tiered_vpc_names.app).az_to_public_subnet_ids, "a")[0]
+      vpc_security_group_ids = [
+        lookup(module.vpcs, local.tiered_vpc_names.app).default_security_group_id,
+        lookup(module.vpcs, local.tiered_vpc_names.app).intra_vpc_security_group_id
+      ]
     }
   ]
 
@@ -83,13 +93,17 @@ resource "aws_eip" "domain_transfer_instances" {
   instance = lookup(aws_instance.domain_transfer_instances, each.key).id
 }
 
+resource "aws_route53_zone" "stg_devopsconsortium_org" {
+  name = "stg.devopsconsortium.org"
+}
+
 locals {
   domain_transfer_zone = "devopsconsortium.org"
-  domain_transfer_tst_a_records = [
+  domain_transfer_cloudflare_tst_a_records = [
     {
       name    = "@",
       proxied = true
-      ttl     = 1,
+      ttl     = 120,
       type    = "A",
       value   = lookup(aws_eip.domain_transfer_instances, "tst-app-public").public_ip
     },
@@ -110,7 +124,7 @@ module "domain_transfer_devopconsortium_dns" {
 
   zone_id        = cloudflare_zone.devopsconsortium.id
   zone_name      = local.domain_transfer_zone
-  dns_records    = local.domain_transfer_tst_a_records
+  dns_records    = local.domain_transfer_cloudflare_tst_a_records
   ns_delegation  = []
   enable_noncore = false
 }
