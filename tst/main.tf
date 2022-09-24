@@ -22,6 +22,6 @@ module "security" {
 }
 
 module "settings" {
-  source = "../modules/settings"
+  source  = "../modules/settings"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
