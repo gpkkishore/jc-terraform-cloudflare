@@ -703,7 +703,7 @@ resource "cloudflare_record" "main_txt_12" {
   ttl     = 60
   type    = "TXT"
   zone_id = var.zone_id
-  value   = "v=spf1 ip4:198.37.147.129 ip4:198.21.2.137 include:aspmx.pardot.com include:mktomail.com include:_spf.google.com include:spf.zoho.com include:stspg-customer.com include:_spf.salesforce.com ~all"
+  value   = "v=spf1 ip4:198.37.147.129 ip4:198.21.2.137 include:et._spf.pardot.com include:mktomail.com include:_spf.google.com include:spf.zoho.com include:stspg-customer.com include:_spf.salesforce.com ~all"
 }
 resource "cloudflare_record" "main_txt_13" {
   name    = "@"

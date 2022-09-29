@@ -26,7 +26,7 @@ resource "cloudflare_zone" "additional_zone" {
 }
 
 module "dns" {
-  source         = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.0.1"
+  source         = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.1.2"
   zone_id        = cloudflare_zone.cloudflare_zone_resource.id
   zone_name      = var.zone_name
   dns_records    = local.prd_dns_records
