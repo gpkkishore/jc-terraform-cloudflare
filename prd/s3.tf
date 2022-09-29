@@ -2,7 +2,7 @@ module "prd_edge_lambda_s3" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/s3-bucket?ref=v6.1.6"
 
   env_prefix          = var.env_prefix
-  bucket_name         = "edge-lambda-cloudflare-secret-rotation"
+  bucket_name         = "prd-edge-lambda-cloudflare-secret-rotation"
   versioning          = false
   tags                = merge(module.tags.default_tags, { "Project" = "Edge Secrets Rotation Lambda" })
   block_public_acls   = true
