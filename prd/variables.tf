@@ -23,3 +23,8 @@ variable "base_prd_aws_region_use1" {
   default     = "us-east-1"
 }
 
+variable "env_prefix" {
+  description = "environment prefix"
+  type        = string
+  default     = "prd"
+}

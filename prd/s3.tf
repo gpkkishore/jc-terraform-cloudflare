@@ -4,7 +4,7 @@ module "prd_edge_lambda_s3" {
   env_prefix          = var.env_prefix
   bucket_name         = "prd-edge-lambda-cloudflare-secret-rotation"
   versioning          = false
-  tags                = merge(module.tags.default_tags, { "Project" = "Edge Secrets Rotation Lambda" })
+  tags                = merge({ Environment = var.env_prefix }, { "Project" = "Edge Secrets Rotation Lambda" })
   block_public_acls   = true
   block_public_policy = true
 }
