@@ -16,3 +16,15 @@ variable "enable_noncore" {
   type        = bool
   default     = false
 }
+
+variable "base_prd_aws_region_use1" {
+  description = "base region"
+  type        = string
+  default     = "us-east-1"
+}
+
+variable "env_prefix" {
+  description = "environment prefix"
+  type        = string
+  default     = "prd"
+}
