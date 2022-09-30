@@ -45,3 +45,15 @@ module "settings" {
   source   = "../modules/settings"
   zone_id  = each.key
 }
+
+# Page rules for console.{zone_name}/api*, e.g. console.jumpcloud.com/api*
+resource "cloudflare_page_rule" "console_api_page_rule" {
+  zone_id = cloudflare_zone.cloudflare_zone_resource.id
+  target = "*console.${var.zone_name}/api*"
+  priority = 1
+
+  actions {
+    # Turn off Browser Integrity Check for /api requests
+    browser_check = "off"
+  }
+}
