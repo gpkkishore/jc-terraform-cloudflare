@@ -26,7 +26,8 @@ resource "cloudflare_zone" "additional_zone" {
 }
 
 module "dns" {
-  source         = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.1.2"
+  source         = "app.terraform.io/jumpcloud/dns/cloudflare"
+  version        = "1.0.0"
   zone_id        = cloudflare_zone.cloudflare_zone_resource.id
   zone_name      = var.zone_name
   dns_records    = local.prd_dns_records
@@ -36,13 +37,15 @@ module "dns" {
 
 module "security" {
   for_each = toset(local.cloudflare_zone_all_ids)
-  source   = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/security?ref=v1.0.1"
+  source   = "app.terraform.io/jumpcloud/security/cloudflare"
+  version  = "1.0.1"
   zone_id  = each.key
 }
 
 module "settings" {
   for_each = toset(local.cloudflare_zone_all_ids)
-  source   = "../modules/settings"
+  source   = "app.terraform.io/jumpcloud/zone-settings/cloudflare"
+  version  = "1.0.0"
   zone_id  = each.key
 }
 
