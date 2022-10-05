@@ -160,7 +160,8 @@ resource "cloudflare_zone" "devopsconsortium" {
 }
 
 module "domain_transfer_devopconsortium_dns" {
-  source = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.0.1"
+  source  = "app.terraform.io/jumpcloud/dns/cloudflare"
+  version = "1.0.0"
 
   zone_id     = cloudflare_zone.devopsconsortium.id
   zone_name   = local.domain_transfer_cloudflare_zone
