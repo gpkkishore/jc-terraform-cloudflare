@@ -116,7 +116,7 @@ module "dnssec_alert_sns_topic" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/sns?ref=TE-80-sns-email-support"
 
   env_prefix         = var.env_prefix
-  region_short_names = var.region_az_short_names
+  region_short_names = var.region_az_labels
   topic_name         = "dnssec-errors"
   tags               = { Environment = var.env_prefix }
   subscriptions = [
@@ -126,7 +126,6 @@ module "dnssec_alert_sns_topic" {
     }
   ]
 }
-
 
 locals {
   domain_transfer_cloudflare_tst_a_records = [
