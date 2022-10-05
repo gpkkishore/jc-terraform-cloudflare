@@ -112,19 +112,29 @@ resource "aws_route53_record" "id_stg_devopsconsortium_org" {
   records = [lookup(aws_eip.domain_transfer_instances, "tst-app-public-2").public_ip]
 }
 
-module "dnssec_alert_sns_topic" {
+module "dnssec_alert_sns_topic_2" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/sns?ref=TE-80-sns-email-support"
 
   env_prefix         = var.env_prefix
   region_short_names = var.region_az_labels
-  topic_name         = "dnssec-errors"
+  topic_name         = "dnssec-errors-2"
   tags               = { Environment = var.env_prefix }
   subscriptions = [
     {
       protocol = "email"
-      endpoint = "jc-team-edge@jumpcloud.com"
+      endpoint = "jude.quintana@jumpcloud.com"
     }
   ]
+}
+
+module "dnssec_alert_sns_topic_3" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/sns?ref=v5.0.0"
+
+  env_prefix         = var.env_prefix
+  region_short_names = var.region_az_labels
+  topic_name         = "dnssec-errors-3"
+  tags               = { Environment = var.env_prefix }
+  subscriptions      = []
 }
 
 locals {
