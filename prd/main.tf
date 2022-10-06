@@ -75,7 +75,7 @@ resource "cloudflare_record" "faux_record" {
 
 resource "cloudflare_page_rule" "jumpcloud_lounge_page_rule" {
   priority = 1
-  target   = "*join.jumpcloudlonge.com/*"
+  target   = "*join.jumpcloudlounge.com/*"
   zone_id  = cloudflare_zone.additional_zone["jumpcloudlounge.com"].id
   actions {
     forwarding_url {
