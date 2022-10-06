@@ -1,9 +1,13 @@
 locals {
   # Temporary workaround for a provider bug, more info: https://github.com/cloudflare/terraform-provider-cloudflare/issues/1711
   account_id = "3c96d914c0eaa62b7b4c9960e63818f7"
+}
 
-  # All Cloudflare zones ids
-  cloudflare_zone_all_ids = concat([cloudflare_zone.cloudflare_zone_resource.id], [for zone in cloudflare_zone.additional_zone : zone.id])
+data "cloudflare_zones" "production_zones" {
+  filter {
+    # This creates a regex string that looks like the following: ^dundermifflin\.com|^wuphf\.com|^saber\.com
+    match = replace(join("|", formatlist("^%s", concat([var.zone_name], local.cloudflare_zones))), ".", "\\.")
+  }
 }
 
 resource "cloudflare_zone" "cloudflare_zone_resource" {
@@ -36,14 +40,14 @@ module "dns" {
 }
 
 module "security" {
-  for_each = toset(local.cloudflare_zone_all_ids)
+  for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
   source   = "app.terraform.io/jumpcloud/security/cloudflare"
   version  = "1.0.2"
   zone_id  = each.key
 }
 
 module "settings" {
-  for_each = toset(local.cloudflare_zone_all_ids)
+  for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
   source   = "app.terraform.io/jumpcloud/zone-settings/cloudflare"
   version  = "1.0.0"
   zone_id  = each.key
@@ -64,7 +68,9 @@ resource "cloudflare_page_rule" "console_api_page_rule" {
 ###########################################
 # DNS Configuration for jumpcloudlounge.com
 ###########################################
-resource "cloudflare_record" "faux_record" {
+resource "cloudflare_record" "jumpcloud_lounge_faux_record" {
+  depends_on = [cloudflare_zone.additional_zone]
+
   name    = "join"
   proxied = true
   ttl     = 1
@@ -74,6 +80,8 @@ resource "cloudflare_record" "faux_record" {
 }
 
 resource "cloudflare_page_rule" "jumpcloud_lounge_page_rule" {
+  depends_on = [cloudflare_record.jumpcloud_lounge_faux_record]
+
   priority = 1
   target   = "*join.jumpcloudlounge.com/*"
   zone_id  = cloudflare_zone.additional_zone["jumpcloudlounge.com"].id
