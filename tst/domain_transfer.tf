@@ -100,7 +100,7 @@ locals {
 }
 
 resource "aws_route53_zone" "stg_devopsconsortium_org" {
-  name = local.domain_transfer_r53_stg_devops_consortium_subzone
+  name = local.domain_transfer_r53_stg_devops_consortium_org_subzone
 }
 
 # take control of default zone ns and soa records
