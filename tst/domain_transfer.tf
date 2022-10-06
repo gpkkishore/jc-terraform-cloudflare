@@ -174,7 +174,7 @@ module "stg_devopsconsortium_kms_for_ksk" {
 }
 
 resource "aws_route53_key_signing_key" "stg_devopsconsortium_org" {
-  name                       = local.domain_transfer_r53_subzone
+  name                       = local.domain_transfer_r53_stg_devops_consortium_org_subzone
   hosted_zone_id             = aws_route53_zone.stg_devopsconsortium_org.id
   key_management_service_arn = module.stg_devopsconsortium_kms_for_ksk.arn
 }
