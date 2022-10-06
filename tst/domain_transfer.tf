@@ -159,6 +159,32 @@ module "dnssec_alert_sns_topic_3" {
   subscriptions      = []
 }
 
+##############################
+# Enable DNSSEC for subdomain
+##############################
+module "stg_devopsconsortium_kms_for_ksk" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=TE-80-kms-key-dnssec"
+
+  name                     = "stg-devopsconsortium-org-ksk"
+  customer_master_key_spec = "ECC_NIST_P256"
+  key_usage                = "SIGN_VERIFY"
+  enable_dnssec_policy     = true
+  deletion_window_in_days  = 7
+  tags                     = { Environment = var.env_prefix }
+}
+
+resource "aws_route53_key_signing_key" "stg_devopsconsortium_org" {
+  name                       = local.domain_transfer_r53_stg_devops_consortium_org_subzone
+  hosted_zone_id             = aws_route53_zone.stg_devopsconsortium_org.id
+  key_management_service_arn = module.stg_devopsconsortium_kms_for_ksk.arn
+}
+
+resource "aws_route53_hosted_zone_dnssec" "stg_devopsconsortium_org" {
+  hosted_zone_id = aws_route53_key_signing_key.stg_devopsconsortium_org.hosted_zone_id
+}
+
+##############################
+
 locals {
   domain_transfer_cloudflare_tst_a_records = [
     {
@@ -181,7 +207,8 @@ resource "cloudflare_zone" "devopsconsortium" {
 }
 
 module "domain_transfer_devopconsortium_dns" {
-  source = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.0.1"
+  source  = "app.terraform.io/jumpcloud/dns/cloudflare"
+  version = "1.0.0"
 
   zone_id     = cloudflare_zone.devopsconsortium.id
   zone_name   = local.domain_transfer_cloudflare_zone
