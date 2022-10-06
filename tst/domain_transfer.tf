@@ -95,8 +95,8 @@ resource "aws_eip" "domain_transfer_instances" {
 
 
 locals {
-  domain_transfer_cloudflare_zone                   = "devopsconsortium.org"
-  domain_transfer_r53_stg_devops_consortium_subzone = format("%s.%s", "stg", local.domain_transfer_cloudflare_zone)
+  domain_transfer_cloudflare_zone                       = "devopsconsortium.org"
+  domain_transfer_r53_stg_devops_consortium_org_subzone = format("%s.%s", "stg", local.domain_transfer_cloudflare_zone)
 }
 
 resource "aws_route53_zone" "stg_devopsconsortium_org" {
@@ -106,7 +106,7 @@ resource "aws_route53_zone" "stg_devopsconsortium_org" {
 # take control of default zone ns and soa records
 # original default TTL: 172800
 resource "aws_route53_record" "stg_devopscosortium_org_ns" {
-  name            = local.domain_transfer_r53_stg_devops_consortium_subzone
+  name            = local.domain_transfer_r53_stg_devops_org_consortium_subzone
   allow_overwrite = true
   ttl             = 300
   type            = "NS"
@@ -117,7 +117,7 @@ resource "aws_route53_record" "stg_devopscosortium_org_ns" {
 # original default TTL: 900
 # original default record: "ns-1969.awsdns-54.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"
 resource "aws_route53_record" "stg_devopscosortium_org_soa" {
-  name            = local.domain_transfer_r53_stg_devops_consortium_subzone
+  name            = local.domain_transfer_r53_stg_devops_org_consortium_subzone
   allow_overwrite = true
   ttl             = 300
   type            = "SOA"
