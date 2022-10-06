@@ -103,6 +103,28 @@ resource "aws_route53_zone" "stg_devopsconsortium_org" {
   name = local.domain_transfer_r53_subzone
 }
 
+# take control of default zone ns and soa records
+# original default TTL: 172800
+resource "aws_route53_record" "stg_devopscosortium_org_ns" {
+  name            = local.domain_transfer_r53_subzone
+  allow_overwrite = true
+  ttl             = 300
+  type            = "NS"
+  zone_id         = aws_route53_zone.stg_devopsconsortium_org.zone_id
+  records         = aws_route53_zone.stg_devopsconsortium_org.name_servers
+}
+
+# original default TTL: 900
+# original default record: "ns-1969.awsdns-54.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"
+resource "aws_route53_record" "stg_devopscosortium_org_soa" {
+  name            = local.domain_transfer_r53_subzone
+  allow_overwrite = true
+  ttl             = 300
+  type            = "SOA"
+  zone_id         = aws_route53_zone.stg_devopsconsortium_org.zone_id
+  records         = ["ns-1969.awsdns-54.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 600"]
+}
+
 resource "aws_route53_record" "id_stg_devopsconsortium_org" {
   name    = "id"
   ttl     = 120
