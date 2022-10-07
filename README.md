@@ -25,10 +25,6 @@ There are currently 3 environments:
 src
   ↳ utils  // Contains util scripts to assist development
   ↳ docs  // Contains documentation about this project and CloudFlare
-  ↳ modules  // Contains TF modules used in the project
-    ↳ dns  // The DNS module creates all DNS records for the zone
-      ↳ noncore  // The noncore module creates DNS records that are not core to the infrastructure (deprecated)
-    ↳ security  // The security module creates firewall rules required by security
   ↳ prd  // Working directory for the production CloudFlare site (jumpcloud.com)
   ↳ tst  // Working directory for the test CloudFlare site (cloudjump.dev)
   ↳ stg  // Working directory for the awsstg CloudFlare site (awsstg.jumpcloud.com)
@@ -45,7 +41,7 @@ Origin Server - Public service endpoint that will be under the protection of
 Cloudflare features.
 
 ## Usage
-Some environments may have different input variables, but these are the 2 core variables required for all environments.  
+Some environments may have different input variables, but these are the 2 core variables required for all environments.
 
 | Input                | Type   | Description                               |
 |----------------------|--------|-------------------------------------------|

@@ -6,14 +6,14 @@ The project uses TF cloud and as such all variables are maintained in the respec
 
 ## Creating New Zones
 This project supports creating new zones in both CloudFlare and Route53 (for subdomain delegation). In general, if an endpoint
-needs to take advantage of CloudFlare features (DDOS, WAF, Rate Limiting, etc) then it should get a CloudFlare zone. If these 
-features are not required (i.e, an internal or stg endpoint) or if specific routing policies from AWS are required (i.e latency routing), 
-then a R53 zone should be created and delegated to from CloudFlare. 
+needs to take advantage of CloudFlare features (DDOS, WAF, Rate Limiting, etc) then it should get a CloudFlare zone. If these
+features are not required (i.e, an internal or stg endpoint) or if specific routing policies from AWS are required (i.e latency routing),
+then a R53 zone should be created and delegated to from CloudFlare.
 
-1) Creating CloudFlare zones:  
-All CloudFlare zones receive an enterprise license. In order to add a new zone, add a new record to the `cloudflare_zone` variable in 
-the `data_prd.tf` file (see [here](../prd/data_prd.tf)). New zones will be dynamically created from this array after the plan is applied (see below for information on planning/applying in the prd workspace).
-2) Creating R53 zones:  
+1) Creating CloudFlare zones:
+All CloudFlare zones receive an enterprise license. In order to add a new zone, add a new record to the `cloudflare_zone` variable in
+the `data_prd.tf` file (see [here](../prd/data_prd.tf)). New zones will be dynamically created from this array after the plan is applied (see below for information on planning/applying in the prd workspace). _After the new zone is created, the plan must be run again (and applied) in order for the new zone to get global security/zone settings applied. This can be done in the TF cloud UI._
+2) Creating R53 zones:
 In order to add a new zone, add a new record to the `r53_zones` variable in the `data_env.tf` file (either in stg or prd, dependent on what environment you're creating the zone for). New zones will
 dynamically created from this array after the plan is applied. Once the zone has been created, the NS will need to be updated in CloudFlare
 to properly delegate back to R53. See the section below titled "Subdomain delegation" for additional information.
@@ -58,7 +58,7 @@ mx_records = [
 Please alphabetically sort all attributes on new entries, along with making sure the equal signs are all aligned.
 
 ---
-When modifying DNS records for the CloudFlare environments (prd, stg, or tst), records can be added/removed/edited via the `data_env.tf` file (where `env` is the respective environment). 
+When modifying DNS records for the CloudFlare environments (prd, stg, or tst), records can be added/removed/edited via the `data_env.tf` file (where `env` is the respective environment).
 This file contains 4 arrays: `a_records`, `mx_records`, `cname_records`, and `misc_records`. Records should be modified directly within these 4 arrays, with the following categorization:
 
 * a_records         - All the A, AAAA, and ANAME records
@@ -68,7 +68,7 @@ This file contains 4 arrays: `a_records`, `mx_records`, `cname_records`, and `mi
 
 Each environment will automatically merge these arrays and they will all be passed in as the `dns_records` variable to the `dns` module.
 
-_Note: The stg environment automatically prefixes all dns records with `awsstg.`, so this should be omitted when adding records._ 
+_Note: The stg environment automatically prefixes all dns records with `awsstg.`, so this should be omitted when adding records._
 
 ### Subdomain Delegation
 If you need to create a new subdomain delegation, you can pass in an array (tuple) for the `ns_delegation` variable to the `dns` module.
@@ -87,19 +87,24 @@ delegation_records = [
 The existing workspaces already have a `subdomain_delegation.tf` file which contains local data with this array. For these workspaces, you can just add a new object to the existing array and it will be applied on the next run.
 
 ## Module Updates
-All the workspaces use a versioned module source (i.e, `"git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.0.0"`). When making changes to a module, 
-it is a two-step process:
-1) Create a PR with only the module change. Once this is merged into master, a new release can be made [here](https://github.com/TheJumpCloud/terraform-cloudflare/releases). 
-   1) New releases should follow semver and the release notes should be generated automatically (with the "Generate release notes" button)
-   2) The title should be a short description of the new changes
-2) Create another PR which updates the module source version for any resources where appropriate
+All the workspaces use a module source versioned in Terraform Cloud Registry. The different modules are maintained in separate repositories:
+
+| Module   | Repo                                                               |
+|----------|--------------------------------------------------------------------|
+| dns      | https://github.com/TheJumpCloud/terraform-cloudflare-dns           |                                    |
+| security | https://github.com/TheJumpCloud/terraform-cloudflare-security      |
+| settings | https://github.com/TheJumpCloud/terraform-cloudflare-zone-settings |
+
+When making changes to a module, it is a two-step process:
+1) Create a PR with only the module change in the respective repo. Once this is merged into master, create a new release tag.
+2) Create another PR in this repo which updates the module source version for any resources where appropriate.
 
 _Note: There is a `noncore` submodule within the `dns` module. While this module is still in use, it is deprecated and should no longer be updated._
 
 If you need to test your module changes locally, you can update the module source to reference your current branch. This requires that your module changes are pushed to a remote branch. For example:
 ```hcl
 module "dns" {
-   source = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=TE-123-update-dns-module"
+   source = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=TE-123-update-dns-module"
 }
 ```
 This allows a module to be tested/verified before it is merged and a new release is cut.

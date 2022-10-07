@@ -95,12 +95,34 @@ resource "aws_eip" "domain_transfer_instances" {
 
 
 locals {
-  domain_transfer_cloudflare_zone = "devopsconsortium.org"
-  domain_transfer_r53_subzone     = format("%s.%s", "stg", local.domain_transfer_cloudflare_zone)
+  domain_transfer_cloudflare_zone                       = "devopsconsortium.org"
+  domain_transfer_r53_stg_devops_consortium_org_subzone = format("%s.%s", "stg", local.domain_transfer_cloudflare_zone)
 }
 
 resource "aws_route53_zone" "stg_devopsconsortium_org" {
-  name = local.domain_transfer_r53_subzone
+  name = local.domain_transfer_r53_stg_devops_consortium_org_subzone
+}
+
+# take control of default zone ns and soa records
+# original default TTL: 172800
+resource "aws_route53_record" "stg_devopscosortium_org_ns" {
+  name            = local.domain_transfer_r53_stg_devops_consortium_org_subzone
+  allow_overwrite = true
+  ttl             = 300
+  type            = "NS"
+  zone_id         = aws_route53_zone.stg_devopsconsortium_org.zone_id
+  records         = aws_route53_zone.stg_devopsconsortium_org.name_servers
+}
+
+# original default TTL: 900
+# original default record: "ns-1969.awsdns-54.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"
+resource "aws_route53_record" "stg_devopscosortium_org_soa" {
+  name            = local.domain_transfer_r53_stg_devops_consortium_org_subzone
+  allow_overwrite = true
+  ttl             = 300
+  type            = "SOA"
+  zone_id         = aws_route53_zone.stg_devopsconsortium_org.zone_id
+  records         = ["ns-1969.awsdns-54.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 600"]
 }
 
 resource "aws_route53_record" "id_stg_devopsconsortium_org" {
@@ -111,6 +133,58 @@ resource "aws_route53_record" "id_stg_devopsconsortium_org" {
 
   records = [lookup(aws_eip.domain_transfer_instances, "tst-app-public-2").public_ip]
 }
+
+module "dnssec_alert_sns_topic_2" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/sns?ref=TE-80-sns-email-support"
+
+  env_prefix         = var.env_prefix
+  region_short_names = var.region_az_labels
+  topic_name         = "dnssec-errors-2"
+  tags               = { Environment = var.env_prefix }
+  subscriptions = [
+    {
+      protocol = "email"
+      endpoint = "jude.quintana@jumpcloud.com"
+    }
+  ]
+}
+
+module "dnssec_alert_sns_topic_3" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/sns?ref=v5.0.0"
+
+  env_prefix         = var.env_prefix
+  region_short_names = var.region_az_labels
+  topic_name         = "dnssec-errors-3"
+  tags               = { Environment = var.env_prefix }
+  subscriptions      = []
+}
+
+##############################
+# Enable DNSSEC for subdomain
+##############################
+module "stg_devopsconsortium_kms_for_ksk" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=TE-80-kms-key-dnssec"
+
+  name                     = "stg-devopsconsortium-org-ksk"
+  customer_master_key_spec = "ECC_NIST_P256"
+  key_usage                = "SIGN_VERIFY"
+  enable_dnssec_policy     = true
+  enable_key_rotation      = false # Automatic key rotation not supported for asymmetric KMS keys ie ECC
+  deletion_window_in_days  = 7
+  tags                     = { Environment = var.env_prefix }
+}
+
+resource "aws_route53_key_signing_key" "stg_devopsconsortium_org" {
+  name                       = local.domain_transfer_r53_stg_devops_consortium_org_subzone
+  hosted_zone_id             = aws_route53_zone.stg_devopsconsortium_org.id
+  key_management_service_arn = module.stg_devopsconsortium_kms_for_ksk.arn
+}
+
+resource "aws_route53_hosted_zone_dnssec" "stg_devopsconsortium_org" {
+  hosted_zone_id = aws_route53_key_signing_key.stg_devopsconsortium_org.hosted_zone_id
+}
+
+##############################
 
 locals {
   domain_transfer_cloudflare_tst_a_records = [
@@ -134,7 +208,8 @@ resource "cloudflare_zone" "devopsconsortium" {
 }
 
 module "domain_transfer_devopconsortium_dns" {
-  source = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.0.1"
+  source  = "app.terraform.io/jumpcloud/dns/cloudflare"
+  version = "1.0.0"
 
   zone_id     = cloudflare_zone.devopsconsortium.id
   zone_name   = local.domain_transfer_cloudflare_zone

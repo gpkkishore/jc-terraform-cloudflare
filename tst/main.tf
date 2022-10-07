@@ -8,7 +8,8 @@ resource "cloudflare_zone" "cloudflare_zone_resource" {
 }
 
 module "dns" {
-  source         = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/dns?ref=v1.0.1"
+  source         = "app.terraform.io/jumpcloud/dns/cloudflare"
+  version        = "1.0.0"
   zone_id        = cloudflare_zone.cloudflare_zone_resource.id
   zone_name      = var.zone_name
   dns_records    = local.tst_dns_records
@@ -17,11 +18,13 @@ module "dns" {
 }
 
 module "security" {
-  source  = "git@github.com:TheJumpCloud/terraform-cloudflare.git//modules/security?ref=v1.0.1"
+  source  = "app.terraform.io/jumpcloud/security/cloudflare"
+  version = "1.0.2"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
 
 module "settings" {
-  source  = "../modules/settings"
+  source  = "app.terraform.io/jumpcloud/zone-settings/cloudflare"
+  version = "1.0.0"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
