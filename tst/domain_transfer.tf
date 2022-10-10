@@ -206,10 +206,10 @@ resource "cloudflare_zone_dnssec" "devopsconsortium_org" {
 # they have to be manually copied over from the hosted zone in the AWS UI (ie make ds record in cloudflare):
 #   under DNSSEC Signing -> View Information to create DS record -> under Establish chain of Trust -> Another domain registrar
 # the data values neede are:
-# algorithm (Signing Algorithm Type)
-# digest (Digest)
-# digest_type (Digest Algorithm Type)
-# key_tag (Key Tag)
+#   algorithm (Signing Algorithm Type)
+#   digest (Digest)
+#   digest_type (Digest Algorithm Type)
+#   key_tag (Key Tag)
 #
 # otherwise all other values are 0
 resource "cloudflare_record" "ds_stg_devopsconsortium_org" {
