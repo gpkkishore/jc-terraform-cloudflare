@@ -203,9 +203,8 @@ resource "cloudflare_zone_dnssec" "devopsconsortium_org" {
 
 # Add a "stg" DS record to validate DNSSEC for the stg.devopsconsortium.org subdomain in Route53
 # data values needed can't be pull directly from aws_route53_hosted_zone_dnssec resource directly
-# they have to be manually copied over from:
-#   - for the hosted zone in the AWS UI under DNSSEC Signing -> View Information to create DS record -> under Establish chain of Trust -> Another domain restrar (ie cloudflare)
-#
+# they have to be manually copied over from the hosted zone in the AWS UI (ie make ds record in cloudflare):
+#   under DNSSEC Signing -> View Information to create DS record -> under Establish chain of Trust -> Another domain registrar
 # the data values neede are:
 # algorithm (Signing Algorithm Type)
 # digest (Digest)
