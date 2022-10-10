@@ -159,7 +159,7 @@ resource "aws_cloudwatch_metric_alarm" "stg_devopsconsortium_org_dnssec_errors" 
   comparison_operator = "GreaterThanThreshold"
   metric_name         = each.value
   namespace           = "AWS/Route53"
-  period              = "900"
+  period              = 900
   datapoints_to_alarm = 1
   evaluation_periods  = 1
   statistic           = "Maximum"
