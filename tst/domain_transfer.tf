@@ -149,21 +149,11 @@ module "dnssec_alert_sns_topic_2" {
   ]
 }
 
-module "dnssec_alert_sns_topic_3" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/sns?ref=v5.0.0"
-
-  env_prefix         = var.env_prefix
-  region_short_names = var.region_az_labels
-  topic_name         = "dnssec-errors-3"
-  tags               = { Environment = var.env_prefix }
-  subscriptions      = []
-}
-
 ##############################
 # Enable DNSSEC for subdomain
 ##############################
 module "stg_devopsconsortium_kms_for_ksk" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=TE-80-kms-key-dnssec"
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.6.3"
 
   name                     = "stg-devopsconsortium-org-ksk"
   customer_master_key_spec = "ECC_NIST_P256"
