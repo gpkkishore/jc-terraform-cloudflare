@@ -135,7 +135,7 @@ resource "aws_route53_record" "id_stg_devopsconsortium_org" {
 }
 
 module "dnssec_alert_sns_topic_2" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/sns?ref=TE-80-sns-email-support"
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/sns?ref=v6.6.5"
 
   env_prefix         = var.env_prefix
   region_short_names = var.region_az_labels
