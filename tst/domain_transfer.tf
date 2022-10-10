@@ -210,38 +210,17 @@ resource "cloudflare_zone_dnssec" "devopsconsortium_org" {
 #   digest (Digest)
 #   digest_type (Digest Algorithm Type)
 #   key_tag (Key Tag)
-#
-# otherwise all other values are 0
+
 resource "cloudflare_record" "ds_stg_devopsconsortium_org" {
   zone_id = cloudflare_zone.devopsconsortium.id
   name    = "stg"
   type    = "DS"
   proxied = false
   data {
-    algorithm      = 13
-    altitude       = 0
-    digest         = "D48F6FF7E7AE6613B833B318F142B7BE94D1B4D0A05A15FD567A44ADF753990E"
-    digest_type    = 2
-    key_tag        = 43419
-    lat_degrees    = 0
-    lat_minutes    = 0
-    lat_seconds    = 0
-    long_degrees   = 0
-    long_minutes   = 0
-    long_seconds   = 0
-    matching_type  = 0
-    order          = 0
-    port           = 0
-    precision_horz = 0
-    precision_vert = 0
-    preference     = 0
-    priority       = 0
-    protocol       = 0
-    selector       = 0
-    size           = 0
-    type           = 0
-    usage          = 0
-    weight         = 0
+    algorithm   = 13
+    digest      = "D48F6FF7E7AE6613B833B318F142B7BE94D1B4D0A05A15FD567A44ADF753990E"
+    digest_type = 2
+    key_tag     = 43419
   }
 }
 
