@@ -149,6 +149,29 @@ module "dnssec_alert_sns_topic_2" {
   ]
 }
 
+resource "aws_cloudwatch_metric_alarm" "stg_devopsconsortium_org_dnssec_errors" {
+  for_each = {
+    jude-dnssec-key-signing-keys-needing-action = "DNSSECKeySigningKeysNeedingAction"
+    jude-dnssec-internal-failure                = "DNSSECInternalFailure"
+  }
+
+  alarm_name          = each.key
+  comparison_operator = "GreaterThanThreshold"
+  metric_name         = each.value
+  namespace           = "AWS/Route53"
+  period              = "900"
+  datapoints_to_alarm = 1
+  evaluation_periods  = 1
+  statistic           = "Maximum"
+  threshold           = 0
+  alarm_description   = each.value
+  alarm_actions       = [module.dnssec_alert_sns_topic_2.arn]
+  ok_actions          = [module.dnssec_alert_sns_topic_2.arn]
+  dimensions = {
+    HostedZoneId = aws_route53_zone.stg_devopsconsortium_org.id
+  }
+}
+
 ##############################
 # Enable DNSSEC for subdomain
 ##############################
@@ -197,15 +220,42 @@ resource "cloudflare_zone" "devopsconsortium" {
   zone       = local.domain_transfer_cloudflare_zone
 }
 
+# use output of cloudflare_zone_dnssec.devopsconsortium_org to get the
+# needed info to manually create the DS record for devopsconsortium.org in Godaddy
+# there are 3rd party providers for Godaddy but nothing official
+# ie terraform state show cloudflare_zone_dnssec.devopsconsortium_org
+#   cloudflare_zone_dnssec.devopsconsortium_org:
+#     resource "cloudflare_zone_dnssec" "devopsconsortium_org" {
+#       algorithm        = "13"
+#       digest           = "BB9AEE5E0E576CA35AEC4EE816EF5C3339952DB81F6E47E602D218B6516738A9"
+#       digest_algorithm = "SHA256"
+#       digest_type      = "2"
+#       ds               = "devopsconsortium.org. 3600 IN DS 2371 13 2 BB9AEE5E0E576CA35AEC4EE816EF5C3339952DB81F6E47E602D218B6516738A9"
+#       flags            = 257
+#       id               = "14fa793fedd155933368f8f094629fe4"
+#       key_tag          = 2371
+#       key_type         = "ECDSAP256SHA256"
+#       modified_on      = "Fri, 30 Sep 2022 17:30:24 +0000"
+#       public_key       = "mdsswUyr3DPW132mOi8V9xESWE8jTo0dxCjjnopKl+GqJxpVXckHAeF+KkxLbxILfDLUT0rAK9iUzy1L53eKGQ=="
+#       status           = "active"
+#       zone_id          = "14fa793fedd155933368f8f094629fe4"
+#   }
+#
+# the data values needed for Goddady are:
+#   Algorithm (algorithm)
+#   Digest (digest)
+#   Digest Type (digest_type)
+#   Key Tag (key_tag)
+#
 resource "cloudflare_zone_dnssec" "devopsconsortium_org" {
   zone_id = cloudflare_zone.devopsconsortium.id
 }
 
 # Add a "stg" DS record to validate DNSSEC for the stg.devopsconsortium.org subdomain in Route53
-# data values needed can't be pull directly from aws_route53_hosted_zone_dnssec resource directly
+# data values needed can't be pull directly from the aws_route53_hosted_zone_dnssec resource.
 # they have to be manually copied over from the hosted zone in the AWS UI (ie make ds record in cloudflare):
 #   under DNSSEC Signing -> View Information to create DS record -> under Establish chain of Trust -> Another domain registrar
-# the data values neede are:
+# the data values needed are:
 #   algorithm (Signing Algorithm Type)
 #   digest (Digest)
 #   digest_type (Digest Algorithm Type)
