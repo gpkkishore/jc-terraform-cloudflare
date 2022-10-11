@@ -263,6 +263,13 @@ locals {
       ttl     = 300
       type    = "CNAME"
       value   = "j.sni.global.fastly.net"
+    },
+    {
+      name    = "microsoft-mdm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.haproxy_stg.outputs.microsoft_mdm_nlb.lb_dns_name
     }
   ]
 
