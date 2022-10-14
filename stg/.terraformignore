@@ -1,0 +1,14 @@
+# Misc
+.DS_Store
+LICENSE.md
+README.md
+
+.terraform/
+*.tfstate
+*.backup
+
+.terraform/
+.terraform/modules/
+.git/
+.github/
+
