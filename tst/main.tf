@@ -9,7 +9,7 @@ resource "cloudflare_zone" "cloudflare_zone_resource" {
 
 module "dns" {
   source         = "app.terraform.io/jumpcloud/dns/cloudflare"
-  version        = "1.0.4"
+  version        = "1.0.5"
   zone_id        = cloudflare_zone.cloudflare_zone_resource.id
   zone_name      = var.zone_name
   dns_records    = local.tst_dns_records
@@ -19,12 +19,12 @@ module "dns" {
 
 module "security" {
   source  = "app.terraform.io/jumpcloud/security/cloudflare"
-  version = "1.0.3"
+  version = "1.0.4"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
 
 module "settings" {
   source  = "app.terraform.io/jumpcloud/zone-settings/cloudflare"
-  version = "1.0.0"
+  version = "1.0.1"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
