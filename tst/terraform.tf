@@ -1,4 +1,6 @@
 terraform {
+  required_version = ">=1.3.2, <2.0.0"
+
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
@@ -9,7 +11,6 @@ terraform {
       version = "~> 4.33"
     }
   }
-  required_version = ">=1.1.9"
 
   backend "remote" {
     hostname     = "app.terraform.io"
