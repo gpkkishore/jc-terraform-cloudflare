@@ -9,7 +9,7 @@ locals {
     {
       name  = "id"
       ttl   = 300
-      value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com"]
+      value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
     },
     {
       name  = "ldap"
