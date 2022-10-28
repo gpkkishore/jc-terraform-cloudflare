@@ -2,6 +2,11 @@ variable "cloudflare_api_token" {
   description = "Cloudflare API token"
 }
 
+variable "cloudflare_account_id" {
+  description = "Cloudflare account id"
+  default     = "3c96d914c0eaa62b7b4c9960e63818f7"
+}
+
 variable "zone_name" {
   description = "Domain name"
 }
