@@ -101,10 +101,9 @@ locals {
   r53_tst_devopsconsortium_org                          = format("%s.%s", "tst", local.domain_transfer_cloudflare_zone)
 }
 
-resource "aws_route53_zone" "tst_devopsconsortium_org" {
-  name = local.r53_tst_devopsconsortium_org
-}
-
+##############################
+# stg.devopsconsoritium.org
+##############################
 resource "aws_route53_zone" "stg_devopsconsortium_org" {
   name = local.domain_transfer_r53_stg_devops_consortium_org_subzone
 }
@@ -140,6 +139,39 @@ resource "aws_route53_record" "id_stg_devopsconsortium_org" {
   records = [lookup(aws_eip.domain_transfer_instances, "tst-app-public-2").public_ip]
 }
 
+##############################
+# tst.devopsconsoritium.org
+##############################
+resource "aws_route53_zone" "tst_devopsconsortium_org" {
+  name = local.r53_tst_devopsconsortium_org
+}
+
+# take control of default zone ns and soa records
+# original default TTL: 172800
+resource "aws_route53_record" "tst_devopscosortium_org_ns" {
+  name            = local.r53_tst_devopsconsortium_org
+  allow_overwrite = true
+  ttl             = 300
+  type            = "NS"
+  zone_id         = aws_route53_zone.tst_devopsconsortium_org.zone_id
+  records         = aws_route53_zone.tst_devopsconsortium_org.name_servers
+}
+
+# original default TTL: 900
+# original default record: "ns-1768.awsdns-29.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"
+resource "aws_route53_record" "tst_devopscosortium_org_soa" {
+  name            = local.r53_tst_devopsconsortium_org
+  allow_overwrite = true
+  ttl             = 300
+  type            = "SOA"
+  zone_id         = aws_route53_zone.tst_devopsconsortium_org.zone_id
+  records         = ["ns-1768.awsdns-29.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 600"]
+}
+
+##############################
+# DNSSEC errors
+##############################
+
 module "dnssec_alert_sns_topic_2" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/sns?ref=v6.6.5"
 
@@ -165,7 +197,7 @@ resource "aws_cloudwatch_metric_alarm" "stg_devopsconsortium_org_dnssec_errors" 
   comparison_operator = "GreaterThanThreshold"
   metric_name         = each.value
   namespace           = "AWS/Route53"
-  period              = 900
+  period              = 1200
   datapoints_to_alarm = 1
   evaluation_periods  = 1
   statistic           = "Maximum"
@@ -178,8 +210,31 @@ resource "aws_cloudwatch_metric_alarm" "stg_devopsconsortium_org_dnssec_errors" 
   }
 }
 
+resource "aws_cloudwatch_metric_alarm" "tst_devopsconsortium_org_dnssec_errors" {
+  for_each = {
+    tst-dnssec-key-signing-keys-needing-action = "DNSSECKeySigningKeysNeedingAction"
+    tst-dnssec-internal-failure                = "DNSSECInternalFailure"
+  }
+
+  alarm_name          = each.key
+  comparison_operator = "GreaterThanThreshold"
+  metric_name         = each.value
+  namespace           = "AWS/Route53"
+  period              = 1200
+  datapoints_to_alarm = 1
+  evaluation_periods  = 1
+  statistic           = "Maximum"
+  threshold           = 0
+  alarm_description   = each.value
+  alarm_actions       = [module.dnssec_alert_sns_topic_2.arn]
+  ok_actions          = [module.dnssec_alert_sns_topic_2.arn]
+  dimensions = {
+    HostedZoneId = aws_route53_zone.tst_devopsconsortium_org.id
+  }
+}
+
 ##############################
-# Enable DNSSEC for subdomain
+# Prepar DNSSEC for the stg.devopsconsortium.org zone
 ##############################
 module "stg_devopsconsortium_kms_for_ksk" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.6.3"
@@ -201,6 +256,31 @@ resource "aws_route53_key_signing_key" "stg_devopsconsortium_org" {
 
 resource "aws_route53_hosted_zone_dnssec" "stg_devopsconsortium_org" {
   hosted_zone_id = aws_route53_key_signing_key.stg_devopsconsortium_org.hosted_zone_id
+}
+
+##############################
+# Prepare DNSSEC for the tst.devopsconsortium.org zone
+##############################
+module "tst_devopsconsortium_kms_for_ksk" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.6.3"
+
+  name                     = "tst-devopsconsortium-org-ksk"
+  customer_master_key_spec = "ECC_NIST_P256"
+  key_usage                = "SIGN_VERIFY"
+  enable_dnssec_policy     = true
+  enable_key_rotation      = false # Automatic key rotation not supported for asymmetric KMS keys ie ECC
+  deletion_window_in_days  = 7
+  tags                     = { Environment = var.env_prefix }
+}
+
+resource "aws_route53_key_signing_key" "tst_devopsconsortium_org" {
+  name                       = local.r53_tst_devopsconsortium_org
+  hosted_zone_id             = aws_route53_zone.tst_devopsconsortium_org.id
+  key_management_service_arn = module.tst_devopsconsortium_kms_for_ksk.arn
+}
+
+resource "aws_route53_hosted_zone_dnssec" "tst_devopsconsortium_org" {
+  hosted_zone_id = aws_route53_key_signing_key.tst_devopsconsortium_org.hosted_zone_id
 }
 
 ##############################
@@ -280,6 +360,7 @@ resource "cloudflare_record" "ds_stg_devopsconsortium_org" {
   }
 }
 
+### agent.devopsconsortium.org
 resource "cloudflare_zone" "agent_devopsconsortium_org" {
   # Temporary workaround for a provider bug, more info: https://github.com/cloudflare/terraform-provider-cloudflare/issues/1711
   account_id = var.cloudflare_account_id
@@ -287,6 +368,10 @@ resource "cloudflare_zone" "agent_devopsconsortium_org" {
   plan       = "free"
   type       = "full"
   zone       = local.cloudlare_agent_devopsconsortium_org
+}
+
+resource "cloudflare_zone_dnssec" "agent_devopsconsortium_org" {
+  zone_id = cloudflare_zone.agent_devopsconsortium_org.id
 }
 
 module "domain_transfer_devopconsortium_dns" {
