@@ -98,6 +98,11 @@ locals {
   domain_transfer_cloudflare_zone                       = "devopsconsortium.org"
   domain_transfer_r53_stg_devops_consortium_org_subzone = format("%s.%s", "stg", local.domain_transfer_cloudflare_zone)
   cloudlare_agent_devopsconsortium_org                  = format("%s.%s", "agent", local.domain_transfer_cloudflare_zone)
+  r53_tst_devopsconsortium_org                          = format("%s.%s", "tst", local.domain_transfer_cloudflare_zone)
+}
+
+resource "aws_route53_zone" "tst_devopsconsortium_org" {
+  name = local.r53_tst_devopsconsortium_org
 }
 
 resource "aws_route53_zone" "stg_devopsconsortium_org" {
