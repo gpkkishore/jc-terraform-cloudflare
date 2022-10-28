@@ -97,6 +97,12 @@ resource "aws_eip" "domain_transfer_instances" {
 locals {
   domain_transfer_cloudflare_zone                       = "devopsconsortium.org"
   domain_transfer_r53_stg_devops_consortium_org_subzone = format("%s.%s", "stg", local.domain_transfer_cloudflare_zone)
+  cloudlare_agent_devopsconsortium_org                  = format("%s.%s", "agent", local.domain_transfer_cloudflare_zone)
+  r53_tst_devopsconsortium_org                          = format("%s.%s", "tst", local.domain_transfer_cloudflare_zone)
+}
+
+resource "aws_route53_zone" "tst_devopsconsortium_org" {
+  name = local.r53_tst_devopsconsortium_org
 }
 
 resource "aws_route53_zone" "stg_devopsconsortium_org" {
@@ -213,7 +219,7 @@ locals {
 
 resource "cloudflare_zone" "devopsconsortium" {
   # Temporary workaround for a provider bug, more info: https://github.com/cloudflare/terraform-provider-cloudflare/issues/1711
-  account_id = "3c96d914c0eaa62b7b4c9960e63818f7"
+  account_id = var.cloudflare_account_id
   paused     = false
   plan       = "free"
   type       = "full"
@@ -272,6 +278,15 @@ resource "cloudflare_record" "ds_stg_devopsconsortium_org" {
     digest_type = 2
     key_tag     = 43419
   }
+}
+
+resource "cloudflare_zone" "agent_devopsconsortium_org" {
+  # Temporary workaround for a provider bug, more info: https://github.com/cloudflare/terraform-provider-cloudflare/issues/1711
+  account_id = var.cloudflare_account_id
+  paused     = false
+  plan       = "free"
+  type       = "full"
+  zone       = local.cloudlare_agent_devopsconsortium_org
 }
 
 module "domain_transfer_devopconsortium_dns" {
