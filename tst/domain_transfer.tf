@@ -303,14 +303,14 @@ module "domain_transfer_devopconsortium_dns" {
       value = aws_route53_zone.stg_devopsconsortium_org.name_servers
     },
     {
-      name  = "agent" # delegating cloudflare NS record to r53 stg.devopconsortium.org zone name servers
-      ttl   = 300
-      value = cloudflare_zone.agent_devopsconsortium_org.name_servers
-    },
-    {
-      name  = "tst" # delegating cloudflare NS record to r53 stg.devopconsortium.org zone name servers
+      name  = "tst" # delegating cloudflare NS record to r53 tst.devopconsortium.org zone name servers
       ttl   = 300
       value = aws_route53_zone.tst_devopsconsortium_org.name_servers
+    },
+    {
+      name  = "agent" # delegating cloudflare NS record to cloudflare zone agent.devopconsortium.org zone name servers
+      ttl   = 300
+      value = cloudflare_zone.agent_devopsconsortium_org.name_servers
     }
   ]
   enable_noncore = false
