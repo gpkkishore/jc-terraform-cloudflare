@@ -375,7 +375,7 @@ resource "cloudflare_zone_dnssec" "agent_devopsconsortium_org" {
 }
 
 resource "cloudflare_record" "ds_agent_devopsconsortium_org" {
-  zone_id = cloudflare_zone.agent_devopsconsortium_org.id
+  zone_id = cloudflare_zone.devopsconsortium.id
   name    = "agent"
   type    = "DS"
   proxied = false
