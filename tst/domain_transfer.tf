@@ -374,6 +374,19 @@ resource "cloudflare_zone_dnssec" "agent_devopsconsortium_org" {
   zone_id = cloudflare_zone.agent_devopsconsortium_org.id
 }
 
+resource "cloudflare_record" "ds_agent_devopsconsortium_org" {
+  zone_id = cloudflare_zone.devopsconsortium.id
+  name    = "agent"
+  type    = "DS"
+  proxied = false
+  data {
+    algorithm   = cloudflare_zone_dnssec.agent_devopsconsortium_org.algorithm
+    digest      = cloudflare_zone_dnssec.agent_devopsconsortium_org.digest
+    digest_type = cloudflare_zone_dnssec.agent_devopsconsortium_org.digest_type
+    key_tag     = cloudflare_zone_dnssec.agent_devopsconsortium_org.key_tag
+  }
+}
+
 module "domain_transfer_devopconsortium_dns" {
   source  = "app.terraform.io/jumpcloud/dns/cloudflare"
   version = "1.0.0"
