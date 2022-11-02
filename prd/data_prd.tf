@@ -21,7 +21,8 @@ locals {
   cloudflare_zones = [
     "id.awsstg.jumpcloud.com",
     "id.jumpcloud.com",
-    "jumpcloudlounge.com"
+    "jumpcloudlounge.com",
+    "catalog.awsstg.jumpcloud.com"
   ]
 
   prd_a_records = [
