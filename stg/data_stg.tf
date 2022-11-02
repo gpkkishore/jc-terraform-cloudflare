@@ -146,13 +146,6 @@ locals {
       value   = data.terraform_remote_state.haproxy_stg.outputs.bss_nlb.lb_dns_name
     },
     {
-      name    = "catalog"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "k8s-datacata-datahubd-341fedf42f-1645706488.us-west-2.elb.amazonaws.com"
-    },
-    {
       name    = "console"
       proxied = true
       ttl     = 1
