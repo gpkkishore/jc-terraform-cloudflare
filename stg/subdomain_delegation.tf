@@ -2,6 +2,11 @@
 locals {
   stg_ns_delegation_records = [
     {
+      name  = "catalog"
+      ttl   = 300
+      value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
+    },
+    {
       name  = "identity"
       ttl   = 300
       value = ["ns-1940.awsdns-50.co.uk.", "ns-183.awsdns-22.com.", "ns-918.awsdns-50.net.", "ns-1392.awsdns-46.org."]
