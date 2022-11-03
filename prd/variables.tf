@@ -28,3 +28,7 @@ variable "env_prefix" {
   type        = string
   default     = "prd"
 }
+
+variable "datadog_log_push_api_token" {
+  description = "Access token for cloudflare to push logs to datadog"
+}
