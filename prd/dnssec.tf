@@ -1,3 +1,8 @@
+# prepare cloudflare zone jumpcloud.com for dnssec by generating values for the DS record.
+resource "cloudflare_zone_dnssec" "jumpcloud_com" {
+  zone_id = cloudflare_zone.cloudflare_zone_resource.id
+}
+
 locals {
   route53_zones_with_dnssec = [
     {
