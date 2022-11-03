@@ -102,7 +102,7 @@ locals {
   # temporarily only allow DNSSEC prep for ldap.jumpcloud.com and ldap-mfa.jumpcloud.com
   gated_route53_zone_name_to_zone = { for zone_name, zone in local.route53_zone_name_to_zone : zone_name => zone if contains(["ldap.jumpcloud.com", "ldap-mfa.jumpcloud.com"], zone_name) }
 }
-module "elliptic_curve_kms_for_zones_with_dnnsec" {
+module "kms_elliptic_curve_for_zones_with_dnnsec" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.6.3"
 
   for_each = local.gated_route53_zone_name_to_zone
@@ -121,7 +121,7 @@ resource "aws_route53_key_signing_key" "zones_with_dnssec" {
 
   name                       = each.key
   hosted_zone_id             = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).zone_id
-  key_management_service_arn = lookup(module.elliptic_curve_kms_for_zones_with_dnnsec, each.key).arn
+  key_management_service_arn = lookup(module.kms_elliptic_curve_for_zones_with_dnnsec, each.key).arn
 }
 
 resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec" {
