@@ -100,7 +100,8 @@ resource "aws_route53_record" "soa_zones_with_dnssec" {
 ####################################
 locals {
   # temporarily only allow DNSSEC prep for ldap.jumpcloud.com and ldap-mfa.jumpcloud.com
-  gated_route53_zone_name_to_zone = { for zone_name, zone in local.route53_zone_name_to_zone : zone_name => zone if contains(["ldap.jumpcloud.com", "ldap-mfa.jumpcloud.com"], zone_name) }
+  only_ldap_zones                 = ["ldap.jumpcloud.com", "ldap-mfa.jumpcloud.com"]
+  gated_route53_zone_name_to_zone = { for zone_name, zone in local.route53_zone_name_to_zone : zone_name => zone if contains(local.only_ldap_zones, zone_name) }
 }
 
 module "kms_elliptic_curve_for_zones_with_dnssec" {
@@ -131,3 +132,66 @@ resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec" {
   hosted_zone_id = lookup(aws_route53_key_signing_key.zones_with_dnssec, each.key).hosted_zone_id
 }
 
+############################################################################################################################################################
+# monitor for DNSSEC errors because DataDog can't pull the DNSSEC metrics from the AWS cloudwatch integration
+# all topic subscrptions must be manually confirmed before notifcations are sent from cloudwatch
+# sometime google will filter the emails for an email distrobution list but not sure why ie edge-team@jumpcloud.com
+# if an individual email (name.last@jumpcloud.com) will likely show up in spam folder.
+# doens't have to be an email subscription but wasnt able to pull metrics for DNSSEC in Datadog.
+############################################################################################################################################################
+module "dnssec_error_alerts_sns_topic" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/sns?ref=v6.6.5"
+
+  env_prefix         = var.env_prefix
+  region_short_names = var.region_az_labels
+  topic_name         = "dnssec-errors"
+  tags               = { Environment = var.env_prefix }
+  subscriptions = [
+    {
+      protocol = "email"
+      endpoint = "jude.quintana@jumpcloud.com"
+    }
+  ]
+}
+
+resource "aws_cloudwatch_metric_alarm" "dnssec_ksk_alarm_for_zones_with_dnssec" {
+  for_each = local.gated_route53_zone_name_to_zone
+
+  alarm_name          = format("%s-dnssec-ksk", replace(each.key, ".", "-")) # ldap.jumpcloud.com -> ldap-jumpcloud-com-dnssec-ksk
+  comparison_operator = "GreaterThanThreshold"
+  metric_name         = "DNSSECKeySigningKeysNeedingAction"
+  namespace           = "AWS/Route53"
+  period              = 1500
+  datapoints_to_alarm = 1
+  evaluation_periods  = 1
+  statistic           = "Maximum"
+  threshold           = 0
+  alarm_description   = "DNSSEC monitoring for DNSSECKeySigningKeysNeedingAction metric"
+  alarm_actions       = [module.dnssec_error_alerts_sns_topic.arn]
+  dimensions = {
+    HostedZoneId = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).id
+  }
+
+  depends_on = [aws_route53_hosted_zone_dnssec.zones_with_dnssec]
+}
+
+resource "aws_cloudwatch_metric_alarm" "dnssec_internal_failure_for_alarm_zones_with_dnssec" {
+  for_each = local.gated_route53_zone_name_to_zone
+
+  alarm_name          = format("%s-dnssec-internal-failure", replace(each.key, ".", "-")) # ldap.jumpcloud.com -> ldap-jumpcloud-com-dnssec-internal-failure
+  comparison_operator = "GreaterThanThreshold"
+  metric_name         = "DNSSECInternalFailure"
+  namespace           = "AWS/Route53"
+  period              = 1500
+  datapoints_to_alarm = 1
+  evaluation_periods  = 1
+  statistic           = "Maximum"
+  threshold           = 0
+  alarm_description   = "DNSSEC monitoring for DNSSECInternalFailure metric"
+  alarm_actions       = [module.dnssec_error_alerts_sns_topic.arn]
+  dimensions = {
+    HostedZoneId = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).id
+  }
+
+  depends_on = [aws_route53_hosted_zone_dnssec.zones_with_dnssec]
+}
