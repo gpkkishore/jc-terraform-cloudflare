@@ -223,7 +223,7 @@ resource "cloudflare_record" "ds_route53_zones_with_dnssec" {
   for_each = local.gated_route53_zone_name_to_ds_data
 
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
-  name    = trimsuffix(each.key, format(".%s", var.zone_name)) # ldap.jumpcloud.com -> ldap
+  name    = trimsuffix(each.key, format(".%s", cloudflare_zone.cloudflare_zone_resource.zone)) # ldap.jumpcloud.com -> ldap
   type    = "DS"
   proxied = false
   data {
