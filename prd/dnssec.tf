@@ -9,28 +9,28 @@ locals {
       name = "ldap.jumpcloud.com"
       ns = {
         # original ns ttl is 172800
-        ttl = 300
+        ttl = 86400 # 1-day
       }
       soa = {
         # original soa ttl is 900
-        ttl = 300
+        ttl = 900
         # original soa record is ["ns-869.awsdns-44.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
         # ^updting last entry to 600 for each zone from AWS UI or dig command
-        records = ["ns-869.awsdns-44.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 600"]
+        records = ["ns-869.awsdns-44.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
       }
     },
     {
       name = "ldap-mfa.jumpcloud.com"
       ns = {
         # original ns ttl is 172800
-        ttl = 300
+        ttl = 86400 # 1-day
       }
       soa = {
         # original soa ttl is 900
-        ttl = 300
+        ttl = 900
         # original soa record is ["ns-1341.awsdns-39.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
         # ^updting last entry to 600 for each zone from AWS UI or dig command
-        records = ["ns-1341.awsdns-39.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 600"]
+        records = ["ns-1341.awsdns-39.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
       }
     },
     {
