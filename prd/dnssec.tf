@@ -195,3 +195,44 @@ resource "aws_cloudwatch_metric_alarm" "dnssec_internal_failure_for_alarm_zones_
 
   depends_on = [aws_route53_hosted_zone_dnssec.zones_with_dnssec]
 }
+
+####################################
+# Enable DNSSEC for Route53 zones  #
+####################################
+locals {
+  # keeping separate from local.route53_zone_name_to_zone because DS data comes after aws_route53_hosted_zone_dnssec.zones_with_dnssec is applied
+  # but ds record data can't be pulled from the resource, only from the AWS UI
+  ds_data_for_route53_zones_with_dnssec = [
+    {
+      name    = "ldap.jumpcloud.com"
+      digest  = "02CA74E878171FE5B8F31684AFB3EF45F21B45C0CD6C60B4792089AF30042B11"
+      key_tag = 19179
+    },
+    {
+      name    = "ldap-mfa.jumpcloud.com"
+      digest  = "D383E946AE9035819A01EA7B3946245F99007F2D279AB880A982311DEA24F96F"
+      key_tag = 55836
+    }
+  ]
+
+  gated_route53_zone_name_to_ds_data = { for zone in local.ds_data_for_route53_zones_with_dnssec : zone.name => zone if contains(local.only_ldap_zones, zone.name) }
+}
+
+# enable DNSSEC by creating the DS record in jumpcloud.com parent zone relative to each route53 zone
+resource "cloudflare_record" "ds_route53_zones_with_dnssec" {
+  for_each = local.gated_route53_zone_name_to_ds_data
+
+  zone_id = cloudflare_zone.cloudflare_zone_resource.id
+  name    = trimsuffix(each.key, format(".%s", var.zone_name)) # ldap.jumpcloud.com -> ldap
+  type    = "DS"
+  proxied = false
+  data {
+    algorithm   = 13
+    digest      = each.value.digest
+    digest_type = 2
+    key_tag     = each.value.key_tag
+  }
+
+  depends_on = [aws_route53_hosted_zone_dnssec.zones_with_dnssec]
+}
+
