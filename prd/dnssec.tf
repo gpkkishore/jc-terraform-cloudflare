@@ -22,7 +22,7 @@ resource "cloudflare_zone_dnssec" "zones_with_dnssec" {
 # enable DNSSEC for child cloudflare zones
 locals {
   # jumpcloud.com DS record is created in Godaddy not in the Cloudflare jumpcloud.com zone itself.
-  gated_cloudlfare_zones_with_dnssec = toset([for zone in local.cloudflare_zones_with_dnssec : zone if zone != local.cloudflare_root_zone])
+  gated_cloudflare_zones_with_dnssec = toset([for zone in local.cloudflare_zones_with_dnssec : zone if zone != local.cloudflare_root_zone])
 }
 
 resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
