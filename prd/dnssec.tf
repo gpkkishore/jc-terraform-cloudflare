@@ -1,8 +1,25 @@
-# prepare cloudflare zone jumpcloud.com for dnssec by generating values for the DS record.
-resource "cloudflare_zone_dnssec" "jumpcloud_com" {
-  zone_id = cloudflare_zone.cloudflare_zone_resource.id
+# Cloudflare zones with DNSSEC
+locals {
+  cloudflare_root_zone         = "jumpcloud.com" # needs to separate for reference of the root zone later
+  cloudflare_child_zones       = ["id.jumpcloud.com", "awsstg.jumpcloud.com"]
+  cloudflare_zones_with_dnssec = toset(concat([local.cloudflare_root_zone], local.cloudflare_child_zones))
 }
 
+# prepare cloudflare zone jumpcloud.com for dnssec by generating values for the DS record.
+data "cloudflare_zone" "zones_with_dnssec" {
+  for_each = local.cloudflare_zones_with_dnssec
+
+  account_id = local.account_id
+  name       = each.key
+}
+
+resource "cloudflare_zone_dnssec" "zones_with_dnssec" {
+  for_each = local.cloudflare_zones_with_dnssec
+
+  zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, each.key).id
+}
+
+# Route53 zones with DNSSEC
 locals {
   route53_zones_with_dnssec = [
     {
@@ -15,7 +32,7 @@ locals {
         # original soa ttl is 900
         ttl = 900
         # original soa record is ["ns-869.awsdns-44.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
-        # ^updting last entry to 600 for each zone from AWS UI or dig command
+        # ^upadting last entry to 3600 for each zone from AWS UI or dig command
         records = ["ns-869.awsdns-44.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
       }
     },
@@ -29,7 +46,7 @@ locals {
         # original soa ttl is 900
         ttl = 900
         # original soa record is ["ns-1341.awsdns-39.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
-        # ^updting last entry to 600 for each zone from AWS UI or dig command
+        # ^upadting last entry to 3600 for each zone from AWS UI or dig command
         records = ["ns-1341.awsdns-39.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
       }
     },
@@ -43,7 +60,7 @@ locals {
         # original soa ttl is 900
         ttl = 300
         # original soa record is ["ns-1575.awsdns-04.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
-        # ^updting last entry to 600 for each zone from AWS UI or dig command
+        # ^updating last entry to 600 for each zone from AWS UI or dig command
         records = ["ns-1575.awsdns-04.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 600"]
       }
     },
@@ -57,7 +74,7 @@ locals {
         # original soa ttl is 900
         ttl = 300
         # original soa record is ["ns-1931.awsdns-49.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
-        # ^updting last entry to 600 for each zone from AWS UI or dig command
+        # ^upadting last entry to 600 for each zone from AWS UI or dig command
         records = ["ns-1931.awsdns-49.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 600"]
       }
     },
@@ -222,8 +239,8 @@ locals {
 resource "cloudflare_record" "ds_route53_zones_with_dnssec" {
   for_each = local.gated_route53_zone_name_to_ds_data
 
-  zone_id = cloudflare_zone.cloudflare_zone_resource.id
-  name    = trimsuffix(each.key, format(".%s", cloudflare_zone.cloudflare_zone_resource.zone)) # ldap.jumpcloud.com -> ldap
+  zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_root_zone).id
+  name    = trimsuffix(each.key, format(".%s", local.cloudflare_root_zone)) # ldap.jumpcloud.com -> ldap
   type    = "DS"
   proxied = false
   data {
