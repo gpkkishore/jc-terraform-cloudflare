@@ -1,7 +1,7 @@
 # Cloudflare zones with DNSSEC
 locals {
   cloudflare_root_zone         = "jumpcloud.com" # needs to separate for reference of the root zone later
-  cloudflare_child_zones       = toset(["id.jumpcloud.com", "awsstg.jumpcloud.com"])
+  cloudflare_child_zones       = ["id.jumpcloud.com", "awsstg.jumpcloud.com"]
   cloudflare_zones_with_dnssec = toset(concat([local.cloudflare_root_zone], local.cloudflare_child_zones))
 }
 
@@ -21,7 +21,7 @@ resource "cloudflare_zone_dnssec" "zones_with_dnssec" {
 
 # enable DNSSEC for child cloudflare zones
 resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
-  for_each = local.cloudflare_child_zones
+  for_each = toset(local.cloudflare_child_zones)
 
   zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_root_zone).id
   name    = trimsuffix(each.key, format(".%s", local.cloudflare_root_zone)) # id.jumpcloud.com -> id
