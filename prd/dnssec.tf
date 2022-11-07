@@ -32,7 +32,7 @@ locals {
         # original soa ttl is 900
         ttl = 900
         # original soa record is ["ns-869.awsdns-44.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
-        # ^upadting last entry to 3600 for each zone from AWS UI or dig command
+        # ^updating last entry to 3600 for each zone from AWS UI or dig command
         records = ["ns-869.awsdns-44.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
       }
     },
@@ -46,7 +46,7 @@ locals {
         # original soa ttl is 900
         ttl = 900
         # original soa record is ["ns-1341.awsdns-39.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
-        # ^upadting last entry to 3600 for each zone from AWS UI or dig command
+        # ^updating last entry to 3600 for each zone from AWS UI or dig command
         records = ["ns-1341.awsdns-39.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
       }
     },
@@ -74,7 +74,7 @@ locals {
         # original soa ttl is 900
         ttl = 300
         # original soa record is ["ns-1931.awsdns-49.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
-        # ^upadting last entry to 600 for each zone from AWS UI or dig command
+        # ^updating last entry to 600 for each zone from AWS UI or dig command
         records = ["ns-1931.awsdns-49.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 600"]
       }
     },
