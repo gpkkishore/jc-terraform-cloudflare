@@ -161,6 +161,8 @@ locals {
       key_tag = 55836
     }
   ]
+
+  route53_zone_name_to_ds_data = { for zone in local.ds_data_for_route53_zones_with_dnssec : zone.name => zone }
 }
 
 # enable DNSSEC by creating the DS record in jumpcloud.com parent zone relative to each route53 zone
