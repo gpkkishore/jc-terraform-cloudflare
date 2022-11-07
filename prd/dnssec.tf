@@ -115,16 +115,10 @@ resource "aws_route53_record" "soa_zones_with_dnssec" {
 ####################################
 # Prepare DNSSEC for Route53 zones #
 ####################################
-locals {
-  # temporarily only allow DNSSEC prep for ldap.jumpcloud.com and ldap-mfa.jumpcloud.com
-  only_ldap_zones                 = ["ldap.jumpcloud.com", "ldap-mfa.jumpcloud.com"]
-  gated_route53_zone_name_to_zone = { for zone_name, zone in local.route53_zone_name_to_zone : zone_name => zone if contains(local.only_ldap_zones, zone_name) }
-}
-
 module "kms_elliptic_curve_for_zones_with_dnssec" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.6.3"
 
-  for_each = local.gated_route53_zone_name_to_zone
+  for_each = local.route53_zone_name_to_zone
 
   name                     = format("%s-for-ksk", replace(each.key, ".", "-")) # ldap.jumpcloud.com -> ldap-jumpcloud-com-for-ksk
   customer_master_key_spec = "ECC_NIST_P256"
@@ -136,7 +130,7 @@ module "kms_elliptic_curve_for_zones_with_dnssec" {
 }
 
 resource "aws_route53_key_signing_key" "zones_with_dnssec" {
-  for_each = local.gated_route53_zone_name_to_zone
+  for_each = local.route53_zone_name_to_zone
 
   name                       = each.key
   hosted_zone_id             = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).zone_id
@@ -144,7 +138,7 @@ resource "aws_route53_key_signing_key" "zones_with_dnssec" {
 }
 
 resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec" {
-  for_each = local.gated_route53_zone_name_to_zone
+  for_each = local.route53_zone_name_to_zone
 
   hosted_zone_id = lookup(aws_route53_key_signing_key.zones_with_dnssec, each.key).hosted_zone_id
 }
@@ -167,13 +161,11 @@ locals {
       key_tag = 55836
     }
   ]
-
-  gated_route53_zone_name_to_ds_data = { for zone in local.ds_data_for_route53_zones_with_dnssec : zone.name => zone if contains(local.only_ldap_zones, zone.name) }
 }
 
 # enable DNSSEC by creating the DS record in jumpcloud.com parent zone relative to each route53 zone
 resource "cloudflare_record" "ds_route53_zones_with_dnssec" {
-  for_each = local.gated_route53_zone_name_to_ds_data
+  for_each = local.route53_zone_name_to_ds_data
 
   zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_root_zone).id
   name    = trimsuffix(each.key, format(".%s", local.cloudflare_root_zone)) # ldap.jumpcloud.com -> ldap
