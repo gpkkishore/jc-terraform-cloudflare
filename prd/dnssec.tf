@@ -25,7 +25,7 @@ locals {
 }
 
 resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
-  for_each = local.cloudflare_zones_with_dnssec
+  for_each = local.gated_cloudflare_zones_with_dnssec
 
   zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_root_zone).id
   name    = trimsuffix(each.key, format(".%s", local.cloudflare_root_zone)) # id.jumpcloud.com -> id
