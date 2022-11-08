@@ -70,28 +70,28 @@ locals {
       name = "pwm.jumpcloud.com"
       ns = {
         # original ns ttl is 172800
-        ttl = 300
+        ttl = 86400 # 1-day
       }
       soa = {
         # original soa ttl is 900
-        ttl = 300
+        ttl = 900
         # original soa record is ["ns-1575.awsdns-04.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
-        # ^updating last entry to 600 for each zone from AWS UI or dig command
-        records = ["ns-1575.awsdns-04.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 600"]
+        # ^updating last entry to 3600 for each zone from AWS UI or dig command
+        records = ["ns-1575.awsdns-04.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
       }
     },
     {
       name = "radius.jumpcloud.com"
       ns = {
         # original ns ttl is 172800
-        ttl = 300
+        ttl = 86400 # 1-day
       }
       soa = {
         # original soa ttl is 900
-        ttl = 300
+        ttl = 900
         # original soa record is ["ns-1931.awsdns-49.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
-        # ^updating last entry to 600 for each zone from AWS UI or dig command
-        records = ["ns-1931.awsdns-49.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 600"]
+        # ^updating last entry to 3600 for each zone from AWS UI or dig command
+        records = ["ns-1931.awsdns-49.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
       }
     },
   ]
