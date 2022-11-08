@@ -164,7 +164,7 @@ resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec" {
 ####################################
 locals {
   # keeping separate from local.route53_zone_name_to_zone because DS data comes after aws_route53_hosted_zone_dnssec.zones_with_dnssec is applied
-  # but ds record data can't be pulled from the resource, only from the AWS UI
+  # but ds record data can't be pulled from the resource directly, only from the AWS UI or CLI
   ds_data_for_route53_zones_with_dnssec = [
     {
       name    = "ldap.jumpcloud.com"
@@ -175,15 +175,25 @@ locals {
       name    = "ldap-mfa.jumpcloud.com"
       digest  = "D383E946AE9035819A01EA7B3946245F99007F2D279AB880A982311DEA24F96F"
       key_tag = 55836
+    },
+    {
+      name    = "pwm.jumpcloud.com"
+      digest  = "9558ACC700F448D384ACD71BF86AE8C9973721FE0791CFF41E572863D61074CB"
+      key_tag = 48601
+    },
+    {
+      name    = "radius.jumpcloud.com"
+      digest  = "1E7FDAA1FCF3D72D28890F6BE36EE3FEB985EE6EFCA9467E6D69FE1188575306"
+      key_tag = 31316
     }
   ]
 
-  route53_zone_name_to_ds_data = { for zone in local.ds_data_for_route53_zones_with_dnssec : zone.name => zone }
+  route53_zone_name_to_zone_ds_data = { for zone_ds_data in local.ds_data_for_route53_zones_with_dnssec : zone_ds_data.name => zone_ds_data }
 }
 
 # enable DNSSEC by creating the DS record in jumpcloud.com parent zone relative to each route53 zone
 resource "cloudflare_record" "ds_route53_zones_with_dnssec" {
-  for_each = local.route53_zone_name_to_ds_data
+  for_each = local.route53_zone_name_to_zone_ds_data
 
   zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_root_zone).id
   name    = trimsuffix(each.key, format(".%s", local.cloudflare_root_zone)) # ldap.jumpcloud.com -> ldap
