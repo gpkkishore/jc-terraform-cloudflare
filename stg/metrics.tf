@@ -19,12 +19,3 @@ resource "cloudflare_logpush_job" "waf_events_job_awsstg_jumpcloud_com" {
   logpull_options  = "fields=RayName,Source,RuleId,Action,EdgeResponseStatusDatetime,EdgeColoName,ClientIP,ClientCountryName,ClientASNDescription,UserAgent,ClientRequestHTTPMethodName,ClientRequestHTTPHost,ClientRequestHTTPPath&timestamps=rfc3339"
   destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.datadog_log_push_api_token}&ddsource=cloudflare&service=cloudflare&ddtags=zone_name:awsstg.jumpcloud.com,env:awsstg"
 }
-
-resource "cloudflare_logpush_job" "waf_events_job_devopsconsortium_org" {
-  name             = "waf-events-job-devopsconsortium-org"
-  zone_id          = "14fa793fedd155933368f8f094629fe4"
-  enabled          = true
-  dataset          = "firewall_events"
-  logpull_options  = "fields=RayName,Source,RuleId,Action,EdgeResponseStatusDatetime,EdgeColoName,ClientIP,ClientCountryName,ClientASNDescription,UserAgent,ClientRequestHTTPMethodName,ClientRequestHTTPHost,ClientRequestHTTPPath&timestamps=rfc3339"
-  destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.datadog_log_push_api_token}&ddsource=cloudflare&service=cloudflare&ddtags=zone_name:devopsconsortium.org,env:awsstg"
-}
