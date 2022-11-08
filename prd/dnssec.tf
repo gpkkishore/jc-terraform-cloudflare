@@ -19,6 +19,22 @@ resource "cloudflare_zone_dnssec" "zones_with_dnssec" {
   zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, each.key).id
 }
 
+# enable DNSSEC for child cloudflare zones
+resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
+  for_each = toset(local.cloudflare_child_zones)
+
+  zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_root_zone).id
+  name    = trimsuffix(each.key, format(".%s", local.cloudflare_root_zone)) # id.jumpcloud.com -> id
+  type    = "DS"
+  proxied = false
+  data {
+    algorithm   = 13
+    digest      = lookup(cloudflare_zone_dnssec.zones_with_dnssec, each.key).digest
+    digest_type = 2
+    key_tag     = lookup(cloudflare_zone_dnssec.zones_with_dnssec, each.key).key_tag
+  }
+}
+
 # Route53 zones with DNSSEC
 locals {
   route53_zones_with_dnssec = [
