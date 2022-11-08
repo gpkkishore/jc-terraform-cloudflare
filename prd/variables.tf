@@ -32,3 +32,15 @@ variable "env_prefix" {
 variable "datadog_log_push_api_token" {
   description = "Access token for cloudflare to push logs to datadog"
 }
+
+variable "region_az_labels" {
+  description = "Update this map with regions and AZs that will be in use for short name labeling"
+  type        = map(string)
+
+  default = {
+    us-east-1  = "use1"
+    us-east-1a = "use1a"
+    us-east-1b = "use1b"
+    us-east-1c = "use1c"
+  }
+}
