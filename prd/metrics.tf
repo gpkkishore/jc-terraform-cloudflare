@@ -8,7 +8,7 @@ resource "cloudflare_logpush_job" "waf_events_job_id_jumpcloud_com" {
   enabled          = false
   dataset          = "firewall_events"
   logpull_options  = "fields=RayName,Source,RuleId,Action,EdgeResponseStatusDatetime,EdgeColoName,ClientIP,ClientCountryName,ClientASNDescription,UserAgent,ClientRequestHTTPMethodName,ClientRequestHTTPHost,ClientRequestHTTPPath&timestamps=rfc3339"
-  destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.datadog_log_push_api_token}?ddsource=cloudflare?service=cloudflare?ddtags=zone_name:id.jumpcloud.com,env:prd"
+  destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.datadog_log_push_api_token}&ddsource=cloudflare&service=cloudflare&ddtags=zone_name:id.jumpcloud.com,env:prd"
 }
 
 resource "cloudflare_logpush_job" "waf_events_job_jumpcloud_com" {
@@ -17,5 +17,5 @@ resource "cloudflare_logpush_job" "waf_events_job_jumpcloud_com" {
   enabled          = false
   dataset          = "firewall_events"
   logpull_options  = "fields=RayName,Source,RuleId,Action,EdgeResponseStatusDatetime,EdgeColoName,ClientIP,ClientCountryName,ClientASNDescription,UserAgent,ClientRequestHTTPMethodName,ClientRequestHTTPHost,ClientRequestHTTPPath&timestamps=rfc3339"
-  destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.datadog_log_push_api_token}?ddsource=cloudflare?service=cloudflare?ddtags=zone_name:jumpcloud.com,env:prd"
+  destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.datadog_log_push_api_token}&ddsource=cloudflare&service=cloudflare&ddtags=zone_name:jumpcloud.com,env:prd"
 }
