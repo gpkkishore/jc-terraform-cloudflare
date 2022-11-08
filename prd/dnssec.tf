@@ -48,7 +48,7 @@ locals {
         # original soa ttl is 900
         ttl = 900
         # original soa record is ["ns-869.awsdns-44.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
-        # ^upadting last entry to 3600 for each zone from AWS UI or dig command
+        # ^updating last entry to 3600 for each zone from AWS UI or dig command
         records = ["ns-869.awsdns-44.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
       }
     },
@@ -62,7 +62,7 @@ locals {
         # original soa ttl is 900
         ttl = 900
         # original soa record is ["ns-1341.awsdns-39.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
-        # ^upadting last entry to 3600 for each zone from AWS UI or dig command
+        # ^updating last entry to 3600 for each zone from AWS UI or dig command
         records = ["ns-1341.awsdns-39.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
       }
     },
@@ -90,7 +90,7 @@ locals {
         # original soa ttl is 900
         ttl = 300
         # original soa record is ["ns-1931.awsdns-49.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
-        # ^upadting last entry to 600 for each zone from AWS UI or dig command
+        # ^updating last entry to 600 for each zone from AWS UI or dig command
         records = ["ns-1931.awsdns-49.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 600"]
       }
     },
@@ -131,16 +131,10 @@ resource "aws_route53_record" "soa_zones_with_dnssec" {
 ####################################
 # Prepare DNSSEC for Route53 zones #
 ####################################
-locals {
-  # temporarily only allow DNSSEC prep for ldap.jumpcloud.com and ldap-mfa.jumpcloud.com
-  only_ldap_zones                 = ["ldap.jumpcloud.com", "ldap-mfa.jumpcloud.com"]
-  gated_route53_zone_name_to_zone = { for zone_name, zone in local.route53_zone_name_to_zone : zone_name => zone if contains(local.only_ldap_zones, zone_name) }
-}
-
 module "kms_elliptic_curve_for_zones_with_dnssec" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.6.3"
 
-  for_each = local.gated_route53_zone_name_to_zone
+  for_each = local.route53_zone_name_to_zone
 
   name                     = format("%s-for-ksk", replace(each.key, ".", "-")) # ldap.jumpcloud.com -> ldap-jumpcloud-com-for-ksk
   customer_master_key_spec = "ECC_NIST_P256"
@@ -152,7 +146,7 @@ module "kms_elliptic_curve_for_zones_with_dnssec" {
 }
 
 resource "aws_route53_key_signing_key" "zones_with_dnssec" {
-  for_each = local.gated_route53_zone_name_to_zone
+  for_each = local.route53_zone_name_to_zone
 
   name                       = each.key
   hosted_zone_id             = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).zone_id
@@ -160,7 +154,7 @@ resource "aws_route53_key_signing_key" "zones_with_dnssec" {
 }
 
 resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec" {
-  for_each = local.gated_route53_zone_name_to_zone
+  for_each = local.route53_zone_name_to_zone
 
   hosted_zone_id = lookup(aws_route53_key_signing_key.zones_with_dnssec, each.key).hosted_zone_id
 }
@@ -184,12 +178,12 @@ locals {
     }
   ]
 
-  gated_route53_zone_name_to_ds_data = { for zone in local.ds_data_for_route53_zones_with_dnssec : zone.name => zone if contains(local.only_ldap_zones, zone.name) }
+  route53_zone_name_to_ds_data = { for zone in local.ds_data_for_route53_zones_with_dnssec : zone.name => zone }
 }
 
 # enable DNSSEC by creating the DS record in jumpcloud.com parent zone relative to each route53 zone
 resource "cloudflare_record" "ds_route53_zones_with_dnssec" {
-  for_each = local.gated_route53_zone_name_to_ds_data
+  for_each = local.route53_zone_name_to_ds_data
 
   zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_root_zone).id
   name    = trimsuffix(each.key, format(".%s", local.cloudflare_root_zone)) # ldap.jumpcloud.com -> ldap
