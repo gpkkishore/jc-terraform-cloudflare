@@ -333,6 +333,13 @@ locals {
   ]
 
   prd_misc_records = [
+    {
+      name    = "6d0782f5-82d5-4106-a675-1095be8cee23"
+      proxied = false
+      ttl     = "300"
+      type    = "TXT"
+      value   = "intercom-domain-validation=c13579eb-d977-4fb8-addc-9bc8da5c1bf1"
+    }
   ]
 
   prd_dns_records = concat(local.prd_a_records, local.prd_mx_records, local.prd_cname_records, local.prd_misc_records)
