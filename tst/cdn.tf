@@ -38,19 +38,20 @@ data "cloudflare_zone" "jumpcloud_dev" {
   name       = "cloudjump.dev"
 }
 
-#module "cdn_new_cloudjump_dev" {
-#source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/cloudfront/cdn-ng?ref=TE-132-cdn-refactor"
+module "cdn_new_cloudjump_dev" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/cloudfront/cdn-ng?ref=TE-132-cdn-refactor"
 
-#providers = {
-#aws = aws
-#}
+  # i shouldnt need to do this. might have refactor acm module for single provider. will figure out later.
+  providers = {
+    aws = aws
+  }
 
-#env_prefix = var.env_prefix
-#dns_zone   = data.cloudflare_zone.jumpcloud_dev
-#cdn = {
-#domain_name = "cdn-new.cloudjump.dev"
-#s3_origins  = [module.agent_s3_bucket]
-#}
-#tags = module.tags.default_tags
-#}
+  env_prefix = var.env_prefix
+  dns_zone   = data.cloudflare_zone.jumpcloud_dev
+  cdn = {
+    domain_name = "cdn-new.cloudjump.dev"
+    s3_origins  = [module.agent_s3_bucket]
+  }
+  tags = module.tags.default_tags
+}
 
