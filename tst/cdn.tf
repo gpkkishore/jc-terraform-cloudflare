@@ -1,0 +1,56 @@
+module "tags" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//internal/default_tags"
+
+  env_prefix = var.env_prefix
+  managed_by = "terraform-cloudflare/tst"
+  project    = "edge"
+}
+
+module "agent_s3_bucket" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/s3-bucket?ref=v6.8.0"
+
+  env_prefix  = var.env_prefix
+  bucket_name = "jumpcloud-agent-tst"
+  versioning  = false
+  tags        = module.tags.default_tags
+}
+
+module "mdm_s3_bucket" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/s3-bucket?ref=v6.8.0"
+
+  env_prefix  = var.env_prefix
+  bucket_name = "jumpcloud-mdm-tst"
+  versioning  = false
+  tags        = module.tags.default_tags
+}
+
+module "badly_named_s3_bucket" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/s3-bucket?ref=v6.8.0"
+
+  env_prefix  = var.env_prefix
+  bucket_name = "badlynamed.cloudjump.dev"
+  versioning  = false
+  tags        = module.tags.default_tags
+}
+
+data "cloudflare_zone" "jumpcloud_dev" {
+  account_id = var.cloudflare_account_id
+  name       = "cloudjump.dev"
+}
+
+#module "cdn_new_cloudjump_dev" {
+#source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/cloudfront/cdn-ng?ref=TE-132-cdn-refactor"
+
+#providers = {
+#aws = aws
+#}
+
+#env_prefix = var.env_prefix
+#dns_zone   = data.cloudflare_zone.jumpcloud_dev
+#cdn = {
+#domain_name = "cdn-new.cloudjump.dev"
+#s3_origins  = [module.agent_s3_bucket]
+#}
+#tags = module.tags.default_tags
+#}
+
