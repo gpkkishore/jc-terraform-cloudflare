@@ -56,8 +56,9 @@ module "cdn_new_cloudjump_dev" {
         origin_path = "/production"
       },
       {
-        bucket      = module.mdm_s3_bucket
-        origin_path = "/staging"
+        bucket                      = module.mdm_s3_bucket
+        origin_path                 = "/"
+        cache_behavior_path_pattern = "/*"
       }
     ]
   }
