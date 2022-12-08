@@ -54,12 +54,12 @@ module "cdn_new_cloudjump_dev" {
       {
         bucket                      = module.agent_s3_bucket
         origin_path                 = "/production"
-        cache_behavior_path_pattern = "/*"
+        cache_behavior_path_pattern = "/production/*"
       },
       {
         bucket                      = module.mdm_s3_bucket
         origin_path                 = "/staging"
-        cache_behavior_path_pattern = "/*"
+        cache_behavior_path_pattern = "/staging/*"
       }
     ]
   }
