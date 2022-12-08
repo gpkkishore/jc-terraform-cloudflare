@@ -52,11 +52,13 @@ module "cdn_new_cloudjump_dev" {
     domain_name = "cdn-new.cloudjump.dev"
     s3_origins = [
       {
-        bucket      = module.agent_s3_bucket
-        origin_path = "/production"
+        bucket                      = module.agent_s3_bucket
+        origin_path                 = "/production"
+        cache_behavior_path_pattern = "/*"
       },
       {
         bucket                      = module.mdm_s3_bucket
+        origin_path                 = "/staging"
         cache_behavior_path_pattern = "/*"
       }
     ]
