@@ -57,7 +57,7 @@ module "cdn_new_cloudjump_dev" {
       },
       {
         s3_bucket                    = module.mdm_s3_bucket
-        cache_behavior_path_patterns = ["/staging/*", "/testing/*"]
+        cache_behavior_path_patterns = []
       }
     ]
   }
