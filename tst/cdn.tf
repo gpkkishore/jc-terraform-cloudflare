@@ -50,16 +50,14 @@ module "cdn_new_cloudjump_dev" {
   dns_zone   = data.cloudflare_zone.jumpcloud_dev
   cdn = {
     domain_name = "cdn-new.cloudjump.dev"
-    s3_origins = [
+    origins = [
       {
-        bucket                      = module.agent_s3_bucket
-        origin_path                 = "/production"
-        cache_behavior_path_pattern = "/production/*"
+        s3_bucket                    = module.agent_s3_bucket
+        cache_behavior_path_patterns = ["/production/*"]
       },
       {
-        bucket                      = module.mdm_s3_bucket
-        origin_path                 = "/staging"
-        cache_behavior_path_pattern = "/staging/*"
+        s3_bucket                    = module.mdm_s3_bucket
+        cache_behavior_path_patterns = ["/staging/*"]
       }
     ]
   }
