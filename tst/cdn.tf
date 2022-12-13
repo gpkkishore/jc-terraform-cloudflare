@@ -38,6 +38,11 @@ data "cloudflare_zone" "jumpcloud_dev" {
   name       = "cloudjump.dev"
 }
 
+# read bucket that was manually created with bucket policy set
+data "aws_s3_bucket" "jc_windows_agent_mock" {
+  bucket = "jc-windows-agent-mock"
+}
+
 module "cdn_new_cloudjump_dev" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/cloudfront/cdn-ng?ref=TE-132-cdn-refactor"
 
@@ -52,8 +57,16 @@ module "cdn_new_cloudjump_dev" {
     domain_name = "cdn-new.cloudjump.dev"
     origins = [
       {
+        s3_bucket = {
+          id                   = data.aws_s3_bucket.jc_windows_agent_mock.id
+          arn                  = data.aws_s3_bucket.jc_windows_agent_mock.arn
+          regional_domain_name = data.aws_s3_bucket.jc_windows_agent_mock.bucket_regional_domain_name
+        }
+        cache_behavior_path_patterns = ["/production/*"]
+      },
+      {
         s3_bucket                    = module.agent_s3_bucket
-        cache_behavior_path_patterns = ["/production/*", "/early-access/*"]
+        cache_behavior_path_patterns = ["/early-access/*"]
       },
       {
         s3_bucket                    = module.mdm_s3_bucket
