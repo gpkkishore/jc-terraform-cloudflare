@@ -7,7 +7,7 @@ module "tags" {
 }
 
 module "agent_s3_bucket" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/s3-bucket?ref=v6.8.0"
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/s3-bucket?ref=v6.8.5"
 
   env_prefix  = var.env_prefix
   bucket_name = "jumpcloud-agent-tst"
@@ -16,7 +16,7 @@ module "agent_s3_bucket" {
 }
 
 module "mdm_s3_bucket" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/s3-bucket?ref=v6.8.0"
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/s3-bucket?ref=v6.8.5"
 
   env_prefix  = var.env_prefix
   bucket_name = "jumpcloud-mdm-tst"
@@ -25,7 +25,7 @@ module "mdm_s3_bucket" {
 }
 
 module "badly_named_s3_bucket" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/s3-bucket?ref=v6.8.0"
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/s3-bucket?ref=v6.8.5"
 
   env_prefix  = var.env_prefix
   bucket_name = "badlynamed.cloudjump.dev"
@@ -57,11 +57,7 @@ module "cdn_new_cloudjump_dev" {
     domain_name = "cdn-new.cloudjump.dev"
     origins = [
       {
-        s3_bucket = {
-          id                   = data.aws_s3_bucket.jc_windows_agent_mock.id
-          arn                  = data.aws_s3_bucket.jc_windows_agent_mock.arn
-          regional_domain_name = data.aws_s3_bucket.jc_windows_agent_mock.bucket_regional_domain_name
-        }
+        s3_bucket                    = data.aws_s3_bucket.jc_windows_agent_mock
         cache_behavior_path_patterns = ["/production/*"]
       },
       {
