@@ -58,7 +58,7 @@ module "cdn_new_cloudjump_dev" {
       },
       {
         s3_bucket                    = module.agent_s3_bucket
-        cache_behavior_path_patterns = ["production/*", "/early-access/*"]
+        cache_behavior_path_patterns = ["/early-access/*"]
       },
       {
         s3_bucket                    = module.mdm_s3_bucket
