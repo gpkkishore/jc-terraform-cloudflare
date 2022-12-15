@@ -50,7 +50,7 @@ module "cdn_new_cloudjump_dev" {
   dns_zone   = data.cloudflare_zone.jumpcloud_dev
   cdn = {
     domain_name = "cdn-new.cloudjump.dev"
-    aliases     = ["www.cdn-new.jumpcloud.dev"]
+    aliases     = ["www.cdn-new.cloudjump.dev"]
     origins = [
       {
         s3_bucket                    = data.aws_s3_bucket.jc_windows_agent_mock
