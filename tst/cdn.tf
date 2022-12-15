@@ -46,15 +46,11 @@ data "aws_s3_bucket" "jc_windows_agent_mock" {
 module "cdn_new_cloudjump_dev" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/cloudfront/cdn-ng?ref=TE-132-cdn-refactor"
 
-  # i shouldnt need to do this. might have refactor acm module for single provider. will figure out later.
-  providers = {
-    aws = aws
-  }
-
   env_prefix = var.env_prefix
   dns_zone   = data.cloudflare_zone.jumpcloud_dev
   cdn = {
     domain_name = "cdn-new.cloudjump.dev"
+    aliases     = ["www.cdn-new.jumpcloud.dev"]
     origins = [
       {
         s3_bucket                    = data.aws_s3_bucket.jc_windows_agent_mock
@@ -62,7 +58,7 @@ module "cdn_new_cloudjump_dev" {
       },
       {
         s3_bucket                    = module.agent_s3_bucket
-        cache_behavior_path_patterns = ["/early-access/*"]
+        cache_behavior_path_patterns = ["production/*", "/early-access/*"]
       },
       {
         s3_bucket                    = module.mdm_s3_bucket
