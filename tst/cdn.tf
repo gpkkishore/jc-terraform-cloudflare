@@ -85,3 +85,21 @@ module "extras_s3_bucket_usw2" {
   versioning  = false
   tags        = module.tags.default_tags
 }
+
+#domain name is the apex of the r53 zone
+module "cdn_new_cloudjump_dev" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/cloudfront/cdn-ng?ref=TE-132-cdn-refactor"
+
+  env_prefix = var.env_prefix
+  dns_zone   = aws_route53_zone.stg_devopsconsortium_org
+  cdn = {
+    domain_name = "stg.devopsconsortium.org"
+    origins = [
+      {
+        s3_bucket                    = data.aws_s3_bucket.jc_windows_agent_mock
+        cache_behavior_path_patterns = ["production/*"]
+      },
+    ]
+  }
+  tags = module.tags.default_tags
+}
