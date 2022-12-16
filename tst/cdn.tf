@@ -90,6 +90,10 @@ module "extras_s3_bucket_usw2" {
 module "stg_devopsconsortium_org" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/cloudfront/cdn-ng?ref=TE-132-cdn-refactor"
 
+  providers = {
+    aws = aws.usw2
+  }
+
   env_prefix = var.env_prefix
   dns_zone   = aws_route53_zone.stg_devopsconsortium_org
   cdn = {
