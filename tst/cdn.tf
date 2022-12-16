@@ -69,3 +69,19 @@ module "cdn_new_cloudjump_dev" {
   tags = module.tags.default_tags
 }
 
+##############
+# - usw2 s3 bucket
+# - cdn with R53 zone
+
+module "extras_s3_bucket_usw2" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/s3-bucket?ref=v6.8.5"
+
+  providers = {
+    aws = aws.usw2
+  }
+
+  env_prefix  = var.env_prefix
+  bucket_name = "jumpcloud-extras-tst"
+  versioning  = false
+  tags        = module.tags.default_tags
+}
