@@ -87,7 +87,7 @@ module "extras_s3_bucket_usw2" {
 }
 
 #domain name is the apex of the r53 zone
-module "cdn_new_cloudjump_dev" {
+module "stg_devopsconsortium_org" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/cloudfront/cdn-ng?ref=TE-132-cdn-refactor"
 
   env_prefix = var.env_prefix
