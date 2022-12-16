@@ -94,7 +94,7 @@ module "stg_devopsconsortium_org" {
   dns_zone   = aws_route53_zone.stg_devopsconsortium_org
   cdn = {
     domain_name = "stg.devopsconsortium.org"
-    aliases     = "cdn-new.stg.devopsconsortium.org"
+    aliases     = ["cdn-new.stg.devopsconsortium.org"]
     origins = [
       {
         s3_bucket                    = module.extras_s3_bucket_usw2
