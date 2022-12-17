@@ -44,7 +44,7 @@ data "aws_s3_bucket" "jc_windows_agent_mock" {
 }
 
 module "cdn_new_cloudjump_dev" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/cloudfront/cdn-ng?ref=TE-132-cdn-refactor"
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/cloudfront/cdn-ng?ref=v6.8.6"
 
   env_prefix = var.env_prefix
   dns_zone   = data.cloudflare_zone.jumpcloud_dev
