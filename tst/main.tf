@@ -8,13 +8,12 @@ resource "cloudflare_zone" "cloudflare_zone_resource" {
 }
 
 module "dns" {
-  source         = "app.terraform.io/jumpcloud/dns/cloudflare"
-  version        = "1.0.5"
-  zone_id        = cloudflare_zone.cloudflare_zone_resource.id
-  zone_name      = var.zone_name
-  dns_records    = local.tst_dns_records
-  ns_delegation  = local.tst_ns_delegation_records
-  enable_noncore = var.enable_noncore
+  source        = "app.terraform.io/jumpcloud/dns/cloudflare"
+  version       = "1.0.6"
+  zone_id       = cloudflare_zone.cloudflare_zone_resource.id
+  zone_name     = var.zone_name
+  dns_records   = local.tst_dns_records
+  ns_delegation = local.tst_ns_delegation_records
 }
 
 module "security" {

@@ -16,12 +16,6 @@ variable "zone_plan" {
   description = "Cloudflare plan type specification for zone"
 }
 
-variable "enable_noncore" {
-  description = "Feature flag for the jumpcloud.com non-core, non-customer facing records"
-  type        = bool
-  default     = false
-}
-
 variable "env_prefix" {
   description = "environment prefix"
   type        = string
