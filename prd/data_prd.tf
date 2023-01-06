@@ -149,7 +149,7 @@ locals {
     {
       name    = "kanban",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "A"
       value   = "10.240.0.53"
     },
@@ -564,63 +564,63 @@ locals {
     {
       name    = "4nplil46eu5vyxptxoqivkbrl4jgmbfq._domainkey",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "4nplil46eu5vyxptxoqivkbrl4jgmbfq.dkim.amazonses.com"
     },
     {
       name    = "hmjo4qtf7j7w4mclfnvk7ohprauna75y._domainkey",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "hmjo4qtf7j7w4mclfnvk7ohprauna75y.dkim.amazonses.com"
     },
     {
       name    = "nwt._domainkey",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "nwt.domainkey.u2555077.wl078.sendgrid.net"
     },
     {
       name    = "nwt2._domainkey",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "nwt2.domainkey.u2555077.wl078.sendgrid.net"
     },
     {
       name    = "s1._domainkey",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "s1.domainkey.u817177.wl.sendgrid.net"
     },
     {
       name    = "s2._domainkey",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "s2.domainkey.u817177.wl.sendgrid.net"
     },
     {
       name    = "spg._domainkey",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "spg.domainkey.u12100069.wl070.sendgrid.net"
     },
     {
       name    = "spg2._domainkey",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "spg2.domainkey.u12100069.wl070.sendgrid.net"
     },
     {
       name    = "uo7y2yqujn3utbzkkb4igs6irxlqozmf._domainkey",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "uo7y2yqujn3utbzkkb4igs6irxlqozmf.dkim.amazonses.com"
     },
@@ -725,7 +725,7 @@ locals {
     {
       name    = "email",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "u817177.wl.sendgrid.net"
     },
@@ -781,7 +781,7 @@ locals {
     {
       name    = "newton",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "u2555077.wl078.sendgrid.net"
     },
@@ -886,21 +886,21 @@ locals {
     {
       name    = "s1._domainkey.test",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "s1.domainkey.u515119.wl120.sendgrid.net"
     },
     {
       name    = "s2._domainkey.test",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "s2.domainkey.u515119.wl120.sendgrid.net"
     },
     {
       name    = "em5874.test",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "u515119.wl120.sendgrid.net"
     },
@@ -942,21 +942,21 @@ locals {
     {
       name    = "s1._domainkey.tr",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "s1.domainkey.u515119.wl120.sendgrid.net"
     },
     {
       name    = "s2._domainkey.tr",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "s2.domainkey.u515119.wl120.sendgrid.net"
     },
     {
       name    = "em.tr",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "u515119.wl120.sendgrid.net"
     },
@@ -991,14 +991,14 @@ locals {
     {
       name    = "try",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "unbouncepages.com"
     },
     {
       name    = "rd-bounce.jumpcloud.com",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       value   = "pm.mtasv.net"
     }
@@ -1059,6 +1059,13 @@ locals {
       proxied = false
       ttl     = 60
       type    = "TXT"
+      value   = "pardot876401=925d26cf398317c201a38d2521074b25d5544b9b41a44339862494fd8a69abdb"
+    },
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
       value   = "pardot876401=b67cb78a7919e17e35bdfc0f418eee0ad75889c61f0d9f08435be858071da6ed"
     },
     {
@@ -1099,42 +1106,42 @@ locals {
     {
       name    = "200608._domainkey"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDGoQCNwAQdJBy23MrShs1EuHqK/dtDC33QrTqgWd9CJmtM3CK2ZiTYugkhcxnkEtGbzg+IJqcDRNkZHyoRezTf6QbinBB2dbyANEuwKI5DVRBFowQOj9zvM3IvxAEboMlb0szUjAoML94HOkKuGuCkdZ1gbVEi3GcVwrIQphal1QIDAQAB;"
     },
     {
       name    = "20160415172154pm._domainkey"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCSorqsTRz+OZoZDnIDLhuArKEg67rbGszbfUSJJT/WbJeQq0ROo2j5n+QhQHr84NRH0ZAF7T918iMsnRTsBC+WGP/LMW3q8ioaAMqA8sBBrx7o9Krl+pc+l9NBOTQXiuGty5+bpxAiZ1aX3pHNVG3CouTQ4PjXfB/KPOhLgqu5EQIDAQAB"
     },
     {
       name    = "_amazonses"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "VIyyasRgolHqDFIq1WTqSPY/kSbZyxqjiuUx5e5aRjQ="
     },
     {
       name    = "communitymail"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "v=spf1 include:us.khoros-mail.com -all"
     },
     {
       name    = "_dashlane-challenge"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "7f4a61be9f56090225bc52db85cb313fe4518a180ec9015a700e074afd29cb59"
     },
     {
       name    = "_dmarc.communitymail"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "v=DMARC1;p=none;"
     },
@@ -1148,7 +1155,7 @@ locals {
     {
       name    = "_domainkey"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "t=y; o=~;"
     },
@@ -1162,70 +1169,70 @@ locals {
     {
       name    = "f1._domainkey"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDcPX7U+eq4kNe12nI5LbYAjjcy3S5XqX/24bhdb7SGHD20/p7E94V8x33YbaXSdkFNKf9RZLkJ6ePFfeSwGI8iBv7vHoijNXGIcP5G9nUCoMxERixViwyz5mceJV/ap/pl9BGayx7TI44TZHCvCGm1z4EmWS/ulextYEfD5uYoCQIDAQAB"
     },
     {
       name    = "_github-pages-challenge-thejumpcloud.docs"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "9f7e17ffd85d95aa71c833fe3fb6b6"
     },
     {
       name    = "google._domainkey"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDgdCANvNf4qNowdE3mVwU21s3p9PELOh7vtPvdMCUHn0XNQNZfmUmPMeEdz3a9w+EJLJXAZpUEwcB8cIyuEEBNIfZbdYXUL5vap9zGeZuetUFjEkgBiQa1R4WFzmvmmYwxAmP68qJuiUNEvmwZku5PGYmyigm29KejfsDdvz2+RwIDAQAB"
     },
     {
       name    = "google._domainkey.get"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRTawG9K7tHX1tAzhyZtAu8MYsyTKRrm0oe2Sat+yT61AYPKeKXUfySU09bV2z3OWLmtzXQ3LoXadbfc4hrjPYNa6JRwkHyCy6tQz0MAhfECfg8p97TzbVu8JoAtB7LmrJsYd1EOuzriwBeOuBtTVmVWxqyxZYHuOe1vN8hZQ7KwIDAQAB"
     },
     {
       name    = "mx._domainkey"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCVXQyHMQz4LImo8bL2ESQ46Xee8N/DS5FW2DRBganCn6q+t5ameB7D3FEKp5SOFDuWld/vrrCQDCX93vbULTKFrdyxgoJGjBLHd4Y3TKo13Mon2KGO5KZvueCiHb2AV3Y8kAFFfXWEVk/lVx0XiZtq4ZfEy+KaYWqqBxwYq8HLsQIDAQAB"
     },
     {
       name    = "smtpapi._domainkey.email"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "k=rsa; t=s; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDPtW5iwpXVPiH5FzJ7Nrl8USzuY9zqqzjE0D1r04xDN6qwziDnmgcFNNfMewVKN2D1O+2J9N14hRprzByFwfQW76yojh54Xu3uSbQ3JP0A7k8o8GutRF8zbFUA8n0ZH2y0cIEjMliXY4W4LwPA7m4q0ObmvSjhd63O9d8z1XkUBwIDAQAB"
     },
     {
       name    = "smtpapi._domainkey"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "k=rsa; t=s; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDPtW5iwpXVPiH5FzJ7Nrl8USzuY9zqqzjE0D1r04xDN6qwziDnmgcFNNfMewVKN2D1O+2J9N14hRprzByFwfQW76yojh54Xu3uSbQ3JP0A7k8o8GutRF8zbFUA8n0ZH2y0cIEjMliXY4W4LwPA7m4q0ObmvSjhd63O9d8z1XkUBwIDAQAB"
     },
     {
       name    = "get"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "google-site-verification=r08R9Bf1v1aOENAAczb6YfRGr6QQt8FvsRoRFl_ySpI"
     },
     {
       name    = "get"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "v=spf1 include:sendgrid.net include:_spf.google.com ~all"
     },
     {
       name    = "20220728194105pm._domainkey.jumpcloud.com"
       proxied = false
-      ttl     = 60
+      ttl     = 300
       type    = "TXT"
       value   = "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCC7AFqc+rf9Wuw58oNK9KSVhUE2pDjheFtxX3u2ERVmUlVKajAL+Se31KBkdCKoyJffY+t8aYSOqL0bH5lnZdcE2XLlyGddss8h+eWf3gA/9LkXR6P31ueCpjEKzw30xKucEwPDPeJ+Ev2qBNASmrNZb51BXAl6d4YNBMOK1Dy9QIDAQAB"
     }
