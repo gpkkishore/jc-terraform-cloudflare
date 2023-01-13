@@ -632,25 +632,11 @@ locals {
       value   = "d34tpyd4up8e4j.cloudfront.net"
     },
     {
-      name    = "_ec5ddd489ea1118a8fdf339eb040ca8c.assets",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "_9bf1779c886e3f8dff84c722feb8c8b9.auiqqraehs.acm-validations.aws"
-    },
-    {
       name    = "cdn",
       proxied = false
       ttl     = 1
       type    = "CNAME"
       value   = "d304esfcsmmapa.cloudfront.net"
-    },
-    {
-      name    = "_e6d6616ef2dd3189f067881600a8b4de.cdn",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "_26322312694d41edb6ff975071b7ac8b.bgpjyrktby.acm-validations.aws"
     },
     {
       name    = "cloud",
@@ -744,20 +730,6 @@ locals {
       value   = "customer-sdpondemand.manageengine.com"
     },
     {
-      name    = "links",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "d2wpzdnpqqgnhf.cloudfront.net"
-    },
-    {
-      name    = "_45568eea00d494e516c6c642168f901e.links",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "_e8d318c3068ae9619dd1e863e2323cf6.zdxcnfdgtt.acm-validations.aws"
-    },
-    {
       name    = "mulesoft-api-dev",
       proxied = false
       ttl     = 1
@@ -798,27 +770,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "ddicegrfxscy3.cloudfront.net"
-    },
-    {
-      name    = "_ce6f4c628c5c139a7c72aed4f779dc5e.segment",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "_502a7d3339d30a7d629703aee79d3c18.auiqqraehs.acm-validations.aws"
-    },
-    {
-      name    = "segmentcdn",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "drboqiqixxsdu.cloudfront.net"
-    },
-    {
-      name    = "_c4b3516c6ad01381f7a93f5afdd63a0e.segmentcdn",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "_095d2b3fe1091cc13b4f07602aa666ca.bwlshdtstt.acm-validations.aws"
     },
     {
       name    = "stage2-kickstart",
@@ -905,32 +856,11 @@ locals {
       value   = "u515119.wl120.sendgrid.net"
     },
     {
-      name    = "links.test",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "dwwkmwkg0qs49.cloudfront.net"
-    },
-    {
-      name    = "_f53885b8fdfd5ff0946f2d8a218907ab.links.test",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "_089a675d599ebf7e356d75096f66eaf5.zdxcnfdgtt.acm-validations.aws"
-    },
-    {
       name    = "thirdparty",
       proxied = false
       ttl     = 1
       type    = "CNAME"
       value   = "d1zz2n9wwwifeh.cloudfront.net"
-    },
-    {
-      name    = "_1c43a89d54ecbba5174b070a2993b0fc.thirdparty",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "_2fb90b68bcadad61a727022ef68730ad.ltfvzjuylp.acm-validations.aws"
     },
     {
       name    = "515119.tr",
@@ -959,20 +889,6 @@ locals {
       ttl     = 300
       type    = "CNAME"
       value   = "u515119.wl120.sendgrid.net"
-    },
-    {
-      name    = "links.tr",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "d2w25ujs1ver8z.cloudfront.net"
-    },
-    {
-      name    = "_ea68bad0dbad6ca638e3d732d7af47d3.links.tr",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "_581c3924c6d9323d6aa777c742fe741f.zdxcnfdgtt.acm-validations.aws"
     },
     {
       name    = "university",
