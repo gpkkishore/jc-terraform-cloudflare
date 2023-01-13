@@ -632,13 +632,6 @@ locals {
       value   = "d34tpyd4up8e4j.cloudfront.net"
     },
     {
-      name    = "cdn",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "d304esfcsmmapa.cloudfront.net"
-    },
-    {
       name    = "cloud",
       proxied = false
       ttl     = 1
