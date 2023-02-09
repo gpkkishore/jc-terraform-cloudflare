@@ -933,6 +933,13 @@ locals {
       proxied = false
       ttl     = 60
       type    = "TXT"
+      value   = "docker-verification=dc27aefc-fdce-4cda-8be8-ee3792ab25d7"
+    },
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
       value   = "docusign=97988400-ba87-45ce-af9d-c12fcba2eb30"
     },
     {
