@@ -133,7 +133,7 @@ locals {
     },
     {
       name    = "assist"
-      proxied = false
+      proxied = true
       ttl     = 1
       type    = "CNAME"
       value   = "awsstg-assist-haproxy-e45ad0d88c274312.elb.us-west-2.amazonaws.com"
