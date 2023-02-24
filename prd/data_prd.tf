@@ -1027,6 +1027,13 @@ locals {
       value   = "status-page-domain-verification=95l12jw930wv"
     },
     {
+      name    = "@"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
+      value   = "parallels-domain-verification=c0a2e2f21d3b4596bf1d3d4343742f884857fb73731b49c7b84743ee547e2273"
+    },
+    {
       name    = "200608._domainkey"
       proxied = false
       ttl     = 300
