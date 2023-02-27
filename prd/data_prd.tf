@@ -1165,6 +1165,13 @@ locals {
       ttl     = 300
       type    = "TXT"
       value   = "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCC7AFqc+rf9Wuw58oNK9KSVhUE2pDjheFtxX3u2ERVmUlVKajAL+Se31KBkdCKoyJffY+t8aYSOqL0bH5lnZdcE2XLlyGddss8h+eWf3gA/9LkXR6P31ueCpjEKzw30xKucEwPDPeJ+Ev2qBNASmrNZb51BXAl6d4YNBMOK1Dy9QIDAQAB"
+    },
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
+      value   = "dropbox-domain-verification=occqhm6u85bf"
     }
   ]
 
