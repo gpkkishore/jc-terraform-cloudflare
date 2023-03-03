@@ -105,7 +105,7 @@ locals {
   stg_cname_records = [
     {
       name    = "adbridge-kickstart"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_stg.outputs.adbridge_kickstart_nlb.lb_dns_name
