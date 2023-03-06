@@ -66,3 +66,15 @@ resource "cloudflare_page_rule" "console_api_page_rule" {
     browser_check = "off"
   }
 }
+
+# apple.mdm advanced certificate manager for Let's Encrypt
+resource "cloudflare_certificate_pack" "cert_apple_mdm" {
+  zone_id                = cloudflare_zone.cloudflare_zone_resource.id
+  type                   = "advanced"
+  hosts                  = ["apple.mdm.awsstg.jumpcloud.com"]
+  validation_method      = "http"
+  validity_days          = 90
+  certificate_authority  = "lets_encrypt"
+  cloudflare_branding    = false
+  wait_for_active_status = true
+}
