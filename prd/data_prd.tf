@@ -423,7 +423,7 @@ locals {
     },
     {
       name    = "assist"
-      proxied = false
+      proxied = true
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_prd.outputs.assist_nlb.lb_dns_name
