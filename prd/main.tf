@@ -69,7 +69,7 @@ resource "cloudflare_certificate_pack" "cert_apple_mdm" {
   zone_id                = cloudflare_zone.cloudflare_zone_resource.id
   type                   = "advanced"
   hosts                  = ["apple.mdm.jumpcloud.com"]
-  validation_method      = "http"
+  validation_method      = "txt"
   validity_days          = 90
   certificate_authority  = "lets_encrypt"
   cloudflare_branding    = false
