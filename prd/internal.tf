@@ -35,6 +35,16 @@ locals {
       ttl   = 300
       value = ["ns-872.awsdns-45.net", "ns-1048.awsdns-03.org", "ns-1687.awsdns-18.co.uk", "ns-322.awsdns-40.com"]
     },
+    {
+      name  = "uw2-dev-infr"
+      ttl   = 300
+      value = ["ns-1512.awsdns-61.org", "ns-1869.awsdns-41.co.uk", "ns-842.awsdns-41.net", "ns-68.awsdns-08.com"]
+    }, # Managed in jumpcloud/test-infra repo
+    {
+      name  = "uw2-tst-infr"
+      ttl   = 300
+      value = ["ns-984.awsdns-59.net", "ns-1906.awsdns-46.co.uk", "ns-1433.awsdns-51.org", "ns-42.awsdns-05.com"]
+    }, # Managed in jumpcloud/test-infra repo
   ]
 }
 
