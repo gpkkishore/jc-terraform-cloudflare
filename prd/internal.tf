@@ -45,6 +45,11 @@ locals {
       ttl   = 300
       value = ["ns-984.awsdns-59.net", "ns-1906.awsdns-46.co.uk", "ns-1433.awsdns-51.org", "ns-42.awsdns-05.com"]
     }, # Managed in jumpcloud/test-infra repo
+    {
+      name  = "uw2-dev-travis"
+      ttl   = 300
+      value = ["ns-67.awsdns-08.com", "ns-902.awsdns-48.net", "ns-1563.awsdns-03.co.uk", "ns-1149.awsdns-15.org"]
+    },
   ]
 }
 
