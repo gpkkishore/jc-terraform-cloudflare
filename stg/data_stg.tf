@@ -161,7 +161,7 @@ locals {
     },
     {
       name    = "kickstart"
-      proxied = false
+      proxied = true
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_stg.outputs.agent_kickstart_public.lb_dns_name
