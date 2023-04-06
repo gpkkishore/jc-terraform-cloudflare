@@ -132,7 +132,7 @@ resource "aws_route53_record" "soa_zones_with_dnssec" {
 # Prepare DNSSEC for Route53 zones #
 ####################################
 module "kms_elliptic_curve_for_zones_with_dnssec" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.6.3"
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.11.4"
 
   for_each = local.route53_zone_name_to_zone
 
