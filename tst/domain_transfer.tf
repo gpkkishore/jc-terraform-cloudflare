@@ -86,12 +86,12 @@ EOF
 }
 
 # each ec2 instance will get an EIP
-resource "aws_eip" "domain_transfer_instances" {
-  for_each = local.instance_name_to_instance
+#resource "aws_eip" "domain_transfer_instances" {
+#for_each = local.instance_name_to_instance
 
-  vpc      = true
-  instance = lookup(aws_instance.domain_transfer_instances, each.key).id
-}
+#vpc      = true
+#instance = lookup(aws_instance.domain_transfer_instances, each.key).id
+#}
 
 
 locals {
@@ -130,14 +130,14 @@ resource "aws_route53_record" "stg_devopscosortium_org_soa" {
   records         = ["ns-1969.awsdns-54.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
 }
 
-resource "aws_route53_record" "id_stg_devopsconsortium_org" {
-  name    = "id"
-  ttl     = 120
-  type    = "A"
-  zone_id = aws_route53_zone.stg_devopsconsortium_org.id
+#resource "aws_route53_record" "id_stg_devopsconsortium_org" {
+#name    = "id"
+#ttl     = 120
+#type    = "A"
+#zone_id = aws_route53_zone.stg_devopsconsortium_org.id
 
-  records = [lookup(aws_eip.domain_transfer_instances, "tst-app-public-2").public_ip]
-}
+#records = [lookup(aws_eip.domain_transfer_instances, "tst-app-public-2").public_ip]
+#}
 
 ##############################
 # tst.devopsconsoritium.org
@@ -172,7 +172,7 @@ resource "aws_route53_record" "tst_devopscosortium_org_soa" {
 # Prepar DNSSEC for the stg.devopsconsortium.org zone
 ##############################
 module "stg_devopsconsortium_kms_for_ksk" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.6.3"
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.11.4"
 
   name                     = "stg-devopsconsortium-org-ksk"
   customer_master_key_spec = "ECC_NIST_P256"
@@ -197,7 +197,7 @@ resource "aws_route53_hosted_zone_dnssec" "stg_devopsconsortium_org" {
 # Prepare DNSSEC for the tst.devopsconsortium.org zone
 ##############################
 module "tst_devopsconsortium_kms_for_ksk" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.6.3"
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.11.4"
 
   name                     = "tst-devopsconsortium-org-ksk"
   customer_master_key_spec = "ECC_NIST_P256"
@@ -235,13 +235,13 @@ resource "cloudflare_record" "ds_tst_devopsconsortium_org" {
 
 locals {
   domain_transfer_cloudflare_tst_a_records = [
-    {
-      name    = "@",
-      proxied = true
-      ttl     = 1,
-      type    = "A",
-      value   = lookup(aws_eip.domain_transfer_instances, "tst-app-public").public_ip
-    },
+    #{
+    #name    = "@",
+    #proxied = true
+    #ttl     = 1,
+    #type    = "A",
+    #value   = lookup(aws_eip.domain_transfer_instances, "tst-app-public").public_ip
+    #},
   ]
 }
 
