@@ -24,6 +24,6 @@ module "security" {
 
 module "settings" {
   source  = "app.terraform.io/jumpcloud/zone-settings/cloudflare"
-  version = "1.0.3"
+  version = "1.0.1"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
