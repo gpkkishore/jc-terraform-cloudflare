@@ -63,35 +63,39 @@ locals {
   instance_name_to_instance = { for i in local.instances : i.name => i }
 }
 
-resource "aws_instance" "domain_transfer_instances" {
-  for_each = local.instance_name_to_instance
+# EC2 instances commented out for now instead of deleting code for future DNSSEC testing (ie key rotation)
+# ref: https://jumpcloud.atlassian.net/browse/TE-273
+#resource "aws_instance" "domain_transfer_instances" {
+#for_each = local.instance_name_to_instance
 
-  ami                    = "ami-0dc2d3e4c0f9ebd18" # AWS Linux 2 us-east-1
-  instance_type          = "t2.micro"
-  key_name               = "domain-transfer-test" # manually created in us-east-1
-  subnet_id              = each.value.subnet_id
-  vpc_security_group_ids = each.value.vpc_security_group_ids
-  user_data              = <<EOF
-#!/bin/bash
-sudo hostname ${each.value.name}
-sudo yum update -y
-sudo amazon-linux-extras install nginx1
-echo "hello world" | sudo tee /usr/share/nginx/html/index.html
-sudo systemctl enable nginx
-sudo systemctl start nginx
-EOF
-  tags = {
-    Name = each.value.name
-  }
-}
+#ami                    = "ami-0dc2d3e4c0f9ebd18" # AWS Linux 2 us-east-1
+#instance_type          = "t2.micro"
+#key_name               = "domain-transfer-test" # manually created in us-east-1
+#subnet_id              = each.value.subnet_id
+#vpc_security_group_ids = each.value.vpc_security_group_ids
+#user_data              = <<EOF
+##!/bin/bash
+#sudo hostname ${each.value.name}
+#sudo yum update -y
+#sudo amazon-linux-extras install nginx1
+#echo "hello world" | sudo tee /usr/share/nginx/html/index.html
+#sudo systemctl enable nginx
+#sudo systemctl start nginx
+#EOF
+#tags = {
+#Name = each.value.name
+#}
+#}
 
+# EIPs commented out for now instead of deleting code for future DNSSEC testing (ie key rotation)
+# ref: https://jumpcloud.atlassian.net/browse/TE-273
 # each ec2 instance will get an EIP
-resource "aws_eip" "domain_transfer_instances" {
-  for_each = local.instance_name_to_instance
+#resource "aws_eip" "domain_transfer_instances" {
+#for_each = local.instance_name_to_instance
 
-  vpc      = true
-  instance = lookup(aws_instance.domain_transfer_instances, each.key).id
-}
+#vpc      = true
+#instance = lookup(aws_instance.domain_transfer_instances, each.key).id
+#}
 
 
 locals {
@@ -130,14 +134,15 @@ resource "aws_route53_record" "stg_devopscosortium_org_soa" {
   records         = ["ns-1969.awsdns-54.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
 }
 
-resource "aws_route53_record" "id_stg_devopsconsortium_org" {
-  name    = "id"
-  ttl     = 120
-  type    = "A"
-  zone_id = aws_route53_zone.stg_devopsconsortium_org.id
-
-  records = [lookup(aws_eip.domain_transfer_instances, "tst-app-public-2").public_ip]
-}
+# aws_route53_record commented out for now instead of deleting code for future DNSSEC testing (ie key rotation)
+# ref: https://jumpcloud.atlassian.net/browse/TE-273
+#resource "aws_route53_record" "id_stg_devopsconsortium_org" {
+#name    = "id"
+#ttl     = 120
+#type    = "A"
+#zone_id = aws_route53_zone.stg_devopsconsortium_org.id
+#records = [lookup(aws_eip.domain_transfer_instances, "tst-app-public-2").public_ip]
+#}
 
 ##############################
 # tst.devopsconsoritium.org
@@ -172,7 +177,7 @@ resource "aws_route53_record" "tst_devopscosortium_org_soa" {
 # Prepar DNSSEC for the stg.devopsconsortium.org zone
 ##############################
 module "stg_devopsconsortium_kms_for_ksk" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.6.3"
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.11.4"
 
   name                     = "stg-devopsconsortium-org-ksk"
   customer_master_key_spec = "ECC_NIST_P256"
@@ -197,7 +202,7 @@ resource "aws_route53_hosted_zone_dnssec" "stg_devopsconsortium_org" {
 # Prepare DNSSEC for the tst.devopsconsortium.org zone
 ##############################
 module "tst_devopsconsortium_kms_for_ksk" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.6.3"
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.11.4"
 
   name                     = "tst-devopsconsortium-org-ksk"
   customer_master_key_spec = "ECC_NIST_P256"
@@ -235,13 +240,15 @@ resource "cloudflare_record" "ds_tst_devopsconsortium_org" {
 
 locals {
   domain_transfer_cloudflare_tst_a_records = [
-    {
-      name    = "@",
-      proxied = true
-      ttl     = 1,
-      type    = "A",
-      value   = lookup(aws_eip.domain_transfer_instances, "tst-app-public").public_ip
-    },
+    # A record commented out for now instead of deleting code for future DNSSEC testing (ie key rotation)
+    # ref: https://jumpcloud.atlassian.net/browse/TE-273
+    #{
+    #name    = "@",
+    #proxied = true
+    #ttl     = 1,
+    #type    = "A",
+    #value   = lookup(aws_eip.domain_transfer_instances, "tst-app-public").public_ip
+    #},
   ]
 }
 
