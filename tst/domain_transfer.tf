@@ -64,7 +64,7 @@ locals {
 }
 
 # EC2 instances commented out for now instead of deleting code for future DNSSEC testing (ie key rotation)
-# ref: https://github.com/TheJumpCloud/terraform-cloudflare/pull/213
+# ref: https://jumpcloud.atlassian.net/browse/TE-273
 #resource "aws_instance" "domain_transfer_instances" {
 #for_each = local.instance_name_to_instance
 
@@ -88,7 +88,7 @@ locals {
 #}
 
 # EIPs commented out for now instead of deleting code for future DNSSEC testing (ie key rotation)
-# ref: https://github.com/TheJumpCloud/terraform-cloudflare/pull/213
+# ref: https://jumpcloud.atlassian.net/browse/TE-273
 # each ec2 instance will get an EIP
 #resource "aws_eip" "domain_transfer_instances" {
 #for_each = local.instance_name_to_instance
@@ -135,7 +135,7 @@ resource "aws_route53_record" "stg_devopscosortium_org_soa" {
 }
 
 # aws_route53_record commented out for now instead of deleting code for future DNSSEC testing (ie key rotation)
-# ref: https://github.com/TheJumpCloud/terraform-cloudflare/pull/213
+# ref: https://jumpcloud.atlassian.net/browse/TE-273
 #resource "aws_route53_record" "id_stg_devopsconsortium_org" {
 #name    = "id"
 #ttl     = 120
@@ -241,7 +241,7 @@ resource "cloudflare_record" "ds_tst_devopsconsortium_org" {
 locals {
   domain_transfer_cloudflare_tst_a_records = [
     # A record commented out for now instead of deleting code for future DNSSEC testing (ie key rotation)
-    # ref: https://github.com/TheJumpCloud/terraform-cloudflare/pull/213
+    # ref: https://jumpcloud.atlassian.net/browse/TE-273
     #{
     #name    = "@",
     #proxied = true
