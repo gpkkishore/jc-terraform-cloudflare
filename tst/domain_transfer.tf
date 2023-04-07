@@ -63,27 +63,27 @@ locals {
   instance_name_to_instance = { for i in local.instances : i.name => i }
 }
 
-resource "aws_instance" "domain_transfer_instances" {
-  for_each = local.instance_name_to_instance
+#resource "aws_instance" "domain_transfer_instances" {
+#for_each = local.instance_name_to_instance
 
-  ami                    = "ami-0dc2d3e4c0f9ebd18" # AWS Linux 2 us-east-1
-  instance_type          = "t2.micro"
-  key_name               = "domain-transfer-test" # manually created in us-east-1
-  subnet_id              = each.value.subnet_id
-  vpc_security_group_ids = each.value.vpc_security_group_ids
-  user_data              = <<EOF
-#!/bin/bash
-sudo hostname ${each.value.name}
-sudo yum update -y
-sudo amazon-linux-extras install nginx1
-echo "hello world" | sudo tee /usr/share/nginx/html/index.html
-sudo systemctl enable nginx
-sudo systemctl start nginx
-EOF
-  tags = {
-    Name = each.value.name
-  }
-}
+#ami                    = "ami-0dc2d3e4c0f9ebd18" # AWS Linux 2 us-east-1
+#instance_type          = "t2.micro"
+#key_name               = "domain-transfer-test" # manually created in us-east-1
+#subnet_id              = each.value.subnet_id
+#vpc_security_group_ids = each.value.vpc_security_group_ids
+#user_data              = <<EOF
+##!/bin/bash
+#sudo hostname ${each.value.name}
+#sudo yum update -y
+#sudo amazon-linux-extras install nginx1
+#echo "hello world" | sudo tee /usr/share/nginx/html/index.html
+#sudo systemctl enable nginx
+#sudo systemctl start nginx
+#EOF
+#tags = {
+#Name = each.value.name
+#}
+#}
 
 # each ec2 instance will get an EIP
 #resource "aws_eip" "domain_transfer_instances" {
