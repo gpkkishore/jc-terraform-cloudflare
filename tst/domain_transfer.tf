@@ -233,7 +233,15 @@ resource "cloudflare_record" "ds_tst_devopsconsortium_org" {
 ##############################
 
 locals {
-  domain_transfer_cloudflare_tst_a_records = []
+  domain_transfer_cloudflare_tst_a_records = [
+    #{
+    #name    = "@",
+    #proxied = true
+    #ttl     = 1,
+    #type    = "A",
+    #value   = lookup(aws_eip.domain_transfer_instances, "tst-app-public").public_ip
+    #},
+  ]
 }
 
 resource "cloudflare_zone" "devopsconsortium" {
