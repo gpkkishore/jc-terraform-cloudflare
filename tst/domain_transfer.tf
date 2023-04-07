@@ -135,7 +135,6 @@ resource "aws_route53_record" "stg_devopscosortium_org_soa" {
 #ttl     = 120
 #type    = "A"
 #zone_id = aws_route53_zone.stg_devopsconsortium_org.id
-
 #records = [lookup(aws_eip.domain_transfer_instances, "tst-app-public-2").public_ip]
 #}
 
