@@ -15,6 +15,11 @@ data "terraform_remote_state" "haproxy_stg" {
 # stg_cname_records - All the CNAME records
 # stg_misc_records  - Misc records that don't fit into the other categories (i.e, TXT, SOA, SPF)
 locals {
+  custom_certs = [
+    ["apple.mdm.awsstg.jumpcloud.com"],
+    ["*.microsoft-mdm.awsstg.jumpcloud.com", "microsoft-mdm.awsstg.jumpcloud.com"]
+  ]
+
   r53_zones = [
     "id.awsstg.jumpcloud.com"
   ]

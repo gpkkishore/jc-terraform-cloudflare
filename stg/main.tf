@@ -68,10 +68,12 @@ resource "cloudflare_page_rule" "console_api_page_rule" {
 }
 
 # apple.mdm advanced certificate manager for Let's Encrypt
-resource "cloudflare_certificate_pack" "cert_apple_mdm" {
+resource "cloudflare_certificate_pack" "custom_cert" {
+  for_each = toset(local.r53_zones)
+
   zone_id                = cloudflare_zone.cloudflare_zone_resource.id
   type                   = "advanced"
-  hosts                  = ["apple.mdm.awsstg.jumpcloud.com"]
+  hosts                  = each.key
   validation_method      = "http"
   validity_days          = 90
   certificate_authority  = "lets_encrypt"
