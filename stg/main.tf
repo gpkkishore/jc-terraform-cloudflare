@@ -74,14 +74,9 @@ resource "cloudflare_certificate_pack" "custom_cert" {
   zone_id                = cloudflare_zone.cloudflare_zone_resource.id
   type                   = "advanced"
   hosts                  = each.value.hosts
-  validation_method      = "http"
+  validation_method      = each.value.validation_method
   validity_days          = 90
   certificate_authority  = "lets_encrypt"
   cloudflare_branding    = false
   wait_for_active_status = true
-}
-
-moved {
-  from = cloudflare_certificate_pack.cert_apple_mdm
-  to   = cloudflare_certificate_pack.custom_cert["apple-mdm"]
 }

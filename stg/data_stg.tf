@@ -18,12 +18,14 @@ locals {
   # The name used in the custom_certs object is only used for internal metadata
   custom_certs = [
     {
-      name  = "apple-mdm"
-      hosts = ["apple.mdm.awsstg.jumpcloud.com"]
+      name              = "apple-mdm"
+      hosts             = ["apple.mdm.awsstg.jumpcloud.com"]
+      validation_method = "http"
     },
     {
-      name  = "microsoft-mdm"
-      hosts = ["*.microsoft-mdm.awsstg.jumpcloud.com", "microsoft-mdm.awsstg.jumpcloud.com"]
+      name              = "microsoft-mdm"
+      hosts             = ["*.microsoft-mdm.awsstg.jumpcloud.com", "microsoft-mdm.awsstg.jumpcloud.com"]
+      validation_method = "txt"
     }
   ]
 
