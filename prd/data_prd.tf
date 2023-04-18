@@ -29,7 +29,7 @@ locals {
     {
       name              = "apple-mdm"
       hosts             = ["apple.mdm.jumpcloud.com"]
-      validation_method = "http"
+      validation_method = "txt"
     },
     {
       name              = "microsoft-mdm"
