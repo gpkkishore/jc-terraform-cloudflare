@@ -41,7 +41,7 @@ module "dns" {
 module "security" {
   for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
   source   = "app.terraform.io/jumpcloud/security/cloudflare"
-  version  = "1.0.8"
+  version  = "1.0.9"
   zone_id  = each.key
 }
 
