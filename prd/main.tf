@@ -40,8 +40,10 @@ module "dns" {
 
 module "security" {
   for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
-  source   = "app.terraform.io/jumpcloud/security/cloudflare"
-  version  = "1.0.11"
+  # source   = "app.terraform.io/jumpcloud/security/cloudflare"
+  # version  = "1.0.11"
+  
+  source = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=TE-missing-colo-setting"
   zone_id  = each.key
 }
 
