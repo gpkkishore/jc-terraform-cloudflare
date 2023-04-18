@@ -78,11 +78,6 @@ resource "cloudflare_certificate_pack" "custom_cert" {
   wait_for_active_status = true
 }
 
-moved {
-  from = cloudflare_certificate_pack.cert_apple_mdm
-  to   = cloudflare_certificate_pack.custom_cert["apple-mdm"]
-}
-
 ###########################################
 # DNS Configuration for jumpcloudlounge.com
 ###########################################

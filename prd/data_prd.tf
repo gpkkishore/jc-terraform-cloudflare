@@ -457,6 +457,13 @@ locals {
       value   = data.terraform_remote_state.haproxy_prd.outputs.microsoft_mdm_nlb.lb_dns_name
     },
     {
+      name    = "*.microsoft-mdm"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.haproxy_prd.outputs.microsoft_mdm_nlb.lb_dns_name
+    },
+    {
       name    = "bss"
       proxied = false
       ttl     = 1
