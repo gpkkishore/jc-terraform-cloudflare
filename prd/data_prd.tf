@@ -1195,7 +1195,7 @@ locals {
       name     = "zercurity.com",
       proxied  = false,
       ttl      = 1,
-      type     = "A",
+      type     = "CNAME",
       value    = "d6512e5frv0jf.cloudfront.net"
     },
     {
@@ -1312,7 +1312,7 @@ locals {
       name     = "app.zercurity.com",
       proxied  = false,
       ttl      = 1,
-      type     = "A",
+      type     = "CNAME",
       value    = "dcnxy99tjmi0x.cloudfront.net"
     },
     {
@@ -1462,32 +1462,32 @@ locals {
       type     = "A",
       value    = "35.157.226.4"
     },
-    {
-      name     = "app.dev.zercurity.com",
-      proxied  = false,
-      ttl      = 1,
-      type     = "A",
-      value    = "d1qkbfnpnyfkrk.cloudfront.net"
-    },
-    {
-      name     = "download.dev.zercurity.com",
-      proxied  = false,
-      ttl      = 1,
-      type     = "A",
-      value    = "d33s9uw8o40pbf.cloudfront.net"
-    },
-    {
-      name     = "repo.dev.zercurity.com",
-      proxied  = false,
-      ttl      = 1,
-      type     = "A",
-      value    = "d2h4pwxqy718zm.cloudfront.net"
-    },
+    # {
+    #   name     = "app.dev.zercurity.com",
+    #   proxied  = false,
+    #   ttl      = 1,
+    #   type     = "A",
+    #   value    = "d1qkbfnpnyfkrk.cloudfront.net"
+    # },
+    # {
+    #   name     = "download.dev.zercurity.com",
+    #   proxied  = false,
+    #   ttl      = 1,
+    #   type     = "A",
+    #   value    = "d33s9uw8o40pbf.cloudfront.net"
+    # },
+    # {
+    #   name     = "repo.dev.zercurity.com",
+    #   proxied  = false,
+    #   ttl      = 1,
+    #   type     = "A",
+    #   value    = "d2h4pwxqy718zm.cloudfront.net"
+    # },
     {
       name     = "docs.zercurity.com",
       proxied  = false,
       ttl      = 1,
-      type     = "A",
+      type     = "CNAME",
       value    = "dpdk4xh1u6rui.cloudfront.net"
     },
     {
@@ -1571,7 +1571,7 @@ locals {
       name     = "repo.zercurity.com",
       proxied  = false,
       ttl      = 1,
-      type     = "A",
+      type     = "CNAME",
       value    = "d2h4pwxqy718zm.cloudfront.net"
     },
     {
@@ -1628,21 +1628,21 @@ locals {
       name     = "ww2.zercurity.com",
       proxied  = false,
       ttl      = 1,
-      type     = "A",
+      type     = "CNAME",
       value    = "s3-website.eu-central-1.amazonaws.com"
     },
     {
       name     = "ww3.zercurity.com",
       proxied  = false,
       ttl      = 1,
-      type     = "A",
+      type     = "CNAME",
       value    = "s3-website.eu-central-1.amazonaws.com"
     },
     {
       name     = "www.zercurity.com",
       proxied  = false,
       ttl      = 1,
-      type     = "A",
+      type     = "CNAME",
       value    = "d2s0xzif3whxwe.cloudfront.net"
     }
   ]
