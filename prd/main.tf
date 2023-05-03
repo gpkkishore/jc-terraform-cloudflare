@@ -39,7 +39,7 @@ module "dns" {
 }
 
 module "security" {
-  for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
+  for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone if zone.name != "zercurity.com" }
   source   = "app.terraform.io/jumpcloud/security/cloudflare"
   version  = "1.0.13"
   zone_id  = each.key
@@ -105,3 +105,23 @@ resource "cloudflare_page_rule" "jumpcloud_lounge_page_rule" {
     }
   }
 }
+
+################################################
+# Temporary Zone configuration for zercurity.com
+################################################
+data "cloudflare_zone" "zercurity_com" {
+  name = "zercurity.com"
+  depends_on = [cloudflare_zone.additional_zone]
+}
+
+resource "cloudflare_record" "zercurity_records" {
+  for_each = { for record in local.zercurity_tmp_records : "${record.type}_${record.name}_${record.value}" => record }
+  name     = each.value.name
+  value    = each.value.value
+  ttl      = each.value.ttl
+  type     = each.value.type
+  proxied  = each.value.proxied
+  priority = each.value.type == "MX" ? each.value.priority : null
+  zone_id  = data.cloudflare_zone.zercurity_com.zone_id
+}
+

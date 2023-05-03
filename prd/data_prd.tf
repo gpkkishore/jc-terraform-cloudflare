@@ -21,7 +21,8 @@ locals {
   cloudflare_zones = [
     "id.awsstg.jumpcloud.com",
     "id.jumpcloud.com",
-    "jumpcloudlounge.com"
+    "jumpcloudlounge.com",
+    "zercurity.com"
   ]
 
   # The name used in the custom_certs object is only used for internal metadata
@@ -1186,6 +1187,463 @@ locals {
       ttl     = 60
       type    = "TXT"
       value   = "dropbox-domain-verification=occqhm6u85bf"
+    }
+  ]
+
+  zercurity_tmp_records = [
+    {
+      name     = "zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "d6512e5frv0jf.cloudfront.net"
+    },
+    {
+      name     = "zercurity.com",
+      proxied  = false,
+      priority = 1,
+      ttl      = 1,
+      type     = "MX",
+      value    = "ASPMX.L.GOOGLE.COM"
+    },
+    {
+      name     = "zercurity.com",
+      proxied  = false,
+      priority = 5,
+      ttl      = 1,
+      type     = "MX",
+      value    = "ALT1.ASPMX.L.GOOGLE.COM"
+    },
+    {
+      name     = "zercurity.com",
+      proxied  = false,
+      priority = 5,
+      ttl      = 1,
+      type     = "MX",
+      value    = "ALT2.ASPMX.L.GOOGLE.COM"
+    },
+    {
+      name     = "zercurity.com",
+      proxied  = false,
+      priority = 10,
+      ttl      = 1,
+      type     = "MX",
+      value    = "ASPMX2.GOOGLEMAIL.COM"
+    },
+    {
+      name     = "zercurity.com",
+      proxied  = false,
+      priority = 10,
+      ttl      = 1,
+      type     = "MX",
+      value    = "ASPMX3.GOOGLEMAIL.COM"
+    },
+    {
+      name    = "zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "TXT",
+      value   = "v=spf1 include:_spf.google.com include:amazonses.com ~all"
+    },
+    {
+      name    = "3h3soob5dcpv.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "gv-xhkn6hzuogrb4z.dv.googlehosted.com"
+    },
+    {
+      name    = "7nemo7skq76u.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "gv-ycohatinxsnuir.dv.googlehosted.com"
+    },
+    {
+      name    = "_amazonses.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "TXT",
+      value   = "oqBEcdoMWCpvqalNakfOj8IyHpeX2pDp8C4r5HwsOwc="
+    },
+    {
+      name    = "_dmarc.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "TXT",
+      value   = "v=DMARC1; p=quarantine; pct=20; rua=mailto:admin@zercurity.com; sp=reject; aspf=r"
+    },
+    {
+      name    = "77bqigdckkv6gcrbehst4bpb5ymitf3v._domainkey.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "77bqigdckkv6gcrbehst4bpb5ymitf3v.dkim.amazonses.com"
+    },
+    {
+      name    = "google._domainkey.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "TXT",
+      value   = "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCBOI5GqHDkXyPJgpy8RKx54xnqparuVM/r89h0AbVwyI/AH35xSWNtPt0o0kZjW2zhd6ULZVodSov0llFfWkttfzsXSRjZa+uIr3yKKedH9hCFy9a/67vBWK8pjGW+g2nlJfNTTRRn26DiQZcvv1bNpyooouSnZ5v1swRQPLkbDQIDAQAB"
+    },
+    {
+      name    = "lus3623kjx5wvmcrk25fq4gsoe4h3dxe._domainkey.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "lus3623kjx5wvmcrk25fq4gsoe4h3dxe.dkim.amazonses.com"
+    },
+    {
+      name    = "orajezzoo3b477kduh5mk4r4umcpqlpz._domainkey.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "orajezzoo3b477kduh5mk4r4umcpqlpz.dkim.amazonses.com"
+    },
+    {
+      name     = "api.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "35.157.226.4"
+    },
+    {
+      name     = "app.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "dcnxy99tjmi0x.cloudfront.net"
+    },
+    {
+      name     = "atlassian-connect.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "35.157.226.4"
+    },
+    {
+      name     = "cm1.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "185.219.110.194"
+    },
+    {
+      name     = "cm1.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "90.255.245.155"
+    },
+    {
+      name     = "api.cm1.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "90.255.245.155"
+    },
+    {
+      name     = "api.cm1.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "185.219.110.194"
+    },
+    {
+      name     = "app.cm1.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "90.255.245.155"
+    },
+    {
+      name     = "app.cm1.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "185.219.110.194"
+    },
+    {
+      name     = "052.debian11-ghcr-testing.cm1.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "10.63.15.243"
+    },
+    {
+      name     = "download.cm1.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "90.255.245.155"
+    },
+    {
+      name     = "download.cm1.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "185.219.110.194"
+    },
+    {
+      name    = "lb.cm1.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "cm1.zercurity.com"
+    },
+    {
+      name     = "052.ubuntu20-ghcr-testing.cm1.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "10.63.15.236"
+    },
+    {
+      name     = "052.ubuntu21-ghcr-testing.cm1.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "10.63.15.220"
+    },
+    {
+      name     = "phabricator.corp.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "118.127.15.86"
+    },
+    {
+      name     = "crm.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "118.127.15.92"
+    },
+    {
+      name     = "data.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "185.219.110.194"
+    },
+    {
+      name     = "data.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "90.255.245.155"
+    },
+    {
+      name     = "deadpool.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "52.59.150.178"
+    },
+    {
+      name     = "debian11-ghcr-testing.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "10.63.15.243"
+    },
+    {
+      name     = "052.debian11-ghcr-testing.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "10.63.15.243"
+    },
+    {
+      name     = "api.dev.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "35.157.226.4"
+    },
+    {
+      name     = "app.dev.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "d1qkbfnpnyfkrk.cloudfront.net"
+    },
+    {
+      name     = "download.dev.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "d33s9uw8o40pbf.cloudfront.net"
+    },
+    {
+      name     = "repo.dev.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "d2h4pwxqy718zm.cloudfront.net"
+    },
+    {
+      name     = "docs.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "dpdk4xh1u6rui.cloudfront.net"
+    },
+    {
+      name    = "download.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "cm1.zercurity.com"
+    },
+    {
+      name     = "ecr.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "35.157.226.4"
+    },
+    {
+      name    = "_amazonses.local.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "TXT",
+      value   = "MylgyF1WZxtqhEhyksv1cCMhEmY595TqWcKgfCbBBOM="
+    },
+    {
+      name    = "7gieaujyeeacv3fzcrhkr3rkgbpmusok._domainkey.local.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "7gieaujyeeacv3fzcrhkr3rkgbpmusok.dkim.amazonses.com"
+    },
+    {
+      name    = "h7wn5ux2fqe6x4zuklqz43odrmql5cjs._domainkey.local.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "h7wn5ux2fqe6x4zuklqz43odrmql5cjs.dkim.amazonses.com"
+    },
+    {
+      name    = "mhjazwbfwcee6pk4ez2ayo6qfddox2qd._domainkey.local.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "mhjazwbfwcee6pk4ez2ayo6qfddox2qd.dkim.amazonses.com"
+    },
+    {
+      name    = "api.local.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "cm1.zercurity.com"
+    },
+    {
+      name    = "app.local.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "cm1.zercurity.com"
+    },
+    {
+      name    = "download.local.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "cm1.zercurity.com"
+    },
+    {
+      name     = "mautic.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "118.127.15.92"
+    },
+    {
+      name    = "_f2d6a8a5dc7e14f1251f1b324313159f.api.nightly.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "_a966113f0b750d8985a5605cdeb71865.duyqrilejt.acm-validations.aws"
+    },
+    {
+      name     = "repo.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "d2h4pwxqy718zm.cloudfront.net"
+    },
+    {
+      name    = "sentry.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "cm1.zercurity.com"
+    },
+    {
+      name     = "syslog.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "192.168.1.110"
+    },
+    {
+      name     = "workflows.zercurity.com",
+      proxied  = false,
+      priority = 10,
+      ttl      = 1,
+      type     = "MX",
+      value    = "inbound-smtp.eu-west-1.amazonaws.com"
+    },
+    {
+      name    = "_amazonses.workflows.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "TXT",
+      value   = "vKZqDBXnfCxp9AY/gIxzo2WC8+Cn0qHQWcu/3EGLT7k="
+    },
+    {
+      name    = "7flff6wffkonj7drn7u7rqypp4dsvmkn._domainkey.workflows.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "7flff6wffkonj7drn7u7rqypp4dsvmkn.dkim.amazonses.com"
+    },
+    {
+      name    = "g4l5u4m647hfrnpabyhopdluey4tulcd._domainkey.workflows.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "g4l5u4m647hfrnpabyhopdluey4tulcd.dkim.amazonses.com"
+    },
+    {
+      name    = "u2jcxqn3vz3yws3cwccaajfvk267yquo._domainkey.workflows.zercurity.com",
+      proxied = false,
+      ttl     = 1,
+      type    = "CNAME",
+      value   = "u2jcxqn3vz3yws3cwccaajfvk267yquo.dkim.amazonses.com"
+    },
+    {
+      name     = "ww2.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "s3-website.eu-central-1.amazonaws.com"
+    },
+    {
+      name     = "ww3.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "s3-website.eu-central-1.amazonaws.com"
+    },
+    {
+      name     = "www.zercurity.com",
+      proxied  = false,
+      ttl      = 1,
+      type     = "A",
+      value    = "d2s0xzif3whxwe.cloudfront.net"
     }
   ]
 
