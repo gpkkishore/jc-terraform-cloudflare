@@ -39,7 +39,7 @@ module "dns" {
 }
 
 module "security" {
-  for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone if zone.name != "zercurity.com" }
+  for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
   source   = "app.terraform.io/jumpcloud/security/cloudflare"
   version  = "1.0.13"
   zone_id  = each.key
@@ -124,4 +124,3 @@ resource "cloudflare_record" "zercurity_records" {
   priority = each.value.type == "MX" ? each.value.priority : null
   zone_id  = data.cloudflare_zone.zercurity_com.zone_id
 }
-
