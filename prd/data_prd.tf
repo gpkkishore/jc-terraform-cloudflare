@@ -22,7 +22,8 @@ locals {
     "id.awsstg.jumpcloud.com",
     "id.jumpcloud.com",
     "jumpcloudlounge.com",
-    "zercurity.com"
+    "zercurity.com",
+    "login.awsstg.jumpcloud.com"
   ]
 
   # The name used in the custom_certs object is only used for internal metadata
