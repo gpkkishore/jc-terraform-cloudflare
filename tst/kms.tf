@@ -1,4 +1,4 @@
-module "asymmetric_kms_key_for_ksk" {
+module "mock_kms_key_for_ksk" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.11.4"
 
   name                     = "mock-domain-name-ksk"
