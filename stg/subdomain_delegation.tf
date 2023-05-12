@@ -26,5 +26,10 @@ locals {
       ttl   = 300
       value = ["ns-1864.awsdns-41.co.uk.", "ns-753.awsdns-30.net.", "ns-1351.awsdns-40.org.", "ns-313.awsdns-39.com."]
     },
+    {
+      name  = "login"
+      ttl   = 300
+      value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
+    },
   ]
 }
