@@ -109,11 +109,6 @@ resource "cloudflare_page_rule" "jumpcloud_lounge_page_rule" {
 ################################################
 # Temporary Zone configuration for zercurity.com
 ################################################
-data "cloudflare_zone" "zercurity_com" {
-  name = "zercurity.com"
-  depends_on = [cloudflare_zone.additional_zone]
-}
-
 resource "cloudflare_record" "zercurity_records" {
   for_each = { for record in local.zercurity_tmp_records : "${record.type}_${record.name}_${record.value}" => record }
   name     = each.value.name
@@ -122,5 +117,30 @@ resource "cloudflare_record" "zercurity_records" {
   type     = each.value.type
   proxied  = each.value.proxied
   priority = each.value.type == "MX" ? each.value.priority : null
-  zone_id  = data.cloudflare_zone.zercurity_com.zone_id
+  zone_id  = cloudflare_zone.additional_zone["zercurity.com"].id
+}
+
+moved {
+  from = cloudflare_record.zercurity_records["MX_zercurity.com_ALT1.ASPMX.L.GOOGLE.COM"]
+  to   = cloudflare_record.zercurity_records["MX_zercurity.com_alt1.aspmx.l.google.com"]
+}
+
+moved {
+  from = cloudflare_record.zercurity_records["MX_zercurity.com_ALT2.ASPMX.L.GOOGLE.COM"]
+  to   = cloudflare_record.zercurity_records["MX_zercurity.com_alt2.aspmx.l.google.com"]
+}
+
+moved {
+  from = cloudflare_record.zercurity_records["MX_zercurity.com_ASPMX.L.GOOGLE.COM"]
+  to   = cloudflare_record.zercurity_records["MX_zercurity.com_aspmx.l.google.com"]
+}
+
+moved {
+  from = cloudflare_record.zercurity_records["MX_zercurity.com_ASPMX2.GOOGLEMAIL.COM"]
+  to   = cloudflare_record.zercurity_records["MX_zercurity.com_aspmx2.googlemail.com"]
+}
+
+moved {
+  from = cloudflare_record.zercurity_records["MX_zercurity.com_ASPMX3.GOOGLEMAIL.COM"]
+  to   = cloudflare_record.zercurity_records["MX_zercurity.com_aspmx3.googlemail.com"]
 }

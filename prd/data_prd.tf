@@ -1205,7 +1205,7 @@ locals {
       priority = 1,
       ttl      = 1,
       type     = "MX",
-      value    = "ASPMX.L.GOOGLE.COM"
+      value    = "aspmx.l.google.com"
     },
     {
       name     = "zercurity.com",
@@ -1213,7 +1213,7 @@ locals {
       priority = 5,
       ttl      = 1,
       type     = "MX",
-      value    = "ALT1.ASPMX.L.GOOGLE.COM"
+      value    = "alt1.aspmx.l.google.com"
     },
     {
       name     = "zercurity.com",
@@ -1221,7 +1221,7 @@ locals {
       priority = 5,
       ttl      = 1,
       type     = "MX",
-      value    = "ALT2.ASPMX.L.GOOGLE.COM"
+      value    = "alt2.aspmx.l.google.com"
     },
     {
       name     = "zercurity.com",
@@ -1229,7 +1229,7 @@ locals {
       priority = 10,
       ttl      = 1,
       type     = "MX",
-      value    = "ASPMX2.GOOGLEMAIL.COM"
+      value    = "aspmx2.googlemail.com"
     },
     {
       name     = "zercurity.com",
@@ -1237,7 +1237,7 @@ locals {
       priority = 10,
       ttl      = 1,
       type     = "MX",
-      value    = "ASPMX3.GOOGLEMAIL.COM"
+      value    = "aspmx3.googlemail.com"
     },
     {
       name    = "zercurity.com",
