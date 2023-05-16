@@ -240,7 +240,7 @@ resource "cloudflare_record" "ds_tst_devopsconsortium_org" {
 # KSK rotation for tst.devopsconsortium.org
 # - date is to indicate when the ksk was rotated
 
-module "tst_devopsconsortium_org_ksk_05162023" {
+module "tst_devopsconsortium_org_for_ksk_05162023" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.11.4"
 
   name                     = "tst-devopsconsortium-org-ksk-05162023"
