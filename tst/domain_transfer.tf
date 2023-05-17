@@ -217,7 +217,7 @@ resource "aws_route53_key_signing_key" "tst_devopsconsortium_org" {
   name                       = local.r53_tst_devopsconsortium_org
   hosted_zone_id             = aws_route53_zone.tst_devopsconsortium_org.id
   key_management_service_arn = module.tst_devopsconsortium_kms_for_ksk.arn
-  status                     = "ACTIVE"
+  status                     = "INACTIVE"
 }
 
 ##############################
