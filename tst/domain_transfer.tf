@@ -258,6 +258,19 @@ resource "aws_route53_key_signing_key" "tst_devopsconsortium_org_05162023" {
   key_management_service_arn = module.tst_devopsconsortium_org_kms_for_ksk_05162023.arn
 }
 
+resource "cloudflare_record" "ds_tst_devopsconsortium_org_05162023" {
+  zone_id = cloudflare_zone.devopsconsortium.id
+  name    = "tst.devopsconsortium.org"
+  type    = "DS"
+  proxied = false
+  data {
+    algorithm   = 13
+    digest      = "46C9153C8FE35D28E5BDC766A68C12FBE576A54D610FA8F24E76FB0395AFB979"
+    digest_type = 2
+    key_tag     = 31801
+  }
+}
+
 ##############################
 
 locals {
