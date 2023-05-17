@@ -217,20 +217,7 @@ resource "aws_route53_key_signing_key" "tst_devopsconsortium_org" {
   name                       = local.r53_tst_devopsconsortium_org
   hosted_zone_id             = aws_route53_zone.tst_devopsconsortium_org.id
   key_management_service_arn = module.tst_devopsconsortium_kms_for_ksk.arn
-  status                     = "INACTIVE"
-}
-
-resource "cloudflare_record" "ds_tst_devopsconsortium_org" {
-  zone_id = cloudflare_zone.devopsconsortium.id
-  name    = "tst"
-  type    = "DS"
-  proxied = false
-  data {
-    algorithm   = 13
-    digest      = "28CC162B6DB724198193DE592A13C842A049EF3D3FF3F9493A220DE8871CEAFD"
-    digest_type = 2
-    key_tag     = 1915
-  }
+  status                     = "ACTIVE"
 }
 
 ##############################
