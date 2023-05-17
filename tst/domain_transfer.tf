@@ -217,10 +217,7 @@ resource "aws_route53_key_signing_key" "tst_devopsconsortium_org" {
   name                       = local.r53_tst_devopsconsortium_org
   hosted_zone_id             = aws_route53_zone.tst_devopsconsortium_org.id
   key_management_service_arn = module.tst_devopsconsortium_kms_for_ksk.arn
-}
-
-resource "aws_route53_hosted_zone_dnssec" "tst_devopsconsortium_org" {
-  hosted_zone_id = aws_route53_key_signing_key.tst_devopsconsortium_org.hosted_zone_id
+  status                     = "INACTIVE"
 }
 
 resource "cloudflare_record" "ds_tst_devopsconsortium_org" {
@@ -258,16 +255,20 @@ resource "aws_route53_key_signing_key" "tst_devopsconsortium_org_05162023" {
   key_management_service_arn = module.tst_devopsconsortium_org_kms_for_ksk_05162023.arn
 }
 
+resource "aws_route53_hosted_zone_dnssec" "tst_devopsconsortium_org" {
+  hosted_zone_id = aws_route53_key_signing_key.tst_devopsconsortium_org_05162023.hosted_zone_id
+}
+
 resource "cloudflare_record" "ds_tst_devopsconsortium_org_05162023" {
   zone_id = cloudflare_zone.devopsconsortium.id
   name    = "tst.devopsconsortium.org"
   type    = "DS"
   proxied = false
   data {
-    algorithm   = 13
-    digest      = "46C9153C8FE35D28E5BDC766A68C12FBE576A54D610FA8F24E76FB0395AFB979"
-    digest_type = 2
-    key_tag     = 31801
+    algorithm   = aws_route53_key_signing_key.tst_devopsconsortium_org_05162023.signing_algorithm_type
+    digest      = aws_route53_key_signing_key.tst_devopsconsortium_org_05162023.digest_value
+    digest_type = aws_route53_key_signing_key.tst_devopsconsortium_org_05162023.digest_algorithm_type
+    key_tag     = aws_route53_key_signing_key.tst_devopsconsortium_org_05162023.key_tag
   }
 }
 
