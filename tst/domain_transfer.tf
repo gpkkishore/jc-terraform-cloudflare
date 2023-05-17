@@ -252,7 +252,6 @@ module "tst_devopsconsortium_org_kms_for_ksk_05162023" {
   tags                     = { Environment = var.env_prefix }
 }
 
-
 resource "aws_route53_key_signing_key" "tst_devopsconsortium_org_05162023" {
   name                       = "${local.r53_tst_devopsconsortium_org}-05162023"
   hosted_zone_id             = aws_route53_zone.tst_devopsconsortium_org.id
