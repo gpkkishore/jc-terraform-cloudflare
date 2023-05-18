@@ -200,20 +200,6 @@ resource "aws_route53_hosted_zone_dnssec" "stg_devopsconsortium_org" {
 
 ##############################
 # Prepare DNSSEC for the tst.devopsconsortium.org zone
-##############################
-module "tst_devopsconsortium_kms_for_ksk" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.11.4"
-
-  name                     = "tst-devopsconsortium-org-ksk"
-  customer_master_key_spec = "ECC_NIST_P256"
-  key_usage                = "SIGN_VERIFY"
-  enable_dnssec_policy     = true
-  enable_key_rotation      = false # Automatic key rotation not supported for asymmetric KMS keys ie ECC
-  deletion_window_in_days  = 7
-  tags                     = { Environment = var.env_prefix }
-}
-
-##############################
 # KSK rotation for tst.devopsconsortium.org
 # - date is to indicate when the ksk was rotated
 
