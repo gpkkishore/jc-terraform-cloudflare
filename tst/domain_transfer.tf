@@ -199,7 +199,7 @@ resource "aws_route53_hosted_zone_dnssec" "stg_devopsconsortium_org" {
 }
 
 ##############################
-# Prepare DNSSEC for the tst.devopsconsortium.org zone
+# Prepare DNSSEC for the stg.devopsconsortium.org zone
 # KSK rotation for stg.devopsconsortium.org
 # - date is to indicate when the ksk was rotated
 
