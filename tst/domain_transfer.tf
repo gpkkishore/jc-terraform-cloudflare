@@ -221,6 +221,19 @@ resource "aws_route53_key_signing_key" "stg_devopsconsortium_org_05192023" {
   key_management_service_arn = module.stg_devopsconsortium_org_kms_for_ksk_05192023.arn
 }
 
+resource "cloudflare_record" "ds_stg_devopsconsortium_org_05192023" {
+  zone_id = cloudflare_zone.devopsconsortium.id
+  name    = local.domain_transfer_r53_stg_devops_consortium_org_subzone
+  type    = "DS"
+  proxied = false
+  data {
+    algorithm   = aws_route53_key_signing_key.stg_devopsconsortium_org_05192023.signing_algorithm_type
+    digest      = aws_route53_key_signing_key.stg_devopsconsortium_org_05192023.digest_value
+    digest_type = aws_route53_key_signing_key.stg_devopsconsortium_org_05192023.digest_algorithm_type
+    key_tag     = aws_route53_key_signing_key.stg_devopsconsortium_org_05192023.key_tag
+  }
+}
+
 ##############################
 # Prepare DNSSEC for the tst.devopsconsortium.org zone
 # KSK rotation for tst.devopsconsortium.org
