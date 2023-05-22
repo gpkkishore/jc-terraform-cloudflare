@@ -330,29 +330,6 @@ resource "cloudflare_zone_dnssec" "devopsconsortium_org" {
   zone_id = cloudflare_zone.devopsconsortium.id
 }
 
-# Add a "stg" DS record to validate DNSSEC for the stg.devopsconsortium.org subdomain in Route53
-# data values needed can't be pull directly from the aws_route53_hosted_zone_dnssec resource.
-# they have to be manually copied over from the hosted zone in the AWS UI (ie make ds record in cloudflare):
-#   under DNSSEC Signing -> View Information to create DS record -> under Establish chain of Trust -> Another domain registrar
-# the data values needed are:
-#   algorithm (Signing Algorithm Type)
-#   digest (Digest)
-#   digest_type (Digest Algorithm Type)
-#   key_tag (Key Tag)
-
-resource "cloudflare_record" "ds_stg_devopsconsortium_org" {
-  zone_id = cloudflare_zone.devopsconsortium.id
-  name    = "stg"
-  type    = "DS"
-  proxied = false
-  data {
-    algorithm   = 13
-    digest      = "D48F6FF7E7AE6613B833B318F142B7BE94D1B4D0A05A15FD567A44ADF753990E"
-    digest_type = 2
-    key_tag     = 43419
-  }
-}
-
 ### agent.devopsconsortium.org
 resource "cloudflare_zone" "agent_devopsconsortium_org" {
   # Temporary workaround for a provider bug, more info: https://github.com/cloudflare/terraform-provider-cloudflare/issues/1711
