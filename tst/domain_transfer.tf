@@ -174,32 +174,6 @@ resource "aws_route53_record" "tst_devopscosortium_org_soa" {
 }
 
 ##############################
-# Prepar DNSSEC for the stg.devopsconsortium.org zone
-##############################
-module "stg_devopsconsortium_kms_for_ksk" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.11.4"
-
-  name                     = "stg-devopsconsortium-org-ksk"
-  customer_master_key_spec = "ECC_NIST_P256"
-  key_usage                = "SIGN_VERIFY"
-  enable_dnssec_policy     = true
-  enable_key_rotation      = false # Automatic key rotation not supported for asymmetric KMS keys ie ECC
-  deletion_window_in_days  = 7
-  tags                     = { Environment = var.env_prefix }
-}
-
-resource "aws_route53_key_signing_key" "stg_devopsconsortium_org" {
-  name                       = local.domain_transfer_r53_stg_devops_consortium_org_subzone
-  hosted_zone_id             = aws_route53_zone.stg_devopsconsortium_org.id
-  key_management_service_arn = module.stg_devopsconsortium_kms_for_ksk.arn
-  status                     = "INACTIVE"
-}
-
-resource "aws_route53_hosted_zone_dnssec" "stg_devopsconsortium_org" {
-  hosted_zone_id = aws_route53_key_signing_key.stg_devopsconsortium_org.hosted_zone_id
-}
-
-##############################
 # Prepare DNSSEC for the stg.devopsconsortium.org zone
 # KSK rotation for stg.devopsconsortium.org
 # - date is to indicate when the ksk was rotated
@@ -233,6 +207,10 @@ resource "cloudflare_record" "ds_stg_devopsconsortium_org_05192023" {
     digest_type = aws_route53_key_signing_key.stg_devopsconsortium_org_05192023.digest_algorithm_type
     key_tag     = aws_route53_key_signing_key.stg_devopsconsortium_org_05192023.key_tag
   }
+}
+
+resource "aws_route53_hosted_zone_dnssec" "stg_devopsconsortium_org" {
+  hosted_zone_id = aws_route53_key_signing_key.stg_devopsconsortium_org_05192023.hosted_zone_id
 }
 
 ##############################
