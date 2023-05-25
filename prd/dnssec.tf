@@ -212,11 +212,11 @@ locals {
   # keeping separate from local.route53_zone_name_to_zone because DS data comes after aws_route53_hosted_zone_dnssec.zones_with_dnssec is applied
   # but ds record data can't be pulled from the resource directly, only from the AWS UI or CLI
   ds_data_for_route53_zones_with_dnssec = [
-    {
-      name    = "ldap.jumpcloud.com"
-      digest  = "02CA74E878171FE5B8F31684AFB3EF45F21B45C0CD6C60B4792089AF30042B11"
-      key_tag = 19179
-    },
+    #{
+    #name    = "ldap.jumpcloud.com"
+    #digest  = "02CA74E878171FE5B8F31684AFB3EF45F21B45C0CD6C60B4792089AF30042B11"
+    #key_tag = 19179
+    #},
     #{
     #name    = "ldap-mfa.jumpcloud.com"
     #digest  = "D383E946AE9035819A01EA7B3946245F99007F2D279AB880A982311DEA24F96F"
