@@ -222,11 +222,11 @@ locals {
       digest  = "D383E946AE9035819A01EA7B3946245F99007F2D279AB880A982311DEA24F96F"
       key_tag = 55836
     },
-    {
-      name    = "pwm.jumpcloud.com"
-      digest  = "9558ACC700F448D384ACD71BF86AE8C9973721FE0791CFF41E572863D61074CB"
-      key_tag = 48601
-    },
+    #{
+    #name    = "pwm.jumpcloud.com"
+    #digest  = "9558ACC700F448D384ACD71BF86AE8C9973721FE0791CFF41E572863D61074CB"
+    #key_tag = 48601
+    #},
     #{
     #name    = "radius.jumpcloud.com"
     #digest  = "1E7FDAA1FCF3D72D28890F6BE36EE3FEB985EE6EFCA9467E6D69FE1188575306"
