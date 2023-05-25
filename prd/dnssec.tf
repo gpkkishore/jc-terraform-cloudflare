@@ -151,7 +151,7 @@ resource "aws_route53_key_signing_key" "zones_with_dnssec" {
   name                       = each.key
   hosted_zone_id             = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).zone_id
   key_management_service_arn = lookup(module.kms_elliptic_curve_for_zones_with_dnssec, each.key).arn
-  status                     = contains(["radius.jumpcloud.com", "pwm.jumpcloud.com"], each.key) ? "INACTIVE" : "ACTIVE"
+  status                     = contains(["radius.jumpcloud.com", "pwm.jumpcloud.com", "ldap-mfa.jumpcloud.com"], each.key) ? "INACTIVE" : "ACTIVE"
 }
 
 resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec" {
