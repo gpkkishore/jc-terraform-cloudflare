@@ -217,11 +217,11 @@ locals {
       digest  = "02CA74E878171FE5B8F31684AFB3EF45F21B45C0CD6C60B4792089AF30042B11"
       key_tag = 19179
     },
-    {
-      name    = "ldap-mfa.jumpcloud.com"
-      digest  = "D383E946AE9035819A01EA7B3946245F99007F2D279AB880A982311DEA24F96F"
-      key_tag = 55836
-    },
+    #{
+    #name    = "ldap-mfa.jumpcloud.com"
+    #digest  = "D383E946AE9035819A01EA7B3946245F99007F2D279AB880A982311DEA24F96F"
+    #key_tag = 55836
+    #},
     #{
     #name    = "pwm.jumpcloud.com"
     #digest  = "9558ACC700F448D384ACD71BF86AE8C9973721FE0791CFF41E572863D61074CB"
