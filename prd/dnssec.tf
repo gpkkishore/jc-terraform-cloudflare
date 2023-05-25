@@ -226,11 +226,11 @@ locals {
       digest  = "9558ACC700F448D384ACD71BF86AE8C9973721FE0791CFF41E572863D61074CB"
       key_tag = 48601
     },
-    {
-      name    = "radius.jumpcloud.com"
-      digest  = "1E7FDAA1FCF3D72D28890F6BE36EE3FEB985EE6EFCA9467E6D69FE1188575306"
-      key_tag = 31316
-    }
+    #{
+    #name    = "radius.jumpcloud.com"
+    #digest  = "1E7FDAA1FCF3D72D28890F6BE36EE3FEB985EE6EFCA9467E6D69FE1188575306"
+    #key_tag = 31316
+    #}
   ]
 
   route53_zone_name_to_zone_ds_data = { for zone_ds_data in local.ds_data_for_route53_zones_with_dnssec : zone_ds_data.name => zone_ds_data }
