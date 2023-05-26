@@ -24,13 +24,15 @@ resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
   for_each = toset(local.cloudflare_child_zones)
 
   zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_root_zone).id
+  # shouldnt need to trimsuffix() or format() for name input, can just be each.key
+  # but would require redeploying these to change so may be not be worth it for now.
   name    = trimsuffix(each.key, format(".%s", local.cloudflare_root_zone)) # id.jumpcloud.com -> id
   type    = "DS"
   proxied = false
   data {
-    algorithm   = 13
+    algorithm   = lookup(cloudflare_zone_dnssec.zones_with_dnssec, each.key).algorithm
     digest      = lookup(cloudflare_zone_dnssec.zones_with_dnssec, each.key).digest
-    digest_type = 2
+    digest_type = lookup(cloudflare_zone_dnssec.zones_with_dnssec, each.key).digest_type
     key_tag     = lookup(cloudflare_zone_dnssec.zones_with_dnssec, each.key).key_tag
   }
 }
@@ -128,38 +130,6 @@ resource "aws_route53_record" "soa_zones_with_dnssec" {
   records         = each.value.soa.records
 }
 
-####################################
-# Prepare DNSSEC for Route53 zones #
-####################################
-module "kms_elliptic_curve_for_zones_with_dnssec" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.11.4"
-
-  for_each = local.route53_zone_name_to_zone
-
-  name                     = format("%s-for-ksk", replace(each.key, ".", "-")) # ldap.jumpcloud.com -> ldap-jumpcloud-com-for-ksk
-  customer_master_key_spec = "ECC_NIST_P256"
-  key_usage                = "SIGN_VERIFY"
-  enable_dnssec_policy     = true
-  enable_key_rotation      = false # Automatic key rotation not supported for asymmetric KMS keys ie ECC
-  deletion_window_in_days  = 7
-  tags                     = { Environment = var.env_prefix }
-}
-
-resource "aws_route53_key_signing_key" "zones_with_dnssec" {
-  for_each = local.route53_zone_name_to_zone
-
-  name                       = each.key
-  hosted_zone_id             = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).zone_id
-  key_management_service_arn = lookup(module.kms_elliptic_curve_for_zones_with_dnssec, each.key).arn
-  status                     = contains(["radius.jumpcloud.com", "pwm.jumpcloud.com", "ldap-mfa.jumpcloud.com"], each.key) ? "INACTIVE" : "ACTIVE"
-}
-
-resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec" {
-  for_each = local.route53_zone_name_to_zone
-
-  hosted_zone_id = lookup(aws_route53_key_signing_key.zones_with_dnssec, each.key).hosted_zone_id
-}
-
 ##################################################################
 # Prepare DNSSEC for Route53 zones
 # trailing date (ie 05222023) indicates the date of KSK rotation
@@ -185,9 +155,10 @@ resource "aws_route53_key_signing_key" "zones_with_dnssec_05222023" {
   name                       = format("%s-%s", each.key, "05222023")
   hosted_zone_id             = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).zone_id
   key_management_service_arn = lookup(module.kms_elliptic_curve_for_zones_with_dnssec_05222023, each.key).arn
+  status                     = "ACTIVE"
 }
 
-# create DS record in jumpcloud.com parent zone relative to each route53 zone
+# create DS record in jumpcloud.com parent zone relative to each route53 zone which verifies the related KSKs hosted zone's DNSKEY
 resource "cloudflare_record" "ds_route53_zones_with_dnssec_05222023" {
   for_each = local.route53_zone_name_to_zone
 
@@ -205,53 +176,9 @@ resource "cloudflare_record" "ds_route53_zones_with_dnssec_05222023" {
   depends_on = [aws_route53_hosted_zone_dnssec.zones_with_dnssec]
 }
 
-####################################
-# Enable DNSSEC for Route53 zones  #
-####################################
-locals {
-  # keeping separate from local.route53_zone_name_to_zone because DS data comes after aws_route53_hosted_zone_dnssec.zones_with_dnssec is applied
-  # but ds record data can't be pulled from the resource directly, only from the AWS UI or CLI
-  ds_data_for_route53_zones_with_dnssec = [
-    #{
-    #name    = "ldap.jumpcloud.com"
-    #digest  = "02CA74E878171FE5B8F31684AFB3EF45F21B45C0CD6C60B4792089AF30042B11"
-    #key_tag = 19179
-    #},
-    #{
-    #name    = "ldap-mfa.jumpcloud.com"
-    #digest  = "D383E946AE9035819A01EA7B3946245F99007F2D279AB880A982311DEA24F96F"
-    #key_tag = 55836
-    #},
-    #{
-    #name    = "pwm.jumpcloud.com"
-    #digest  = "9558ACC700F448D384ACD71BF86AE8C9973721FE0791CFF41E572863D61074CB"
-    #key_tag = 48601
-    #},
-    #{
-    #name    = "radius.jumpcloud.com"
-    #digest  = "1E7FDAA1FCF3D72D28890F6BE36EE3FEB985EE6EFCA9467E6D69FE1188575306"
-    #key_tag = 31316
-    #}
-  ]
+resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec" {
+  for_each = local.route53_zone_name_to_zone
 
-  route53_zone_name_to_zone_ds_data = { for zone_ds_data in local.ds_data_for_route53_zones_with_dnssec : zone_ds_data.name => zone_ds_data }
-}
-
-# enable DNSSEC by creating the DS record in jumpcloud.com parent zone relative to each route53 zone
-resource "cloudflare_record" "ds_route53_zones_with_dnssec" {
-  for_each = local.route53_zone_name_to_zone_ds_data
-
-  zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_root_zone).id
-  name    = trimsuffix(each.key, format(".%s", local.cloudflare_root_zone)) # ldap.jumpcloud.com -> ldap
-  type    = "DS"
-  proxied = false
-  data {
-    algorithm   = 13
-    digest      = each.value.digest
-    digest_type = 2
-    key_tag     = each.value.key_tag
-  }
-
-  depends_on = [aws_route53_hosted_zone_dnssec.zones_with_dnssec]
+  hosted_zone_id = lookup(aws_route53_key_signing_key.zones_with_dnssec_05222023, each.key).hosted_zone_id
 }
 
