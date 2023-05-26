@@ -80,3 +80,11 @@ resource "cloudflare_certificate_pack" "custom_cert" {
   cloudflare_branding    = false
   wait_for_active_status = true
 }
+
+resource "cloudflare_record" "login_awsstg_jumpcloud_com_cname_base" {
+  zone_id = data.cloudflare_zone.login_awsstg_jumpcloud_com.id
+  name    = "login.awsstg.jumpcloud.com"
+  value   = data.terraform_remote_state.haproxy_stg.outputs.login_api_nlb.lb_dns_name
+  type    = "CNAME"
+  ttl     = 1
+}

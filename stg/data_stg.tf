@@ -8,6 +8,10 @@ data "terraform_remote_state" "haproxy_stg" {
   }
 }
 
+data "cloudflare_zone" "login_awsstg_jumpcloud_com" {
+  name = "login.awsstg.jumpcloud.com"
+}
+
 # See docs/contributing.md for information on how to add a DNS record.
 # Note that there are the following arrays, and new records should be placed in the correct array
 # stg_a_records     - All the A, AAAA, and ANAME records
@@ -291,6 +295,14 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_stg.outputs.jumpdesk_nlb.lb_dns_name
+    },
+
+    {
+      name    = "oauth"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.haproxy_stg.outputs.oauth_nlb.lb_dns_name
     }
   ]
 
