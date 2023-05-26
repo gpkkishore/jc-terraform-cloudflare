@@ -155,6 +155,7 @@ resource "aws_route53_key_signing_key" "zones_with_dnssec_05222023" {
   name                       = format("%s-%s", each.key, "05222023")
   hosted_zone_id             = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).zone_id
   key_management_service_arn = lookup(module.kms_elliptic_curve_for_zones_with_dnssec_05222023, each.key).arn
+  status                     = "ACTIVE"
 }
 
 # create DS record in jumpcloud.com parent zone relative to each route53 zone which verifies the related KSKs hosted zone's DNSKEY
