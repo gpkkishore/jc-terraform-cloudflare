@@ -83,6 +83,7 @@ resource "cloudflare_certificate_pack" "custom_cert" {
 
 resource "cloudflare_record" "login_awsstg_jumpcloud_com_cname_base" {
   zone_id = data.cloudflare_zone.login_awsstg_jumpcloud_com.id
+  proxied = true
   name    = "login.awsstg.jumpcloud.com"
   value   = data.terraform_remote_state.haproxy_stg.outputs.login_api_nlb.lb_dns_name
   type    = "CNAME"
