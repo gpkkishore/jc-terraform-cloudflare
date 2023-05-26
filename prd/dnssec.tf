@@ -24,13 +24,15 @@ resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
   for_each = toset(local.cloudflare_child_zones)
 
   zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_root_zone).id
-  name    = trimsuffix(each.key, format(".%s", local.cloudflare_root_zone)) # id.jumpcloud.com -> id 
+  # shouldnt need to trimsuffix() or format() for name input, can just be each.key
+  # but would require redeploying these to change so may be not be worth it for now.
+  name    = trimsuffix(each.key, format(".%s", local.cloudflare_root_zone)) # id.jumpcloud.com -> id
   type    = "DS"
   proxied = false
   data {
-    algorithm   = 13
+    algorithm   = lookup(cloudflare_zone_dnssec.zones_with_dnssec, each.key).algorithm
     digest      = lookup(cloudflare_zone_dnssec.zones_with_dnssec, each.key).digest
-    digest_type = 2
+    digest_type = lookup(cloudflare_zone_dnssec.zones_with_dnssec, each.key).digest_type
     key_tag     = lookup(cloudflare_zone_dnssec.zones_with_dnssec, each.key).key_tag
   }
 }
