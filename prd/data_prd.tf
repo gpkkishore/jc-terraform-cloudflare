@@ -508,6 +508,20 @@ locals {
       value   = data.terraform_remote_state.haproxy_prd.outputs.kickstart_private_nlb.lb_dns_name
     },
     {
+     name    = "login"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.haproxy_prd.outputs.login_api_nlb.lb_dns_name
+    },
+    {
+     name    = "oauth"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.haproxy_prd.outputs.oauth_nlb.lb_dns_name
+    },
+    {
       name    = "sso"
       proxied = true
       ttl     = 1
