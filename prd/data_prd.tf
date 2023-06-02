@@ -838,7 +838,7 @@ locals {
     },
     {
       name    = "support",
-      proxied = false
+      proxied = true
       ttl     = 1
       type    = "CNAME"
       value   = "support.jumpcloud.com.00dg0000000jusyma2.live.siteforce.com"
