@@ -500,6 +500,15 @@ locals {
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_prd.outputs.apple_mdm_nlb.lb_dns_name
     },
+
+    {
+      name    = "go"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.haproxy_prd.outputs.go_nlb.lb_dns_name
+    },
+
     {
       name    = "private-kickstart"
       proxied = false

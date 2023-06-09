@@ -303,6 +303,14 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_stg.outputs.oauth_nlb.lb_dns_name
+    },
+
+    {
+      name    = "go"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.haproxy_stg.outputs.go_nlb.lb_dns_name
     }
   ]
 
