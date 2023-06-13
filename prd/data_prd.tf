@@ -1218,6 +1218,13 @@ locals {
       ttl     = 60
       type    = "TXT"
       value   = "dropbox-domain-verification=occqhm6u85bf"
+    },
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 86400
+      type    = "TXT"
+      value   = "miro-verification=d022728b62b296c83866c49d972c1c7760d7a63e"
     }
   ]
 
