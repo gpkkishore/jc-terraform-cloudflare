@@ -64,6 +64,25 @@ resource "cloudflare_page_rule" "console_api_page_rule" {
   }
 }
 
+# Disable BIC for /saml2/metadata endpoint, for specific user agent
+resource "cloudflare_ruleset" "disable_bic_metadata" {
+  zone_id     = cloudflare_zone.cloudflare_zone_resource.id
+  name        = "Disable BIC for /saml2/metadata endpoint"
+  description = "Disable BIC for /saml2/metadata endpoint, for specific user agent"
+  kind        = "zone"
+  phase       = "http_config_settings"
+
+  rules {
+    action = "set_config"
+    action_parameters {
+      bic = false
+    }
+    expression  = "(http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Jakarta Commons-HttpClient/3.1\")"
+    description = "Disable BIC for /saml2/metadata, for specific user agent."
+    enabled     = true
+  }
+}
+
 # apple.mdm advanced certificate manager for Let's Encrypt
 resource "cloudflare_certificate_pack" "custom_cert" {
   for_each = { for cert in local.custom_certs : cert.name => cert }
