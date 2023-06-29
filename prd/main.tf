@@ -41,7 +41,7 @@ module "dns" {
 module "security" {
   for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
   source   = "app.terraform.io/jumpcloud/security/cloudflare"
-  version  = "1.0.15"
+  version  = "1.0.20"
   zone_id  = each.key
 }
 
@@ -64,17 +64,20 @@ resource "cloudflare_page_rule" "console_api_page_rule" {
   }
 }
 
-# Disable BIC for /saml2/metadata endpoint, for specific user agent
+# Disable BIC for /saml2/metadata endpoint, for Jakarta Commons-HttpClient/3.1 user agent
 resource "cloudflare_ruleset" "disable_bic_metadata" {
   zone_id     = cloudflare_zone.cloudflare_zone_resource.id
   name        = "Disable BIC for /saml2/metadata endpoint"
-  description = "Disable BIC for /saml2/metadata endpoint, for specific user agent"
+  description = "Disable BIC for /saml2/metadata endpoint, for Jakarta Commons-HttpClient/3.1 user agent"
   kind        = "zone"
   phase       = "http_config_settings"
 
   rules {
     action = "set_config"
     action_parameters {
+      # Note: the https rewrites is a global setting and not needed here,
+      # but this ruleset needs at least one setting to true in order to take effect
+      automatic_https_rewrites = true
       bic = false
     }
     expression  = "(http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Jakarta Commons-HttpClient/3.1\")"
