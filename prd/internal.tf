@@ -21,6 +21,11 @@ locals {
       value = ["ns-1062.awsdns-04.org", "ns-108.awsdns-13.com", "ns-1956.awsdns-52.co.uk", "ns-831.awsdns-39.net"]
     },
     {
+      name  = "stg01-use2-p00"
+      ttl   = 300
+      value = ["ns-1371.awsdns-43.org", "ns-773.awsdns-32.net", "ns-424.awsdns-53.com", "ns-2015.awsdns-59.co.uk"]
+    },
+    {
       name  = "ue1-prd"
       ttl   = 300
       value = ["ns-1116.awsdns-11.org", "ns-1574.awsdns-04.co.uk", "ns-431.awsdns-53.com", "ns-582.awsdns-08.net"]
