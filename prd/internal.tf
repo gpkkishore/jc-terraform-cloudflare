@@ -24,7 +24,7 @@ locals {
       name  = "stg01-use2-p00"
       ttl   = 300
       value = ["ns-1371.awsdns-43.org", "ns-773.awsdns-32.net", "ns-424.awsdns-53.com", "ns-2015.awsdns-59.co.uk"]
-    },    
+    },
     {
       name  = "ue1-prd"
       ttl   = 300
