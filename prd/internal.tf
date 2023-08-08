@@ -1,6 +1,6 @@
 ###########################################
 # DNS Configuration for internal domain.
-# TODO: Move this into it's own workspace
+# TODO: Move this into its own workspace
 ###########################################
 locals {
   delegation_records = [
@@ -50,6 +50,11 @@ locals {
       ttl   = 300
       value = ["ns-984.awsdns-59.net", "ns-1906.awsdns-46.co.uk", "ns-1433.awsdns-51.org", "ns-42.awsdns-05.com"]
     }, # Managed in jumpcloud/test-infra repo
+    {
+      name  = "sec-use1-p00"
+      ttl   = 300
+      value = ["ns-1641.awsdns-13.co.uk", "ns-154.awsdns-19.com", "ns-756.awsdns-30.net", "ns-1286.awsdns-32.org"]
+    },
   ]
 }
 
