@@ -22,10 +22,11 @@ resource "cloudflare_logpush_job" "waf_events_job_jumpcloud_com" {
 
 # Adding resources to log unsuccessful apple-mdm HTTP requests, as an outcome of incident #20230801-macos-mdm-device-unenrollment
 resource "cloudflare_logpush_job" "http_events_job_apple_mdm_jumpcloud_com" {
-  name = "http-events-job-apple-mdm-jumpcloud-com"
-  zone_id = "4024ea03ad001927b18034ed250fb1ec"
-  enabled = true
-  dataset = "http_requests"
+  name             = "http-events-job-apple-mdm-jumpcloud-com"
+  zone_id          = "4024ea03ad001927b18034ed250fb1ec"
+  enabled          = true
+  dataset          = "http_requests"
+  destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.datadog_log_push_api_token}&ddsource=cloudflare&service=cloudflare&ddtags=zone_name:jumpcloud.com,env:prd,cf_type=http_requests"
   filter = jsonencode({
     "where" : {
       "and" : [
@@ -45,7 +46,7 @@ resource "cloudflare_logpush_job" "http_events_job_apple_mdm_jumpcloud_com" {
       ]
     }
   })
-  destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.datadog_log_push_api_token}&ddsource=cloudflare&service=cloudflare&ddtags=zone_name:jumpcloud.com,env:prd,cf_type=http_requests"
+
   # Omitting logpull_options for default log format. Will adjust as needed.
   #logpull_options = ""
 }
