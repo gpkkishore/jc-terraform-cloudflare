@@ -1,6 +1,5 @@
 locals {
   aws_account = "330105897241"
-
 }
 
 provider "cloudflare" {
