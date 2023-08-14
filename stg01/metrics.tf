@@ -4,7 +4,7 @@
 ##################################################################################################################
 resource "cloudflare_logpush_job" "this" {
   name             = "waf-events-job-id-${var.zone_name}"
-  zone_id          = clourflare_zone.cloudflare_zone_resource.id
+  zone_id          = cloudflare_zone.cloudflare_zone_resource.id
   enabled          = true
   dataset          = "firewall_events"
   logpull_options  = "fields=RayName,Source,RuleId,Action,EdgeResponseStatusDatetime,EdgeColoName,ClientIP,ClientCountryName,ClientASNDescription,UserAgent,ClientRequestHTTPMethodName,ClientRequestHTTPHost,ClientRequestHTTPPath&timestamps=rfc3339"
