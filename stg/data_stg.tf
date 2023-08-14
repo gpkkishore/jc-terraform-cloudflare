@@ -8,6 +8,10 @@ data "terraform_remote_state" "haproxy_stg" {
   }
 }
 
+data "cloudflare_zone" "login_awsstg_jumpcloud_com" {
+  name = "login.awsstg.jumpcloud.com"
+}
+
 # See docs/contributing.md for information on how to add a DNS record.
 # Note that there are the following arrays, and new records should be placed in the correct array
 # stg_a_records     - All the A, AAAA, and ANAME records
