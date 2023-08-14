@@ -1,16 +1,13 @@
-data "terraform_remote_state" "haproxy_stg" {
-  backend = "remote"
-  config = {
-    organization = "jumpcloud"
-    workspaces = {
-      name = "awsstg-haproxy-formula"
-    }
-  }
-}
-
-data "cloudflare_zone" "login_awsstg_jumpcloud_com" {
-  name = "login.awsstg.jumpcloud.com"
-}
+# When we have new HAProxies created, pull their state here:
+#data "terraform_remote_state" "haproxy_stg" {
+#  backend = "remote"
+#  config = {
+#    organization = "jumpcloud"
+#    workspaces = {
+#      name = "awsstg-haproxy-formula"
+#    }
+#  }
+#}
 
 # See docs/contributing.md for information on how to add a DNS record.
 # Note that there are the following arrays, and new records should be placed in the correct array
