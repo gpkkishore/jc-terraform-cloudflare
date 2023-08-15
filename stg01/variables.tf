@@ -21,6 +21,6 @@ variable "project_name" {
   description = "Short project name for tagged resources"
 }
 
-variable "datadog_log_push_api_token" {
+variable "dd_api_key" {
   description = "Access token for cloudflare to push logs to datadog"
 }

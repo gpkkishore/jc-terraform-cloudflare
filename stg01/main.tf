@@ -1,5 +1,6 @@
 locals {
-  aws_account = "330105897241"
+  aws_account        = "330105897241"
+  cloudflare_account = "3c96d914c0eaa62b7b4c9960e63818f7"
 }
 
 provider "cloudflare" {
@@ -14,23 +15,26 @@ provider "aws" {
   }
 
   default_tags {
-    Source      = format("TheJumpCloud/terraform-cloudflare/%s", var.env)
-    Team        = "edge"
-    CostOrg     = "engineering"
-    ProductLine = "shared"
-    Env         = var.env
+    tags = {
+      Source      = format("TheJumpCloud/terraform-cloudflare/%s", var.env)
+      Team        = "edge"
+      CostOrg     = "engineering"
+      ProductLine = "shared"
+      Env         = var.env
+    }
   }
 }
 
 resource "cloudflare_zone" "cloudflare_zone_resource" {
-  plan = var.zone_plan
-  type = "full"
-  zone = var.zone_name
+  account_id = local.cloudflare_account
+  plan       = var.zone_plan
+  type       = "full"
+  zone       = var.zone_name
 }
 
 module "dns" {
   source        = "app.terraform.io/jumpcloud/dns/cloudflare"
-  version       = "1.0.6"
+  version       = "1.0.7"
   zone_id       = cloudflare_zone.cloudflare_zone_resource.id
   zone_name     = var.zone_name
   dns_records   = local.stg01_dns_records
@@ -39,13 +43,13 @@ module "dns" {
 
 module "security" {
   source  = "app.terraform.io/jumpcloud/security/cloudflare"
-  version = "1.0.8"
+  version = "1.0.22"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
 
 module "settings" {
   source  = "app.terraform.io/jumpcloud/zone-settings/cloudflare"
-  version = "1.0.3"
+  version = "1.0.4"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
 
