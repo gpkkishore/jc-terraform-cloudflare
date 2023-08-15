@@ -21,7 +21,7 @@ locals {
 
   r53_zones = []
 
-  stg_a_records = []
+  stg01_a_records = []
 
   stg01_mx_records = []
 

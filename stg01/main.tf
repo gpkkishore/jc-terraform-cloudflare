@@ -33,7 +33,7 @@ module "dns" {
   version       = "1.0.6"
   zone_id       = cloudflare_zone.cloudflare_zone_resource.id
   zone_name     = var.zone_name
-  dns_records   = local.stg_dns_records
+  dns_records   = local.stg01_dns_records
   ns_delegation = local.stg01_ns_delegation_records
 }
 
