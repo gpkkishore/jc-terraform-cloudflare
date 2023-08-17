@@ -78,7 +78,7 @@ resource "cloudflare_ruleset" "disable_bic_metadata" {
       # Note: the https rewrites is a global setting and not needed here,
       # but this ruleset needs at least one setting to true in order to take effect
       automatic_https_rewrites = true
-      bic = false
+      bic                      = false
     }
     expression  = "(http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Jakarta Commons-HttpClient/3.1\")"
     description = "Disable BIC for /saml2/metadata, for specific user agent."

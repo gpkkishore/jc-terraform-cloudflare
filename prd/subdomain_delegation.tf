@@ -36,5 +36,10 @@ locals {
       ttl   = 300
       value = ["ns-1471.awsdns-55.org.", "ns-1632.awsdns-12.co.uk.", "ns-493.awsdns-61.com.", "ns-731.awsdns-27.net."]
     },
+    {
+      name  = "stg01"
+      ttl   = 300
+      value = ["hope.ns.cloudflare.com", "nile.ns.cloudflare.com"]
+    }
   ]
 }
