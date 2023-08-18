@@ -39,7 +39,7 @@ locals {
     {
       name  = "stg01"
       ttl   = 300
-      value = ["hope.ns.cloudflare.com", "nile.ns.cloudflare.com"]
+      value = ["blakely.ns.cloudflare.com", "keenan.ns.cloudflare.com"]
     }
   ]
 }
