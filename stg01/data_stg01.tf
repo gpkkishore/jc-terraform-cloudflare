@@ -1,13 +1,12 @@
-# When we have new HAProxies created, pull their state here:
-#data "terraform_remote_state" "haproxy_stg01" {
-#  backend = "remote"
-#  config = {
-#    organization = "jumpcloud"
-#    workspaces = {
-#      name = "stg01-haproxy-formula"
-#    }
-#  }
-#}
+data "terraform_remote_state" "nlb_stg01" {
+  backend = "remote"
+  config = {
+    organization = "jumpcloud"
+    workspaces = {
+      name = "infra-layers-stg01-us-east-2-edge"
+    }
+  }
+}
 
 # See docs/contributing.md for information on how to add a DNS record.
 # Note that there are the following arrays, and new records should be placed in the correct array
@@ -25,7 +24,15 @@ locals {
 
   stg01_mx_records = []
 
-  stg01_cname_records = []
+  stg01_cname_records = [
+    {
+      name    = "console"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["console"].lb_dns_name
+    },
+  ]
 
   stg01_misc_records = []
 
