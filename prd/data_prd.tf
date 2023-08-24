@@ -21,6 +21,7 @@ locals {
   cloudflare_zones = [
     "id.awsstg.jumpcloud.com",
     "id.jumpcloud.com",
+    "id.stg01.jumpcloud.com",
     "jumpcloudlounge.com",
     "zercurity.com",
     "login.awsstg.jumpcloud.com"
