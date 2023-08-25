@@ -1,4 +1,10 @@
 # Note that all of these records are assumed to be a "NS" type, thus there is no option to specify otherwise
 locals {
-  stg01_ns_delegation_records = []
+  stg01_ns_delegation_records = [
+    {
+      name  = "id"
+      ttl   = 300
+      value = ["marvin.ns.cloudflare.com", "wanda.ns.cloudflare.com"]
+    }
+  ]
 }
