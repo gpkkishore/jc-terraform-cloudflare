@@ -30,7 +30,7 @@ module "dns" {
 
 module "security" {
   source  = "app.terraform.io/jumpcloud/security/cloudflare"
-  version = "2.0.0"
+  version = "2.1.1"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
 
