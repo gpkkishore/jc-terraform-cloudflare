@@ -26,11 +26,18 @@ locals {
 
   stg01_cname_records = [
     {
-      name    = "assist"
+      name    = "adbridge"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["assist"].lb_dns_name
+      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["adbridge"].lb_dns_name
+    },
+    {
+      name    = "adbridge-kickstart"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["adbridge-kickstart"].lb_dns_name
     },
     {
       name    = "api"
@@ -38,6 +45,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["api"].lb_dns_name
+    },
+    {
+      name    = "assist"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["assist"].lb_dns_name
     },
     {
       name    = "console"
