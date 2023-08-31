@@ -952,13 +952,6 @@ locals {
       value   = "domain.zoho.com"
     },
     {
-      name    = "try",
-      proxied = false
-      ttl     = 300
-      type    = "CNAME"
-      value   = "unbouncepages.com"
-    },
-    {
       name    = "rd-bounce.jumpcloud.com",
       proxied = false
       ttl     = 300
