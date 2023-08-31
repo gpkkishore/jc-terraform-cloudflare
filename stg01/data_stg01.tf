@@ -68,6 +68,13 @@ locals {
       value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["go"].lb_dns_name
     },
     {
+      name    = "login"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["login-api"].lb_dns_name
+    },
+    {
       name    = "microsoft-mdm"
       proxied = true
       ttl     = 1
@@ -80,6 +87,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["oauth"].lb_dns_name
+    },
+    {
+      name    = "sso"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["sso"].lb_dns_name
     },
   ]
 
