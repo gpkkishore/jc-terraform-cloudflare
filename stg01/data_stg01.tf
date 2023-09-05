@@ -27,14 +27,14 @@ locals {
   stg01_cname_records = [
     {
       name    = "adbridge"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["adbridge"].lb_dns_name
     },
     {
       name    = "adbridge-kickstart"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["adbridge-kickstart"].lb_dns_name
