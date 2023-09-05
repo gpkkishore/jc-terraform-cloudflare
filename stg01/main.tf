@@ -58,6 +58,19 @@ resource "aws_route53_zone" "r53_delegated_zone" {
   name     = each.key
 }
 
+resource "cloudflare_certificate_pack" "custom_cert" {
+  for_each = { for cert in local.custom_certs : cert.name => cert }
+
+  zone_id                = cloudflare_zone.cloudflare_zone_resource.id
+  type                   = "advanced"
+  hosts                  = each.value.hosts
+  validation_method      = each.value.validation_method
+  validity_days          = 90
+  certificate_authority  = "lets_encrypt"
+  cloudflare_branding    = false
+  wait_for_active_status = true
+}
+
 # Page rules for console.{zone_name}/*, e.g. console.jumpcloud.com/*
 # Note: Browser check is disabled for the console endpoint only on awsstg so acceptance tests don't get blocked
 resource "cloudflare_page_rule" "console_api_page_rule" {
