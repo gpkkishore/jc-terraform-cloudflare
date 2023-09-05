@@ -16,7 +16,13 @@ data "terraform_remote_state" "nlb_stg01" {
 # stg01_misc_records  - Misc records that don't fit into the other categories (i.e, TXT, SOA, SPF)
 locals {
   # The name used in the custom_certs object is only used for internal metadata
-  custom_certs = []
+  custom_certs = [
+    {
+      name              = "apple-mdm"
+      hosts             = ["apple.mdm.stg01.jumpcloud.com"]
+      validation_method = "http"
+    },
+  ]
 
   r53_zones = []
 
