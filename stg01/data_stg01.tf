@@ -131,7 +131,7 @@ locals {
     },
     {
       name    = "agent"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["agent"].lb_dns_name
