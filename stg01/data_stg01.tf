@@ -22,6 +22,11 @@ locals {
       hosts             = ["apple.mdm.stg01.jumpcloud.com"]
       validation_method = "http"
     },
+    {
+      name              = "microsoft-mdm"
+      hosts             = ["*.microsoft-mdm.stg01.jumpcloud.com", "microsoft-mdm.stg01.jumpcloud.com"]
+      validation_method = "http"
+    }
   ]
 
   r53_zones = []
@@ -103,6 +108,13 @@ locals {
     },
     {
       name    = "microsoft-mdm"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["microsoft-mdm"].lb_dns_name
+    },
+    {
+      name    = "*.microsoft-mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
