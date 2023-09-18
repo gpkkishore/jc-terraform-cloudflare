@@ -25,7 +25,7 @@ locals {
     {
       name              = "microsoft-mdm"
       hosts             = ["*.microsoft-mdm.stg01.jumpcloud.com", "microsoft-mdm.stg01.jumpcloud.com"]
-      validation_method = "http"
+      validation_method = "txt"
     }
   ]
 
