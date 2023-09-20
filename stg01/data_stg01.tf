@@ -72,6 +72,13 @@ locals {
       value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["assist"].lb_dns_name
     },
     {
+      name    = "bss"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["si-bss-api"].lb_dns_name
+    },
+    {
       name    = "console"
       proxied = true
       ttl     = 1
@@ -133,13 +140,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["kickstart-private"].lb_dns_name
-    },
-    {
-      name    = "si-bss-api"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["si-bss-api"].lb_dns_name
     },
     {
       name    = "sso"
