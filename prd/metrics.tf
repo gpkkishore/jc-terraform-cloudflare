@@ -21,8 +21,8 @@ resource "cloudflare_logpush_job" "waf_events_job_jumpcloud_com" {
 }
 
 # Resource to log HTTP requests with 4xx and 5xx response
-resource "cloudflare_logpush_job" "http_events_job_apple_mdm_jumpcloud_com" {
-  name             = "http-events-job-apple-mdm-jumpcloud-com"
+resource "cloudflare_logpush_job" "http_events_job_jumpcloud_com" {
+  name             = "http-events-job-jumpcloud-com"
   zone_id          = "4024ea03ad001927b18034ed250fb1ec"
   enabled          = true
   dataset          = "http_requests"
