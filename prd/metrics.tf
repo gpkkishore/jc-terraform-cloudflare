@@ -35,6 +35,7 @@ resource "cloudflare_logpush_job" "http_events_job_jumpcloud_com" {
     }
   })
 
-  # Omitting logpull_options for default log format. Will adjust as needed.
-  #logpull_options = ""
+  # Overriding default lof format in order to dont' ingest sensitive data to Datadog (such as creds presented in URL query parameters), specifically ClientRequestURI field
+  # You can find list of available fields here: https://developers.cloudflare.com/logs/reference/log-fields/zone/http_requests/ with their description
+  logpull_options = "fields=ClientASN,ClientCountry,ClientDeviceType,ClientIP,ClientRequestBytes,ClientRequestHost,ClientRequestMethod,ClientRequestPath,ClientRequestProtocol,ClientRequestScheme,ClientRequestUserAgent,ClientSSLProtocol,ClientMTLSAuthStatus,ClientTCPRTTMs,EdgeEndTimestamp,EdgeResponseBodyBytes,EdgeResponseBytes,EdgeResponseContentType,EdgeResponseStatus,EdgeServerIP,EdgeStartTimestamp,EdgeTimeToFirstByteMs,OriginIP,OriginRequestHeaderSendDurationMs,OriginResponseDurationMs,OriginResponseHeaderReceiveDurationMs,OriginResponseStatus,OriginTCPHandshakeDurationMs,OriginTLSHandshakeDurationMs,SecurityAction,CacheCacheStatus,RayID"
 }
