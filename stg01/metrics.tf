@@ -12,8 +12,8 @@ resource "cloudflare_logpush_job" "this" {
 }
 
 # Resource to log HTTP requests with 4xx and 5xx response
-resource "cloudflare_logpush_job" "http_events_job_jumpcloud_com" {
-  name             = "http-events-job-jumpcloud-com"
+resource "cloudflare_logpush_job" "http_events_job" {
+  name             = "http-events-job-${var.zone_name}"
   zone_id          = cloudflare_zone.cloudflare_zone_resource.id
   enabled          = true
   dataset          = "http_requests"
