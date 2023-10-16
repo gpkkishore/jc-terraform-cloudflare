@@ -7,6 +7,16 @@ locals {
       value = ["marvin.ns.cloudflare.com", "wanda.ns.cloudflare.com"]
     },
     {
+      name  = "ldap"
+      ttl   = 300
+      value = ["ns-108.awsdns-13.com.", "ns-545.awsdns-04.net.", "ns-1858.awsdns-40.co.uk.", "ns-1250.awsdns-28.org."]
+    },
+    {
+      name  = "ldap-mfa"
+      ttl   = 300
+      value = ["ns-1521.awsdns-62.org.", "ns-837.awsdns-40.net.", "ns-169.awsdns-21.com.", "ns-1974.awsdns-54.co.uk."]
+    },
+    {
       name  = "pwm"
       ttl   = 300
       value = ["ns-1609.awsdns-09.co.uk", "ns-392.awsdns-49.com", "ns-1213.awsdns-23.org", "ns-559.awsdns-05.net"]

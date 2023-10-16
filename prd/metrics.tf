@@ -20,33 +20,24 @@ resource "cloudflare_logpush_job" "waf_events_job_jumpcloud_com" {
   destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.datadog_log_push_api_token}&ddsource=cloudflare&service=cloudflare&ddtags=zone_name:jumpcloud.com,env:prd,cf_type:firewall_events"
 }
 
-# Adding resources to log unsuccessful apple-mdm HTTP requests, as an outcome of incident #20230801-macos-mdm-device-unenrollment
-resource "cloudflare_logpush_job" "http_events_job_apple_mdm_jumpcloud_com" {
-  name             = "http-events-job-apple-mdm-jumpcloud-com"
-  zone_id          = "4024ea03ad001927b18034ed250fb1ec"
-  enabled          = true
-  dataset          = "http_requests"
-  destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.datadog_log_push_api_token}&ddsource=cloudflare&service=cloudflare&ddtags=zone_name:jumpcloud.com,env:prd,cf_type:http_requests"
-  filter = jsonencode({
-    "where" : {
-      "and" : [
-        {
-          "key" : "ClientRequestHost",
-          "operator" : "in",
-          "value" : [
-            "apple-mdm.jumpcloud.com",
-            "apple.mdm.jumpcloud.com"
-          ]
-        },
-        {
-          "key" : "EdgeResponseStatus",
-          "operator" : "geq",
-          "value" : 400
-        }
-      ]
-    }
-  })
 
-  # Omitting logpull_options for default log format. Will adjust as needed.
-  #logpull_options = ""
-}
+# > Due to bug in TF (https://support.cloudflare.com/hc/requests/2896222), logpush_job with filter doesn't work => we configured it manually via UI 
+# # Resource to log HTTP requests with 4xx and 5xx response
+# resource "cloudflare_logpush_job" "http_events_job_jumpcloud_com" {
+#   name             = "http-events-job-jumpcloud-com"
+#   zone_id          = "4024ea03ad001927b18034ed250fb1ec"
+#   enabled          = true
+#   dataset          = "http_requests"
+#   destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.datadog_log_push_api_token}&ddsource=cloudflare&service=cloudflare&ddtags=zone_name:jumpcloud.com,env:prd,cf_type:http_requests"
+#   filter = jsonencode({
+#     "where" : {
+#       "key" : "EdgeResponseStatus",
+#       "operator" : "geq",
+#       "value" : 400
+#     }
+#   })
+
+#   # Overriding default lof format in order to dont' ingest sensitive data to Datadog (such as creds presented in URL query parameters), specifically ClientRequestURI field
+#   # You can find list of available fields here: https://developers.cloudflare.com/logs/reference/log-fields/zone/http_requests/ with their description
+#   logpull_options = "fields=ClientASN,ClientCountry,ClientDeviceType,ClientIP,ClientRequestBytes,ClientRequestHost,ClientRequestMethod,ClientRequestPath,ClientRequestProtocol,ClientRequestScheme,ClientRequestUserAgent,ClientSSLProtocol,ClientMTLSAuthStatus,ClientTCPRTTMs,EdgeEndTimestamp,EdgeResponseBodyBytes,EdgeResponseBytes,EdgeResponseContentType,EdgeResponseStatus,EdgeServerIP,EdgeStartTimestamp,EdgeTimeToFirstByteMs,OriginIP,OriginRequestHeaderSendDurationMs,OriginResponseDurationMs,OriginResponseHeaderReceiveDurationMs,OriginResponseStatus,OriginTCPHandshakeDurationMs,OriginTLSHandshakeDurationMs,SecurityAction,CacheCacheStatus,RayID"
+# }
