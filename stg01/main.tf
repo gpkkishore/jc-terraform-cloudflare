@@ -83,3 +83,25 @@ resource "cloudflare_page_rule" "console_api_page_rule" {
     browser_check = "off"
   }
 }
+
+# Disable BIC for go.stg01.jumpcloud.com endpoint and jumpcloudgo/go-http-cliet agent
+resource "cloudflare_ruleset" "disable_bic_go_jumpcloud_com" {
+  zone_id     = cloudflare_zone.cloudflare_zone_resource.id
+  name        = "Disable BIC for go.stg01.jumpcloud.com"
+  description = "Disable BIC for go.stg01.jumpcloud.com"
+  kind        = "zone"
+  phase       = "http_config_settings"
+
+  rules {
+    action = "set_config"
+    action_parameters {
+      # Note: the https rewrites is a global setting and not needed here,
+      # but this ruleset needs at least one setting to true in order to take effect
+      automatic_https_rewrites = true
+      bic                      = false
+    }
+    expression  = "(http.host eq \"go.stg01.jumpcloud.com\" and http.user_agent contains \"go-http-client\") or (http.host eq \"go.stg01.jumpcloud.com\" and http.user_agent contains \"JumpCloudGo\")"
+    description = "Disable BIC for go.stg01.jumpcloud.com with JumpCloudGo and go-http-client agent"
+    enabled     = true
+  }
+}
