@@ -67,8 +67,8 @@ resource "cloudflare_page_rule" "console_api_page_rule" {
 # Disable BIC for /saml2/metadata endpoint, for Jakarta Commons-HttpClient/3.1 user agent
 resource "cloudflare_ruleset" "disable_bic_metadata" {
   zone_id     = cloudflare_zone.cloudflare_zone_resource.id
-  name        = "Disable BIC for /saml2/metadata endpoint"
-  description = "Disable BIC for /saml2/metadata endpoint, for Jakarta Commons-HttpClient/3.1 user agent"
+  name        = "Disable BIC"
+  description = "Disable BIC for specific resources"
   kind        = "zone"
   phase       = "http_config_settings"
 
@@ -80,33 +80,12 @@ resource "cloudflare_ruleset" "disable_bic_metadata" {
       automatic_https_rewrites = true
       bic                      = false
     }
-    expression  = "(http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Jakarta Commons-HttpClient/3.1\")"
-    description = "Disable BIC for /saml2/metadata, for specific user agent."
+    expression  = "(http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Jakarta Commons-HttpClient/3.1\") or (http.host eq \"go.jumpcloud.com\" and http.user_agent contains \"go-http-client\") or (http.host eq \"go.jumpcloud.com\" and http.user_agent contains \"JumpCloudGo\")"
+    description = "Disable BIC"
     enabled     = true
   }
 }
 
-# Disable BIC for go.jumpcloud.com endpoint and jumpcloudgo/go-http-cliet agent
-resource "cloudflare_ruleset" "disable_bic_go_jumpcloud_com" {
-  zone_id     = cloudflare_zone.cloudflare_zone_resource.id
-  name        = "Disable BIC for go.jumpcloud.com"
-  description = "Disable BIC for go.jumpcloud.com"
-  kind        = "zone"
-  phase       = "http_config_settings"
-
-  rules {
-    action = "set_config"
-    action_parameters {
-      # Note: the https rewrites is a global setting and not needed here,
-      # but this ruleset needs at least one setting to true in order to take effect
-      automatic_https_rewrites = true
-      bic                      = false
-    }
-    expression  = "(http.host eq \"go.jumpcloud.com\" and http.user_agent contains \"go-http-client\") or (http.host eq \"go.jumpcloud.com\" and http.user_agent contains \"JumpCloudGo\")"
-    description = "Disable BIC for go.jumpcloud.com with JumpCloudGo and go-http-client agent"
-    enabled     = true
-  }
-}
 
 # apple.mdm advanced certificate manager for Let's Encrypt
 resource "cloudflare_certificate_pack" "custom_cert" {
