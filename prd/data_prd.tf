@@ -1226,6 +1226,13 @@ locals {
       ttl     = 86400
       type    = "TXT"
       value   = "miro-verification=d022728b62b296c83866c49d972c1c7760d7a63e"
+    },
+    {
+      name    = "_github-challenge-jumpcloud-ent"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
+      value   = "921bcc58ad"
     }
   ]
 
