@@ -6,21 +6,6 @@ locals {
   delegation_records = [
     // EKS cluster list from https://github.com/TheJumpCloud/infra-layers
     {
-      name  = "uw2-awsstg"
-      ttl   = 300
-      value = ["ns-1388.awsdns-45.org", "ns-1652.awsdns-14.co.uk", "ns-432.awsdns-54.com", "ns-895.awsdns-47.net"]
-    },
-    {
-      name  = "uw2-staging-00"
-      ttl   = 300
-      value = ["ns-1039.awsdns-01.org", "ns-141.awsdns-17.com", "ns-1890.awsdns-44.co.uk", "ns-755.awsdns-30.net"]
-    },
-    {
-      name  = "uw2-staging-p01"
-      ttl   = 300
-      value = ["ns-1062.awsdns-04.org", "ns-108.awsdns-13.com", "ns-1956.awsdns-52.co.uk", "ns-831.awsdns-39.net"]
-    },
-    {
       name  = "stg01-use2-p00"
       ttl   = 300
       value = ["ns-1371.awsdns-43.org", "ns-773.awsdns-32.net", "ns-424.awsdns-53.com", "ns-2015.awsdns-59.co.uk"]

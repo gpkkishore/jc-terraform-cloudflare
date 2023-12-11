@@ -1,7 +1,7 @@
 # Cloudflare zones with DNSSEC
 locals {
   cloudflare_root_zone         = "jumpcloud.com" # needs to separate for reference of the root zone later
-  cloudflare_child_zones       = ["id.jumpcloud.com", "awsstg.jumpcloud.com"]
+  cloudflare_child_zones       = ["id.jumpcloud.com"]
   cloudflare_zones_with_dnssec = toset(concat([local.cloudflare_root_zone], local.cloudflare_child_zones))
 }
 

@@ -123,13 +123,6 @@ locals {
       value   = "34.204.118.37"
     },
     {
-      name    = "awsstg-vpn"
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "34.214.221.231"
-    },
-    {
       name    = "devopsdays",
       proxied = false
       ttl     = 1
