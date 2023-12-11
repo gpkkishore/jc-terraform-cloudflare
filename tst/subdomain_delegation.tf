@@ -19,6 +19,11 @@ locals {
       value = ["ns-1851.awsdns-39.co.uk.", "ns-719.awsdns-25.net.", "ns-433.awsdns-54.com.", "ns-1252.awsdns-28.org."]
     },
     {
+      name  = "awsstg"
+      ttl   = 300
+      value = ["ns-241.awsdns-30.com.", "ns-811.awsdns-37.net.", "ns-1689.awsdns-19.co.uk.", "ns-1192.awsdns-21.org."]
+    },
+    {
       name  = "sec"
       ttl   = 300
       value = ["ns-1471.awsdns-55.org.", "ns-1632.awsdns-12.co.uk.", "ns-493.awsdns-61.com.", "ns-731.awsdns-27.net."]
