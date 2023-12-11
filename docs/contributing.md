@@ -14,7 +14,7 @@ then a R53 zone should be created and delegated to from CloudFlare.
 All CloudFlare zones receive an enterprise license. In order to add a new zone, add a new record to the `cloudflare_zone` variable in
 the `data_prd.tf` file (see [here](../prd/data_prd.tf)). New zones will be dynamically created from this array after the plan is applied (see below for information on planning/applying in the prd workspace). _After the new zone is created, the plan must be run again (and applied) in order for the new zone to get global security/zone settings applied. This can be done in the TF cloud UI._
 2) Creating R53 zones:
-In order to add a new zone, add a new record to the `r53_zones` variable in the `data_env.tf` file (either in stg or prd, dependent on what environment you're creating the zone for). New zones will
+In order to add a new zone, add a new record to the `r53_zones` variable in the `data_env.tf` file (either in stg01 or prd, dependent on what environment you're creating the zone for). New zones will
 dynamically created from this array after the plan is applied. Once the zone has been created, the NS will need to be updated in CloudFlare
 to properly delegate back to R53. See the section below titled "Subdomain delegation" for additional information.
 
@@ -58,7 +58,7 @@ mx_records = [
 Please alphabetically sort all attributes on new entries, along with making sure the equal signs are all aligned.
 
 ---
-When modifying DNS records for the CloudFlare environments (prd, stg, or tst), records can be added/removed/edited via the `data_env.tf` file (where `env` is the respective environment).
+When modifying DNS records for the CloudFlare environments (prd, stg01, or tst), records can be added/removed/edited via the `data_env.tf` file (where `env` is the respective environment).
 This file contains 4 arrays: `a_records`, `mx_records`, `cname_records`, and `misc_records`. Records should be modified directly within these 4 arrays, with the following categorization:
 
 * a_records         - All the A, AAAA, and ANAME records
@@ -68,7 +68,7 @@ This file contains 4 arrays: `a_records`, `mx_records`, `cname_records`, and `mi
 
 Each environment will automatically merge these arrays and they will all be passed in as the `dns_records` variable to the `dns` module.
 
-_Note: The stg environment automatically prefixes all dns records with `awsstg.`, so this should be omitted when adding records._
+_Note: The stg01 environment automatically prefixes all dns records with `stg01.`, so this should be omitted when adding records._
 
 ### Subdomain Delegation
 If you need to create a new subdomain delegation, you can pass in an array (tuple) for the `ns_delegation` variable to the `dns` module.
@@ -112,7 +112,7 @@ This allows a module to be tested/verified before it is merged and a new release
 ## Merging, Planning and Applying TF
 Every PR will run a `terraform plan` for all the workspaces. Please verify that the plan has only expected changes.
 
-When opening a PR, the default branch is `master`. PRs merged into master will auto-apply any changes in the `tst` and `stg` working directories (`tst-cloudflare` and `stg-cloudflare` workspaces, respectively), however changes in the `prd` workspace _must_ be applied manually in TF cloud.
+When opening a PR, the default branch is `master`. PRs merged into master will auto-apply any changes in the `tst` and `stg01` working directories (`tst-cloudflare` and `stg01-cloudflare` workspaces, respectively), however changes in the `prd` workspace _must_ be applied manually in TF cloud.
 
 ## Testing
-There are various test domains that can be added to CloudFlare (beyond stg/prd). When doing dev testing, check out a domain from this [sheet](https://docs.google.com/spreadsheets/d/1pObexRFohAkdnYCccnV92GUOOn8ubYQDK_NsnOTIaow/edit). You can experiment on the `dev-cloudflare` workspace in TF Cloud. You will need to override the `zone_name` and `cloudflare_api_token` variables with a CLI var (see the [terraform documentation](https://www.terraform.io/cloud-docs/workspaces/variables) for overriding vars).
+There are various test domains that can be added to CloudFlare (beyond stg01/prd). When doing dev testing, check out a domain from this [sheet](https://docs.google.com/spreadsheets/d/1pObexRFohAkdnYCccnV92GUOOn8ubYQDK_NsnOTIaow/edit). You can experiment on the `dev-cloudflare` workspace in TF Cloud. You will need to override the `zone_name` and `cloudflare_api_token` variables with a CLI var (see the [terraform documentation](https://www.terraform.io/cloud-docs/workspaces/variables) for overriding vars).
