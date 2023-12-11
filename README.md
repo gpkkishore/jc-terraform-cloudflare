@@ -17,17 +17,17 @@ of being used independently.
 The directory structure is designed to support multiple environments while maintaining an effective blast radius for testing and deployments.
 
 There are currently 3 environments:
-1) `production` - jumpcloud.com
-2) `stg` - awsstg.jumpcloud.com (note that awsstg has completely different DNS records than prod)
+1) `prd` - jumpcloud.com
+2) `stg01` - stg01.jumpcloud.com (note that stg01 has completely different DNS records than prod)
 3) `tst` - cloudjump.dev (identical to production, used to test changes)
 
 ```
 src
   ↳ utils  // Contains util scripts to assist development
-  ↳ docs  // Contains documentation about this project and CloudFlare
-  ↳ prd  // Working directory for the production CloudFlare site (jumpcloud.com)
-  ↳ tst  // Working directory for the test CloudFlare site (cloudjump.dev)
-  ↳ stg  // Working directory for the awsstg CloudFlare site (awsstg.jumpcloud.com)
+  ↳ docs   // Contains documentation about this project and CloudFlare
+  ↳ prd    // Working directory for the production CloudFlare site (jumpcloud.com)
+  ↳ tst    // Working directory for the test CloudFlare site (cloudjump.dev)
+  ↳ stg01  // Working directory for the stg01 CloudFlare site (awsstg.jumpcloud.com)
 ```
 
 Please see [Contributing](docs/contributing.md) for additional information along with info on how to add a DNS record.
