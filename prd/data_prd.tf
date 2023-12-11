@@ -16,15 +16,13 @@ data "terraform_remote_state" "haproxy_prd" {
 # prd_misc_records  - Misc records that don't fit into the other categories (i.e, TXT, SOA, SPF)
 locals {
   # This is a list of new zones to create in CF - this is only required for zones that should be managed by TF that don't have their
-  # own workspace in this repo (i.e, not jumpcloud.com, awsstg.jumpcloud.com, and cloudjump.dev)
+  # own workspace in this repo (i.e, not jumpcloud.com, stg01.jumpcloud.com, and cloudjump.dev)
   # NOTE: Every zone in this array gets assigned an enterprise license, don't use it for testing!
   cloudflare_zones = [
-    "id.awsstg.jumpcloud.com",
     "id.jumpcloud.com",
     "id.stg01.jumpcloud.com",
     "jumpcloudlounge.com",
     "zercurity.com",
-    "login.awsstg.jumpcloud.com"
   ]
 
   # The name used in the custom_certs object is only used for internal metadata
@@ -148,13 +146,6 @@ locals {
       ttl     = 1
       type    = "A"
       value   = "34.204.118.37"
-    },
-    {
-      name    = "awsstg-vpn"
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "34.214.221.231"
     },
     {
       name    = "devopsdays",
