@@ -27,7 +27,7 @@ src
   ↳ docs   // Contains documentation about this project and CloudFlare
   ↳ prd    // Working directory for the production CloudFlare site (jumpcloud.com)
   ↳ tst    // Working directory for the test CloudFlare site (cloudjump.dev)
-  ↳ stg01  // Working directory for the stg01 CloudFlare site (awsstg.jumpcloud.com)
+  ↳ stg01  // Working directory for the stg01 CloudFlare site (stg01.jumpcloud.com)
 ```
 
 Please see [Contributing](docs/contributing.md) for additional information along with info on how to add a DNS record.
