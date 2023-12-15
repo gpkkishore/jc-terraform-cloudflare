@@ -60,6 +60,11 @@ locals {
       ttl   = 300
       value = ["ns-558.awsdns-05.net", "ns-1818.awsdns-35.co.uk", "ns-1094.awsdns-08.org", "ns-211.awsdns-26.com"]
     },
+    {
+      name  = "control"
+      ttl   = 300
+      value = ["ns-385.awsdns-48.com", "ns-837.awsdns-40.net", "ns-1554.awsdns-02.co.uk", "ns-1395.awsdns-46.org"]
+    }
   ]
 }
 
