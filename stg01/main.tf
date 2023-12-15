@@ -131,7 +131,7 @@ locals {
     }
   ]
 
-  header_name_to_security_response_header = { for this in local.security_response_headers : this.name => this.value }
+  header_name_to_security_response_header_value = { for this in local.security_response_headers : this.name => this.value }
 }
 
 resource "cloudflare_ruleset" "security_response_headers" {
@@ -149,7 +149,7 @@ resource "cloudflare_ruleset" "security_response_headers" {
 
     action_parameters {
       dynamic "headers" {
-        for_each = local.header_name_to_security_response_header
+        for_each = local.header_name_to_security_response_header_value
 
         content {
           operation = "add"
