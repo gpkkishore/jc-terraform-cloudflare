@@ -142,7 +142,7 @@ resource "cloudflare_ruleset" "security_response_headers" {
   phase       = "http_response_headers_transform"
 
   rules {
-    description = "HTTP Response Header Security Modification Rules"
+    description = "HTTP Response Header Security Modification Rules for domains within the id.stg01.jumpcloud.com zone"
     expression  = "endswith(http.host, \".id.stg01.jumpcloud.com\")"
     enabled     = true
     action      = "rewrite"
