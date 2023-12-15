@@ -105,3 +105,58 @@ resource "cloudflare_ruleset" "disable_bic_go_jumpcloud_com" {
     enabled     = true
   }
 }
+
+data "cloudflare_zone" "id_stg01_jumpcloud_com" {
+  account_id = local.cloudflare_account
+  name       = "id.stg01.jumpcloud.com"
+}
+
+locals {
+  security_response_headers = [
+    {
+      name  = "X-Content-Type-Options"
+      value = "no-sniff"
+    },
+    {
+      name  = "X-Frame-Options"
+      value = "DENY"
+    },
+    {
+      name  = "Strict-Transport-Security"
+      value = "max-age=86400; includeSubdomains; preload"
+    },
+    {
+      name  = "Content-Security-Policy"
+      value = "default-src 'self'; img-src cdn03.jumpcloud.com; script-src cdn03.jumpcloud.com 'sha256-wTqndRW5YDR1N+bsSGclZKeAl9oJDAX5Wd1zkpZ3qyI='; style-src cdn03.jumpcloud.com 'sha256-NeDMjPoMnqu1i4sLqseIeRNH1FAdG4p//iQlF5uUQUQ='"
+    }
+  ]
+
+  header_name_to_security_response_header = { for this in local.security_response_headers : this.name => this.value }
+}
+
+resource "cloudflare_ruleset" "security_response_headers" {
+  zone_id     = data.cloudflare_zone.id_stg01_jumpcloud_com.id
+  name        = "Security Header Modifications"
+  description = "Security Header Modifications"
+  kind        = "zone"
+  phase       = "http_response_headers_transform"
+
+  rules {
+    description = "HTTP Response Header Security Modification Rules"
+    expression  = "endswith(http.host, \".id.stg01.jumpcloud.com\")"
+    enabled     = true
+    action      = "rewrite"
+
+    action_parameters {
+      dynamic "headers" {
+        for_each = local.header_name_to_security_response_header
+
+        content {
+          operation = "add"
+          name      = headers.key
+          value     = headers.value
+        }
+      }
+    }
+  }
+}
