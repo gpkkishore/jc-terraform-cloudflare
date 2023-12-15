@@ -136,8 +136,8 @@ locals {
 
 resource "cloudflare_ruleset" "security_response_headers" {
   zone_id     = data.cloudflare_zone.id_stg01_jumpcloud_com.id
-  name        = "Security Header Modifications"
-  description = "Security Header Modifications"
+  name        = "Security Response Header Modifications"
+  description = "Security Response Header Modifications"
   kind        = "zone"
   phase       = "http_response_headers_transform"
 
