@@ -7,6 +7,11 @@ provider "cloudflare" {
   api_token = var.cloudflare_api_token
 }
 
+provider "cloudflare" {
+  alias     = "id_stg01_jumpcloud_com_zone"
+  api_token = var.cloudflare_api_token_for_id_stg01_jumpcloud_com_zone
+}
+
 provider "aws" {
   region = "us-east-2"
 
@@ -107,6 +112,8 @@ resource "cloudflare_ruleset" "disable_bic_go_jumpcloud_com" {
 }
 
 data "cloudflare_zone" "id_stg01_jumpcloud_com" {
+  provider = cloudflare.id_stg01_jumpcloud_com_zone
+
   account_id = local.cloudflare_account
   name       = "id.stg01.jumpcloud.com"
 }
@@ -135,6 +142,8 @@ locals {
 }
 
 resource "cloudflare_ruleset" "security_response_headers" {
+  provider = cloudflare.id_stg01_jumpcloud_com_zone
+
   zone_id     = data.cloudflare_zone.id_stg01_jumpcloud_com.id
   name        = "Security Response Header Modifications"
   description = "Security Response Header Modifications"
