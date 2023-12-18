@@ -7,6 +7,11 @@ provider "cloudflare" {
   api_token = var.cloudflare_api_token
 }
 
+provider "cloudflare" {
+  alias     = "id_stg01_jumpcloud_com_zone"
+  api_token = var.cloudflare_api_token_for_id_stg01_jumpcloud_com_zone
+}
+
 provider "aws" {
   region = "us-east-2"
 
@@ -103,5 +108,64 @@ resource "cloudflare_ruleset" "disable_bic_go_jumpcloud_com" {
     expression  = "(http.host eq \"go.stg01.jumpcloud.com\" and http.user_agent contains \"go-http-client\") or (http.host eq \"go.stg01.jumpcloud.com\" and http.user_agent contains \"JumpCloudGo\")"
     description = "Disable BIC for go.stg01.jumpcloud.com with JumpCloudGo and go-http-client agent"
     enabled     = true
+  }
+}
+
+data "cloudflare_zone" "id_stg01_jumpcloud_com" {
+  provider = cloudflare.id_stg01_jumpcloud_com_zone
+
+  account_id = local.cloudflare_account
+  name       = "id.stg01.jumpcloud.com"
+}
+
+locals {
+  security_response_headers = [
+    {
+      name  = "X-Content-Type-Options"
+      value = "no-sniff"
+    },
+    {
+      name  = "X-Frame-Options"
+      value = "DENY"
+    },
+    {
+      name  = "Strict-Transport-Security"
+      value = "max-age=86400; includeSubdomains; preload"
+    },
+    {
+      name  = "Content-Security-Policy"
+      value = "default-src 'self'; img-src cdn03.jumpcloud.com; script-src cdn03.jumpcloud.com 'sha256-wTqndRW5YDR1N+bsSGclZKeAl9oJDAX5Wd1zkpZ3qyI='; style-src cdn03.jumpcloud.com 'sha256-NeDMjPoMnqu1i4sLqseIeRNH1FAdG4p//iQlF5uUQUQ='"
+    }
+  ]
+
+  header_name_to_security_response_header_value = { for this in local.security_response_headers : this.name => this.value }
+}
+
+resource "cloudflare_ruleset" "security_response_headers" {
+  provider = cloudflare.id_stg01_jumpcloud_com_zone
+
+  zone_id     = data.cloudflare_zone.id_stg01_jumpcloud_com.id
+  name        = "Security Response Header Modifications"
+  description = "Security Response Header Modifications"
+  kind        = "zone"
+  phase       = "http_response_headers_transform"
+
+  rules {
+    description = "HTTP Response Header Security Modification Rules for domains within the id.stg01.jumpcloud.com zone"
+    expression  = "endswith(http.host, \".id.stg01.jumpcloud.com\")"
+    enabled     = true
+    action      = "rewrite"
+
+    action_parameters {
+      dynamic "headers" {
+        for_each = local.header_name_to_security_response_header_value
+
+        content {
+          operation = "add"
+          name      = headers.key
+          value     = headers.value
+        }
+      }
+    }
   }
 }
