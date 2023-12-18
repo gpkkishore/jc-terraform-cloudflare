@@ -142,28 +142,3 @@ resource "cloudflare_record" "zercurity_records" {
   priority = each.value.type == "MX" ? each.value.priority : null
   zone_id  = cloudflare_zone.additional_zone["zercurity.com"].id
 }
-
-moved {
-  from = cloudflare_record.zercurity_records["MX_zercurity.com_ALT1.ASPMX.L.GOOGLE.COM"]
-  to   = cloudflare_record.zercurity_records["MX_zercurity.com_alt1.aspmx.l.google.com"]
-}
-
-moved {
-  from = cloudflare_record.zercurity_records["MX_zercurity.com_ALT2.ASPMX.L.GOOGLE.COM"]
-  to   = cloudflare_record.zercurity_records["MX_zercurity.com_alt2.aspmx.l.google.com"]
-}
-
-moved {
-  from = cloudflare_record.zercurity_records["MX_zercurity.com_ASPMX.L.GOOGLE.COM"]
-  to   = cloudflare_record.zercurity_records["MX_zercurity.com_aspmx.l.google.com"]
-}
-
-moved {
-  from = cloudflare_record.zercurity_records["MX_zercurity.com_ASPMX2.GOOGLEMAIL.COM"]
-  to   = cloudflare_record.zercurity_records["MX_zercurity.com_aspmx2.googlemail.com"]
-}
-
-moved {
-  from = cloudflare_record.zercurity_records["MX_zercurity.com_ASPMX3.GOOGLEMAIL.COM"]
-  to   = cloudflare_record.zercurity_records["MX_zercurity.com_aspmx3.googlemail.com"]
-}
