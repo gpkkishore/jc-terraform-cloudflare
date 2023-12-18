@@ -211,13 +211,6 @@ locals {
       value   = "104.196.2.104"
     },
     {
-      name    = "staging",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "54.225.98.126"
-    },
-    {
       name    = "test-vpn",
       proxied = false
       ttl     = 1
@@ -300,6 +293,21 @@ locals {
       ttl     = 1
       type    = "A"
       value   = "50.23.90.245"
+    },
+    // These dev/staging records are for pre-prod envs on the marketing website (hosted through lightsail)
+    {
+      name    = "staging",
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      value   = "100.21.168.142"
+    },
+    {
+      name    = "dev",
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      value   = "100.20.80.37"
     },
   ]
 
