@@ -144,7 +144,7 @@ resource "cloudflare_record" "zercurity_records" {
 }
 
 ################################################################################################
-# Identity Security Resonse Headers for proxied cloudfront domains for the id.jumpcloud.com zone
+# Identity Security Resonse Headers for proxied cloudflare domains for the id.jumpcloud.com zone
 ################################################################################################
 
 data "cloudflare_zone" "id_jumpcloud_com" {
