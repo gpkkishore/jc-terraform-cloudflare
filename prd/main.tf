@@ -142,3 +142,62 @@ resource "cloudflare_record" "zercurity_records" {
   priority = each.value.type == "MX" ? each.value.priority : null
   zone_id  = cloudflare_zone.additional_zone["zercurity.com"].id
 }
+
+
+################################################################################################
+# Identity Security Resonse Headers for proxied cloudfront domains for the id.jumpcloud.com zone
+################################################################################################
+
+data "cloudflare_zone" "id_jumpcloud_com" {
+  account_id = local.cloudflare_account
+  name       = "id.jumpcloud.com"
+}
+
+locals {
+  identity_security_response_headers = [
+    {
+      name  = "X-Content-Type-Options"
+      value = "no-sniff"
+    },
+    {
+      name  = "X-Frame-Options"
+      value = "DENY"
+    },
+    {
+      name  = "Strict-Transport-Security"
+      value = "max-age=86400; includeSubdomains; preload"
+    },
+    {
+      name  = "Content-Security-Policy"
+      value = "default-src 'self'; img-src cdn03.jumpcloud.com; script-src cdn03.jumpcloud.com 'sha256-wTqndRW5YDR1N+bsSGclZKeAl9oJDAX5Wd1zkpZ3qyI='; style-src cdn03.jumpcloud.com 'sha256-NeDMjPoMnqu1i4sLqseIeRNH1FAdG4p//iQlF5uUQUQ='"
+    }
+  ]
+
+  header_name_to_identity_security_response_header_value = { for this in local.identity_security_response_headers : this.name => this.value }
+}
+
+resource "cloudflare_ruleset" "security_response_headers" {
+  zone_id = data.cloudflare_zone.id_jumpcloud_com.id
+  name    = "Security Response Header Modifications"
+  kind    = "zone"
+  phase   = "http_response_headers_transform"
+
+  rules {
+    description = "HTTP Response Header Security Modification Rules for domains within the id.jumpcloud.com zone"
+    expression  = "(ends_with(http.host, \".id.jumpcloud.com\"))"
+    enabled     = true
+    action      = "rewrite"
+
+    action_parameters {
+      dynamic "headers" {
+        for_each = local.header_name_to_identity_security_response_header_value
+
+        content {
+          operation = "add"
+          name      = headers.key
+          value     = headers.value
+        }
+      }
+    }
+  }
+}
