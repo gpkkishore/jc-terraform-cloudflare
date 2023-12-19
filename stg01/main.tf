@@ -7,11 +7,6 @@ provider "cloudflare" {
   api_token = var.cloudflare_api_token
 }
 
-provider "cloudflare" {
-  alias     = "id_stg01_jumpcloud_com_zone"
-  api_token = var.cloudflare_api_token_for_id_stg01_jumpcloud_com_zone
-}
-
 provider "aws" {
   region = "us-east-2"
 
