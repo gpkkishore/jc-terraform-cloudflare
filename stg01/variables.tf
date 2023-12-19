@@ -2,11 +2,6 @@ variable "cloudflare_api_token" {
   description = "Cloudflare API token"
 }
 
-
-variable "cloudflare_api_token_for_id_stg01_jumpcloud_com_zone" {
-  description = "Cloudflare API token for id.stg01.jumpcloud.com zone"
-}
-
 variable "zone_name" {
   description = "Domain name"
 }
