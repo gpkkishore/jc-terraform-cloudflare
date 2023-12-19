@@ -148,7 +148,7 @@ resource "cloudflare_record" "zercurity_records" {
 ################################################################################################
 
 data "cloudflare_zone" "id_jumpcloud_com" {
-  account_id = local.cloudflare_account
+  account_id = local.account_id
   name       = "id.jumpcloud.com"
 }
 
