@@ -143,9 +143,9 @@ resource "cloudflare_record" "zercurity_records" {
   zone_id  = cloudflare_zone.additional_zone["zercurity.com"].id
 }
 
-################################################################################################
-# Identity Security Resonse Headers for proxied cloudflare domains for the id.jumpcloud.com zone
-################################################################################################
+#################################################################################################
+# Identity Security Response Headers for proxied cloudflare domains for the id.jumpcloud.com zone
+#################################################################################################
 
 data "cloudflare_zone" "id_jumpcloud_com" {
   account_id = local.account_id
