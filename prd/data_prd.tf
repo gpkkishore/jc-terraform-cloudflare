@@ -1080,6 +1080,20 @@ locals {
       value   = "logmein-verification-code=6a06269f-6f04-4654-8c79-efc3e1a49bae"
     },
     {
+      name    = "_a9f8329f3584aad9227bb86608621e5d.jumpcloud.com"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
+      value   = "_19abd859afb0c35551051b4d62e878e2.mhbtsbpdnt.acm-validations.aws"
+    },
+    {
+      name    = "_1224b1e8c85805b66cf6c7468ddfea44.www.jumpcloud.com"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
+      value   = "_68400cbb487e0775d04d40935052235f.mhbtsbpdnt.acm-validations.aws"
+    },
+    {
       name    = "200608._domainkey"
       proxied = false
       ttl     = 300
