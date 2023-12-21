@@ -64,6 +64,11 @@ locals {
       name  = "control"
       ttl   = 300
       value = ["ns-385.awsdns-48.com", "ns-837.awsdns-40.net", "ns-1554.awsdns-02.co.uk", "ns-1395.awsdns-46.org"]
+    },
+    {
+      name  = "marketing-internal"
+      ttl   = 300
+      value = ["ns-1122.awsdns-12.org", "ns-888.awsdns-47.net", "ns-1722.awsdns-23.co.uk", "ns-267.awsdns-33.com"]
     }
   ]
 }
