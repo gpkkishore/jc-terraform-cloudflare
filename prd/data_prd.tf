@@ -45,43 +45,15 @@ locals {
       name    = "@",
       proxied = true
       ttl     = 1,
-      type    = "A",
-      value   = "23.185.0.1",
+      type    = "CNAME",
+      value   = "d3d61011c209cf0c2b83e5959e49829c-330411615.us-east-1.elb.amazonaws.com",
     },
     {
       name    = "www",
       proxied = true
       ttl     = 1,
-      type    = "A",
-      value   = "23.185.0.1",
-    },
-    {
-      name    = "www",
-      proxied = true
-      ttl     = 1,
-      type    = "AAAA",
-      value   = "2620:12a:8001::1",
-    },
-    {
-      name    = "www",
-      proxied = true
-      ttl     = 1,
-      type    = "AAAA",
-      value   = "2620:12a:8000::1",
-    },
-    {
-      name    = "@",
-      proxied = true
-      ttl     = 1,
-      type    = "AAAA",
-      value   = "2620:12a:8001::1",
-    },
-    {
-      name    = "@",
-      proxied = true
-      ttl     = 1,
-      type    = "AAAA",
-      value   = "2620:12a:8000::1",
+      type    = "CNAME",
+      value   = "d3d61011c209cf0c2b83e5959e49829c-330411615.us-east-1.elb.amazonaws.com",
     },
     // END - Marketing website
     {
