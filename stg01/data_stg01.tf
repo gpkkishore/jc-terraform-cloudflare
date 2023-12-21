@@ -160,7 +160,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "jumpcloud-stg01-admin-portal-refactor.s3.us-east-2.amazonaws.com"
+      value   = "localdev.stg01.jumpcloud.com.s3.us-east-2.amazonaws.com"
     }
   ]
 
