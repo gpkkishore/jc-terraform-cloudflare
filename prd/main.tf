@@ -166,10 +166,10 @@ locals {
       name  = "Strict-Transport-Security"
       value = "max-age=86400; includeSubdomains; preload"
     },
-    {
-      name  = "Content-Security-Policy"
-      value = "default-src 'self'; img-src cdn03.jumpcloud.com; script-src cdn03.jumpcloud.com 'sha256-wTqndRW5YDR1N+bsSGclZKeAl9oJDAX5Wd1zkpZ3qyI='; style-src cdn03.jumpcloud.com 'sha256-NeDMjPoMnqu1i4sLqseIeRNH1FAdG4p//iQlF5uUQUQ='"
-    }
+#    {
+#      name  = "Content-Security-Policy"
+#      value = "default-src 'self'; img-src cdn03.jumpcloud.com; script-src cdn03.jumpcloud.com 'sha256-wTqndRW5YDR1N+bsSGclZKeAl9oJDAX5Wd1zkpZ3qyI='; style-src cdn03.jumpcloud.com 'sha256-NeDMjPoMnqu1i4sLqseIeRNH1FAdG4p//iQlF5uUQUQ='"
+#    }
   ]
 
   header_name_to_identity_security_response_header_value = { for this in local.identity_security_response_headers : this.name => this.value }
