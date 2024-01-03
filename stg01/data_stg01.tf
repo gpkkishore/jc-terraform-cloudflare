@@ -155,13 +155,6 @@ locals {
       type    = "CNAME"
       value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["agent"].lb_dns_name
     },
-    {
-      name    = "localdev"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "localdev.stg01.jumpcloud.com.s3.us-east-2.amazonaws.com"
-    }
   ]
 
   stg01_misc_records = []
