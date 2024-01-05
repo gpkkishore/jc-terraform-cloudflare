@@ -125,7 +125,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["microsoft-mdm"].lb_dns_name
+      value   = "microsoft-mdm.stg01-use2.jcplatform.dev"
     },
     {
       name    = "oauth"
