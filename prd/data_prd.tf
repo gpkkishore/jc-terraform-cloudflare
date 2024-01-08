@@ -727,13 +727,6 @@ locals {
       value   = "thejumpcloud.github.io"
     },
     {
-      name    = "email",
-      proxied = false
-      ttl     = 300
-      type    = "CNAME"
-      value   = "u817177.wl.sendgrid.net"
-    },
-    {
       name    = "hello",
       proxied = false
       ttl     = 1
