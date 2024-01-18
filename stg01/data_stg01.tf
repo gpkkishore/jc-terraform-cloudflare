@@ -112,6 +112,7 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["login-api"].lb_dns_name
+      value   = "login-api.stg01-use2.jcplatform.dev"
     },
     {
       name    = "microsoft-mdm"
