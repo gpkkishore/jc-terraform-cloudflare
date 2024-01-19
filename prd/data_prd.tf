@@ -197,62 +197,6 @@ locals {
       value   = "54.235.82.193"
     },
     {
-      name    = "ti",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "151.101.2.132"
-    },
-    {
-      name    = "ti",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "151.101.66.132"
-    },
-    {
-      name    = "ti",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "151.101.130.132"
-    },
-    {
-      name    = "ti",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "151.101.194.132"
-    },
-    {
-      name    = "titanium",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "151.101.2.132"
-    },
-    {
-      name    = "titanium",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "151.101.66.132"
-    },
-    {
-      name    = "titanium",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "151.101.130.132"
-    },
-    {
-      name    = "titanium",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "151.101.194.132"
-    },
-    {
       name    = "vpn",
       proxied = false
       ttl     = 1
