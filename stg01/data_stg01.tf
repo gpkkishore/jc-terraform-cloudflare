@@ -48,7 +48,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["adbridge-kickstart"].lb_dns_name
+      value   = "adbridge-kickstart.stg01-use2.jcplatform.dev"
     },
     {
       name    = "api"
@@ -147,7 +147,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["sso"].lb_dns_name
+      value   = "sso.stg01-use2.jcplatform.dev"
     },
     {
       name    = "agent"
