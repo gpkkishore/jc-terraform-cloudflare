@@ -129,6 +129,13 @@ locals {
       value   = "microsoft-mdm.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "nli"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "nli-haproxy.stg01-use2-p00.jcplatform.dev"
+    },
+    {
       name    = "oauth"
       proxied = true
       ttl     = 1
