@@ -372,14 +372,14 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "microsoft-mdm.prd-use1.jcplatform.dev"
+      value   = data.terraform_remote_state.haproxy_prd.outputs.microsoft_mdm_nlb.lb_dns_name
     },
     {
       name    = "*.microsoft-mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "microsoft-mdm.prd-use1.jcplatform.dev"
+      value   = data.terraform_remote_state.haproxy_prd.outputs.microsoft_mdm_nlb.lb_dns_name
     },
     {
       name    = "bss"
