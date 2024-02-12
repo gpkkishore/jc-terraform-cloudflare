@@ -213,13 +213,3 @@ resource "cloudflare_ruleset" "security_response_headers" {
     }
   }
 }
-
-import {
-  to = module.dns.cloudflare_record.dns_records["*.microsoft-mdm_prd-microsoft-mdm-haproxy-4a840c77868bab58.elb.us-east-1.amazonaws.com"]
-  id = "4024ea03ad001927b18034ed250fb1ec/8bdc6ecb89649ad9bf41cebd67c86e20"
-}
-
-import {
-  to = module.dns.cloudflare_record.dns_records["microsoft-mdm_prd-microsoft-mdm-haproxy-4a840c77868bab58.elb.us-east-1.amazonaws.com"]
-  id = "4024ea03ad001927b18034ed250fb1ec/97137126b8d38266947c3d74abb5446e"
-}
