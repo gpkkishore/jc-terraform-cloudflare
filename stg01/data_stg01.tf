@@ -55,7 +55,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["api"].lb_dns_name
+      value   = "api.stg01-use2.jcplatform.dev"
     },
     {
       name    = "apple.mdm"
@@ -69,7 +69,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["assist"].lb_dns_name
+      value   = "assist.stg01-use2.jcplatform.dev"
     },
     {
       name    = "bss"
