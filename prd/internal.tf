@@ -36,11 +36,6 @@ locals {
       value = ["ns-1529.awsdns-63.org", "ns-829.awsdns-39.net", "ns-98.awsdns-12.com", "ns-1903.awsdns-45.co.uk"]
     },
     {
-      name  = "stg01-use2-p01-c01"
-      ttl   = 300
-      value = ["ns-1072.awsdns-06.org", "ns-1541.awsdns-00.co.uk", "ns-112.awsdns-14.com", "ns-912.awsdns-50.net"]
-    },
-    {
       name  = "uw2-dev-p01"
       ttl   = 300
       value = ["ns-1676.awsdns-17.co.uk", "ns-194.awsdns-24.com", "ns-1195.awsdns-21.org", "ns-842.awsdns-41.net"]
@@ -49,6 +44,11 @@ locals {
       name  = "dev-usw2-p02"
       ttl   = 300
       value = ["ns-1918.awsdns-47.co.uk", "ns-299.awsdns-37.com", "ns-1532.awsdns-63.org", "ns-640.awsdns-16.net"]
+    },
+    {
+      name  = "dev-usw2-travis"
+      ttl   = 300
+      value = ["ns-1579.awsdns-05.co.uk", "ns-1205.awsdns-22.org", "ns-775.awsdns-32.net", "ns-154.awsdns-19.com"]
     },
     {
       name  = "uw2-dev-infr"
