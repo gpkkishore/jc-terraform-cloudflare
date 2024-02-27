@@ -437,7 +437,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.jumpdesk_nlb.lb_dns_name
+      value   = "jumpdesk.prd-use1.jcplatform.dev"
     },
     {
       name    = "login"
