@@ -445,6 +445,7 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = data.terraform_remote_state.haproxy_prd.outputs.login_api_nlb.lb_dns_name
+      value   = "login-api.prd-use1.jcplatform.dev"
     },
     {
       name    = "oauth"
