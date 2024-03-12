@@ -472,7 +472,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.sso_nlb.lb_dns_name
+      value   = "sso.prd-use1.jcplatform.dev"
     },
     {
       name    = "devvpn",
