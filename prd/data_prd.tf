@@ -344,7 +344,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.adbridge_kickstart-haproxy_nlb.lb_dns_name
+      value   = "adbridge-kickstart.prd-use1.jcplatform.dev"
     },
     {
       name    = "adbridge"
