@@ -225,6 +225,20 @@ locals {
       type    = "A"
       value   = "100.20.80.37"
     },
+    {
+      name    = "ti-1",
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      value   = "44.239.47.105"
+    },
+    {
+      name    = "ti-2",
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      value   = "52.13.15.220"
+    },
   ]
 
   prd_mx_records = [
