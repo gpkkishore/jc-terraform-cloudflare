@@ -156,6 +156,20 @@ resource "cloudflare_record" "zercurity_records" {
   zone_id  = cloudflare_zone.additional_zone["zercurity.com"].id
 }
 
+################################################
+# Temporary Zone configuration for jumpcloud.ai
+################################################
+resource "cloudflare_record" "jumpcloud_ai_records" {
+  for_each = { for record in local.jumpcloud_ai_tmp_records : "${record.type}_${record.name}_${record.value}" => record }
+  name     = each.value.name
+  value    = each.value.value
+  ttl      = each.value.ttl
+  type     = each.value.type
+  proxied  = each.value.proxied
+  priority = each.value.type == "MX" ? each.value.priority : null
+  zone_id  = cloudflare_zone.additional_zone["jumpcloud.ai"].id
+}
+
 #################################################################################################
 # Identity Security Response Headers for proxied cloudflare domains for the id.jumpcloud.com zone
 #################################################################################################

@@ -23,6 +23,7 @@ locals {
     "id.stg01.jumpcloud.com",
     "jumpcloudlounge.com",
     "zercurity.com",
+    "jumpcloud.ai",
   ]
 
   # The name used in the custom_certs object is only used for internal metadata
@@ -1626,6 +1627,117 @@ locals {
       ttl     = 1,
       type    = "CNAME",
       value   = "d2s0xzif3whxwe.cloudfront.net"
+    }
+  ]
+
+  jumpcloud_ai_tmp_records = [
+    {
+      name = "jumpcloud.ai."
+      proxied = true
+      ttl = 300
+      type = "A"
+      value = "44.216.106.214"
+    },
+    {
+      name     = "jumpcloud.ai."
+      proxied  = false
+      ttl      = 300
+      type     = "MX"
+      value    = "inbound-smtp.us-west-2.amazonaws.com."
+      priority = 10
+    },
+
+    {
+      name = "jumpcloud.ai."
+      proxied = false
+      ttl = 300
+      type = "TXT"
+      value = "\"v=spf1 include:amazonses.com ~all\""
+    },
+    {
+      name = "_6118e8f680ff20142507a919f01f02f2.jumpcloud.ai."
+      proxied = false
+      ttl = 300
+      type = "CNAME"
+      value = "_54c0ce4eff1b5c1d64535548f6532a91.nrbkhpnbdq.acm-validations.aws."
+    },
+    {
+      name = "_amazonses.jumpcloud.ai."
+      proxied = false
+      ttl = 300
+      type = "TXT"
+      value = "\"tZG3EExPo9JuOKS7z9FyzjOrdo09J4SiwP9GXiskwlU=\""
+    },
+    {
+      name = "_dmarc.jumpcloud.ai."
+      proxied = false
+      ttl = 300
+      type = "TXT"
+      value = "\"v=DMARC1;p=quarantine;pct=100;fo=1\""
+    },
+    # Domain Keys used for email 
+    {
+      name = "3p3wbyropt6azbu6ksmg4q5usw3mup2l._domainkey.jumpcloud.ai."
+      proxied = false
+      ttl = 300
+      type = "CNAME"
+      value = "3p3wbyropt6azbu6ksmg4q5usw3mup2l.dkim.amazonses.com."
+    },
+    {
+      name = "emznfl5kmth37sksl7q3sb72s25yemrp._domainkey.jumpcloud.ai."
+      proxied = false
+      ttl = 300
+      type = "CNAME"
+      value = "emznfl5kmth37sksl7q3sb72s25yemrp.dkim.amazonses.com."
+    },
+    {
+      name = "qwakdshufxtgact5zc6x3tviexz4gar4._domainkey.jumpcloud.ai."
+      proxied = false
+      ttl = 300
+      type = "CNAME"
+      value = "qwakdshufxtgact5zc6x3tviexz4gar4.dkim.amazonses.com."
+    },
+    {
+      name = "autodiscover.jumpcloud.ai."
+      proxied = false
+      ttl = 300
+      type = "CNAME"
+      value = "autodiscover.mail.us-west-2.awsapps.com."
+    },
+    {
+      name = "labs.jumpcloud.ai."
+      proxied = true
+      ttl = 300
+      type = "A"
+      value = "44.216.106.214"
+    },
+    {
+      name = "stg01.jumpcloud.ai."
+      proxied = true
+      ttl = 300
+      type = "CNAME"
+      value = "nli.stg01.jumpcloud.com"
+    },
+    {
+      name = "labs.stg01.jumpcloud.ai."
+      proxied = true
+      ttl = 300
+      type = "A"
+      value = "44.216.106.214"
+    },
+    {
+      name = "www.jumpcloud.ai."
+      proxied = true
+      ttl = 300
+      type = "CNAME"
+      value = "jumpcloud.ai"
+    },
+    {
+      name = "_3962e45834f0472e0e68df6299a3430d.www.jumpcloud.ai."
+      proxied = false
+      ttl = 300
+      type = "CNAME"
+      value = "_dba5a7fcc698fc0d1dbd24e71013ce00.nrbkhpnbdq.acm-validations.aws."
     }
   ]
 
