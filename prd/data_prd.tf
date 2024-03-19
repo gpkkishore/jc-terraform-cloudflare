@@ -1634,7 +1634,7 @@ locals {
     {
       name = "jumpcloud.ai."
       proxied = true
-      ttl = 300
+      ttl = 1
       type = "A"
       value = "44.216.106.214"
     },
@@ -1707,28 +1707,28 @@ locals {
     {
       name = "labs.jumpcloud.ai."
       proxied = true
-      ttl = 300
+      ttl = 1
       type = "A"
       value = "44.216.106.214"
     },
     {
       name = "stg01.jumpcloud.ai."
       proxied = true
-      ttl = 300
+      ttl = 1
       type = "CNAME"
       value = "nli.stg01.jumpcloud.com"
     },
     {
       name = "labs.stg01.jumpcloud.ai."
       proxied = true
-      ttl = 300
+      ttl = 1
       type = "A"
       value = "44.216.106.214"
     },
     {
       name = "www.jumpcloud.ai."
       proxied = true
-      ttl = 300
+      ttl = 1
       type = "CNAME"
       value = "jumpcloud.ai"
     },
