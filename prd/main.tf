@@ -170,6 +170,30 @@ resource "cloudflare_record" "jumpcloud_ai_records" {
   zone_id  = cloudflare_zone.additional_zone["jumpcloud.ai"].id
 }
 
+resource "cloudflare_filter" "block_labs_stg01_jumpcloud_ai" {
+  zone_id     = cloudflare_zone.additional_zone["jumpcloud.ai"].id
+  description = "Filter IP access for labs.stg01.jumpcloud.ai"
+  expression  = "(not ip.src in {3.23.121.107/32 3.23.44.17/32} and http.host eq \"labs.stg01.jumpcloud.ai\")"
+}
+resource "cloudflare_firewall_rule" "block_labs_stg01_jumpcloud_ai" {
+  zone_id     = cloudflare_zone.additional_zone["jumpcloud.ai"].id
+  filter_id   = cloudflare_filter.block_labs_stg01_jumpcloud_ai.id
+  description = "Block labs.stg01.jumpcloud.ai requests from non-internal IPs"
+  action      = "block"
+}
+
+resource "cloudflare_filter" "block_jumpcloud_ai" {
+  zone_id     = cloudflare_zone.additional_zone["jumpcloud.ai"].id
+  description = "Filter lab.jumpcloud.ai"
+  expression  = "(http.host eq \"labs.jumpcloud.ai\")"
+}
+resource "cloudflare_firewall_rule" "block_jumpcloud_ai" {
+  zone_id     = cloudflare_zone.additional_zone["jumpcloud.ai"].id
+  filter_id   = cloudflare_filter.block_jumpcloud_ai.id
+  description = "Block labs.jumpcloud.ai requests"
+  action      = "block"
+}
+
 #################################################################################################
 # Identity Security Response Headers for proxied cloudflare domains for the id.jumpcloud.com zone
 #################################################################################################

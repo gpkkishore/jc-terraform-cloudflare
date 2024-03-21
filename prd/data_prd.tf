@@ -1635,8 +1635,8 @@ locals {
       name = "jumpcloud.ai."
       proxied = true
       ttl = 1
-      type = "A"
-      value = "44.216.106.214"
+      type = "CNAME"
+      value = "nli-haproxy.ue1-prd-p01.jcplatform.dev"
     },
     {
       name     = "jumpcloud.ai."

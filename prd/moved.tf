@@ -1,4 +1,4 @@
 moved {
-  from = module.dns.cloudflare_record.dns_records["console_prd-console-haproxy-7e5666187f103747.elb.us-east-1.amazonaws.com"]
-  to   = module.dns.cloudflare_record.dns_records["console_console.prd-use1.jcplatform.dev"]
+  from = cloudflare_record.jumpcloud_ai_records["A_jumpcloud.ai._44.216.106.214"]
+  to   = cloudflare_record.jumpcloud_ai_records["CNAME_jumpcloud.ai._nli-haproxy.ue1-prd-p01.jcplatform.dev"]
 }
