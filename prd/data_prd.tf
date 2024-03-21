@@ -462,6 +462,13 @@ locals {
       value   = "login-api.prd-use1.jcplatform.dev"
     },
     {
+      name = "nli"
+      proxied = true
+      ttl = 1
+      type = "CNAME"
+      value = "nli-haproxy.ue1-prd-p01.jcplatform.dev"
+    },
+    {
       name    = "oauth"
       proxied = true
       ttl     = 1
