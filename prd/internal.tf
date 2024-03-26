@@ -46,6 +46,11 @@ locals {
       value = ["ns-1918.awsdns-47.co.uk", "ns-299.awsdns-37.com", "ns-1532.awsdns-63.org", "ns-640.awsdns-16.net"]
     },
     {
+      name  = "dev-usw2-p03"
+      ttl   = 300
+      value = ["ns-2046.awsdns-63.co.uk", "ns-370.awsdns-46.com", "ns-1096.awsdns-09.org", "ns-625.awsdns-14.net"]
+    },
+    {
       name  = "dev-usw2-travis"
       ttl   = 300
       value = ["ns-1579.awsdns-05.co.uk", "ns-1205.awsdns-22.org", "ns-775.awsdns-32.net", "ns-154.awsdns-19.com"]
