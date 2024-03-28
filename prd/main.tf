@@ -172,7 +172,7 @@ resource "cloudflare_record" "jumpcloud_ai_records" {
 
 resource "cloudflare_filter" "block_labs_stg01_jumpcloud_ai" {
   zone_id     = cloudflare_zone.additional_zone["jumpcloud.ai"].id
-  description = "Filter IP access for labs.stg01.jumpcloud.ai"
+  description = "Filter IP access for labs.stg01.jumpcloud.ai. Staging Egress IPs"
   expression  = "(not ip.src in {3.23.121.107/32 3.23.44.17/32} and http.host eq \"labs.stg01.jumpcloud.ai\")"
 }
 resource "cloudflare_firewall_rule" "block_labs_stg01_jumpcloud_ai" {
@@ -184,13 +184,13 @@ resource "cloudflare_firewall_rule" "block_labs_stg01_jumpcloud_ai" {
 
 resource "cloudflare_filter" "block_jumpcloud_ai" {
   zone_id     = cloudflare_zone.additional_zone["jumpcloud.ai"].id
-  description = "Filter lab.jumpcloud.ai"
-  expression  = "(http.host eq \"labs.jumpcloud.ai\")"
+  description = "Filter IP access for lab.jumpcloud.ai. Prod Egress IPs"
+  expression  = "(ip.src in {34.195.141.99/32 3.226.52.173/32 44.194.86.168/32} and http.host eq \"labs.jumpcloud.ai\")"
 }
 resource "cloudflare_firewall_rule" "block_jumpcloud_ai" {
   zone_id     = cloudflare_zone.additional_zone["jumpcloud.ai"].id
   filter_id   = cloudflare_filter.block_jumpcloud_ai.id
-  description = "Block labs.jumpcloud.ai requests"
+  description = "Block labs.jumpcloud.ai requests requests from non-internal IPs"
   action      = "block"
 }
 
