@@ -185,7 +185,7 @@ resource "cloudflare_firewall_rule" "block_labs_stg01_jumpcloud_ai" {
 resource "cloudflare_filter" "block_jumpcloud_ai" {
   zone_id     = cloudflare_zone.additional_zone["jumpcloud.ai"].id
   description = "Filter IP access for lab.jumpcloud.ai. Prod Egress IPs"
-  expression  = "(ip.src in {34.195.141.99/32 3.226.52.173/32 44.194.86.168/32} and http.host eq \"labs.jumpcloud.ai\")"
+  expression  = "(not ip.src in {34.195.141.99/32 3.226.52.173/32 44.194.86.168/32} and http.host eq \"labs.jumpcloud.ai\")"
 }
 resource "cloudflare_firewall_rule" "block_jumpcloud_ai" {
   zone_id     = cloudflare_zone.additional_zone["jumpcloud.ai"].id
