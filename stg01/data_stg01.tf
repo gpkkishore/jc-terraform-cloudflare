@@ -161,7 +161,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["agent"].lb_dns_name
+      value   = "agent.stg01-use2.jcplatform.dev"
     },
   ]
 
