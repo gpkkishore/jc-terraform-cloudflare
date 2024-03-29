@@ -55,12 +55,12 @@ module "settings" {
 # Page Rule for removed microsoft-mdm-configuration-files endpoint in console
 resource "cloudflare_page_rule" "console_v2_microsoft_mdm_configuration_files" {
   priority = 2
-  target = "*console.jumpcloud.com/api/v2/microsoft-mdm-configuration-files"
-  zone_id = cloudflare_zone.cloudflare_zone_resource.id
+  target   = "*console.jumpcloud.com/api/v2/microsoft-mdm-configuration-files"
+  zone_id  = cloudflare_zone.cloudflare_zone_resource.id
   actions {
     forwarding_url {
       status_code = 301
-      url = "/"
+      url         = "/"
     }
   }
 }
