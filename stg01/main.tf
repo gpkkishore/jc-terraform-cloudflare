@@ -42,8 +42,11 @@ module "dns" {
 }
 
 module "security" {
-  source  = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=fix-stg01-ruleset"
-  zone_id = cloudflare_zone.cloudflare_zone_resource.id
+  source = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=TE-638"
+
+  zone_id                    = cloudflare_zone.cloudflare_zone_resource.id
+  additional_ratelimit_rules = local.add_ratelimit_rules
+  additional_waf_rules       = local.add_waf_rules
 }
 
 module "settings" {
