@@ -27,6 +27,12 @@ locals {
       description = "Tritium/Aluminium Internal Devices IP Skip"
       expression  = "(ip.src in {70.57.27.50 66.222.117.111 66.186.219.238 66.186.212.168 75.166.167.57 97.81.234.223})"
     },
+    // skip action for allowing aws vpcs for stg01.jumpcloud.com
+    {
+      action      = "skip"
+      description = "Allow AWS VPCs"
+      expression  = "(http.host eq {\"jumpdesk.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\" and ip.src in {18.218.84.91 18.223.127.56 3.12.61.92 3.132.240.8 3.23.121.107 3.23.44.17})"
+    },
     {
       action      = "block"
       description = "Allow Zscaler Only"
