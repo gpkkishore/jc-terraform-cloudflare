@@ -37,9 +37,6 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-# Exclude terraform lock files
-.terraform.lock.hcl
-
 # Exclude terraform state files
 *.tfstate
 *.tfstate.backup
