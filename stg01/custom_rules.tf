@@ -31,7 +31,7 @@ locals {
     {
       action      = "skip"
       description = "Allow AWS VPCs"
-      expression  = "(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and not http.user_agent contains \"Protect Staging/\" and not ip.src in {18.218.84.91 18.223.127.56 3.12.61.92 3.132.240.8 3.23.121.107 3.23.44.17} and http.request.uri.path ne \"/google-emm/notifications\")"
+      expression  = "(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and not http.user_agent contains \"Protect Staging/\" and ip.src in {18.218.84.91 18.223.127.56 3.12.61.92 3.132.240.8 3.23.121.107 3.23.44.17} and http.request.uri.path ne \"/google-emm/notifications\")"
     },
     {
       action      = "block"
