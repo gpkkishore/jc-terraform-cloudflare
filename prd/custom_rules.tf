@@ -64,6 +64,11 @@ locals {
         description = "Block console.jumpcloud.com/register"
         expression  = "(http.request.uri.path eq \"/register\" and http.host eq \"console.jumpcloud.com\" and not ip.src in {173.30.3.70 64.139.101.49})"
       },
+      {
+        action      = "skip"
+        description = "Disable BIC for metadata endpoint"
+        expression  = "(http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Jakarta Commons-HttpClient/3.1\") or (http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Java/1.8.0_322\")"
+      },
     ]
     "jumpcloud.ai" = [
       {
