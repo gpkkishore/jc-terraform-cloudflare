@@ -18,7 +18,7 @@ module "dns" {
 
 module "security" {
   source  = "app.terraform.io/jumpcloud/security/cloudflare"
-  version = "3.0.0"
+  version = "3.0.1"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
 
@@ -26,4 +26,9 @@ module "settings" {
   source  = "app.terraform.io/jumpcloud/zone-settings/cloudflare"
   version = "2.0.0"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
+}
+
+import {
+  id = "zone/0333d0c0d39e92ca6aa9550c360bbfef/49912feee4c4470b974d576d5e3255ef"
+  to = module.security.cloudflare_ruleset.rate_limit_http
 }
