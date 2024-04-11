@@ -41,7 +41,7 @@ module "dns" {
 module "security" {
   for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
   source   = "app.terraform.io/jumpcloud/security/cloudflare"
-  version  = "3.0.0"
+  version  = "3.0.1"
 
   zone_id                    = each.key
   additional_ratelimit_rules = lookup(local.add_ratelimit_rules, each.value.name, [])
@@ -229,110 +229,4 @@ resource "cloudflare_ruleset" "security_response_headers" {
       }
     }
   }
-}
-
-# jumpcloud.com
-import {
-  id = "zone/4024ea03ad001927b18034ed250fb1ec/1335598ed0604553909a9e06368aed08"
-  to = cloudflare_ruleset.disable_bic_metadata
-}
-
-import {
-  id = "zone/4024ea03ad001927b18034ed250fb1ec/fd1b09a696ec4431b35666316087c236"
-  to = module.security["4024ea03ad001927b18034ed250fb1ec"].cloudflare_ruleset.custom_waf
-}
-
-import {
-  id = "zone/4024ea03ad001927b18034ed250fb1ec/e1c8f6047edb468d85242a34cfff12cc"
-  to = module.security["4024ea03ad001927b18034ed250fb1ec"].cloudflare_ruleset.rate_limit_http
-}
-
-import {
-  id = "zone/4024ea03ad001927b18034ed250fb1ec/39cec312e78e48ecb5483726aa99d148"
-  to = module.security["4024ea03ad001927b18034ed250fb1ec"].cloudflare_ruleset.zone_level_managed_waf
-}
-
-# zercurity.com
-import {
-  id = "zone/0b0c2ba0e79835513000f86deb23b45d/9f7efcdf40b2450c962231fa790a300d"
-  to = module.security["0b0c2ba0e79835513000f86deb23b45d"].cloudflare_ruleset.custom_waf
-}
-
-import {
-  id = "zone/0b0c2ba0e79835513000f86deb23b45d/0aa05cb0056b42babd8159e5227e99d8"
-  to = module.security["0b0c2ba0e79835513000f86deb23b45d"].cloudflare_ruleset.rate_limit_http
-}
-
-import {
-  id = "zone/0b0c2ba0e79835513000f86deb23b45d/59644c84850c471e8d08c6459af29a41"
-  to = module.security["0b0c2ba0e79835513000f86deb23b45d"].cloudflare_ruleset.zone_level_managed_waf
-}
-
-# id.jumpcloud.com
-import {
-  id = "zone/0c4e52db7ee73e0764e3f172f3db47aa/b6f89637db594942a20911271e4fc15d"
-  to = cloudflare_ruleset.security_response_headers
-}
-
-import {
-  id = "zone/0c4e52db7ee73e0764e3f172f3db47aa/e87bb0f798a241539a172110e5de7704"
-  to = module.security["0c4e52db7ee73e0764e3f172f3db47aa"].cloudflare_ruleset.custom_waf
-}
-
-import {
-  id = "zone/0c4e52db7ee73e0764e3f172f3db47aa/f8bd9f2f602147eea4a8f2fa22820263"
-  to = module.security["0c4e52db7ee73e0764e3f172f3db47aa"].cloudflare_ruleset.rate_limit_http
-}
-
-import {
-  id = "zone/0c4e52db7ee73e0764e3f172f3db47aa/37e301fc49944038bf6fe41e4923d309"
-  to = module.security["0c4e52db7ee73e0764e3f172f3db47aa"].cloudflare_ruleset.zone_level_managed_waf
-}
-
-# id.stg01.jumpcloud.com
-import {
-  id = "zone/12c2aa5080ada35d58bf854f01b4c213/b8cd77241a5647ac8f190bc7dfa33cf7"
-  to = module.security["12c2aa5080ada35d58bf854f01b4c213"].cloudflare_ruleset.custom_waf
-}
-
-import {
-  id = "zone/12c2aa5080ada35d58bf854f01b4c213/1af0d652bb104b1d9ec6f9a705160caf"
-  to = module.security["12c2aa5080ada35d58bf854f01b4c213"].cloudflare_ruleset.rate_limit_http
-}
-
-import {
-  id = "zone/12c2aa5080ada35d58bf854f01b4c213/1934b5d184af4b568da3386d1486a9f6"
-  to = module.security["12c2aa5080ada35d58bf854f01b4c213"].cloudflare_ruleset.zone_level_managed_waf
-}
-
-# jumpcloud.ai
-import {
-  id = "zone/4bb7ca61e6d8f92fe06c04f018d6731d/0975cb92397f41869af289d537d6b325"
-  to = module.security["4bb7ca61e6d8f92fe06c04f018d6731d"].cloudflare_ruleset.custom_waf
-}
-
-import {
-  id = "zone/4bb7ca61e6d8f92fe06c04f018d6731d/92a7184e56f74f64885e4eccdfa6e8a9"
-  to = module.security["4bb7ca61e6d8f92fe06c04f018d6731d"].cloudflare_ruleset.rate_limit_http
-}
-
-import {
-  id = "zone/4bb7ca61e6d8f92fe06c04f018d6731d/287c2cd2bcbe4dcdb8973e710806ebdf"
-  to = module.security["4bb7ca61e6d8f92fe06c04f018d6731d"].cloudflare_ruleset.zone_level_managed_waf
-}
-
-# jumpcloudlounge.com
-import {
-  id = "zone/6b2b1191eb33c741203ea7ecb9d3409e/fb70e4ba025940b9b23433ecad0b1ec2"
-  to = module.security["6b2b1191eb33c741203ea7ecb9d3409e"].cloudflare_ruleset.custom_waf
-}
-
-import {
-  id = "zone/6b2b1191eb33c741203ea7ecb9d3409e/8ab0a6f6c85246609200583f8cc5ee94"
-  to = module.security["6b2b1191eb33c741203ea7ecb9d3409e"].cloudflare_ruleset.rate_limit_http
-}
-
-import {
-  id = "zone/6b2b1191eb33c741203ea7ecb9d3409e/bc00e51eae074a129f3ab8953b8bf691"
-  to = module.security["6b2b1191eb33c741203ea7ecb9d3409e"].cloudflare_ruleset.zone_level_managed_waf
 }
