@@ -1183,7 +1183,7 @@ locals {
   zercurity_tmp_records = [
     {
       name    = "zercurity.com",
-      proxied = false,
+      proxied = true,
       ttl     = 1,
       type    = "CNAME",
       value   = "d6512e5frv0jf.cloudfront.net"
@@ -1236,20 +1236,6 @@ locals {
       value   = "v=spf1 include:_spf.google.com include:amazonses.com ~all"
     },
     {
-      name    = "3h3soob5dcpv.zercurity.com",
-      proxied = false,
-      ttl     = 1,
-      type    = "CNAME",
-      value   = "gv-xhkn6hzuogrb4z.dv.googlehosted.com"
-    },
-    {
-      name    = "7nemo7skq76u.zercurity.com",
-      proxied = false,
-      ttl     = 1,
-      type    = "CNAME",
-      value   = "gv-ycohatinxsnuir.dv.googlehosted.com"
-    },
-    {
       name    = "_amazonses.zercurity.com",
       proxied = false,
       ttl     = 1,
@@ -1300,7 +1286,7 @@ locals {
     },
     {
       name    = "app.zercurity.com",
-      proxied = false,
+      proxied = true,
       ttl     = 1,
       type    = "CNAME",
       value   = "dcnxy99tjmi0x.cloudfront.net"
@@ -1321,13 +1307,6 @@ locals {
     },
     {
       name    = "data.zercurity.com",
-      proxied = false,
-      ttl     = 600,
-      type    = "A",
-      value   = "0.0.0.0"
-    },
-    {
-      name    = "api.dev.zercurity.com",
       proxied = false,
       ttl     = 600,
       type    = "A",
@@ -1362,34 +1341,6 @@ locals {
       value   = "MylgyF1WZxtqhEhyksv1cCMhEmY595TqWcKgfCbBBOM="
     },
     {
-      name    = "7gieaujyeeacv3fzcrhkr3rkgbpmusok._domainkey.local.zercurity.com",
-      proxied = false,
-      ttl     = 1,
-      type    = "CNAME",
-      value   = "7gieaujyeeacv3fzcrhkr3rkgbpmusok.dkim.amazonses.com"
-    },
-    {
-      name    = "h7wn5ux2fqe6x4zuklqz43odrmql5cjs._domainkey.local.zercurity.com",
-      proxied = false,
-      ttl     = 1,
-      type    = "CNAME",
-      value   = "h7wn5ux2fqe6x4zuklqz43odrmql5cjs.dkim.amazonses.com"
-    },
-    {
-      name    = "mhjazwbfwcee6pk4ez2ayo6qfddox2qd._domainkey.local.zercurity.com",
-      proxied = false,
-      ttl     = 1,
-      type    = "CNAME",
-      value   = "mhjazwbfwcee6pk4ez2ayo6qfddox2qd.dkim.amazonses.com"
-    },
-    {
-      name    = "_f2d6a8a5dc7e14f1251f1b324313159f.api.nightly.zercurity.com",
-      proxied = false,
-      ttl     = 1,
-      type    = "CNAME",
-      value   = "_a966113f0b750d8985a5605cdeb71865.duyqrilejt.acm-validations.aws"
-    },
-    {
       name    = "repo.zercurity.com",
       proxied = false,
       ttl     = 600,
@@ -1404,44 +1355,8 @@ locals {
       value   = "0.0.0.0"
     },
     {
-      name     = "workflows.zercurity.com",
-      proxied  = false,
-      priority = 10,
-      ttl      = 1,
-      type     = "MX",
-      value    = "inbound-smtp.eu-west-1.amazonaws.com"
-    },
-    {
-      name    = "_amazonses.workflows.zercurity.com",
-      proxied = false,
-      ttl     = 1,
-      type    = "TXT",
-      value   = "vKZqDBXnfCxp9AY/gIxzo2WC8+Cn0qHQWcu/3EGLT7k="
-    },
-    {
-      name    = "7flff6wffkonj7drn7u7rqypp4dsvmkn._domainkey.workflows.zercurity.com",
-      proxied = false,
-      ttl     = 1,
-      type    = "CNAME",
-      value   = "7flff6wffkonj7drn7u7rqypp4dsvmkn.dkim.amazonses.com"
-    },
-    {
-      name    = "g4l5u4m647hfrnpabyhopdluey4tulcd._domainkey.workflows.zercurity.com",
-      proxied = false,
-      ttl     = 1,
-      type    = "CNAME",
-      value   = "g4l5u4m647hfrnpabyhopdluey4tulcd.dkim.amazonses.com"
-    },
-    {
-      name    = "u2jcxqn3vz3yws3cwccaajfvk267yquo._domainkey.workflows.zercurity.com",
-      proxied = false,
-      ttl     = 1,
-      type    = "CNAME",
-      value   = "u2jcxqn3vz3yws3cwccaajfvk267yquo.dkim.amazonses.com"
-    },
-    {
       name    = "www.zercurity.com",
-      proxied = false,
+      proxied = true,
       ttl     = 1,
       type    = "CNAME",
       value   = "d2s0xzif3whxwe.cloudfront.net"
