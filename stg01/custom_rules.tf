@@ -34,9 +34,35 @@ locals {
       expression  = "(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and not http.user_agent contains \"Protect Staging/\" and ip.src in {18.218.84.91 18.223.127.56 3.12.61.92 3.132.240.8 3.23.121.107 3.23.44.17} and http.request.uri.path ne \"/google-emm/notifications\")"
     },
     {
+      action      = "skip"
+      description = "Allow Authorized IP's"
+      expression  = format("(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and ip.src in {%s})", join(" ", [for ip in local.stg01_ip_access : ip.ip_address if timecmp(ip.expiration, timestamp()) == 1]))
+    },
+    {
       action      = "block"
       description = "Allow Zscaler Only"
       expression  = "(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")"
+    }
+  ]
+
+  /**
+   * Local variable for objects to be used to define stg01 ip requested access
+   */
+  stg01_ip_access = [
+    {
+      ip_address = "2601:280:c77f:95b0:6581:f3f7:d92b:b1b7"
+      ticket = "TE-770"
+      expiration = "2024-04-18T00:00:00Z"
     },
+    {
+      ip_address = "73.203.83.195"
+      ticket = "TE-770"
+      expiration = "2024-04-18T00:00:00Z"
+    },
+    {
+      ip_address = "1.2.3.4"
+      ticket = "TE-770 Dummy test"
+      expiration = "2024-04-10T00:00:00Z"
+    }
   ]
 }
