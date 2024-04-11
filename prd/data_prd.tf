@@ -1307,14 +1307,14 @@ locals {
     },
     {
       name    = "data.zercurity.com",
-      proxied = false,
+      proxied = true,
       ttl     = 600,
       type    = "A",
       value   = "0.0.0.0"
     },
     {
       name    = "docs.zercurity.com",
-      proxied = false,
+      proxied = true,
       ttl     = 1,
       type    = "CNAME",
       value   = "dpdk4xh1u6rui.cloudfront.net"
@@ -1332,13 +1332,6 @@ locals {
       ttl     = 600,
       type    = "A",
       value   = "0.0.0.0"
-    },
-    {
-      name    = "_amazonses.local.zercurity.com",
-      proxied = false,
-      ttl     = 1,
-      type    = "TXT",
-      value   = "MylgyF1WZxtqhEhyksv1cCMhEmY595TqWcKgfCbBBOM="
     },
     {
       name    = "repo.zercurity.com",
