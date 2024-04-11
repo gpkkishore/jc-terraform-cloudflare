@@ -60,11 +60,6 @@ locals {
         expression  = "(http.host in {\"jumpdesk.jumpcloud.com\" \"dev.jumpcloud.com\"} and not ip.src in {54.187.222.118 54.218.209.46 35.165.242.218 54.86.134.208 54.86.96.53 54.86.131.111 52.70.132.28 52.43.62.126 54.245.68.23 35.161.74.70 52.73.14.42 3.219.213.81 44.216.132.195})"
       },
       {
-        action      = "block"
-        description = "Block console.jumpcloud.com/register"
-        expression  = "(http.request.uri.path eq \"/register\" and http.host eq \"console.jumpcloud.com\" and not ip.src in {173.30.3.70 64.139.101.49})"
-      },
-      {
         action      = "skip"
         description = "Disable BIC for metadata endpoint"
         expression  = "(http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Jakarta Commons-HttpClient/3.1\") or (http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Java/1.8.0_322\")"
