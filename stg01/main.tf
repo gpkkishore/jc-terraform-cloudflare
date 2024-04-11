@@ -34,7 +34,7 @@ resource "cloudflare_zone" "cloudflare_zone_resource" {
 
 module "dns" {
   source        = "app.terraform.io/jumpcloud/dns/cloudflare"
-  version       = "2.0.0"
+  version       = "2.0.1"
   zone_id       = cloudflare_zone.cloudflare_zone_resource.id
   zone_name     = var.zone_name
   dns_records   = local.stg01_dns_records
@@ -52,7 +52,7 @@ module "security" {
 
 module "settings" {
   source  = "app.terraform.io/jumpcloud/zone-settings/cloudflare"
-  version = "2.0.0"
+  version = "2.0.1"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
 

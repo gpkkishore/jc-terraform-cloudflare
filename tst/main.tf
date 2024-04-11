@@ -9,7 +9,7 @@ resource "cloudflare_zone" "cloudflare_zone_resource" {
 
 module "dns" {
   source        = "app.terraform.io/jumpcloud/dns/cloudflare"
-  version       = "2.0.0"
+  version       = "2.0.1"
   zone_id       = cloudflare_zone.cloudflare_zone_resource.id
   zone_name     = var.zone_name
   dns_records   = local.tst_dns_records
@@ -24,11 +24,6 @@ module "security" {
 
 module "settings" {
   source  = "app.terraform.io/jumpcloud/zone-settings/cloudflare"
-  version = "2.0.0"
+  version = "2.0.1"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
-}
-
-import {
-  id = "zone/0333d0c0d39e92ca6aa9550c360bbfef/49912feee4c4470b974d576d5e3255ef"
-  to = module.security.cloudflare_ruleset.rate_limit_http
 }
