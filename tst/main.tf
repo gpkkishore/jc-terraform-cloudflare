@@ -27,8 +27,3 @@ module "settings" {
   version = "2.0.0"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
-
-import {
-  id = "zone/0333d0c0d39e92ca6aa9550c360bbfef/49912feee4c4470b974d576d5e3255ef"
-  to = module.security.cloudflare_ruleset.rate_limit_http
-}
