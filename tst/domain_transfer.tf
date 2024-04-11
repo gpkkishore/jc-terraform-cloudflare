@@ -338,7 +338,7 @@ resource "cloudflare_record" "ds_agent_devopsconsortium_org" {
 
 module "domain_transfer_devopconsortium_dns" {
   source  = "app.terraform.io/jumpcloud/dns/cloudflare"
-  version = "1.0.0"
+  version = "2.0.0"
 
   zone_id     = cloudflare_zone.devopsconsortium.id
   zone_name   = local.domain_transfer_cloudflare_zone
@@ -360,5 +360,4 @@ module "domain_transfer_devopconsortium_dns" {
       value = cloudflare_zone.agent_devopsconsortium_org.name_servers
     }
   ]
-  enable_noncore = false
 }
