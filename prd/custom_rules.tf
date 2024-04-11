@@ -70,6 +70,13 @@ locals {
         expression  = "(http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Jakarta Commons-HttpClient/3.1\") or (http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Java/1.8.0_322\")"
       },
     ]
+    "id.stg01.jumpcloud.com" = [
+      {
+        action      = "block"
+        description = "Allow ZScaler only"
+        expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204/32 3.134.71.189/32 3.130.21.136/32 3.23.44.17/32 3.23.121.107/32})"
+      },
+    ]
     "jumpcloud.ai" = [
       {
         action      = "block"
