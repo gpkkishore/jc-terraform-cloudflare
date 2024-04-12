@@ -48,33 +48,39 @@ locals {
       action      = "block"
       description = "Allow Zscaler Only"
       expression  = "(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")"
+    },
+    // Allow Azure Active Directory
+    {
+      action      = "skip"
+      description = "Allow AzureActiveDirectory"
+      expression  = format("((http.host eq \"api.stg01.jumpcloud.com\" and http.request.uri.path contains \"/scim/v2\" and ip.src in {%s})", join(" ", [for ip in local.azure_ad_ips : ip]))
     }
   ]
 
   stg01_ip_access = [
     {
       ip_address = "2601:280:c77f:95b0:6581:f3f7:d92b:b1b7"
-      ticket = "TE-770"
+      ticket     = "TE-770"
       expiration = "2024-04-18T00:00:00Z"
     },
     {
       ip_address = "73.203.83.195"
-      ticket = "TE-770"
+      ticket     = "TE-770"
       expiration = "2024-04-18T00:00:00Z"
     },
     {
       ip_address = "2601:280:c77f:95b0:d86d:6fae:cd00:336b"
-      ticket = "TE-770"
+      ticket     = "TE-770"
       expiration = "2024-04-18T00:00:00Z"
     },
     {
       ip_address = "2603:8080:2200:5ba:fc11:e1ef:dd60:c0d6"
-      ticket = "TE-772"
+      ticket     = "TE-772"
       expiration = "2024-04-19T00:00:00Z"
     },
     {
       ip_address = "66.69.38.86"
-      ticket = "TE-772"
+      ticket     = "TE-772"
       expiration = "2024-04-19T00:00:00Z"
     }
   ]
