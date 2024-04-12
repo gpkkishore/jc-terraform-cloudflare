@@ -53,17 +53,12 @@ locals {
 
   stg01_ip_access = [
     {
-      ip_address = "2601:280:c77f:95b0:6581:f3f7:d92b:b1b7"
+      ip_address = "2601:280:c77f:95b0:3d1a:5b33:5d4b:d826"
       ticket = "TE-770"
       expiration = "2024-04-18T00:00:00Z"
     },
     {
       ip_address = "73.203.83.195"
-      ticket = "TE-770"
-      expiration = "2024-04-18T00:00:00Z"
-    },
-    {
-      ip_address = "2601:280:c77f:95b0:d86d:6fae:cd00:336b"
       ticket = "TE-770"
       expiration = "2024-04-18T00:00:00Z"
     },
