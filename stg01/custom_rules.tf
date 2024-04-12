@@ -53,7 +53,7 @@ locals {
     {
       action      = "skip"
       description = "Allow AzureActiveDirectory"
-      expression  = format("((http.host eq \"api.stg01.jumpcloud.com\" and http.request.uri.path contains \"/scim/v2\" and ip.src in {%s})", join(" ", [for ip in local.azure_ad_ips : ip]))
+      expression  = format("(http.host eq \"api.stg01.jumpcloud.com\" and http.request.uri.path contains \"/scim/v2\" and ip.src in {%s})", join(" ", [for ip in local.azure_ad_ips : ip]))
     }
   ]
 
