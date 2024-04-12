@@ -68,13 +68,13 @@ locals {
       expiration = "2024-04-18T00:00:00Z"
     },
     {
-      ip_address = "2603:8080:2200:5ba:3cb2:eb54:986c:3858"
-      ticket = "TE-771"
+      ip_address = "2603:8080:2200:5ba:fc11:e1ef:dd60:c0d6"
+      ticket = "TE-772"
       expiration = "2024-04-19T00:00:00Z"
     },
     {
       ip_address = "66.69.38.86"
-      ticket = "TE-771"
+      ticket = "TE-772"
       expiration = "2024-04-19T00:00:00Z"
     }
   ]
