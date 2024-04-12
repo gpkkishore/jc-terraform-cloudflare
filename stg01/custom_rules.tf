@@ -51,9 +51,6 @@ locals {
     }
   ]
 
-  /**
-   * Local variable for objects to be used to define stg01 ip requested access
-   */
   stg01_ip_access = [
     {
       ip_address = "2601:280:c77f:95b0:6581:f3f7:d92b:b1b7"
@@ -66,9 +63,19 @@ locals {
       expiration = "2024-04-18T00:00:00Z"
     },
     {
-      ip_address = "1.2.3.4"
-      ticket = "TE-770 Dummy test"
-      expiration = "2024-04-10T00:00:00Z"
+      ip_address = "2601:280:c77f:95b0:c5c1:2a8e:6162:1782"
+      ticket = "TE-770"
+      expiration = "2024-04-18T00:00:00Z"
+    },
+    {
+      ip_address = "2603:8080:2200:5ba:3cb2:eb54:986c:3858"
+      ticket = "TE-771"
+      expiration = "2024-04-19T00:00:00Z"
+    },
+    {
+      ip_address = "66.69.38.86"
+      ticket = "TE-771"
+      expiration = "2024-04-19T00:00:00Z"
     }
   ]
 }
