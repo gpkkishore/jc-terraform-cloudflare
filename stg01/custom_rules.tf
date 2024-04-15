@@ -77,6 +77,16 @@ locals {
       ip_address = "66.69.38.86"
       ticket     = "TE-772"
       expiration = "2024-04-19T00:00:00Z"
+    },
+    {
+      ip_address = "2406:7400:98:2849:7102:3003:5e67:5fac"
+      ticket     = "TE-775"
+      expiration = "2024-04-22T00:00:00Z"
+    },
+    {
+      ip_address = "49.205.147.14"
+      ticket     = "TE-775"
+      expiration = "2024-04-22T00:00:00Z"
     }
   ]
 }
