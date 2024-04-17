@@ -59,7 +59,7 @@ locals {
 
   stg01_ip_access = [
     {
-      ip_address = "2601:280:c77f:95b0:9ca0:317f:1c91:78c6"
+      ip_address = "2601:280:c77f:95b0::/64"
       ticket     = "TE-770"
       expiration = "2024-04-18T00:00:00Z"
     },
@@ -69,7 +69,7 @@ locals {
       expiration = "2024-04-18T00:00:00Z"
     },
     {
-      ip_address = "2603:8080:2200:5ba:fc11:e1ef:dd60:c0d6"
+      ip_address = "2603:8080:2200:5ba::/64"
       ticket     = "TE-772"
       expiration = "2024-04-19T00:00:00Z"
     },
@@ -79,22 +79,12 @@ locals {
       expiration = "2024-04-19T00:00:00Z"
     },
     {
-      ip_address = "2406:7400:98:2849:7102:3003:5e67:5fac"
-      ticket     = "TE-775"
-      expiration = "2024-04-22T00:00:00Z"
-    },
-    {
       ip_address = "49.205.147.14"
       ticket     = "TE-775"
       expiration = "2024-04-22T00:00:00Z"
     },
     {
-      ip_address = "2406:7400:98:2849:98c6:20a:6dc4:c904"
-      ticket     = "TE-775"
-      expiration = "2024-04-22T00:00:00Z"
-    },
-    {
-      ip_address = "2406:7400:98:2849:98c6:20a:6dc4:c904"
+      ip_address = "2406:7400:98:2849::/64"
       ticket     = "TE-778"
       expiration = "2024-04-22T00:00:00Z"
     },
