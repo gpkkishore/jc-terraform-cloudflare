@@ -92,6 +92,16 @@ locals {
       ip_address = "2406:7400:98:2849:98c6:20a:6dc4:c904"
       ticket     = "TE-775"
       expiration = "2024-04-22T00:00:00Z"
+    },
+    {
+      ip_address = "2406:7400:98:2849:98c6:20a:6dc4:c904"
+      ticket     = "TE-778"
+      expiration = "2024-04-22T00:00:00Z"
+    },
+    {
+      ip_address = "103.28.246.228"
+      ticket     = "TE-778"
+      expiration = "2024-04-22T00:00:00Z"
     }
   ]
 }
