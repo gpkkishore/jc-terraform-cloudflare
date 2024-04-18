@@ -230,3 +230,8 @@ resource "cloudflare_ruleset" "security_response_headers" {
     }
   }
 }
+
+moved {
+  from = module.dns.cloudflare_record.dns_records["agent_prd-agent-haproxy-b20d9869679d351a.elb.us-east-1.amazonaws.com"]
+  to   = module.dns.cloudflare_record.dns_records["agent_agent.prd-use1.jcplatform.dev"]
+}
