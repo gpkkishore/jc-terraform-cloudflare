@@ -79,6 +79,13 @@ locals {
       value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["si-bss-api"].lb_dns_name
     },
     {
+      name    = "catalog"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "data-catalog.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "console"
       proxied = true
       ttl     = 1
