@@ -111,7 +111,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "public-kickstart.stg01-use2.jcplatform.dev"
+      value   = "kickstart-public.stg01-use2.jcplatform.dev"
     },
     {
       name    = "login"
