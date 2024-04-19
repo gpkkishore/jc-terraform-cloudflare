@@ -47,7 +47,7 @@ locals {
     {
       action      = "block"
       description = "Allow Zscaler Only"
-      expression  = "(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")"
+      expression  = "(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"catalog.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")"
     },
     // Allow Azure Active Directory
     {
