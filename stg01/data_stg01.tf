@@ -41,7 +41,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["adbridge"].lb_dns_name
+      value   = "adbridge.stg01-use2.jcplatform.dev"
     },
     {
       name    = "adbridge-kickstart"
@@ -79,6 +79,13 @@ locals {
       value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["si-bss-api"].lb_dns_name
     },
     {
+      name    = "catalog"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "data-catalog.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "console"
       proxied = true
       ttl     = 1
@@ -104,7 +111,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "public-kickstart.stg01-use2.jcplatform.dev"
+      value   = "kickstart-public.stg01-use2.jcplatform.dev"
     },
     {
       name    = "login"
@@ -132,7 +139,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "nli-haproxy.stg01-use2-p00.jcplatform.dev"
+      value   = "nli.stg01-use2.jcplatform.dev"
     },
     {
       name    = "oauth"

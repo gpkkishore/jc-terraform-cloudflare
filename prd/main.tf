@@ -31,7 +31,7 @@ resource "cloudflare_zone" "additional_zone" {
 
 module "dns" {
   source        = "app.terraform.io/jumpcloud/dns/cloudflare"
-  version       = "1.0.6"
+  version       = "2.0.1"
   zone_id       = cloudflare_zone.cloudflare_zone_resource.id
   zone_name     = var.zone_name
   dns_records   = local.prd_dns_records
@@ -41,14 +41,17 @@ module "dns" {
 module "security" {
   for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
   source   = "app.terraform.io/jumpcloud/security/cloudflare"
-  version  = "2.1.3"
-  zone_id  = each.key
+  version  = "3.0.1"
+
+  zone_id                    = each.key
+  additional_ratelimit_rules = lookup(local.add_ratelimit_rules, each.value.name, [])
+  additional_waf_rules       = lookup(local.add_waf_rules, each.value.name, [])
 }
 
 module "settings" {
   for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
   source   = "app.terraform.io/jumpcloud/zone-settings/cloudflare"
-  version  = "1.0.2"
+  version  = "2.0.1"
   zone_id  = each.key
 }
 
@@ -170,30 +173,6 @@ resource "cloudflare_record" "jumpcloud_ai_records" {
   zone_id  = cloudflare_zone.additional_zone["jumpcloud.ai"].id
 }
 
-resource "cloudflare_filter" "block_labs_stg01_jumpcloud_ai" {
-  zone_id     = cloudflare_zone.additional_zone["jumpcloud.ai"].id
-  description = "Filter IP access for labs.stg01.jumpcloud.ai. Staging Egress IPs"
-  expression  = "(not ip.src in {3.23.121.107/32 3.23.44.17/32} and http.host eq \"labs.stg01.jumpcloud.ai\")"
-}
-resource "cloudflare_firewall_rule" "block_labs_stg01_jumpcloud_ai" {
-  zone_id     = cloudflare_zone.additional_zone["jumpcloud.ai"].id
-  filter_id   = cloudflare_filter.block_labs_stg01_jumpcloud_ai.id
-  description = "Block labs.stg01.jumpcloud.ai requests from non-internal IPs"
-  action      = "block"
-}
-
-resource "cloudflare_filter" "block_jumpcloud_ai" {
-  zone_id     = cloudflare_zone.additional_zone["jumpcloud.ai"].id
-  description = "Filter IP access for lab.jumpcloud.ai. Prod Egress IPs"
-  expression  = "(not ip.src in {34.195.141.99/32 3.226.52.173/32 44.194.86.168/32} and http.host eq \"labs.jumpcloud.ai\")"
-}
-resource "cloudflare_firewall_rule" "block_jumpcloud_ai" {
-  zone_id     = cloudflare_zone.additional_zone["jumpcloud.ai"].id
-  filter_id   = cloudflare_filter.block_jumpcloud_ai.id
-  description = "Block labs.jumpcloud.ai requests requests from non-internal IPs"
-  action      = "block"
-}
-
 #################################################################################################
 # Identity Security Response Headers for proxied cloudflare domains for the id.jumpcloud.com zone
 #################################################################################################
@@ -250,4 +229,9 @@ resource "cloudflare_ruleset" "security_response_headers" {
       }
     }
   }
+}
+
+moved {
+  from = module.dns.cloudflare_record.dns_records["agent_prd-agent-haproxy-b20d9869679d351a.elb.us-east-1.amazonaws.com"]
+  to   = module.dns.cloudflare_record.dns_records["agent_agent.prd-use1.jcplatform.dev"]
 }
