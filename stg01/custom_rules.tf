@@ -39,64 +39,18 @@ locals {
       description = "Allow GHA Runners NAT Gateways"
       expression  = "(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and ip.src in {44.239.135.146 54.69.255.145 44.235.245.14})"
     },
-    {
-      action      = "skip"
-      description = "Allow Authorized IP's"
-      expression  = format("(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and ip.src in {%s})", join(" ", [for ip in local.stg01_ip_access : ip.ip_address if timecmp(ip.expiration, timestamp()) == 1]))
-    },
-    {
-      action      = "block"
-      description = "Allow Zscaler Only"
-      expression  = "(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"catalog.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189 3.13.209.29} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")"
-    },
     // Allow Azure Active Directory
     {
       action      = "skip"
       description = "Allow AzureActiveDirectory"
       expression  = format("(http.host eq \"api.stg01.jumpcloud.com\" and http.request.uri.path contains \"/scim/v2\" and ip.src in {%s})", join(" ", [for ip in local.azure_ad_ips : ip]))
-    }
-  ]
-
-  stg01_ip_access = [
-    {
-      ip_address = "2601:280:c77f:95b0::/64"
-      ticket     = "TE-770"
-      expiration = "2024-04-18T00:00:00Z"
     },
+    // This block needs to be last as it will be inserted in order from top to bottom so that all skip actions will be accounted for.
+    // This block is to block all traffic that is not from Zscaler
     {
-      ip_address = "73.203.83.195"
-      ticket     = "TE-770"
-      expiration = "2024-04-18T00:00:00Z"
-    },
-    {
-      ip_address = "2603:8080:2200:5ba::/64"
-      ticket     = "TE-772"
-      expiration = "2024-04-19T00:00:00Z"
-    },
-    {
-      ip_address = "66.69.38.86"
-      ticket     = "TE-772"
-      expiration = "2024-04-19T00:00:00Z"
-    },
-    {
-      ip_address = "49.205.147.14"
-      ticket     = "TE-775"
-      expiration = "2024-04-22T00:00:00Z"
-    },
-    {
-      ip_address = "2406:7400:98:2849::/64"
-      ticket     = "TE-778"
-      expiration = "2024-04-22T00:00:00Z"
-    },
-    {
-      ip_address = "103.28.246.228"
-      ticket     = "TE-778"
-      expiration = "2024-04-22T00:00:00Z"
-    },
-    {
-      ip_address = "106.51.168.233"
-      ticket     = "TE-789"
-      expiration = "2024-04-25T00:00:00Z"
+      action      = "block"
+      description = "Allow Zscaler Only"
+      expression  = "(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"catalog.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")"
     }
   ]
 }
