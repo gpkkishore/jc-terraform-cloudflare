@@ -45,18 +45,18 @@ locals {
       description = "Allow AzureActiveDirectory"
       expression  = format("(http.host eq \"api.stg01.jumpcloud.com\" and http.request.uri.path contains \"/scim/v2\" and ip.src in {%s})", join(" ", [for ip in local.azure_ad_ips : ip]))
     },
+    {
+      action      = "skip"
+      description = "Allow Authorized IP's"
+      expression  = format("(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and ip.src in {%s})", join(" ", [for ip in local.stg01_ip_access : ip.ip_address if timecmp(ip.expiration, timestamp()) == 1]))
+    },
     // This block needs to be last as it will be inserted in order from top to bottom so that all skip actions will be accounted for.
     // This block is to block all traffic that is not from Zscaler
     {
       action      = "block"
       description = "Allow Zscaler Only"
       expression  = "(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"catalog.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")"
-    },
-    {
-      action      = "skip"
-      description = "Allow Authorized IP's"
-      expression  = format("(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and ip.src in {%s})", join(" ", [for ip in local.stg01_ip_access : ip.ip_address if timecmp(ip.expiration, timestamp()) == 1]))
-    },
+    }
   ]
   stg01_ip_access = [
     {
