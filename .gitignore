@@ -1,5 +1,3 @@
-**/*.lock.hcl
-
 # IDE files
 .idea/
 
