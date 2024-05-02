@@ -62,7 +62,7 @@ locals {
       {
         action      = "skip"
         description = "Disable BIC for metadata endpoint"
-        expression  = "(http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Jakarta Commons-HttpClient/3.1\") or (http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Java/1.8.0_322\") or (http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Python/3.8\" and ip.src eq 18.139.27.111)"
+        expression  = "(http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Jakarta Commons-HttpClient/3.1\") or (http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Java/1.8.0_322\") or (http.request.uri contains \"/saml2/metadata\" and http.user_agent contains \"Python-urllib/3.8\" and ip.src eq 18.139.27.111)"
       },
     ]
     "id.stg01.jumpcloud.com" = [
