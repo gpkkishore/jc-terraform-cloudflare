@@ -82,7 +82,7 @@ locals {
     {
       ip_address = "66.69.38.86"
       ticket     = "TE-808"
-      expiration = "2024-05-02T00:00:00Z"
+      expiration = "2024-05-03T00:00:00Z"
     },
     {
       ip_address = "103.246.195.40"
