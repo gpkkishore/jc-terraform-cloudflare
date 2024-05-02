@@ -94,10 +94,5 @@ locals {
       ticket     = "TE-811"
       expiration = "2024-05-03T00:00:00Z"
     },
-    {
-      ip_address = "66.69.38.86"
-      ticket     = "TE-811"
-      expiration = "2024-05-03T00:00:00Z"
-    }
-]
+  ]
 }
