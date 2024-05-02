@@ -88,6 +88,16 @@ locals {
       ip_address = "103.246.195.40"
       ticket     = "TE-815"
       expiration = "2024-05-07T00:00:00Z"
+    },
+    {
+      ip_address = "fd39:ff5a:b151:4b3b::c22:a2b:83fe:6c22"
+      ticket     = "TE-811"
+      expiration = "2024-05-03T00:00:00Z"
+    },
+    {
+      ip_address = "66.69.38.86"
+      ticket     = "TE-811"
+      expiration = "2024-05-03T00:00:00Z"
     }
 ]
 }
