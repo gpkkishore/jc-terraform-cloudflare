@@ -90,7 +90,7 @@ locals {
       expiration = "2024-05-07T00:00:00Z"
     },
     {
-      ip_address = "fd39:ff5a:b151:4b3b::ceb:d81d:fbb5:3963"
+      ip_address = "fd39:ff5a:b151:4b3b:ceb:d81d:fbb5:3963"
       ticket     = "TE-811"
       expiration = "2024-05-03T00:00:00Z"
     },
