@@ -52,7 +52,7 @@ module "security" {
 
 module "settings" {
   source  = "app.terraform.io/jumpcloud/zone-settings/cloudflare"
-  version = "2.0.1"
+  version = "2.0.2"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
 
