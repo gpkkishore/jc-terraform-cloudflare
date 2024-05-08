@@ -86,6 +86,13 @@ locals {
       value   = "data-catalog.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "device-cert"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "device-cert.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "console"
       proxied = true
       ttl     = 1
@@ -175,3 +182,9 @@ locals {
 
   stg01_dns_records = concat(local.stg01_a_records, local.stg01_cname_records, local.stg01_mx_records, local.stg01_misc_records)
 }
+
+import {
+  to = module.dns.cloudflare_record.dns_records["device-cert_device-cert.stg01-use2.jcplatform.dev"]
+  id = "203f44d064ccc019be1e40fa73c29bc3/310a4a169854ee1585a3761aa0c617a8"
+}
+
