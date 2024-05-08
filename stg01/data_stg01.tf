@@ -184,7 +184,7 @@ locals {
 }
 
 import {
-  to = module.dns.cloudflare_record.dns_records["device-cert_device-cert.stg01-use2.jcplatform.dev"]
   id = "203f44d064ccc019be1e40fa73c29bc3/310a4a169854ee1585a3761aa0c617a8"
+  to = module.dns.cloudflare_record.dns_records["device-cert_device-cert.stg01-use2.jcplatform.dev"]
 }
 
