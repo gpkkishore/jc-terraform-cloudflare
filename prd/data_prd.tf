@@ -1309,8 +1309,8 @@ locals {
       name    = "data.zercurity.com",
       proxied = true,
       ttl     = 1,
-      type    = "A",
-      value   = "0.0.0.0"
+      type    = "CNAME",
+      value   = "dpdk4xh1u6rui.cloudfront.net"
     },
     {
       name    = "docs.zercurity.com",
