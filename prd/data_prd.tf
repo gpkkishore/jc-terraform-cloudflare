@@ -1308,7 +1308,7 @@ locals {
     {
       name    = "data.zercurity.com",
       proxied = true,
-      ttl     = 600,
+      ttl     = 1,
       type    = "A",
       value   = "0.0.0.0"
     },
@@ -1323,7 +1323,7 @@ locals {
       name    = "download.zercurity.com",
       proxied = false,
       ttl     = 600,
-      type    = "CNAME",
+      type    = "A",
       value   = "0.0.0.0"
     },
     {
@@ -1337,14 +1337,14 @@ locals {
       name    = "repo.zercurity.com",
       proxied = false,
       ttl     = 600,
-      type    = "CNAME",
+      type    = "A",
       value   = "0.0.0.0"
     },
     {
       name    = "sentry.zercurity.com",
       proxied = false,
       ttl     = 600,
-      type    = "CNAME",
+      type    = "A",
       value   = "0.0.0.0"
     },
     {
