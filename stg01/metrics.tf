@@ -16,7 +16,7 @@ resource "cloudflare_logpush_job" "this" {
 resource "cloudflare_logpush_job" "http_events_job" {
   name             = "http-events-job-${var.zone_name}"
   zone_id          = cloudflare_zone.cloudflare_zone_resource.id
-  enabled          = true
+  enabled          = false
   dataset          = "http_requests"
   destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.dd_api_key}&ddsource=cloudflare&service=cloudflare&ddtags=zone_name:${var.zone_name},env:${var.env},cf_type:http_requests"
   filter = jsonencode({

@@ -76,7 +76,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.nlb_stg01.outputs.network-load-balancers["si-bss-api"].lb_dns_name
+      value   = "si-bss-api.stg01-use2.jcplatform.dev"
     },
     {
       name    = "catalog"
@@ -84,6 +84,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "data-catalog.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "device-cert"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "device-cert.stg01-use2.jcplatform.dev"
     },
     {
       name    = "console"
@@ -175,3 +182,9 @@ locals {
 
   stg01_dns_records = concat(local.stg01_a_records, local.stg01_cname_records, local.stg01_mx_records, local.stg01_misc_records)
 }
+
+import {
+  id = "203f44d064ccc019be1e40fa73c29bc3/310a4a169854ee1585a3761aa0c617a8"
+  to = module.dns.cloudflare_record.dns_records["device-cert_device-cert.stg01-use2.jcplatform.dev"]
+}
+

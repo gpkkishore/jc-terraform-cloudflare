@@ -422,7 +422,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "public-kickstart.prd-use1.jcplatform.dev"
+      value   = "kickstart-public.prd-use1.jcplatform.dev"
     },
     {
       name    = "apple.mdm"
