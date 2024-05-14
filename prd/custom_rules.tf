@@ -59,6 +59,11 @@ locals {
         description = "Allow ZScaler only"
         expression  = "(http.host in {\"jumpdesk.jumpcloud.com\" \"dev.jumpcloud.com\"} and not ip.src in {54.187.222.118 54.218.209.46 35.165.242.218 54.86.134.208 54.86.96.53 54.86.131.111 52.70.132.28 52.43.62.126 54.245.68.23 35.161.74.70 52.73.14.42 3.219.213.81 44.216.132.195})"
       },
+      {
+        action      = "block"
+        description = "20240513-jccom-outage"
+        expression  = "(ip.geoip.asnum eq 45102 and http.host eq \"jumpcloud.com\" and http.request.uri.path eq \"/careers\")"
+      },
     ]
     "id.stg01.jumpcloud.com" = [
       {
