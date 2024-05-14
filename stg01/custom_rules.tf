@@ -60,39 +60,29 @@ locals {
   ]
   stg01_ip_access = [
     {
-      ip_address = "2601:280:c77f:95b0:3162:72e9:2ab5:655e"
-      ticket     = "TE-807"
-      expiration = "2024-05-02T00:00:00Z"
+      ip_address = "49.205.146.123"
+      ticket     = "TE-855"
+      expiration = "2024-05-27T00:00:00Z"
     },
     {
-      ip_address = "2601:280:c77f:95b0:e44a:f839:8b9c:613b"
-      ticket     = "TE-807"
-      expiration = "2024-05-02T00:00:00Z"
+      ip_address = "2406:7400:98:529b:b859:1e69:f550:4215"
+      ticket     = "TE-855"
+      expiration = "2024-05-27T00:00:00Z"
     },
     {
-      ip_address = "103.24.87.131"
-      ticket     = "TE-804"
-      expiration = "2024-05-04T00:00:00Z"
+      ip_address = "106.51.168.243"
+      ticket     = "TE-855"
+      expiration = "2024-05-27T00:00:00Z"
     },
     {
-      ip_address = "fd39:ff5a:b151:4b3b:140b:83a2:932d:7ac1"
-      ticket     = "TE-808"
-      expiration = "2024-05-02T00:00:00Z"
+      ip_address = "103.28.246.12"
+      ticket     = "TE-855"
+      expiration = "2024-05-27T00:00:00Z"
     },
     {
-      ip_address = "66.69.38.86"
-      ticket     = "TE-808"
-      expiration = "2024-05-03T00:00:00Z"
-    },
-    {
-      ip_address = "103.246.195.40"
-      ticket     = "TE-815"
-      expiration = "2024-05-07T00:00:00Z"
-    },
-    {
-      ip_address = "fd39:ff5a:b151:4b3b:ceb:d81d:fbb5:3963"
-      ticket     = "TE-811"
-      expiration = "2024-05-03T00:00:00Z"
+      ip_address = "122.171.22.65"
+      ticket     = "TE-855"
+      expiration = "2024-05-27T00:00:00Z"
     },
   ]
 }
