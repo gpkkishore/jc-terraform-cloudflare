@@ -84,5 +84,15 @@ locals {
       ticket     = "TE-855"
       expiration = "2024-05-27T00:00:00Z"
     },
+    {
+      ip_address = "103.224.34.251"
+      ticket     = "TE-855"
+      expiration = "2024-05-27T00:00:00Z"
+    },
+    {
+      ip_address = "2406:7400:ff01:c851:49af:92d:9736:8e36"
+      ticket     = "TE-855"
+      expiration = "2024-05-27T00:00:00Z"
+    },
   ]
 }
