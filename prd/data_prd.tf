@@ -401,7 +401,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.si_bss_api_nlb.lb_dns_name
+      value   = "si-bss-api.prd-use1.jcplatform.dev"
     },
     {
       name    = "console"
