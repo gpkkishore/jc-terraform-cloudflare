@@ -1177,6 +1177,13 @@ locals {
       ttl     = 60
       type    = "TXT"
       value   = "921bcc58ad"
+    },
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 86400
+      type    = "TXT"
+      value   = "hcp-domain-verification=712881902e3616442a1859ed3b8c120f22f3acf5ac0c14d1c1c0f521d283398b"
     }
   ]
 
