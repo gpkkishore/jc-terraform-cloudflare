@@ -1184,6 +1184,13 @@ locals {
       ttl     = 86400
       type    = "TXT"
       value   = "hcp-domain-verification=712881902e3616442a1859ed3b8c120f22f3acf5ac0c14d1c1c0f521d283398b"
+    },
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 86400
+      type    = "TXT"
+      value   = "hcp-domain-verification=0e8f600d72e9adbfec509b1b78935b1e364e46eee9dda823c9bfd977379e8551"
     }
   ]
 
@@ -1408,7 +1415,7 @@ locals {
       type    = "TXT"
       value   = "\"v=DMARC1;p=quarantine;pct=100;fo=1\""
     },
-    # Domain Keys used for email 
+    # Domain Keys used for email
     {
       name    = "3p3wbyropt6azbu6ksmg4q5usw3mup2l._domainkey.jumpcloud.ai."
       proxied = false
