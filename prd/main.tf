@@ -55,6 +55,17 @@ module "settings" {
   zone_id  = each.key
 }
 
+module "resmo_dns" {
+  source  = "app.terraform.io/jumpcloud/dns/cloudflare"
+  version = "2.0.1"
+
+  for_each = local.resmo_zone_name_to_zone
+
+  zone_id     = lookup(cloudflare_zone.additional_zone, each.key).id
+  zone_name   = each.key
+  dns_records = each.value.dns_records
+}
+
 # Page Rule for removed microsoft-mdm-configuration-files endpoint in console
 resource "cloudflare_page_rule" "console_v2_microsoft_mdm_configuration_files" {
   priority = 2

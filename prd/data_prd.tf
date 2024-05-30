@@ -18,13 +18,13 @@ locals {
   # This is a list of new zones to create in CF - this is only required for zones that should be managed by TF that don't have their
   # own workspace in this repo (i.e, not jumpcloud.com, stg01.jumpcloud.com, and cloudjump.dev)
   # NOTE: Every zone in this array gets assigned an enterprise license, don't use it for testing!
-  cloudflare_zones = [
+  cloudflare_zones = concat([
     "id.jumpcloud.com",
     "id.stg01.jumpcloud.com",
     "jumpcloudlounge.com",
     "zercurity.com",
     "jumpcloud.ai",
-  ]
+  ], local.resmo_zones[*].name)
 
   # The name used in the custom_certs object is only used for internal metadata
   custom_certs = [
@@ -1482,4 +1482,390 @@ locals {
   ]
 
   prd_dns_records = concat(local.prd_a_records, local.prd_mx_records, local.prd_cname_records, local.prd_misc_records)
+
+  resmo_zones = [
+    {
+      name = "resmo.com"
+      dns_records = [
+        # A records
+        {
+          name    = "resmo.com"
+          proxied = false
+          ttl     = 60
+          type    = "A"
+          value   = "75.2.70.75"
+        },
+        {
+          name    = "resmo.com"
+          proxied = false
+          ttl     = 60
+          type    = "A"
+          value   = "99.83.190.102"
+        },
+
+        # CNAME records
+        {
+          # was alias A record in aws
+          name    = "app"
+          proxied = false
+          ttl     = 60
+          type    = "CNAME"
+          value   = "d1b3fscmxwb4xc.cloudfront.net"
+        },
+        {
+          # was alias A record in aws
+          name    = "browser"
+          proxied = false
+          ttl     = 60
+          type    = "CNAME"
+          value   = "d1ogzvyyqrr4l5.cloudfront.net"
+        },
+        {
+          # was alias A record in aws
+          name    = "id"
+          proxied = false
+          ttl     = 60
+          type    = "CNAME"
+          value   = "d1b3fscmxwb4xc.cloudfront.net"
+        },
+        {
+          # was alias A record in aws
+          name    = "login"
+          proxied = false
+          ttl     = 60
+          type    = "CNAME"
+          value   = "d1b3fscmxwb4xc.cloudfront.net"
+        },
+        {
+          # was alias A record in aws
+          name    = "static"
+          proxied = false
+          ttl     = 60
+          type    = "CNAME"
+          value   = "dfbrjj3fnyucv.cloudfront.net"
+        },
+        {
+          name    = "_680d782af04216a8b61c51bac7cc7bbc"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "_977e3564c47b7c7b216b1454a6648e87.xrchbtpdjs.acm-validations.aws."
+        },
+        {
+          name    = "_8cfeba28edf6dad058356ccf166c98ea"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "_f58085647f4f8d452e910c8721c8cad4.mntkzmhvxg.acm-validations.aws."
+        },
+        {
+          name    = "4u6mxursrjjt3aze3rcr5prxokcxejrs._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "4u6mxursrjjt3aze3rcr5prxokcxejrs.dkim.custom-email-domain.stripe.com."
+        },
+        {
+          name    = "c4oloqlctkaw26sz54662idkxubnpq65._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "c4oloqlctkaw26sz54662idkxubnpq65.dkim.custom-email-domain.stripe.com."
+        },
+        {
+          name    = "c5fgs4xwcbjrygwkc2rwnsddrivnzdom._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "c5fgs4xwcbjrygwkc2rwnsddrivnzdom.dkim.custom-email-domain.stripe.com."
+        },
+        {
+          name    = "fchynlnz357ydlo3jwdxags2lezzgp3z._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "fchynlnz357ydlo3jwdxags2lezzgp3z.dkim.custom-email-domain.stripe.com."
+        },
+        {
+          name    = "hs1-22352923._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "resmo-com.hs14a.dkim.hubspotemail.net."
+        },
+        {
+          name    = "hs2-22352923._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "resmo-com.hs14b.dkim.hubspotemail.net."
+        },
+        {
+          name    = "intercom._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "9c748959-eb77-42fd-9764-aff648a230bb.dkim.intercom.io."
+        },
+        {
+          name    = "nghohojb7jd2zujpgk35gob7zqfnwfga._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "nghohojb7jd2zujpgk35gob7zqfnwfga.dkim.custom-email-domain.stripe.com."
+        },
+        {
+          name    = "oecdx2ii6zt26yrrik35xttxz6ar4sqy._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "oecdx2ii6zt26yrrik35xttxz6ar4sqy.dkim.custom-email-domain.stripe.com."
+        },
+        {
+          name    = "pd1._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "pd1.pdrserv.com"
+        },
+        {
+          name    = "pd2._domainkey.resmo.com"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "pd2.pdrserv.com"
+        },
+        {
+          name    = "blog-test"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "22352923.group23.sites.hubspot.net"
+        },
+        {
+          name    = "bounce"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "custom-email-domain.stripe.com"
+        },
+        {
+          name    = "changelog"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "cname.announcekit.app"
+        },
+        {
+          name    = "docs.resmo.com."
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "b3ed3db57d-hosting.gitbook.io"
+        },
+        {
+          name    = "email-test"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "22352923.group23.sites.hubspot.net"
+        },
+        {
+          name    = "emails"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "aplolinks.com"
+        },
+        {
+          name    = "outbound.intercom"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "rp.resmo.intercom-mail.com"
+        },
+        {
+          name    = "landing-test"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "22352923.group23.sites.hubspot.net"
+        },
+        {
+          name    = "resources"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "b3ed3db57d-hosting.gitbook.io"
+        },
+        {
+          name    = "trust"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "custom.trustpage.app"
+        },
+        {
+          name    = "_acme-challenge.trust"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "skyk14zsti65zvrkyc.fastly-validations.com"
+        },
+        {
+          name    = "www"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "proxy-ssl.webflow.com"
+        },
+
+        # TXT Records
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "google-site-verification=ICo5Fg_M7RNVfh2XGkMuwGJh2MHgfJsHDCQ9UCb5x1s"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "atlassian-domain-verification=1sRYQtar/Fxm3JcAe4uVui38xaPxcJIKxOmp/bteFurxTJgwElFO6RKaXdWZI5Nx"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "google-site-verification=TH4-NfM4VQXiDPQg5qGrPYp884ZqpHYqij6wdfnXv84"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "stripe-verification=e21f4376ad23e3d9e89a34364cae78898d107fe720e49ece3a4043fa2a6aa47a"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "v=spf1 include:_spf.google.com -all"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "MS=DFFC3541DF0EBDB98D1E45852D1AF2557CE235EB"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "google-site-verification=34Bi68IcTETgPnQErlWcTjTZLuGwmWVCSiRnWLf8TmI"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "hubspot-developer-verification=M2NjNDljYmQtYmI0OS00OGUyLTk5ZmUtZjcwYzBmZmEyYjk0"
+        },
+        {
+          name    = "_dmarc"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "v=DMARC1;p=none;pct=100;rua=mailto:dmarc.feedback@resmo.com;"
+        },
+        {
+          name    = "google._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA61Ij2n3QfT9cbc7uYPS/DAapgJ3OKKViqIl+nAtKVLslD7t1qac3+dJHHf1YMlyDWPFLQb4OTUwR58+WTmZ8MnVD7FKcrh6tHUW+4iy61WqzJYaZ33A/HIuUj1ENNihZ9BDqzei/m8zIeEVwzza/T60YlywInoLBIlIgNUDp\"\"YS0Gr3Fnd2kmNbsi9hR96cvXYXKM0tYR8q67JO1dRbWvBcTq1Tjk3C46G3HgrIaShtl0mTr2JqeWVE7qWeUOJbhAdizU2u1gL6b2RBay/qmZCGssfEYa6lU5yQiVMBFu0gw8MncXFf1yX88m9bhCun94adnskuuTaL/FzxmmDdAhPwIDAQAB"
+        },
+        {
+          name    = "_github-challenge-resmoio-organization"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "dca392dafe"
+        },
+        {
+          name    = "_pdcid"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "gjkZ-FMFl9DvYoZmBZBvi3Rw3NpC_9t7R2A5SZYtFdtCiuEZ"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = ""
+        },
+        {
+          name    = "_github-challenge-resmoio-organization.www"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "6c9d0182b5"
+        },
+
+        # MX Records
+        {
+          name     = "@"
+          priority = 1
+          proxied  = false
+          ttl      = 300
+          type     = "MX"
+          value    = "aspmx.l.google.com"
+        },
+        {
+          name     = "@"
+          priority = 5
+          proxied  = false
+          ttl      = 300
+          type     = "MX"
+          value    = "alt1.aspmx.l.google.com"
+        },
+        {
+          name     = "@"
+          priority = 5
+          proxied  = false
+          ttl      = 300
+          type     = "MX"
+          value    = "alt2.aspmx.l.google.com"
+        },
+        {
+          name     = "@"
+          priority = 10
+          proxied  = false
+          ttl      = 300
+          type     = "MX"
+          value    = "alt3.aspmx.l.google.com"
+        },
+        {
+          name     = "@"
+          priority = 10
+          proxied  = false
+          ttl      = 300
+          type     = "MX"
+          value    = "alt4.aspmx.l.google.com"
+        }
+      ]
+    }
+  ]
+
+  resmo_zone_name_to_zone = {
+    for zone in local.resmo_zones : zone.name => zone
+  }
 }
