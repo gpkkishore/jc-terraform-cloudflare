@@ -1900,14 +1900,6 @@ locals {
         },
         {
           # was alias A record in aws
-          name    = "apis"
-          proxied = false
-          ttl     = 300
-          type    = "CNAME"
-          value   = "dualstack.resmo-api-1826250524.us-west-2.elb.amazonaws.com"
-        },
-        {
-          # was alias A record in aws
           name    = "lb"
           proxied = false
           ttl     = 300
