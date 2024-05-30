@@ -1720,6 +1720,106 @@ locals {
           value   = "proxy-ssl.webflow.com"
         },
 
+        # TXT Records
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "google-site-verification=ICo5Fg_M7RNVfh2XGkMuwGJh2MHgfJsHDCQ9UCb5x1s"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "atlassian-domain-verification=1sRYQtar/Fxm3JcAe4uVui38xaPxcJIKxOmp/bteFurxTJgwElFO6RKaXdWZI5Nx"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "google-site-verification=TH4-NfM4VQXiDPQg5qGrPYp884ZqpHYqij6wdfnXv84"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "stripe-verification=e21f4376ad23e3d9e89a34364cae78898d107fe720e49ece3a4043fa2a6aa47a"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "v=spf1 include:_spf.google.com -all"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "MS=DFFC3541DF0EBDB98D1E45852D1AF2557CE235EB"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "google-site-verification=34Bi68IcTETgPnQErlWcTjTZLuGwmWVCSiRnWLf8TmI"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "hubspot-developer-verification=M2NjNDljYmQtYmI0OS00OGUyLTk5ZmUtZjcwYzBmZmEyYjk0"
+        },
+        {
+          name    = "_dmarc"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "v=DMARC1;p=none;pct=100;rua=mailto:dmarc.feedback@resmo.com;"
+        },
+        {
+          name    = "google._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA61Ij2n3QfT9cbc7uYPS/DAapgJ3OKKViqIl+nAtKVLslD7t1qac3+dJHHf1YMlyDWPFLQb4OTUwR58+WTmZ8MnVD7FKcrh6tHUW+4iy61WqzJYaZ33A/HIuUj1ENNihZ9BDqzei/m8zIeEVwzza/T60YlywInoLBIlIgNUDp\"\"YS0Gr3Fnd2kmNbsi9hR96cvXYXKM0tYR8q67JO1dRbWvBcTq1Tjk3C46G3HgrIaShtl0mTr2JqeWVE7qWeUOJbhAdizU2u1gL6b2RBay/qmZCGssfEYa6lU5yQiVMBFu0gw8MncXFf1yX88m9bhCun94adnskuuTaL/FzxmmDdAhPwIDAQAB"
+        },
+        {
+          name    = "_github-challenge-resmoio-organization"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "dca392dafe"
+        },
+        {
+          name    = "_pdcid"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "gjkZ-FMFl9DvYoZmBZBvi3Rw3NpC_9t7R2A5SZYtFdtCiuEZ"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = ""
+        },
+        {
+          name    = "_github-challenge-resmoio-organization.www"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "6c9d0182b5"
+        },
+
         # MX Records
         {
           name     = "@"
