@@ -987,7 +987,7 @@ locals {
       proxied = false
       ttl     = 60
       type    = "TXT"
-      value   = "v=spf1 ip4:198.37.147.129 ip4:198.21.2.137 include:et._spf.pardot.com include:mktomail.com include:_spf.google.com include:spf.zoho.com include:stspg-customer.com include:_spf.salesforce.com ~all"
+      value   = "v=spf1 redirect=92a9d6451b5c81c4b4f330465322362ff9ecd73b94ef247be6bdb1ca.us.rspf.letsdmarc.com"
     },
     {
       name    = "@"
