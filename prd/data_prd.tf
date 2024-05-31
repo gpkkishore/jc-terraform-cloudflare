@@ -1071,7 +1071,7 @@ locals {
       proxied = false
       ttl     = 60
       type    = "TXT"
-      value   = "v=DMARC1; p=quarantine; pct=100; rua=mailto:re+wmjldel3qjv@dmarc.postmarkapp.com; aspf=r;"
+      value   = "content: v=DMARC1; p=quarantine; aspf=r; pct=100; rua=mailto:rua_38b6f6b37e6ff565@us.report.letsdmarc.com,mailto:re+wmjldel3qjv@dmarc.postmarkapp.com"
     },
     {
       name    = "_domainkey"
