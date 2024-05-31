@@ -2034,6 +2034,117 @@ locals {
           value    = "alt4.aspmx.l.google.com"
         }
       ]
+    },
+    {
+      name = "resmo.app"
+      dns_records = [
+        # CNAMES
+        {
+          # was alias A record in aws
+          name    = "resmo.app",
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "d1ky3ow4gqkauh.cloudfront.net"
+        },
+        {
+          # was alias A record in aws
+          name    = "grafana"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "dualstack.resmo-grafana-ops-341763830.us-west-2.elb.amazonaws.com"
+        },
+        {
+          name    = "052"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "d1ky3ow4gqkauh.cloudfront.net"
+        },
+        {
+          name    = "_4e5ac150de979056132304cf83704450"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "_563c3d7ccf609babfe1d4cba3f82b93f.wrncprvrjv.acm-validations.aws."
+        },
+        {
+          name    = "foncza73g3xshuzfqfy6x5pfhxhjvup6._domainkey"
+          proxied = false
+          ttl     = 1800
+          type    = "CNAME"
+          value   = "foncza73g3xshuzfqfy6x5pfhxhjvup6.dkim.amazonses.com"
+        },
+        {
+          name    = "lqlmwlk35zzjpvcjdvnli2e6mtfm7agr._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "lqlmwlk35zzjpvcjdvnli2e6mtfm7agr.dkim.amazonses.com"
+        },
+        {
+          name    = "nm7ab7dp77azce3w6k5hkee26ibqlwy3._domainkey"
+          proxied = false
+          ttl     = 1800
+          type    = "CNAME"
+          value   = "nm7ab7dp77azce3w6k5hkee26ibqlwy3.dkim.amazonses.com"
+        },
+        {
+          name    = "_2f0b119180a09a49eff251cf2537bae7.vpn"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "_7a63e7194b358562a55d86ef6d6388f8.mntkzmhvxg.acm-validations.aws."
+        },
+
+        # TXT Records
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "google-site-verification=R_5_eRVnqhEf2FExzjfaPMtX0sAhZrTLY2aO7ofyWm8"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "v=spf1 -all"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "zoom-domain-verification=9280175d-5c91-4b33-bcf9-183ae6335169"
+        },
+        {
+          name    = "_dmarc"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "v=DMARC1;p=reject;pct=100;"
+        },
+        {
+          name    = "bounce-ses"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "v=spf1 include:amazonses.com ~all"
+        },
+
+        # MX Records
+        {
+          name     = "bounce-ses"
+          priority = 10
+          proxied  = false
+          ttl      = 300
+          type     = "MX"
+          value    = "feedback-smtp.us-west-2.amazonses.com"
+        }
+      ]
     }
   ]
 
