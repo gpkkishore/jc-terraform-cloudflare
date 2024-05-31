@@ -1069,9 +1069,9 @@ locals {
     {
       name    = "_dmarc"
       proxied = false
-      ttl     = 60
+      ttl     = 3600
       type    = "TXT"
-      value   = "content: v=DMARC1; p=quarantine; aspf=r; pct=100; rua=mailto:rua_38b6f6b37e6ff565@us.report.letsdmarc.com,mailto:re+wmjldel3qjv@dmarc.postmarkapp.com"
+      value   = "v=DMARC1; p=quarantine; aspf=r; pct=100; rua=mailto:rua_38b6f6b37e6ff565@us.report.letsdmarc.com,mailto:re+wmjldel3qjv@dmarc.postmarkapp.com"
     },
     {
       name    = "_domainkey"
@@ -1191,6 +1191,13 @@ locals {
       ttl     = 86400
       type    = "TXT"
       value   = "hcp-domain-verification=0e8f600d72e9adbfec509b1b78935b1e364e46eee9dda823c9bfd977379e8551"
+    },
+    {
+      name    = "_letsdmarc.jumpcloud.com."
+      proxied = false
+      ttl     = 3600
+      type    = "TXT"
+      value   = "a6c6f863eacc4d5f41f52f55678f18f38187fbb3db3888926181045efb0fcf0baa9b528fc943970ff9a41c6aca37bcb9d0bbb02387addf53bf13b69c042abb3c"
     }
   ]
 
