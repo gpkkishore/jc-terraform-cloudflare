@@ -1806,13 +1806,6 @@ locals {
           value   = "gjkZ-FMFl9DvYoZmBZBvi3Rw3NpC_9t7R2A5SZYtFdtCiuEZ"
         },
         {
-          name    = "@"
-          proxied = false
-          ttl     = 300
-          type    = "TXT"
-          value   = ""
-        },
-        {
           name    = "_github-challenge-resmoio-organization.www"
           proxied = false
           ttl     = 300
@@ -1820,6 +1813,178 @@ locals {
           value   = "6c9d0182b5"
         },
 
+        # MX Records
+        {
+          name     = "@"
+          priority = 1
+          proxied  = false
+          ttl      = 300
+          type     = "MX"
+          value    = "aspmx.l.google.com"
+        },
+        {
+          name     = "@"
+          priority = 5
+          proxied  = false
+          ttl      = 300
+          type     = "MX"
+          value    = "alt1.aspmx.l.google.com"
+        },
+        {
+          name     = "@"
+          priority = 5
+          proxied  = false
+          ttl      = 300
+          type     = "MX"
+          value    = "alt2.aspmx.l.google.com"
+        },
+        {
+          name     = "@"
+          priority = 10
+          proxied  = false
+          ttl      = 300
+          type     = "MX"
+          value    = "alt3.aspmx.l.google.com"
+        },
+        {
+          name     = "@"
+          priority = 10
+          proxied  = false
+          ttl      = 300
+          type     = "MX"
+          value    = "alt4.aspmx.l.google.com"
+        }
+      ]
+    },
+    {
+      name = "resmo.io"
+      dns_records = [
+        # A records
+        {
+          name    = "resmo.io"
+          proxied = false
+          ttl     = 300
+          type    = "A"
+          value   = "75.2.70.75"
+        },
+        {
+          name    = "resmo.io"
+          proxied = false
+          ttl     = 300
+          type    = "A"
+          value   = "99.83.190.102"
+        },
+        {
+          name    = "dev"
+          proxied = false
+          ttl     = 300
+          type    = "A"
+          value   = "127.0.0.1"
+        },
+        {
+          name    = "052.dev"
+          proxied = false
+          ttl     = 300
+          type    = "A"
+          value   = "127.0.0.1"
+        },
+
+        #CNAME Records
+        {
+          # was alias A record in aws
+          name    = "apis"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "dualstack.resmo-api-1826250524.us-west-2.elb.amazonaws.com"
+        },
+        {
+          # was alias A record in aws
+          name    = "lb"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "dualstack.resmo-api-1826250524.us-west-2.elb.amazonaws.com"
+        },
+        {
+          name    = "_5e49427239f47d6873989c00feb431bb"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "_22c0c5f44b7c37145ea0d5dfd81c94cf.bbfvkzsszw.acm-validations.aws."
+        },
+        {
+          name    = "4elayc3ht45v7lfewmqhi3jpebchvmcq._domainkey"
+          proxied = false
+          ttl     = 1800
+          type    = "CNAME"
+          value   = "4elayc3ht45v7lfewmqhi3jpebchvmcq.dkim.amazonses.com"
+        },
+        {
+          name    = "m3kttf5jyddzw3snmrdq3ba6hkqorciv._domainkey"
+          proxied = false
+          ttl     = 1800
+          type    = "CNAME"
+          value   = "m3kttf5jyddzw3snmrdq3ba6hkqorciv.dkim.amazonses.com"
+        },
+        {
+          name    = "xlazj5vmv7dgxjwa2wwjnjorgwliwv66._domainkey"
+          proxied = false
+          ttl     = 1800
+          type    = "CNAME"
+          value   = "xlazj5vmv7dgxjwa2wwjnjorgwliwv66.dkim.amazonses.com"
+        },
+        {
+          name    = "app"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "d11qqtz2abv5n8.cloudfront.net"
+        },
+        {
+          name    = "www",
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "proxy-ssl.webflow.com"
+        },
+
+        # TXT Records
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "google-site-verification=iuX5A-PjgAM_36ZSOLDuH9Ts_I3euoiyxy2g_puppaQ"
+        },
+        {
+          name    = "@"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "v=spf1 include:_spf.google.com -all"
+        },
+        {
+          name    = "_amazonses"
+          proxied = false
+          ttl     = 1800
+          type    = "TXT"
+          value   = "BkjK9oKpWMsRtisrTQGhFWGswGTzydJpEBj1/DYb/z0="
+        },
+        {
+          name    = "_dmarc"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "v=DMARC1;p=none;pct=100;"
+        },
+        {
+          name    = "google._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn3w+v/HqDBTwwPC73u6/mJLsRruoUCQ0VgJK1DUZ/GrXv20Lp4MrCRAycSrp9GtdNeRTRZjoNrNbX/nAjrIARs296MO2/hRT+AGZ6VGYnS0MVeGP1k1sHdM5iWEphximArt4JuOcwHL46H204949VOyc0Tp9IJux51JgdV3hIia4Ib36oWc8GGhlM77e\"\"NIcZ8A8xQJCjjGpY1W1cyfxATKlXPiHGds+b02Z1Pj++H4R0jcpDSheI4YyvJ5kpWeP3elTTwRgPaOQCGipaZDCw80EzGnDg4IsYWkmqeZ78u98I7DmYQhuDyHzk7EDGFYY3+ltWHYV10FNeMaq4XsxjSQIDAQAB"
+        },
         # MX Records
         {
           name     = "@"
