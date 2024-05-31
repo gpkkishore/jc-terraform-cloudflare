@@ -1796,7 +1796,7 @@ locals {
           proxied = false
           ttl     = 300
           type    = "TXT"
-          value   = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA61Ij2n3QfT9cbc7uYPS/DAapgJ3OKKViqIl+nAtKVLslD7t1qac3+dJHHf1YMlyDWPFLQb4OTUwR58+WTmZ8MnVD7FKcrh6tHUW+4iy61WqzJYaZ33A/HIuUj1ENNihZ9BDqzei/m8zIeEVwzza/T60YlywInoLBIlIgNUDp\"\"YS0Gr3Fnd2kmNbsi9hR96cvXYXKM0tYR8q67JO1dRbWvBcTq1Tjk3C46G3HgrIaShtl0mTr2JqeWVE7qWeUOJbhAdizU2u1gL6b2RBay/qmZCGssfEYa6lU5yQiVMBFu0gw8MncXFf1yX88m9bhCun94adnskuuTaL/FzxmmDdAhPwIDAQAB"
+          value   = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA61Ij2n3QfT9cbc7uYPS/DAapgJ3OKKViqIl+nAtKVLslD7t1qac3+dJHHf1YMlyDWPFLQb4OTUwR58+WTmZ8MnVD7FKcrh6tHUW+4iy61WqzJYaZ33A/HIuUj1ENNihZ9BDqzei/m8zIeEVwzza/T60YlywInoLBIlIgNUDpYS0Gr3Fnd2kmNbsi9hR96cvXYXKM0tYR8q67JO1dRbWvBcTq1Tjk3C46G3HgrIaShtl0mTr2JqeWVE7qWeUOJbhAdizU2u1gL6b2RBay/qmZCGssfEYa6lU5yQiVMBFu0gw8MncXFf1yX88m9bhCun94adnskuuTaL/FzxmmDdAhPwIDAQAB"
         },
         {
           name    = "_github-challenge-resmoio-organization"
@@ -1990,7 +1990,7 @@ locals {
           proxied = false
           ttl     = 300
           type    = "TXT"
-          value   = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn3w+v/HqDBTwwPC73u6/mJLsRruoUCQ0VgJK1DUZ/GrXv20Lp4MrCRAycSrp9GtdNeRTRZjoNrNbX/nAjrIARs296MO2/hRT+AGZ6VGYnS0MVeGP1k1sHdM5iWEphximArt4JuOcwHL46H204949VOyc0Tp9IJux51JgdV3hIia4Ib36oWc8GGhlM77e\"\"NIcZ8A8xQJCjjGpY1W1cyfxATKlXPiHGds+b02Z1Pj++H4R0jcpDSheI4YyvJ5kpWeP3elTTwRgPaOQCGipaZDCw80EzGnDg4IsYWkmqeZ78u98I7DmYQhuDyHzk7EDGFYY3+ltWHYV10FNeMaq4XsxjSQIDAQAB"
+          value   = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn3w+v/HqDBTwwPC73u6/mJLsRruoUCQ0VgJK1DUZ/GrXv20Lp4MrCRAycSrp9GtdNeRTRZjoNrNbX/nAjrIARs296MO2/hRT+AGZ6VGYnS0MVeGP1k1sHdM5iWEphximArt4JuOcwHL46H204949VOyc0Tp9IJux51JgdV3hIia4Ib36oWc8GGhlM77eNIcZ8A8xQJCjjGpY1W1cyfxATKlXPiHGds+b02Z1Pj++H4R0jcpDSheI4YyvJ5kpWeP3elTTwRgPaOQCGipaZDCw80EzGnDg4IsYWkmqeZ78u98I7DmYQhuDyHzk7EDGFYY3+ltWHYV10FNeMaq4XsxjSQIDAQAB"
         },
         # MX Records
         {
