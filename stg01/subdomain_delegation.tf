@@ -19,7 +19,7 @@ locals {
     {
       name  = "pwm"
       ttl   = 300
-      value = ["ns-1609.awsdns-09.co.uk", "ns-392.awsdns-49.com", "ns-1213.awsdns-23.org", "ns-559.awsdns-05.net"]
+      value = ["ns-1736.awsdns-25.co.uk", "ns-305.awsdns-38.com", "ns-1518.awsdns-61.org", "ns-976.awsdns-58.net"]
     }
   ]
 }
