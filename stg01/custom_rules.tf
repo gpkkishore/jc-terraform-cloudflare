@@ -60,39 +60,8 @@ locals {
   ]
   stg01_ip_access = [
     {
-      ip_address = "49.205.146.123"
-      ticket     = "TE-855"
-      expiration = "2024-05-27T00:00:00Z"
-    },
-    {
-      ip_address = "2406:7400:98:529b:b859:1e69:f550:4215"
-      ticket     = "TE-855"
-      expiration = "2024-05-27T00:00:00Z"
-    },
-    {
-      ip_address = "106.51.168.243"
-      ticket     = "TE-855"
-      expiration = "2024-05-27T00:00:00Z"
-    },
-    {
-      ip_address = "103.28.246.12"
-      ticket     = "TE-855"
-      expiration = "2024-05-27T00:00:00Z"
-    },
-    {
-      ip_address = "122.171.22.65"
-      ticket     = "TE-855"
-      expiration = "2024-05-27T00:00:00Z"
-    },
-    {
-      ip_address = "103.224.34.251"
-      ticket     = "TE-855"
-      expiration = "2024-05-27T00:00:00Z"
-    },
-    {
-      ip_address = "2406:7400:ff01:c851:49af:92d:9736:8e36"
-      ticket     = "TE-855"
-      expiration = "2024-05-27T00:00:00Z"
-    },
+      ip_address = "50.194.147.161" # Louisville, CO Office IP Address
+      expiration = "2029-05-27T00:00:00Z"
+    }
   ]
 }
