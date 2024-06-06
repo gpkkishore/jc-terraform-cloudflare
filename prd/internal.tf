@@ -33,7 +33,7 @@ locals {
     {
       name  = "stg01-use2-p00"
       ttl   = 300
-      value = ["ns-1321.awsdns-37.org", "ns-605.awsdns-11.net", "ns-432.awsdns-54.com", "ns-1805.awsdns-33.co.uk"]
+      value = ["ns-1044.awsdns-02.org", "ns-790.awsdns-34.net", "ns-156.awsdns-19.com", "ns-1945.awsdns-51.co.uk"]
     },
     {
       name  = "stg01-use2-p01"
