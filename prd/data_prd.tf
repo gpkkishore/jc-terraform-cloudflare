@@ -1498,14 +1498,14 @@ locals {
         {
           name    = "resmo.com"
           proxied = true
-          ttl     = 60
+          ttl     = 1
           type    = "A"
           value   = "75.2.70.75"
         },
         {
           name    = "resmo.com"
           proxied = true
-          ttl     = 60
+          ttl     = 1
           type    = "A"
           value   = "99.83.190.102"
         },
