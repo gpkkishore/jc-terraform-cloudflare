@@ -1497,14 +1497,14 @@ locals {
         # A records
         {
           name    = "resmo.com"
-          proxied = false
+          proxied = true
           ttl     = 60
           type    = "A"
           value   = "75.2.70.75"
         },
         {
           name    = "resmo.com"
-          proxied = false
+          proxied = true
           ttl     = 60
           type    = "A"
           value   = "99.83.190.102"
