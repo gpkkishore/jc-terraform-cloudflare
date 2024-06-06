@@ -1658,15 +1658,15 @@ locals {
         },
         {
           name    = "changelog"
-          proxied = false
-          ttl     = 300
+          proxied = true
+          ttl     = 1
           type    = "CNAME"
           value   = "cname.announcekit.app"
         },
         {
           name    = "docs.resmo.com."
-          proxied = false
-          ttl     = 300
+          proxied = true
+          ttl     = 1
           type    = "CNAME"
           value   = "b3ed3db57d-hosting.gitbook.io"
         },
@@ -1700,15 +1700,15 @@ locals {
         },
         {
           name    = "resources"
-          proxied = false
-          ttl     = 300
+          proxied = true
+          ttl     = 1
           type    = "CNAME"
           value   = "b3ed3db57d-hosting.gitbook.io"
         },
         {
           name    = "trust"
-          proxied = false
-          ttl     = 300
+          proxied = true
+          ttl     = 1
           type    = "CNAME"
           value   = "custom.trustpage.app"
         },
@@ -1721,8 +1721,8 @@ locals {
         },
         {
           name    = "www"
-          proxied = false
-          ttl     = 300
+          proxied = true
+          ttl     = 1
           type    = "CNAME"
           value   = "proxy-ssl.webflow.com"
         },
