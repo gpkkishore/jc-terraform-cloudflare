@@ -116,7 +116,7 @@ resource "cloudflare_page_rule" "jumpcloud_lounge_page_rule" {
   actions {
     forwarding_url {
       status_code = 301
-      url         = "https://jumpcloudlounge.slack.com/join/shared_invite/zt-1acbb4zjp-A2zyBCSSUtHnWzAFhCCqNA#/shared-invite/email"
+      url         = "https://jumpcloudlounge.slack.com/join/shared_invite/zt-2kbtelstf-JmeD7I4N1icu69S9TPLIkA#/shared-invite/email"
     }
   }
 }
@@ -205,9 +205,4 @@ resource "cloudflare_ruleset" "security_response_headers" {
       }
     }
   }
-}
-
-moved {
-  from = module.dns.cloudflare_record.dns_records["private-kickstart_prd-kickstart-priv-haproxy-51a0179c97e2d9d8.elb.us-east-1.amazonaws.com"]
-  to   = module.dns.cloudflare_record.dns_records["private-kickstart_kickstart-private.prd-use1.jcplatform.dev"]
 }
