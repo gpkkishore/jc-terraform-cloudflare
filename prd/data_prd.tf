@@ -2040,6 +2040,13 @@ locals {
       dns_records = [
         # CNAMES
         {
+          name    = "*.resmo.app"
+          proxied = false
+          ttl     = 300
+          type    = "CNAME"
+          value   = "d1ky3ow4gqkauh.cloudfront.net"
+        },
+        {
           # was alias A record in aws
           name    = "resmo.app",
           proxied = false
