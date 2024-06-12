@@ -1522,8 +1522,8 @@ locals {
         {
           # was alias A record in aws
           name    = "browser"
-          proxied = false
-          ttl     = 60
+          proxied = true
+          ttl     = 1
           type    = "CNAME"
           value   = "d1ogzvyyqrr4l5.cloudfront.net"
         },
