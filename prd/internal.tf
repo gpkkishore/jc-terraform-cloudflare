@@ -94,6 +94,11 @@ locals {
       name  = "marketing-internal"
       ttl   = 300
       value = ["ns-1122.awsdns-12.org", "ns-888.awsdns-47.net", "ns-1722.awsdns-23.co.uk", "ns-267.awsdns-33.com"]
+    },
+    {
+      name  = "cicd-usw2-acceptance"
+      ttl   = 300
+      value = ["ns-18.awsdns-02.com", "ns-1378.awsdns-44.org", "ns-668.awsdns-19.net", "ns-2019.awsdns-60.co.uk"]
     }
   ]
 }
