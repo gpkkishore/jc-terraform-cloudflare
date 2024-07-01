@@ -122,6 +122,6 @@ resource "cloudflare_ruleset" "security_response_headers" {
 }
 
 import {
-  from = "203f44d064ccc019be1e40fa73c29bc3"
-  to   = cloudflare_total_tls.wildcard_certs
+  id = "203f44d064ccc019be1e40fa73c29bc3"
+  to = cloudflare_total_tls.wildcard_certs
 }
