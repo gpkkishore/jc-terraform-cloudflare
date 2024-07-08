@@ -32,6 +32,12 @@ resource "cloudflare_zone" "cloudflare_zone_resource" {
   zone       = var.zone_name
 }
 
+resource "cloudflare_total_tls" "wildcard_certs" {
+  zone_id               = cloudflare_zone.cloudflare_zone_resource.id
+  enabled               = true
+  certificate_authority = "lets_encrypt"
+}
+
 module "dns" {
   source        = "app.terraform.io/jumpcloud/dns/cloudflare"
   version       = "2.0.1"
@@ -59,19 +65,6 @@ module "settings" {
 resource "aws_route53_zone" "r53_delegated_zone" {
   for_each = toset(local.r53_zones)
   name     = each.key
-}
-
-resource "cloudflare_certificate_pack" "custom_cert" {
-  for_each = { for cert in local.custom_certs : cert.name => cert }
-
-  zone_id                = cloudflare_zone.cloudflare_zone_resource.id
-  type                   = "advanced"
-  hosts                  = each.value.hosts
-  validation_method      = each.value.validation_method
-  validity_days          = 90
-  certificate_authority  = "lets_encrypt"
-  cloudflare_branding    = false
-  wait_for_active_status = true
 }
 
 data "cloudflare_zone" "id_stg01_jumpcloud_com" {
@@ -126,4 +119,9 @@ resource "cloudflare_ruleset" "security_response_headers" {
       }
     }
   }
+}
+
+import {
+  id = "203f44d064ccc019be1e40fa73c29bc3"
+  to = cloudflare_total_tls.wildcard_certs
 }
