@@ -247,6 +247,13 @@ locals {
       value   = "kickstart-private.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "saas"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "saas.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "sso"
       proxied = true
       ttl     = 1
