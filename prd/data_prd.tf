@@ -483,6 +483,13 @@ locals {
       value   = "sso.prd-use1.jcplatform.dev"
     },
     {
+      name    = "saas"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "saas.prd-use1.jcplatform.dev"
+    },
+    {
       name    = "devvpn",
       proxied = false
       ttl     = 1
