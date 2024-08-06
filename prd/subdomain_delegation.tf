@@ -40,6 +40,11 @@ locals {
       name  = "stg01"
       ttl   = 300
       value = ["blakely.ns.cloudflare.com", "keenan.ns.cloudflare.com"]
+    },
+    {
+      name  = "prd02"
+      ttl   = 300
+      value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
     }
   ]
 }
