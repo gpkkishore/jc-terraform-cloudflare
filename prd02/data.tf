@@ -217,7 +217,7 @@ locals {
     {
       action      = "skip"
       description = "Allow NATGWs"
-      expression  = "not ip.src in {18.197.88.221 3.65.75.217 35.159.138.1 3.125.125.36 3.65.73.181 3.77.209.145}"
+      expression  = "ip.src in {18.197.88.221 3.65.75.217 35.159.138.1 3.125.125.36 3.65.73.181 3.77.209.145}"
     },
     // This block is to block all traffic that is not from Zscaler
     {
