@@ -152,8 +152,22 @@ locals {
       value   = "oauth-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
-      name    = "pwm"
-      proxied = false
+      name    = "devices.pwm"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
+    },
+    {
+      name    = "grpc.pwm"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
+    },
+    {
+      name    = "scim.pwm"
+      proxied = true
       ttl     = 1
       type    = "CNAME"
       value   = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
