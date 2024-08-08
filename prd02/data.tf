@@ -153,7 +153,7 @@ locals {
     },
     {
       name    = "pwm"
-      proxied = false
+      proxied = true
       ttl     = 1
       type    = "CNAME"
       value   = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
