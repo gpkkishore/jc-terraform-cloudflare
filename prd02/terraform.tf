@@ -4,7 +4,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.29.0"
+      version = "~> 4.30"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
@@ -17,7 +17,7 @@ terraform {
     organization = "jumpcloud"
 
     workspaces {
-      name = "stg01-cloudflare"
+      name = "prd02-cloudflare"
     }
   }
 }
