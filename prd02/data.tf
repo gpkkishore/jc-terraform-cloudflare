@@ -203,26 +203,16 @@ locals {
    * This can be used to delegate subdomains to other DNS providers or other cloudflare zones
    */
   prd02_ns_delegation_records = [
-    # {
-    #   name  = "id"
-    #   ttl   = 300
-    #   value = []
-    # },
-    # {
-    #   name  = "ldap"
-    #   ttl   = 300
-    #   value = []
-    # },
-    # {
-    #   name  = "ldap-mfa"
-    #   ttl   = 300
-    #   value = []
-    # },
-    # {
-    #   name  = "pwm"
-    #   ttl   = 300
-    #   value = []
-    # }
+    {
+      name  = "ldap"
+      ttl   = 300
+      value = ["ns-1965.awsdns-53.co.uk.", "ns-1131.awsdns-13.org.", "ns-25.awsdns-03.com.", "ns-854.awsdns-42.net."]
+    },
+    {
+      name  = "ldap-mfa"
+      ttl   = 300
+      value = ["ns-1441.awsdns-52.org.", "ns-1670.awsdns-16.co.uk.", "ns-891.awsdns-47.net.", "ns-401.awsdns-50.com."]
+    },
   ]
 
   /**
@@ -247,4 +237,5 @@ locals {
       expression  = "(not ip.src in {52.57.217.97 3.79.78.24})"
     }
   ]
+
 }
