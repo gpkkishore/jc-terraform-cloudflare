@@ -21,91 +21,91 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "adbridge-kickstart-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "adbridge-kickstart-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "adbridge"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "adbridge-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "adbridge-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "agent"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "agent-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "agent-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "api"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "api-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "api-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "assist"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "assist-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "assist-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "apple-mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "apple-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "apple-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "microsoft-mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "microsoft-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "microsoft-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "*.microsoft-mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "microsoft-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "microsoft-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "bss"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "si-bss-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "si-bss-api-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "console"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "console-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "console-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "device-cert"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "device-cert-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "device-cert-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "kickstart"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "kickstart-public-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "kickstart-public-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "apple.mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "apple-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "apple-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
 
     {
@@ -113,7 +113,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "go-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "go-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
 
     {
@@ -121,70 +121,70 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "kickstart-private-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "kickstart-private-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "jumpdesk"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "jumpdesk-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "jumpdesk-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "login"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "login-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "login-api-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "nli"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "nli-haproxy-haproxy.ue1-prd-p01.jcplatform.dev"
+      content = "nli-haproxy-haproxy.ue1-prd-p01.jcplatform.dev"
     },
     {
       name    = "oauth"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "oauth-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "oauth-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "devices.pwm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "grpc.pwm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "scim.pwm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "sso"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "sso-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "sso-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "saas"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "saas-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "saas-haproxy.prd02-euc1-p00.jcplatform.dev"
     }
   ]
 
@@ -204,14 +204,14 @@ locals {
    */
   prd02_ns_delegation_records = [
     {
-      name  = "ldap"
-      ttl   = 300
-      value = ["ns-1965.awsdns-53.co.uk.", "ns-1131.awsdns-13.org.", "ns-25.awsdns-03.com.", "ns-854.awsdns-42.net."]
+      name    = "ldap"
+      ttl     = 300
+      content = ["ns-1965.awsdns-53.co.uk.", "ns-1131.awsdns-13.org.", "ns-25.awsdns-03.com.", "ns-854.awsdns-42.net."]
     },
     {
-      name  = "ldap-mfa"
-      ttl   = 300
-      value = ["ns-1441.awsdns-52.org.", "ns-1670.awsdns-16.co.uk.", "ns-891.awsdns-47.net.", "ns-401.awsdns-50.com."]
+      name    = "ldap-mfa"
+      ttl     = 300
+      content = ["ns-1441.awsdns-52.org.", "ns-1670.awsdns-16.co.uk.", "ns-891.awsdns-47.net.", "ns-401.awsdns-50.com."]
     },
   ]
 
