@@ -34,10 +34,10 @@ resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
   type    = "DS"
   proxied = false
   data {
-    algorithm   = lookup(cloudflare_zone_dnssec.zones_with_dnssec, each.key).algorithm
-    digest      = lookup(cloudflare_zone_dnssec.zones_with_dnssec, each.key).digest
-    digest_type = lookup(cloudflare_zone_dnssec.zones_with_dnssec, each.key).digest_type
-    key_tag     = lookup(cloudflare_zone_dnssec.zones_with_dnssec, each.key).key_tag
+    algorithm   = lookup(data.cloudflare_zone_dnssec.zones_with_dnssec, each.key).algorithm
+    digest      = lookup(data.cloudflare_zone_dnssec.zones_with_dnssec, each.key).digest
+    digest_type = lookup(data.cloudflare_zone_dnssec.zones_with_dnssec, each.key).digest_type
+    key_tag     = lookup(data.cloudflare_zone_dnssec.zones_with_dnssec, each.key).key_tag
   }
 }
 
