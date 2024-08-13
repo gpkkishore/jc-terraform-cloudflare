@@ -29,7 +29,7 @@ resource "cloudflare_zone_dnssec" "child_zones_with_dnssec" {
 resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
   for_each = toset(local.cloudflare_child_zones)
 
-  zone_id = lookup(data.cloudflare_zone.child_zones_with_dnssec, local.cloudflare_root_zone).id
+  zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_root_zone).id
   name    = each.key
   type    = "DS"
   proxied = false
