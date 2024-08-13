@@ -10,7 +10,8 @@ locals {
   cloudflare_zones_with_dnssec = toset(concat([local.cloudflare_root_zone], local.cloudflare_child_zones))
 }
 
-# prepare cloudflare zone jumpcloud.com for dnssec by generating values for the DS record.
+# prepare cloudflare zone prd02.jumpcloud.com for dnssec by generating values for the DS record.
+# only need to create cloudflare_child_zones_with_dnssec because jumpcloud.com zone already has dnsse enabled in the prd env so we just need to read it with data source.
 data "cloudflare_zone" "zones_with_dnssec" {
   for_each = local.cloudflare_zones_with_dnssec
 
@@ -18,7 +19,7 @@ data "cloudflare_zone" "zones_with_dnssec" {
   name       = each.key
 }
 
-resource "cloudflare_zone_dnssec" "zones_with_dnssec" {
+resource "cloudflare_zone_dnssec" "child_zones_with_dnssec" {
   for_each = toset(local.cloudflare_child_zones)
 
   zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, each.key).id
@@ -28,7 +29,7 @@ resource "cloudflare_zone_dnssec" "zones_with_dnssec" {
 resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
   for_each = toset(local.cloudflare_child_zones)
 
-  zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_root_zone).id
+  zone_id = lookup(data.cloudflare_zone.child_zones_with_dnssec, local.cloudflare_root_zone).id
   name    = each.key
   type    = "DS"
   proxied = false
