@@ -46,7 +46,7 @@ resource "cloudflare_zone_dnssec" "zones_with_dnssec" {
 locals {
   route53_zones_with_dnssec = [
     {
-      name = "ldap.jumpcloud.com"
+      name = "ldap.prd02.jumpcloud.com"
       ns = {
         # original ns ttl is 172800
         ttl = 86400 # 1-day
@@ -60,14 +60,14 @@ locals {
       }
     },
     {
-      name = "ldap-mfa.jumpcloud.com"
+      name = "ldap-mfa.prd02.jumpcloud.com"
       ns = {
         # original ns ttl is 172800
         ttl = 86400 # 1-day
       }
       soa = {
         # original soa ttl is 900
-        ttl = 900
+        ttl     = 900
         records = ["ns-1147.awsdns-15.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
       }
     }
