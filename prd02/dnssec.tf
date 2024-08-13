@@ -104,6 +104,13 @@ locals {
   route53_zone_name_to_zone = { for zone in local.route53_zones_with_dnssec : zone.name => zone }
 }
 
+
+data "aws_route53_zone" "zones_with_dnssec" {
+  for_each = local.route53_zone_name_to_zone
+
+  name = each.key
+}
+
 # take control of default zone ns and soa records
 resource "aws_route53_record" "ns_zones_with_dnssec" {
   for_each = local.route53_zone_name_to_zone
