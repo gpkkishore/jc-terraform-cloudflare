@@ -91,7 +91,7 @@ resource "aws_route53_record" "ns_zones_with_dnssec" {
   ttl             = each.value.ns.ttl
   type            = "NS"
   zone_id         = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).zone_id
-  records         = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).name_servers
+  records         = formatlist("%s.", lookup(data.aws_route53_zone.zones_with_dnssec, each.key).name_servers) # add trailing dot to name servers
 }
 
 resource "aws_route53_record" "soa_zones_with_dnssec" {
