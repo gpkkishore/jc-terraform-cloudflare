@@ -3,7 +3,7 @@ provider "cloudflare" {
 }
 
 provider "aws" {
-  region = "us-east-2"
+  region = "eu-central-1"
 
   assume_role {
     role_arn = format("arn:aws:iam::%s:role/terraform-admin", local.aws_account)

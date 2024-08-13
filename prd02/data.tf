@@ -206,12 +206,12 @@ locals {
     {
       name    = "ldap"
       ttl     = 300
-      content = ["ns-1965.awsdns-53.co.uk.", "ns-1131.awsdns-13.org.", "ns-25.awsdns-03.com.", "ns-854.awsdns-42.net."]
+      content = ["ns-1698.awsdns-20.co.uk.", "ns-386.awsdns-48.com.", "ns-918.awsdns-50.net.", "ns-1457.awsdns-54.org."]
     },
     {
       name    = "ldap-mfa"
       ttl     = 300
-      content = ["ns-1441.awsdns-52.org.", "ns-1670.awsdns-16.co.uk.", "ns-891.awsdns-47.net.", "ns-401.awsdns-50.com."]
+      content = ["ns-1147.awsdns-15.org.", "ns-1901.awsdns-45.co.uk.", "ns-52.awsdns-06.com.", "ns-747.awsdns-29.net."]
     },
   ]
 
