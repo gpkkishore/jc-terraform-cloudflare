@@ -53,7 +53,7 @@ locals {
       }
       soa = {
         # original soa ttl is 900
-        ttl = 300
+        ttl = 900
         # original soa record is ["ns-1698.awsdns-20.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
         # ^updating last entry to 3600 for each zone from AWS UI or dig command
         records = ["ns-1698.awsdns-20.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
@@ -67,7 +67,7 @@ locals {
       }
       soa = {
         # original soa ttl is 900
-        ttl     = 300
+        ttl     = 900
         records = ["ns-1147.awsdns-15.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
       }
     },
@@ -110,9 +110,12 @@ resource "aws_route53_record" "soa_zones_with_dnssec" {
 # Prepare DNSSEC for Route53 zones
 # trailing date (ie 08132024) indicates the date of KSK rotation
 # as to not collied with original ksk resources during rotation
+# asymmetric elliptic curve KMS keys that are used in DNSSEC Signing
+# must be built in us-east-1.
 ##################################################################
+
 module "kms_elliptic_curve_for_zones_with_dnssec_08132024" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=fix-asymmetric-kms-policy-for-dnssec"
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v11.1.2"
 
   providers = {
     aws = aws.use1
@@ -161,13 +164,3 @@ resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec" {
 
   hosted_zone_id = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).hosted_zone_id
 }
-
-# delete later
-module "kms_test_2" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=fix-asymmetric-kms-policy-for-dnssec"
-
-  name                    = "DNSSEC-JUDE-TEST2" # ldap.prd02.jumpcloud.com -> ldap-prd02-jumpcloud-com-for-dnssec-ksk-08132024
-  deletion_window_in_days = 7
-  tags                    = { Environment = var.env }
-}
-
