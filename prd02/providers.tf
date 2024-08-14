@@ -19,3 +19,22 @@ provider "aws" {
     }
   }
 }
+
+provider "aws" {
+  region = "us-east-1"
+  alias  = "use1"
+
+  assume_role {
+    role_arn = format("arn:aws:iam::%s:role/terraform-admin", local.aws_account)
+  }
+
+  default_tags {
+    tags = {
+      Source      = format("TheJumpCloud/terraform-cloudflare/%s", var.env)
+      Team        = "edge"
+      CostOrg     = "engineering"
+      ProductLine = "shared"
+      Env         = var.env
+    }
+  }
+}

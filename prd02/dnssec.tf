@@ -111,49 +111,63 @@ resource "aws_route53_record" "soa_zones_with_dnssec" {
 # trailing date (ie 08132024) indicates the date of KSK rotation
 # as to not collied with original ksk resources during rotation
 ##################################################################
-#module "kms_elliptic_curve_for_zones_with_dnssec_08132024" {
-#source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=fix-asymmetric-kms-policy-for-dnssec"
+module "kms_elliptic_curve_for_zones_with_dnssec_08132024" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=fix-asymmetric-kms-policy-for-dnssec"
 
-#for_each = local.route53_zone_name_to_zone
+  providers = {
+    aws = aws.use1
+  }
 
-#name                     = format("%s-for-dnssec-ksk-%s", replace(each.key, ".", "-"), "08132024") # ldap.prd02.jumpcloud.com -> ldap-prd02-jumpcloud-com-for-dnssec-ksk-08132024
-#customer_master_key_spec = "ECC_NIST_P256"
-#key_usage                = "SIGN_VERIFY"
-#enable_dnssec_policy     = true
-#enable_key_rotation      = false # Automatic key rotation not supported for asymmetric KMS keys ie ECC
-#deletion_window_in_days  = 7
-#tags                     = { Environment = var.env }
-#}
+  for_each = local.route53_zone_name_to_zone
 
-#resource "aws_route53_key_signing_key" "zones_with_dnssec_08132024" {
-#for_each = local.route53_zone_name_to_zone
+  name                                     = format("%s-for-dnssec-ksk-%s", replace(each.key, ".", "-"), "08132024") # ldap.prd02.jumpcloud.com -> ldap-prd02-jumpcloud-com-for-dnssec-ksk-08132024
+  customer_master_key_spec                 = "ECC_NIST_P256"
+  key_usage                                = "SIGN_VERIFY"
+  enable_dnssec_policy_with_hosted_zone_id = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).id
+  enable_key_rotation                      = false # Automatic key rotation not supported for asymmetric KMS keys ie ECC
+  deletion_window_in_days                  = 7
+  tags                                     = { Environment = var.env }
+}
 
-#name                       = format("%s-%s", each.key, "08132024")
-#hosted_zone_id             = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).zone_id
-#key_management_service_arn = lookup(module.kms_elliptic_curve_for_zones_with_dnssec_08132024, each.key).arn
-#status                     = "ACTIVE"
-#}
+resource "aws_route53_key_signing_key" "zones_with_dnssec_08132024" {
+  for_each = local.route53_zone_name_to_zone
 
-## create DS record in prd02.jumpcloud.com child zone relative to each route53 zone which verifies the related KSKs hosted zone's DNSKEY
-#resource "cloudflare_record" "ds_route53_zones_with_dnssec_08132024" {
-#for_each = local.route53_zone_name_to_zone
+  name                       = format("%s-%s", each.key, "08132024")
+  hosted_zone_id             = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).zone_id
+  key_management_service_arn = lookup(module.kms_elliptic_curve_for_zones_with_dnssec_08132024, each.key).arn
+  status                     = "ACTIVE"
+}
 
-#zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_prd02_child_zone).id
-#name    = each.key
-#type    = "DS"
-#proxied = false
-#data {
-#algorithm   = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).signing_algorithm_type
-#digest      = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).digest_value
-#digest_type = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).digest_algorithm_type
-#key_tag     = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).key_tag
-#}
+# create DS record in prd02.jumpcloud.com child zone relative to each route53 zone which verifies the related KSKs hosted zone's DNSKEY
+resource "cloudflare_record" "ds_route53_zones_with_dnssec_08132024" {
+  for_each = local.route53_zone_name_to_zone
 
-#depends_on = [aws_route53_hosted_zone_dnssec.zones_with_dnssec]
-#}
+  zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_prd02_child_zone).id
+  name    = each.key
+  type    = "DS"
+  proxied = false
+  data {
+    algorithm   = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).signing_algorithm_type
+    digest      = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).digest_value
+    digest_type = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).digest_algorithm_type
+    key_tag     = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).key_tag
+  }
 
-#resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec" {
-#for_each = local.route53_zone_name_to_zone
+  depends_on = [aws_route53_hosted_zone_dnssec.zones_with_dnssec]
+}
 
-#hosted_zone_id = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).hosted_zone_id
-#}
+resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec" {
+  for_each = local.route53_zone_name_to_zone
+
+  hosted_zone_id = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).hosted_zone_id
+}
+
+# delete later
+module "kms_test_2" {
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=fix-asymmetric-kms-policy-for-dnssec"
+
+  name                    = "DNSSEC-JUDE-TEST2" # ldap.prd02.jumpcloud.com -> ldap-prd02-jumpcloud-com-for-dnssec-ksk-08132024
+  deletion_window_in_days = 7
+  tags                    = { Environment = var.env }
+}
+
