@@ -112,7 +112,7 @@ resource "aws_route53_record" "soa_zones_with_dnssec" {
 # as to not collied with original ksk resources during rotation
 ##################################################################
 module "kms_elliptic_curve_for_zones_with_dnssec_08132024" {
-  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v6.11.4"
+  source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=fix-asymmetric-kms-policy-for-dnssec"
 
   for_each = local.route53_zone_name_to_zone
 
