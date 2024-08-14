@@ -111,31 +111,16 @@ resource "aws_route53_record" "soa_zones_with_dnssec" {
 # trailing date (ie 08132024) indicates the date of KSK rotation
 # as to not collied with original ksk resources during rotation
 ##################################################################
-#module "kms_elliptic_curve_for_zones_with_dnssec_08132024" {
-#source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=fix-asymmetric-kms-policy-for-dnssec"
-
-#providers = {
-#aws = aws.use1
-#}
-
-#for_each = local.route53_zone_name_to_zone
-
-#name                                     = format("%s-for-dnssec-ksk-%s", replace(each.key, ".", "-"), "08132024") # ldap.prd02.jumpcloud.com -> ldap-prd02-jumpcloud-com-for-dnssec-ksk-08132024
-#customer_master_key_spec                 = "ECC_NIST_P256"
-#key_usage                                = "SIGN_VERIFY"
-#enable_dnssec_policy_with_hosted_zone_id = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).id
-#enable_key_rotation                      = false # Automatic key rotation not supported for asymmetric KMS keys ie ECC
-#deletion_window_in_days                  = 7
-#tags                                     = { Environment = var.env }
-#}
-
-
-module "kms_test" {
+module "kms_elliptic_curve_for_zones_with_dnssec_08132024" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=fix-asymmetric-kms-policy-for-dnssec"
+
+  providers = {
+    aws = aws.use1
+  }
 
   for_each = local.route53_zone_name_to_zone
 
-  name                                     = format("%s-for-dnssec-ksk-TEST-%s", replace(each.key, ".", "-"), "08132025") # ldap.prd02.jumpcloud.com -> ldap-prd02-jumpcloud-com-for-dnssec-ksk-08132024
+  name                                     = format("%s-for-dnssec-ksk-%s", replace(each.key, ".", "-"), "08132024") # ldap.prd02.jumpcloud.com -> ldap-prd02-jumpcloud-com-for-dnssec-ksk-08132024
   customer_master_key_spec                 = "ECC_NIST_P256"
   key_usage                                = "SIGN_VERIFY"
   enable_dnssec_policy_with_hosted_zone_id = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).id
