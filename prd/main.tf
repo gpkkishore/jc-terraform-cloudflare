@@ -68,9 +68,10 @@ module "resmo_dns" {
 
 # Page Rule for removed microsoft-mdm-configuration-files endpoint in console
 resource "cloudflare_page_rule" "console_v2_microsoft_mdm_configuration_files" {
-  priority = 2
+  priority = 1
   target   = "*console.jumpcloud.com/api/v2/microsoft-mdm-configuration-files"
   zone_id  = cloudflare_zone.cloudflare_zone_resource.id
+  status = "disabled"
   actions {
     forwarding_url {
       status_code = 301
@@ -89,6 +90,20 @@ resource "cloudflare_certificate_pack" "custom_cert" {
   validation_method      = each.value.validation_method
   validity_days          = 90
   certificate_authority  = "lets_encrypt"
+  cloudflare_branding    = false
+  wait_for_active_status = true
+}
+
+
+resource "cloudflare_certificate_pack" "custom_cert_09042024" {
+  for_each = { for cert in local.custom_certs : cert.name => cert }
+
+  zone_id                = cloudflare_zone.cloudflare_zone_resource.id
+  type                   = "advanced"
+  hosts                  = each.value.hosts
+  validation_method      = each.value.validation_method
+  validity_days          = 90
+  certificate_authority  = "google"
   cloudflare_branding    = false
   wait_for_active_status = true
 }
