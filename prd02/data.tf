@@ -137,6 +137,13 @@ locals {
       content = "login-api-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
+      name    = "mulesoft-api",
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "jumpcloud-prod-dlb.lb.anypointdns.net"
+    },
+    {
       name    = "nli"
       proxied = true
       ttl     = 1
@@ -193,7 +200,7 @@ locals {
       content = "saas-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
-      name   = "trampoline.id"
+      name    = "trampoline.id"
       proxied = true
       ttl     = 1
       type    = "CNAME"
