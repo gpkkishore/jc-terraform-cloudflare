@@ -139,7 +139,7 @@ locals {
     {
       name    = "mulesoft-api",
       proxied = false
-      ttl     = 1
+      ttl     = 300
       type    = "CNAME"
       content = "jumpcloud-prod-dlb.lb.anypointdns.net"
     },
