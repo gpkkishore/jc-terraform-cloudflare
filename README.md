@@ -20,6 +20,7 @@ There are currently 3 environments:
 1) `prd` - jumpcloud.com
 2) `stg01` - stg01.jumpcloud.com (note that stg01 has completely different DNS records than prod)
 3) `tst` - cloudjump.dev (identical to production, used to test changes)
+4) `prd02` - prd02.jumpcloud.com
 
 ```
 src
@@ -28,6 +29,7 @@ src
   ↳ prd    // Working directory for the production CloudFlare site (jumpcloud.com)
   ↳ tst    // Working directory for the test CloudFlare site (cloudjump.dev)
   ↳ stg01  // Working directory for the stg01 CloudFlare site (stg01.jumpcloud.com)
+  ↳ prd02  // Working directory for the prd02 CloudFlare site (prd02.jumpcloud.com)
 ```
 
 Please see [Contributing](docs/contributing.md) for additional information along with info on how to add a DNS record.
