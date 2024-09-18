@@ -432,7 +432,7 @@ locals {
     {
       action      = "skip"
       description = "Allow Watcher Probe IPs"
-      expression  = "ip.src in {3.127.154.57 18.197.137.114}"
+      expression  = "ip.src in {3.75.35.43 3.127.154.57 18.197.137.114}"
     },
     // This block is to block all traffic that is not from Zscaler
     {
