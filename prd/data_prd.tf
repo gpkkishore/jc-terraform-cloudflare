@@ -721,6 +721,13 @@ locals {
       value   = "jumpcloud-nonprod-dlb.lb.anypointdns.net"
     },
     {
+      name    = "prd02-mulesoft-api",
+      proxied = false
+      ttl     = 300
+      type    = "CNAME"
+      value   = "jumpcloud-prod-dlb.lb.anypointdns.net"
+    },
+    {
       name    = "mulesoft-api",
       proxied = false
       ttl     = 1
