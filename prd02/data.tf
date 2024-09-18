@@ -427,10 +427,11 @@ locals {
       description = "Allow NATGWs"
       expression  = "ip.src in {18.197.88.221 3.65.75.217 35.159.138.1 3.125.125.36 3.65.73.181 3.77.209.145}"
     },
-    // Skip requests from the LDAP Watcher Probe in prd02
+    // Skip requests from the Watcher Probe in prd02
+    // These IPs were found in Watcher Probe logs and CloudFlare blocked logs
     {
       action      = "skip"
-      description = "Allow Watcher IPs"
+      description = "Allow Watcher Probe IPs"
       expression  = "ip.src in {3.127.154.57 18.197.137.114}"
     },
     // This block is to block all traffic that is not from Zscaler
