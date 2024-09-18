@@ -431,7 +431,7 @@ locals {
     {
       action      = "block"
       description = "Allow Zscaler Only"
-      expression  = "(not ip.src in {52.57.217.97 3.79.78.24})"
+      expression  = "(http.host in {\"jumpdesk.prd02.jumpcloud.com\" \"dev.prd02.jumpcloud.com\"} and not ip.src in {52.57.217.97 3.79.78.24})"
     }
   ]
 
