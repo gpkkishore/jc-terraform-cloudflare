@@ -64,12 +64,22 @@ locals {
         description = "20240513-jccom-outage"
         expression  = "(ip.geoip.asnum eq 45102 and http.host eq \"jumpcloud.com\" and http.request.uri.path eq \"/careers\")"
       },
+      {
+        action      = "block"
+        description = "IR-177-block-tan-stork-incident"
+        expression  = "(ip.src in {2804:1b2:82:7c21:d294:66ff:febb:ff7 105.105.63.193 51.79.55.221 2607:5300:201:3100::3381})"
+      },
     ]
     "id.stg01.jumpcloud.com" = [
       {
         action      = "block"
         description = "Allow ZScaler only"
         expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204/32 3.134.71.189/32 3.130.21.136/32 3.23.44.17/32 3.23.121.107/32})"
+      },
+      {
+        action      = "block"
+        description = "IR-177-block-tan-stork-incident"
+        expression  = "(ip.src in {2804:1b2:82:7c21:d294:66ff:febb:ff7 105.105.63.193 51.79.55.221 2607:5300:201:3100::3381})"
       },
     ]
     "jumpcloud.ai" = [
@@ -83,6 +93,11 @@ locals {
         description = "Block labs.jumpcloud.ai requests requests from non-internal IPs"
         expression  = "(not ip.src in {34.195.141.99/32 3.226.52.173/32 44.194.86.168/32} and http.host eq \"labs.jumpcloud.ai\")"
       },
+      {
+        action      = "block"
+        description = "IR-177-block-tan-stork-incident"
+        expression  = "(ip.src in {2804:1b2:82:7c21:d294:66ff:febb:ff7 105.105.63.193 51.79.55.221 2607:5300:201:3100::3381})"
+      }
     ]
   }
 }

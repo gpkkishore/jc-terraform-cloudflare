@@ -439,7 +439,12 @@ locals {
       action      = "block"
       description = "Allow Zscaler Only"
       expression  = "(not ip.src in {52.57.217.97 3.79.78.24})"
-    }
+    },
+    {
+      action      = "block"
+      description = "IR-177-block-tan-stork-incident"
+      expression  = "(ip.src in {2804:1b2:82:7c21:d294:66ff:febb:ff7 105.105.63.193 51.79.55.221 2607:5300:201:3100::3381})"
+    },
   ]
 
 }
