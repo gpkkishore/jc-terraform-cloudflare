@@ -211,6 +211,7 @@ locals {
       type    = "A"
       value   = "50.23.90.245"
     },
+    // START - Marketing website
     // These dev/staging records are for pre-prod envs on the marketing website (hosted through lightsail)
     {
       name    = "staging",
@@ -240,6 +241,7 @@ locals {
       type    = "A"
       value   = "52.13.15.220"
     },
+    // END - Marketing website
   ]
 
   prd_mx_records = [
@@ -431,7 +433,6 @@ locals {
       type    = "CNAME"
       value   = "apple-mdm.prd-use1.jcplatform.dev"
     },
-
     {
       name    = "go"
       proxied = true
@@ -439,7 +440,6 @@ locals {
       type    = "CNAME"
       value   = "go.prd-use1.jcplatform.dev"
     },
-
     {
       name    = "private-kickstart"
       proxied = false
@@ -901,7 +901,44 @@ locals {
       ttl     = 300
       type    = "CNAME"
       value   = "pm.mtasv.net"
-    }
+    },
+    // START - Catalyst
+    {
+      name    = "url9805",
+      proxied = false
+      ttl     = 300
+      type    = "CNAME"
+      value   = "sendgrid.net"
+    },
+    {
+      name    = "19687090",
+      proxied = false
+      ttl     = 300
+      type    = "CNAME"
+      value   = "sendgrid.net"
+    },
+    {
+      name    = "em3336",
+      proxied = false
+      ttl     = 300
+      type    = "CNAME"
+      value   = "u19687090.wl091.sendgrid.net"
+    },
+    {
+      name    = "JUM._domainkey",
+      proxied = false
+      ttl     = 300
+      type    = "CNAME"
+      value   = "JUM.domainkey.u19687090.wl091.sendgrid.net"
+    },
+    {
+      name    = "JUM2._domainkey",
+      proxied = false
+      ttl     = 300
+      type    = "CNAME"
+      value   = "JUM2.domainkey.u19687090.wl091.sendgrid.n"
+    },
+    // END - Catalyst
   ]
 
   prd_misc_records = [
@@ -1212,7 +1249,7 @@ locals {
       ttl     = 3600
       type    = "TXT"
       value   = "a6c6f863eacc4d5f41f52f55678f18f38187fbb3db3888926181045efb0fcf0baa9b528fc943970ff9a41c6aca37bcb9d0bbb02387addf53bf13b69c042abb3c"
-    }
+    },
   ]
 
   zercurity_tmp_records = [
