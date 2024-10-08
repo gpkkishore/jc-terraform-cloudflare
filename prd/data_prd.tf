@@ -902,6 +902,13 @@ locals {
       type    = "CNAME"
       value   = "pm.mtasv.net"
     },
+    {
+      name    = "jumpcademy.com",
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "lmso9s9e0x724u0quekaz9s8i5i0s05ko.lb1.wl.lmspowered.com"
+    },
     // START - Catalyst
     {
       name    = "url9805",
