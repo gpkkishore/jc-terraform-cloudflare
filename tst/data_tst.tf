@@ -381,91 +381,91 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.adbridge_kickstart-haproxy_nlb.lb_dns_name
+      value   = "adbridge-kickstart.prd-use1.jcplatform.dev"
     },
     {
       name    = "adbridge"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.adbridge_nlb.lb_dns_name
+      value   = "adbridge.prd-use1.jcplatform.dev"
     },
     {
       name    = "agent"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.agent_nlb.lb_dns_name
+      value   = "agent.prd-use1.jcplatform.dev"
     },
     {
       name    = "api"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.api_nlb.lb_dns_name
+      value   = "api.prd-use1.jcplatform.dev"
     },
     {
       name    = "assist"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.assist_nlb.lb_dns_name
+      value   = "assist.prd-use1.jcplatform.dev"
     },
     {
       name    = "apple-mdm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.apple_mdm_nlb.lb_dns_name
+      value   = "apple-mdm.prd-use1.jcplatform.dev"
     },
     {
       name    = "bss"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.si_bss_api_nlb.lb_dns_name
+      value   = "si-bss-api.prd-use1.jcplatform.dev"
     },
     {
       name    = "console"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.console_nlb.lb_dns_name
+      value   = "console.prd-use1.jcplatform.dev"
     },
     {
       name    = "device-cert"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.device_cert_nlb.lb_dns_name
+      value   = "device-cert.prd-use1.jcplatform.dev"
     },
     {
       name    = "kickstart"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.kickstart_public_nlb.lb_dns_name
+      value   = "kickstart-public.prd-use1.jcplatform.dev"
     },
     {
       name    = "apple.mdm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.apple_mdm_nlb.lb_dns_name
+      value   = "apple-mdm.prd-use1.jcplatform.dev"
     },
     {
       name    = "private-kickstart"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.kickstart_private_nlb.lb_dns_name
+      value   = "kickstart-private.prd-use1.jcplatform.dev"
     },
     {
       name    = "sso"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = data.terraform_remote_state.haproxy_prd.outputs.sso_nlb.lb_dns_name
+      value   = "sso.prd-use1.jcplatform.dev"
     },
     {
       name    = "devvpn",
