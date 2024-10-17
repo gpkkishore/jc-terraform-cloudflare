@@ -903,7 +903,7 @@ locals {
       value   = "pm.mtasv.net"
     },
     {
-      name    = "jumpcademy.com",
+      name    = "www.jumpcademy.com",
       proxied = false
       ttl     = 1
       type    = "CNAME"
