@@ -96,9 +96,15 @@ locals {
       value = ["ns-18.awsdns-02.com", "ns-1378.awsdns-44.org", "ns-668.awsdns-19.net", "ns-2019.awsdns-60.co.uk"]
     },
     {
-      name = "design-internal"
-      ttl = 300
+      name  = "design-internal"
+      ttl   = 300
       value = ["ns-1264.awsdns-30.org", "ns-661.awsdns-18.net", "ns-1790.awsdns-31.co.uk", "ns-420.awsdns-52.com"]
+    },
+    {
+      name  = "dev"
+      ttl   = 300
+      # delegate to cloudflare
+      value = ["marvin.ns.cloudflare.com", "wanda.ns.cloudflare.com"]
     }
   ]
 }
