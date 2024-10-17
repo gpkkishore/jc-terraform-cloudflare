@@ -909,6 +909,13 @@ locals {
       type    = "CNAME"
       value   = "lmso9s9e0x724u0quekaz9s8i5i0s05ko.lb1.wl.lmspowered.com"
     },
+    {
+      name    = "jcapollo",
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "encouraging-starfruit.aplosites.com"
+    },
     // START - Catalyst
     {
       name    = "url9805",
