@@ -946,6 +946,27 @@ locals {
       value   = "JUM2.domainkey.u19687090.wl091.sendgrid.n"
     },
     // END - Catalyst
+    {
+      name    = "*.devices.pwm"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm-haproxy.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.grpc.pwm"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm-haproxy.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.scim.pwm"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm-haproxy.prd-use1.jcplatform.dev"
+    }
   ]
 
   prd_misc_records = [
