@@ -38,7 +38,7 @@ locals {
     {
       name  = "stg01-use2-p00"
       ttl   = 300
-      value = ["ns-1044.awsdns-02.org", "ns-790.awsdns-34.net", "ns-156.awsdns-19.com", "ns-1945.awsdns-51.co.uk"]
+      value = ["ns-1160.awsdns-17.org", "ns-822.awsdns-38.net", "ns-36.awsdns-04.com", "ns-1973.awsdns-54.co.uk"]
     },
     {
       name  = "stg01-use2-p01"
