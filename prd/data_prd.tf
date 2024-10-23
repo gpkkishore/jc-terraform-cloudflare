@@ -548,13 +548,6 @@ locals {
       value   = "jumpdesk.prd-use1.jcplatform.dev"
     },
     {
-      name    = "*.jumpdesk"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "jumpdesk.prd-use1.jcplatform.dev"
-    },
-    {
       name    = "login"
       proxied = true
       ttl     = 1
