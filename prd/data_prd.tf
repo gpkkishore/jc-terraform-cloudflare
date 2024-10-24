@@ -966,6 +966,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value = "pwm-haproxy.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.scim.pwm"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm-haproxy.prd-use1.jcplatform.dev"
     }
   ]
 
