@@ -328,7 +328,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm.stg01-use2.jcplatform.dev"
+      value = "d16mcbw7jdbt7n.cloudfront.net"
     }
   ]
 
