@@ -943,14 +943,14 @@ locals {
       proxied = false
       ttl     = 300
       type    = "CNAME"
-      value   = "JUM.domainkey.u19687090.wl091.sendgrid.net"
+      value   = "jum.domainkey.u19687090.wl091.sendgrid.net"
     },
     {
       name    = "JUM2._domainkey",
       proxied = false
       ttl     = 300
       type    = "CNAME"
-      value   = "JUM2.domainkey.u19687090.wl091.sendgrid.n"
+      value   = "jum2.domainkey.u19687090.wl091.sendgrid.net"
     },
     // END - Catalyst
   ]
