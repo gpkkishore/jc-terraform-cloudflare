@@ -283,49 +283,49 @@ locals {
     },
     {
       name    = "devices.pwm"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value = "pwm.stg01-use2.jcplatform.dev"
     },
     {
       name    = "*.devices.pwm"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value = "pwm.stg01-use2.jcplatform.dev"
     },
     {
       name    = "grpc.pwm"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value = "pwm.stg01-use2.jcplatform.dev"
     },
     {
       name    = "*.grpc.pwm"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value = "pwm.stg01-use2.jcplatform.dev"
     },
     {
       name    = "scim.pwm"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value = "pwm.stg01-use2.jcplatform.dev"
     },
     {
       name    = "*.scim.pwm"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value = "pwm.stg01-use2.jcplatform.dev"
     },
     {
       name    = "cdn.pwm"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value = "pwm.stg01-use2.jcplatform.dev"
