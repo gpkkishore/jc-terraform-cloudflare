@@ -916,6 +916,13 @@ locals {
       type    = "CNAME"
       value   = "encouraging-starfruit.aplosites.com"
     },
+    {
+      name    = "jumpcloudland",
+      proxied = false
+      ttl     = 3600
+      type    = "CNAME"
+      value   = "sslevents.bizzabo.com"
+    },
     // START - Catalyst
     {
       name    = "url9805",
