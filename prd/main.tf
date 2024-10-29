@@ -80,6 +80,31 @@ resource "cloudflare_page_rule" "console_v2_microsoft_mdm_configuration_files" {
   }
 }
 
+# Redirect rule for iOS enrollment in Dogfood
+resource "cloudflare_ruleset" "ios_enrollment_redirect" {
+  zone_id     = cloudflare_zone.cloudflare_zone_resource.id
+  name        = "redirects"
+  description = "Redirects iOS enrollment"
+  kind        = "zone"
+  phase       = "http_request_dynamic_redirect"
+
+  rules {
+    action = "redirect"
+    action_parameters {
+      from_value {
+        status_code = 301
+        target_url {
+          value = "*jumpcloud.com/.well-known/com.apple.remotemanagement*"
+        }
+        preserve_query_string = false
+      }
+    }
+    expression  = "(https://apple.mdm.jumpcloud.com/account-driven-service-discovery?organization_id=520d4262664b54bf1b004b8e)"
+    description = "Redirects iOS enrollment from remote management to account driven service discovery"
+    enabled     = true
+  }
+}
+
 resource "cloudflare_certificate_pack" "custom_cert_09042024" {
   for_each = { for cert in local.custom_certs : cert.name => cert }
 
