@@ -134,7 +134,7 @@ resource "aws_route53_record" "jc_internal_zone" {
 resource "aws_route53_record" "jc_insternal_only_records" {
   for_each = { for internal_only_record in local.internal_only_records : internal_only_record.name => internal_only_record }
   zone_id  = aws_route53_zone.jc_internal_zone.zone_id
-  name     = "${each.value.name}.${aws_route53_zone.jc_internal_zone.name}"
+  name     = "${each.value.name}"
   type     = each.value.type
   ttl      = each.value.ttl
   records  = [each.value.value]
