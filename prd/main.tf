@@ -80,6 +80,7 @@ resource "cloudflare_page_rule" "console_v2_microsoft_mdm_configuration_files" {
   }
 }
 
+/*
 # Redirect rule for iOS enrollment in Dogfood
 resource "cloudflare_ruleset" "ios_enrollment_redirect" {
   zone_id     = cloudflare_zone.cloudflare_zone_resource.id
@@ -104,6 +105,7 @@ resource "cloudflare_ruleset" "ios_enrollment_redirect" {
     enabled     = true
   }
 }
+*/
 
 resource "cloudflare_certificate_pack" "custom_cert_09042024" {
   for_each = { for cert in local.custom_certs : cert.name => cert }
