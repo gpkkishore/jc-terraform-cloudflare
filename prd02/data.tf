@@ -447,4 +447,29 @@ locals {
     },
   ]
 
+  /**
+   * Custom Certificates for the prd02 environment
+   */
+  custom_certs = [
+    {
+      name              = "microsoft-mdm"
+      hosts             = ["microsoft-mdm.prd02.jumpcloud.com", "*.microsoft-mdm.prd02.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "apple.mdm"
+      hosts             = ["apple.mdm.prd02.jumpcloud.com", "*.apple.mdm.prd02.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "pwm"
+      hosts             = ["pwm.prd02.jumpcloud.com", "*.pwm.prd02.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "id"
+      hosts             = ["id.prd02.jumpcloud.com", "*.id.prd02.jumpcloud.com"]
+      validation_method = "txt"
+    },
+  ]
 }
