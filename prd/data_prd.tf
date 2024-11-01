@@ -350,7 +350,21 @@ locals {
       value   = "adbridge-kickstart.prd-use1.jcplatform.dev"
     },
     {
+      name    = "*.adbridge-kickstart"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "adbridge-kickstart.prd-use1.jcplatform.dev"
+    },
+    {
       name    = "adbridge"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "adbridge.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.adbridge"
       proxied = false
       ttl     = 1
       type    = "CNAME"
@@ -364,7 +378,21 @@ locals {
       value   = "agent.prd-use1.jcplatform.dev"
     },
     {
+      name    = "*.agent"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "agent.prd-use1.jcplatform.dev"
+    },
+    {
       name    = "api"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "api.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.api"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -378,7 +406,21 @@ locals {
       value   = "assist.prd-use1.jcplatform.dev"
     },
     {
+      name    = "*.assist"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "assist.prd-use1.jcplatform.dev"
+    },
+    {
       name    = "apple-mdm"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "apple-mdm.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.apple-mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -406,7 +448,21 @@ locals {
       value   = "si-bss-api.prd-use1.jcplatform.dev"
     },
     {
+      name    = "*.bss"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "si-bss-api.prd-use1.jcplatform.dev"
+    },
+    {
       name    = "console"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "console.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.console"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -420,7 +476,21 @@ locals {
       value   = "device-cert.prd-use1.jcplatform.dev"
     },
     {
+      name    = "*.device-cert"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "device-cert.prd-use1.jcplatform.dev"
+    },
+    {
       name    = "kickstart"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "kickstart-public.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.kickstart"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -434,6 +504,14 @@ locals {
       value   = "apple-mdm.prd-use1.jcplatform.dev"
     },
     {
+      name    = "*.apple.mdm"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "apple-mdm.prd-use1.jcplatform.dev"
+    },
+
+    {
       name    = "go"
       proxied = true
       ttl     = 1
@@ -441,7 +519,22 @@ locals {
       value   = "go.prd-use1.jcplatform.dev"
     },
     {
+      name    = "*.go"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "go.prd-use1.jcplatform.dev"
+    },
+
+    {
       name    = "private-kickstart"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "kickstart-private.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.private-kickstart"
       proxied = false
       ttl     = 1
       type    = "CNAME"
@@ -462,7 +555,21 @@ locals {
       value   = "login-api.prd-use1.jcplatform.dev"
     },
     {
+      name    = "*.login"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "login-api.prd-use1.jcplatform.dev"
+    },
+    {
       name    = "nli"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "nli-haproxy.ue1-prd-p01.jcplatform.dev"
+    },
+    {
+      name    = "*.nli"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -476,6 +583,13 @@ locals {
       value   = "oauth.prd-use1.jcplatform.dev"
     },
     {
+      name    = "*.oauth"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "oauth.prd-use1.jcplatform.dev"
+    },
+    {
       name    = "sso"
       proxied = true
       ttl     = 1
@@ -483,7 +597,21 @@ locals {
       value   = "sso.prd-use1.jcplatform.dev"
     },
     {
+      name    = "*.sso"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "sso.prd-use1.jcplatform.dev"
+    },
+    {
       name    = "saas"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "saas.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.saas"
       proxied = true
       ttl     = 1
       type    = "CNAME"
