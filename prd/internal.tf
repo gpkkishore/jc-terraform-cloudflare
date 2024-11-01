@@ -101,10 +101,19 @@ locals {
       value = ["ns-1264.awsdns-30.org", "ns-661.awsdns-18.net", "ns-1790.awsdns-31.co.uk", "ns-420.awsdns-52.com"]
     },
     {
-      name  = "dev"
-      ttl   = 300
+      name = "dev"
+      ttl  = 300
       # delegate to cloudflare
       value = ["marvin.ns.cloudflare.com", "wanda.ns.cloudflare.com"]
+    }
+  ]
+
+  internal_only_records = [
+    {
+      name  = "eda-dbt-documentation"
+      ttl   = 300
+      type  = "CNAME"
+      value = "d2k34i1ti5bssq.cloudfront.net"
     }
   ]
 }
@@ -120,4 +129,13 @@ resource "aws_route53_record" "jc_internal_zone" {
   type     = "NS"
   ttl      = each.value.ttl
   records  = each.value.value
+}
+
+resource "aws_route53_record" "jc_insternal_only_records" {
+  for_each = { for internal_only_record in local.internal_only_records : internal_only_record.name => internal_only_record }
+  zone_id  = aws_route53_zone.jc_internal_zone.zone_id
+  name     = "${each.value.name}"
+  type     = each.value.type
+  ttl      = each.value.ttl
+  records  = [each.value.value]
 }
