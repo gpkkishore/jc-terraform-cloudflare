@@ -1,4 +1,7 @@
 locals {
+  # List of IP addresses to be whitelisted
+  stg01_use2_natgws = join(" ", data.aws_ec2_managed_prefix_list.stg01_use2_natgws.entries[*].cidr)
+
   add_ratelimit_rules = {
     "jumpcloud.com" = [
       {
@@ -74,7 +77,7 @@ locals {
       {
         action      = "block"
         description = "Allow ZScaler only"
-        expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204/32 3.134.71.189/32 3.130.21.136/32 3.23.44.17/32 3.23.121.107/32})"
+        expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204/32 3.134.71.189/32 3.130.21.136/32 3.23.44.17/32 3.23.121.107/32 ${local.stg01_use2_natgws}})"
       },
       {
         action      = "block"
@@ -86,7 +89,7 @@ locals {
       {
         action      = "block"
         description = "Block labs.stg01.jumpcloud.ai requests from non-internal IPs"
-        expression  = "(not ip.src in {3.23.121.107/32 3.23.44.17/32} and http.host eq \"labs.stg01.jumpcloud.ai\")"
+        expression  = "(not ip.src in {3.23.121.107/32 3.23.44.17/32 ${local.stg01_use2_natgws}} and http.host eq \"labs.stg01.jumpcloud.ai\")"
       },
       {
         action      = "block"
@@ -100,4 +103,8 @@ locals {
       }
     ]
   }
+}
+
+data "aws_ec2_managed_prefix_list" "stg01_use2_natgws" {
+  name = "stg01-use2-natgws"
 }
