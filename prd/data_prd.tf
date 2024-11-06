@@ -993,7 +993,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "d16mcbw7jdbt7n.cloudfront.net"
+      value = "d37bnv0y5ohq9m.cloudfront.net"
     }
   ]
 

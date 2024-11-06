@@ -15,6 +15,6 @@ locals {
       name  = "ldap-mfa"
       ttl   = 300
       value = ["ns-1521.awsdns-62.org.", "ns-837.awsdns-40.net.", "ns-169.awsdns-21.com.", "ns-1974.awsdns-54.co.uk."]
-    }
+    },
   ]
 }
