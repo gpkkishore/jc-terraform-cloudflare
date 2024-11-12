@@ -17,6 +17,11 @@ locals {
       value = ["ns-1341.awsdns-39.org.", "ns-246.awsdns-30.com.", "ns-973.awsdns-57.net.", "ns-2007.awsdns-58.co.uk."]
     },
     {
+      name  = "pwm"
+      ttl   = 300
+      value = ["ns-1575.awsdns-04.co.uk.", "ns-779.awsdns-33.net.", "ns-1178.awsdns-19.org.", "ns-173.awsdns-21.com."]
+    },
+    {
       name  = "radius"
       ttl   = 300
       value = ["ns-1931.awsdns-49.co.uk.", "ns-1434.awsdns-51.org.", "ns-465.awsdns-58.com.", "ns-585.awsdns-09.net."]
