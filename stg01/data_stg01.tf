@@ -281,6 +281,55 @@ locals {
       type    = "CNAME"
       value   = "agent.stg01-use2.jcplatform.dev"
     },
+    {
+      name    = "devices.pwm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "*.devices.pwm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "grpc.pwm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "*.grpc.pwm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "scim.pwm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "*.scim.pwm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "cdn.pwm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value = "d16mcbw7jdbt7n.cloudfront.net"
+    }
   ]
 
   stg01_misc_records = []

@@ -28,10 +28,14 @@ locals {
       expression  = "(ip.src in {70.57.27.50 66.222.117.111 66.186.219.238 66.186.212.168 75.166.167.57 97.81.234.223})"
     },
     // skip action for allowing aws vpcs for stg01.jumpcloud.com
+    // AWS Control account NATGW EIP mappting for stg01-use2-p00 VPC:
+    //   stg01-use2-p00-nat-us-east-2a -> 3.146.242.224
+    //   stg01-use2-p00-nat-us-east-2b -> 3.146.237.95
+    //   stg01-use2-p00-nat-us-east-2c -> 3.19.161.175
     {
       action      = "skip"
       description = "Allow AWS VPCs"
-      expression  = "(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and not http.user_agent contains \"Protect Staging/\" and ip.src in {18.218.84.91 18.223.127.56 3.12.61.92 3.132.240.8 3.23.121.107 3.23.44.17 18.218.153.145 18.221.197.217 3.19.235.254} and http.request.uri.path ne \"/google-emm/notifications\")"
+      expression  = "(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\"} and not http.user_agent contains \"Protect Staging/\" and ip.src in {18.218.84.91 18.223.127.56 3.12.61.92 3.132.240.8 3.23.121.107 3.23.44.17 18.218.153.145 18.221.197.217 3.19.235.254 3.146.242.224 3.146.237.95 3.19.161.175} and http.request.uri.path ne \"/google-emm/notifications\")"
     },
     // Allow GHA runners nat gateways
     {
@@ -58,9 +62,9 @@ locals {
       expression  = "(http.host in {\"jumpdesk.stg01.jumpcloud.com\" \"catalog.stg01.jumpcloud.com\" \"console.stg01.jumpcloud.com\" \"api.stg01.jumpcloud.com\" \"sso.stg01.jumpcloud.com\" \"kickstart.stg01.jumpcloud.com\" \"apple-mdm.stg01.jumpcloud.com\" \"apple.mdm.stg01.jumpcloud.com\" \"assist.stg01.jumpcloud.com\" \"microsoft-mdm.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\" \"oauth.stg01.jumpcloud.com\" \"go.stg01.jumpcloud.com\" \"saas.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")"
     },
     {
-        action      = "block"
-        description = "IR-177-block-tan-stork-incident"
-        expression  = "(ip.src in {2804:1b2:82:7c21:d294:66ff:febb:ff7 105.105.63.193 51.79.55.221 2607:5300:201:3100::3381})"
+      action      = "block"
+      description = "IR-177-block-tan-stork-incident"
+      expression  = "(ip.src in {2804:1b2:82:7c21:d294:66ff:febb:ff7 105.105.63.193 51.79.55.221 2607:5300:201:3100::3381})"
     }
   ]
   stg01_ip_access = [
