@@ -1088,6 +1088,7 @@ locals {
       value   = "jum2.domainkey.u19687090.wl091.sendgrid.net"
     },
     // END - Catalyst
+    // Start PWM
     {
       name    = "devices.pwm"
       proxied = false
@@ -1137,6 +1138,7 @@ locals {
       type    = "CNAME"
       value = "d37bnv0y5ohq9m.cloudfront.net"
     }
+    // END PWM
   ]
 
   prd_misc_records = [
