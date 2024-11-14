@@ -1093,42 +1093,42 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm-haproxy.prd-use1.jcplatform.dev"
+      value = "pwm-devices.prd-use1.jcplatform.dev"
     },
     {
       name    = "*.devices.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm-haproxy.prd-use1.jcplatform.dev"
+      value = "pwm-devices.prd-use1.jcplatform.dev"
     },
     {
       name    = "grpc.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm-haproxy.prd-use1.jcplatform.dev"
+      value = "pwm-grpc.prd-use1.jcplatform.dev"
     },
     {
       name    = "*.grpc.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm-haproxy.prd-use1.jcplatform.dev"
+      value = "pwm-grpc.prd-use1.jcplatform.dev"
     },
     {
       name    = "scim.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm-haproxy.prd-use1.jcplatform.dev"
+      value = "pwm-scim.prd-use1.jcplatform.dev"
     },
     {
       name    = "*.scim.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm-haproxy.prd-use1.jcplatform.dev"
+      value = "pwm-scim.prd-use1.jcplatform.dev"
     },
     {
       name    = "cdn.pwm"
