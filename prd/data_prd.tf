@@ -1088,6 +1088,57 @@ locals {
       value   = "jum2.domainkey.u19687090.wl091.sendgrid.net"
     },
     // END - Catalyst
+    // Start PWM
+    {
+      name    = "devices.pwm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm-devices.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.devices.pwm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm-devices.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "grpc.pwm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm-grpc.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.grpc.pwm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm-grpc.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "scim.pwm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm-scim.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.scim.pwm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value = "pwm-scim.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "cdn.pwm"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value = "d37bnv0y5ohq9m.cloudfront.net"
+    }
+    // END PWM
   ]
 
   prd_misc_records = [
