@@ -329,6 +329,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value = "d16mcbw7jdbt7n.cloudfront.net"
+    },
+    {
+      name    = "ssf"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "saas.stg01-use2.jcplatform.dev"
     }
   ]
 

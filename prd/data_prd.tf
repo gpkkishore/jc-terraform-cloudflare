@@ -1137,8 +1137,15 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value = "d37bnv0y5ohq9m.cloudfront.net"
-    }
+    },
     // END PWM
+    {
+      name    = "ssf"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "saas.prd-use1.jcplatform.dev" // Reuse Saas for now until we change dns to standard-api
+    }
   ]
 
   prd_misc_records = [
