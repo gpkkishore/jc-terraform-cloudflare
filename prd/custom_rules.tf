@@ -55,11 +55,11 @@ locals {
       {
         action      = "managed_challenge"
         description = "Admin Auth Request Rate Limit - ir-124"
-        expression  = "(http.request.uri.path eq \"/auth\" and http.host eq \"console.jumpcloud.com\" and http.request.method eq \"POST\")"
+        expression  = "(http.request.uri.path eq \"/auth\" and http.host eq \"console.jumpcloud.com\" and http.request.method eq \"POST\" and not http.user_agent contains \"Datadog\")"
 
         ratelimit = {
           characteristics     = ["cf.colo.id", "ip.src"]
-          period              = 60
+          period              = 120
           requests_per_period = 10
           mitigation_timeout  = 300
         }
