@@ -53,15 +53,15 @@ locals {
         }
       },
       {
-        action      = "block"
+        action      = "managed_challenge"
         description = "Admin Auth Request Rate Limit - ir-124"
         expression  = "(http.request.uri.path eq \"/auth\" and http.host eq \"console.jumpcloud.com\" and http.request.method eq \"POST\")"
 
         ratelimit = {
           characteristics     = ["cf.colo.id", "ip.src"]
-          period              = 10
-          requests_per_period = 5
-          mitigation_timeout  = 10
+          period              = 60
+          requests_per_period = 10
+          mitigation_timeout  = 300
         }
       }
     ]
