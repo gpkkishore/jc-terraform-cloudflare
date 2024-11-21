@@ -16,11 +16,6 @@ locals {
       value = ["ns-1116.awsdns-11.org", "ns-1574.awsdns-04.co.uk", "ns-431.awsdns-53.com", "ns-582.awsdns-08.net"]
     },
     {
-      name  = "ue1-prd-p01"
-      ttl   = 300
-      value = ["ns-872.awsdns-45.net", "ns-1048.awsdns-03.org", "ns-1687.awsdns-18.co.uk", "ns-322.awsdns-40.com"]
-    },
-    {
       name  = "prd02-euc1"
       ttl   = 300
       value = ["ns-885.awsdns-46.net", "ns-495.awsdns-61.com", "ns-1492.awsdns-58.org", "ns-1811.awsdns-34.co.uk"]
@@ -29,21 +24,6 @@ locals {
       name  = "stg01-use2"
       ttl   = 300
       value = ["ns-558.awsdns-05.net", "ns-1818.awsdns-35.co.uk", "ns-1094.awsdns-08.org", "ns-211.awsdns-26.com"]
-    },
-    {
-      name  = "stg01-use2-p01"
-      ttl   = 300
-      value = ["ns-1529.awsdns-63.org", "ns-829.awsdns-39.net", "ns-98.awsdns-12.com", "ns-1903.awsdns-45.co.uk"]
-    },
-    {
-      name  = "stg01-apne1-p00"
-      ttl   = 300
-      value = ["ns-1216.awsdns-24.org", "ns-677.awsdns-20.net", "ns-92.awsdns-11.com", "ns-1940.awsdns-50.co.uk"]
-    },
-    {
-      name  = "dev-usw2-p02"
-      ttl   = 300
-      value = ["ns-1918.awsdns-47.co.uk", "ns-299.awsdns-37.com", "ns-1532.awsdns-63.org", "ns-640.awsdns-16.net"]
     },
     {
       name  = "uw2-dev-infr"
@@ -56,24 +36,9 @@ locals {
       value = ["ns-984.awsdns-59.net", "ns-1906.awsdns-46.co.uk", "ns-1433.awsdns-51.org", "ns-42.awsdns-05.com"]
     }, # Managed in jumpcloud/test-infra repo
     {
-      name  = "sec-use1-p00"
-      ttl   = 300
-      value = ["ns-1641.awsdns-13.co.uk", "ns-154.awsdns-19.com", "ns-756.awsdns-30.net", "ns-1286.awsdns-32.org"]
-    },
-    {
-      name  = "control"
-      ttl   = 300
-      value = ["ns-385.awsdns-48.com", "ns-837.awsdns-40.net", "ns-1554.awsdns-02.co.uk", "ns-1395.awsdns-46.org"]
-    },
-    {
       name  = "marketing-internal"
       ttl   = 300
       value = ["ns-1122.awsdns-12.org", "ns-888.awsdns-47.net", "ns-1722.awsdns-23.co.uk", "ns-267.awsdns-33.com"]
-    },
-    {
-      name  = "cicd-usw2-acceptance"
-      ttl   = 300
-      value = ["ns-18.awsdns-02.com", "ns-1378.awsdns-44.org", "ns-668.awsdns-19.net", "ns-2019.awsdns-60.co.uk"]
     },
     {
       name  = "design-internal"
