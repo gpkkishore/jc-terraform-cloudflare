@@ -1145,6 +1145,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "saas.prd-use1.jcplatform.dev" // Reuse Saas for now until we change dns to standard-api
+    },
+    {
+      name    = "professionalservices"
+      proxied = false
+      ttl     = 300
+      type    = "CNAME"
+      value   = "jumpcloud.rocketlane.com"
     }
   ]
 
