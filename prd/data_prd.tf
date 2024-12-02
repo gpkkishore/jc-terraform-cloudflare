@@ -1148,18 +1148,18 @@ locals {
     },
     // BEGIN ROCKETLANE
     {
-      name    = "_1ed3637f5a8544a903875ba040c764c7.professionalservices"
+      name    = "_1ed3637f5a8544a903875ba040c764c7.professionalservices."
       proxied = false
       ttl     = 300
       type    = "CNAME"
-      value   = "_200d95675b3cefb8a87dba326c877273.zfyfvmchrl.acm-validations.aws"
+      value   = "_200d95675b3cefb8a87dba326c877273.zfyfvmchrl.acm-validations.aws."
     },
     {
-      name    = "_b98a9f2004aa428f0b1071369181db4d.professionalservices.api"
+      name    = "_b98a9f2004aa428f0b1071369181db4d.professionalservices.api."
       proxied = false
       ttl     = 300
       type    = "CNAME"
-      value   = "_11e490a8484a33748d837d2942e87bd8.zfyfvmchrl.acm-validations.aws"
+      value   = "_11e490a8484a33748d837d2942e87bd8.zfyfvmchrl.acm-validations.aws."
     },
     {
       name    = "professionalservices"
