@@ -1146,14 +1146,37 @@ locals {
       type    = "CNAME"
       value   = "saas.prd-use1.jcplatform.dev" // Reuse Saas for now until we change dns to standard-api
     },
+    // BEGIN ROCKETLANE
+    {
+      name    = "_1ed3637f5a8544a903875ba040c764c7.professionalservices."
+      proxied = false
+      ttl     = 300
+      type    = "CNAME"
+      value   = "_200d95675b3cefb8a87dba326c877273.zfyfvmchrl.acm-validations.aws."
+    },
+    {
+      name    = "_b98a9f2004aa428f0b1071369181db4d.professionalservices.api."
+      proxied = false
+      ttl     = 300
+      type    = "CNAME"
+      value   = "_11e490a8484a33748d837d2942e87bd8.zfyfvmchrl.acm-validations.aws."
+    },
     {
       name    = "professionalservices"
       proxied = false
       ttl     = 300
       type    = "CNAME"
-      value   = "jumpcloud.rocketlane.com"
+      value   = "customdomain-8.rocketlane.com"
+    },
+    {
+      name    = "professionalservices.api"
+      proxied = false
+      ttl     = 300
+      type    = "CNAME"
+      value   = "customdomain-8.api.rocketlane.com"
     }
-  ]
+    // END ROCKETLANE
+    ]
 
   prd_misc_records = [
     {
