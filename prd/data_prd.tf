@@ -37,6 +37,98 @@ locals {
       name              = "microsoft-mdm"
       hosts             = ["*.microsoft-mdm.jumpcloud.com", "microsoft-mdm.jumpcloud.com"]
       validation_method = "txt"
+    },
+    {
+      name              = "adbridge-kickstart"
+      hosts             = ["*.adbridge-kickstart.jumpcloud.com", "adbridge-kickstart.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "adbridge"
+      hosts             = ["*.adbridge.jumpcloud.com", "adbridge.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "agent"
+      hosts             = ["*.agent.jumpcloud.com", "agent.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "api"
+      hosts             = ["*.api.jumpcloud.com", "api.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "assist"
+      hosts             = ["*.assist.jumpcloud.com", "assist.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    // Creating new and removing old later
+    {
+      name              = "apple-mdm-wildcard"
+      hosts             = ["apple-mdm.jumpcloud.com", "*.apple-mdm.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "bss"
+      hosts             = ["*.bss.jumpcloud.com", "bss.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "console"
+      hosts             = ["*.console.jumpcloud.com", "console.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "device-cert"
+      hosts             = ["*.device-cert.jumpcloud.com", "device-cert.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "kickstart"
+      hosts             = ["*.kickstart.jumpcloud.com", "kickstart.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "apple.mdm"
+      hosts             = ["apple.mdm.jumpcloud.com", "*.apple.mdm.jumpcloud.com"]
+      validation_method = "txt"
+    },
+
+    {
+      name              = "go"
+      hosts             = ["*.go.jumpcloud.com", "go.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "private-kickstart"
+      hosts             = ["*.private-kickstart.jumpcloud.com", "private-kickstart.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "login"
+      hosts             = ["*.login.jumpcloud.com", "login.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "nli"
+      hosts             = ["*.nli.jumpcloud.com", "nli.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "oauth"
+      hosts             = ["*.oauth.jumpcloud.com", "oauth.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "sso"
+      hosts             = ["*.sso.jumpcloud.com", "sso.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "saas"
+      hosts             = ["*.saas.jumpcloud.com", "saas.jumpcloud.com"]
+      validation_method = "txt"
     }
   ]
 
