@@ -7,6 +7,9 @@ provider "cloudflare" {
 # TF Cloud tst-cloudflare workspace is configured for AWS via env variables
 provider "aws" {
   region = "us-east-1"
+  assume_role {
+    role_arn = "arn:aws:iam::800384183171:role/terraform-admin"
+  }
 }
 
 provider "aws" {

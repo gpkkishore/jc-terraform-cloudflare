@@ -9,6 +9,7 @@ variable "cloudflare_account_id" {
 
 variable "zone_name" {
   description = "Domain name"
+  default     = "cloudjump.dev"
 }
 
 variable "zone_plan" {
