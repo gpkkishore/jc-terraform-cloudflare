@@ -1,12 +1,3 @@
-data "terraform_remote_state" "haproxy_prd" {
-  backend = "remote"
-  config = {
-    organization = "jumpcloud"
-    workspaces = {
-      name = "prd-haproxy-formula"
-    }
-  }
-}
 # See docs/contributing.md for information on how to add a DNS record.
 # Note that there are the following arrays, and new records should be placed in the correct array
 # tst_a_records     - All the A, AAAA, and ANAME records
