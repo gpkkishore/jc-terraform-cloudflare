@@ -1,13 +1,3 @@
-data "terraform_remote_state" "nlb_stg01" {
-  backend = "remote"
-  config = {
-    organization = "jumpcloud"
-    workspaces = {
-      name = "infra-layers-stg01-us-east-2-edge"
-    }
-  }
-}
-
 # See docs/contributing.md for information on how to add a DNS record.
 # Note that there are the following arrays, and new records should be placed in the correct array
 # stg01_a_records     - All the A, AAAA, and ANAME records
