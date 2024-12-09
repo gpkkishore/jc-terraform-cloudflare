@@ -13,10 +13,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "jumpcloud-stg01-terraform-state"
-    key    = "terraform-cloudflare-stg01/terraform.tfstate"
-    region = "us-east-2"
+    bucket         = "jumpcloud-stg01-terraform-state"
+    key            = "terraform-cloudflare-stg01/terraform.tfstate"
+    region         = "us-east-2"
     dynamodb_table = "jumpcloud-stg01-terraform-state"
-    encrypt = true
+    encrypt        = true
   }
 }

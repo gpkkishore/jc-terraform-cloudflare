@@ -47,7 +47,7 @@ locals {
       type    = "CNAME"
       value   = "api.stg01-use2.jcplatform.dev"
     },
-/*     {
+    /*     {
       name    = "*.api"
       proxied = true
       ttl     = 1
@@ -276,49 +276,49 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm.stg01-use2.jcplatform.dev"
+      value   = "pwm.stg01-use2.jcplatform.dev"
     },
     {
       name    = "*.devices.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm.stg01-use2.jcplatform.dev"
+      value   = "pwm.stg01-use2.jcplatform.dev"
     },
     {
       name    = "grpc.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm.stg01-use2.jcplatform.dev"
+      value   = "pwm.stg01-use2.jcplatform.dev"
     },
     {
       name    = "*.grpc.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm.stg01-use2.jcplatform.dev"
+      value   = "pwm.stg01-use2.jcplatform.dev"
     },
     {
       name    = "scim.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm.stg01-use2.jcplatform.dev"
+      value   = "pwm.stg01-use2.jcplatform.dev"
     },
     {
       name    = "*.scim.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm.stg01-use2.jcplatform.dev"
+      value   = "pwm.stg01-use2.jcplatform.dev"
     },
     {
       name    = "cdn.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "d16mcbw7jdbt7n.cloudfront.net"
+      value   = "d16mcbw7jdbt7n.cloudfront.net"
     },
     {
       name    = "ssf"
