@@ -47,13 +47,13 @@ locals {
       type    = "CNAME"
       value   = "api.stg01-use2.jcplatform.dev"
     },
-    {
+/*     {
       name    = "*.api"
       proxied = true
       ttl     = 1
       type    = "CNAME"
       value   = "api.stg01-use2.jcplatform.dev"
-    },
+    }, */
     {
       name    = "apple.mdm"
       proxied = true
