@@ -12,12 +12,11 @@ terraform {
     }
   }
 
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "jumpcloud"
-
-    workspaces {
-      name = "prd-cloudflare"
-    }
+  backend "s3" {
+    bucket = "jumpcloud-prd-terraform-state"
+    key    = "terraform-cloudflare-prd/terraform.tfstate"
+    region = "us-east-2"
+    dynamodb_table = "jumpcloud-prd-terraform-state"
+    encrypt = true
   }
 }

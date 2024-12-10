@@ -30,8 +30,7 @@ resource "cloudflare_zone" "additional_zone" {
 }
 
 module "dns" {
-  source        = "app.terraform.io/jumpcloud/dns/cloudflare"
-  version       = "2.0.1"
+  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=2.0.1"  
   zone_id       = cloudflare_zone.cloudflare_zone_resource.id
   zone_name     = var.zone_name
   dns_records   = local.prd_dns_records
@@ -40,8 +39,7 @@ module "dns" {
 
 module "security" {
   for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
-  source   = "app.terraform.io/jumpcloud/security/cloudflare"
-  version  = "3.0.3"
+  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.0.3"  
 
   zone_id                    = each.key
   additional_ratelimit_rules = lookup(local.add_ratelimit_rules, each.value.name, [])
@@ -50,14 +48,12 @@ module "security" {
 
 module "settings" {
   for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
-  source   = "app.terraform.io/jumpcloud/zone-settings/cloudflare"
-  version  = "2.0.2"
+  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-zone-settings.git?ref=v2.0.2"  
   zone_id  = each.key
 }
 
 module "resmo_dns" {
-  source  = "app.terraform.io/jumpcloud/dns/cloudflare"
-  version = "2.0.1"
+  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=2.0.1"  
 
   for_each = local.resmo_zone_name_to_zone
 
