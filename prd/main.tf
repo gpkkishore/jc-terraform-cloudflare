@@ -48,7 +48,7 @@ module "security" {
 
 module "settings" {
   for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
-  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-settings.git?ref=v2.0.2"  
+  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-zone-settings.git?ref=v2.0.2"  
   zone_id  = each.key
 }
 
