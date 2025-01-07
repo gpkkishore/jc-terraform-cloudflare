@@ -39,7 +39,7 @@ module "dns" {
 
 module "security" {
   for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
-  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.0.3"  
+  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.1.1"
 
   zone_id                    = each.key
   additional_ratelimit_rules = lookup(local.add_ratelimit_rules, each.value.name, [])
