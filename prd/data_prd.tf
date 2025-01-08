@@ -1569,6 +1569,13 @@ locals {
       type    = "TXT"
       value   = "a6c6f863eacc4d5f41f52f55678f18f38187fbb3db3888926181045efb0fcf0baa9b528fc943970ff9a41c6aca37bcb9d0bbb02387addf53bf13b69c042abb3c"
     },
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
+      value   = "qase-40db7bf7480a7e963d2cc6df9581286876de8705"
+    },
   ]
 
   zercurity_tmp_records = [
