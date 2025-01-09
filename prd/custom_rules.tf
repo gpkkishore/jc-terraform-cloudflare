@@ -104,18 +104,6 @@ locals {
         description  = "Managed Captcha Abuse IP's 20241224-haproxy"
         expression   = "(ip.src in {52.13.24.213 34.208.1.174 44.245.128.2 44.244.196.227 3.211.203.108 44.237.194.38 54.69.0.153 44.235.57.22})"
       },
-      {
-        action       = "block"
-        description  = "20250106-devices-pwm-block-ip"
-        expression   = "(ip.src eq 2001:8a0:7ad9:3c00:3992:fbff:eabb:646d) or (ip.src eq 82.40.168.83)"
-      },
-    ]
-    "id.jumpcloud.com" = [
-      {
-        action       = "block"
-        description  = "20250106-devices-oauth-id-block-ip"
-        expression   = "(ip.src eq 2001:8a0:7ad9:3c00:3992:fbff:eabb:646d) or (ip.src eq 82.40.168.83)"
-      },
     ]
     "id.stg01.jumpcloud.com" = [
       {
