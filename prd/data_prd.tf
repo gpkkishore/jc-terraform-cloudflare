@@ -1170,7 +1170,7 @@ locals {
       value   = "jum2.domainkey.u19687090.wl091.sendgrid.net"
     },
     // END - Catalyst
-    // Start PWM
+    // START PWM
     {
       name    = "devices.pwm"
       proxied = false
@@ -1228,7 +1228,7 @@ locals {
       type    = "CNAME"
       value   = "saas.prd-use1.jcplatform.dev" // Reuse Saas for now until we change dns to standard-api
     },
-    // BEGIN ROCKETLANE
+    // START ROCKETLANE
     {
       name    = "_1ed3637f5a8544a903875ba040c764c7.professionalservices"
       proxied = false
@@ -1256,7 +1256,28 @@ locals {
       ttl     = 300
       type    = "CNAME"
       value   = "customdomain-8.api.rocketlane.com"
-    }
+    },
+    {
+      name    = "em569.professionalservices.jumpcloud.com"
+      proxied = false
+      ttl     = 300
+      type    = "CNAME"
+      value   = "19602_spf_jumpcloud.rocketlane.com"
+    },
+    {
+      name    = "602._domainkey.professionalservices.jumpcloud.com"
+      proxied = false
+      ttl     = 300
+      type    = "CNAME"
+      value   = "19602_dkim1_jumpcloud.rocketlane.com"
+    },
+    {
+      name    = "6022._domainkey.professionalservices.jumpcloud.com"
+      proxied = false
+      ttl     = 300
+      type    = "CNAME"
+      value   = "19602_dkim2_jumpcloud.rocketlane.com"
+    },
     // END ROCKETLANE
     ]
 
