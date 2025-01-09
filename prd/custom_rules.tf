@@ -132,6 +132,11 @@ locals {
         action      = "block"
         description = "IR-177-block-tan-stork-incident"
         expression  = "(ip.src in {2804:1b2:82:7c21:d294:66ff:febb:ff7 105.105.63.193 51.79.55.221 2607:5300:201:3100::3381})"
+      },
+      {
+        action      = "block"
+        description = "IR-ddos-attempts-9 Jan 2025"
+        expression  = "(ip.src eq 152.58.18.201)"
       }
     ]
   }
