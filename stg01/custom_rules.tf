@@ -49,6 +49,11 @@ locals {
       description = "Allow AzureActiveDirectory"
       expression  = format("(http.host eq \"api.stg01.jumpcloud.com\" and http.request.uri.path contains \"/scim/v2\" and ip.src in {%s})", join(" ", [for ip in local.azure_ad_ips : ip]))
     },
+    {
+      action      = "block"
+      description = "Block all traffic to Search API HTTP(s) endpoint"
+      expression  = "(http.request.uri.path contains \"/api/v2/search/\" and http.host eq \"console.jumpcloud.com\")"
+    },
     # {
     #   action      = "skip"
     #   description = "Allow Authorized IP's"
