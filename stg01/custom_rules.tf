@@ -52,7 +52,7 @@ locals {
     {
       action      = "block"
       description = "Block all traffic to Search API HTTP(s) endpoint"
-      expression  = "(http.request.uri.path contains \"/api/v2/search/\" and http.host eq \"console.jumpcloud.com\")"
+      expression  = "(http.request.uri.path contains \"/api/v2/search/\" and http.host eq \"console.stg01.jumpcloud.com\")"
     },
     # {
     #   action      = "skip"
