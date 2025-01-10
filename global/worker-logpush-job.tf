@@ -5,7 +5,21 @@ resource "cloudflare_logpush_job" "workers_job" {
   name       = "workers-logpush-job"
   output_options {
     field_names = [
-
+      "ClientIP",
+      "ClientRequestHost",
+      "ClientRequestMethod",
+      "ClientRequestURI",
+      "EdgeEndTimestamp",
+      "EdgeResponseBytes",
+      "EdgeResponseStatus",
+      "EdgeStartTimestamp",
+      "Event",
+      "EventTimestampMs",
+      "Exceptions",
+      "Logs",
+      "Outcome",
+      "RayID",
+      "ScriptName",
     ]
     sample_rate = 0.01
   }
