@@ -135,7 +135,7 @@ locals {
       },
       {
         action      = "block"
-        description = "IR-ddos-attempts-9 Jan 2025"
+        description = "IR-DDoS-attempts-9 Jan 2025"
         expression  = "(ip.src eq 152.58.18.201)"
       }
     ]
