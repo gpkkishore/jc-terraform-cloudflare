@@ -1283,6 +1283,13 @@ locals {
 
   prd_misc_records = [
     {
+      name    = "@"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
+      value   = "google-site-verification=Lsc8IrEquKnjM6ybUEPhDzAniM6mH9gxP1Pq6JbVncE"
+    },
+    {
       name    = "6d0782f5-82d5-4106-a675-1095be8cee23"
       proxied = false
       ttl     = 300
