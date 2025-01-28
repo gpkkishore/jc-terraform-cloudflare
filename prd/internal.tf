@@ -50,6 +50,11 @@ locals {
       ttl  = 300
       # delegate to cloudflare
       value = ["marvin.ns.cloudflare.com", "wanda.ns.cloudflare.com"]
+    },
+    {
+      name = "trust"
+      ttl  = 300
+      value = ["ns-1069.awsdns-05.org", "ns-692.awsdns-22.net", "ns-1915.awsdns-47.co.uk", "ns-199.awsdns-24.com"]
     }
   ]
 
