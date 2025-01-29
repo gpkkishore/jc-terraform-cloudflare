@@ -9,10 +9,12 @@ resource "cloudflare_logpush_job" "workers_job" {
       "ClientRequestHost",
       "ClientRequestMethod",
       "ClientRequestURI",
+      "DispatchNamespace",
       "EdgeEndTimestamp",
       "EdgeResponseBytes",
       "EdgeResponseStatus",
       "EdgeStartTimestamp",
+      "Entrypoint",
       "Event",
       "EventTimestampMs",
       "Exceptions",
@@ -20,9 +22,11 @@ resource "cloudflare_logpush_job" "workers_job" {
       "Outcome",
       "RayID",
       "ScriptName",
+      "ScriptTags",
+      "ScriptVersion",
     ]
-    sample_rate = 0.01
+    sample_rate = 1.00
   }
-  destination_conf = "datadog://http-intake.logs.datadoghq.com/api/v2/logs?header_DD-API-KEY=${var.dd_api_key}&ddsource=cloudflare"
+  destination_conf = "datadog://http-intake.logs.datadoghq.com/api/v2/logs?header_DD-API-KEY=${var.dd_api_key}&ddsource=cloudflare&service=cloudflare&ddtags=zone_name:id.jumpcloud.com,env:prd,cf_type:workers_trace_events"
   dataset          = "workers_trace_events"
 }
