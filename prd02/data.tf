@@ -197,7 +197,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "saas-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "trampoline.id"
@@ -374,7 +374,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "saas-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "*.trampoline.id"
