@@ -24,4 +24,5 @@ variable "project_name" {
 
 variable "datadog_api_key" {
   description = "Access token for cloudflare to push logs to datadog"
+  default = var.datadog_api_key
 }
