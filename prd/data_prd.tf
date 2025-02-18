@@ -1176,49 +1176,49 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm-devices.prd-use1.jcplatform.dev"
+      value   = "pwm-devices.prd-use1.jcplatform.dev"
     },
     {
       name    = "*.devices.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm-devices.prd-use1.jcplatform.dev"
+      value   = "pwm-devices.prd-use1.jcplatform.dev"
     },
     {
       name    = "grpc.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm-grpc.prd-use1.jcplatform.dev"
+      value   = "pwm-grpc.prd-use1.jcplatform.dev"
     },
     {
       name    = "*.grpc.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm-grpc.prd-use1.jcplatform.dev"
+      value   = "pwm-grpc.prd-use1.jcplatform.dev"
     },
     {
       name    = "scim.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm-scim.prd-use1.jcplatform.dev"
+      value   = "pwm-scim.prd-use1.jcplatform.dev"
     },
     {
       name    = "*.scim.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "pwm-scim.prd-use1.jcplatform.dev"
+      value   = "pwm-scim.prd-use1.jcplatform.dev"
     },
     {
       name    = "cdn.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "d37bnv0y5ohq9m.cloudfront.net"
+      value   = "d37bnv0y5ohq9m.cloudfront.net"
     },
     // END PWM
     {
@@ -1279,7 +1279,7 @@ locals {
       value   = "19602_dkim2_jumpcloud.rocketlane.com"
     },
     // END ROCKETLANE
-    ]
+  ]
 
   prd_misc_records = [
     {
@@ -2195,6 +2195,13 @@ locals {
           ttl     = 300
           type    = "TXT"
           value   = "v=DMARC1;p=none;pct=100;rua=mailto:dmarc.feedback@resmo.com;"
+        },
+        {
+          name    = "dftsp._domainkey"
+          proxied = false
+          ttl     = 300
+          type    = "TXT"
+          value   = "v=DKIM1; k=rsa; h=sha256; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCpncN2uR1h3U9waNyIfsYWayMgVQs62wyMWoF/oQMxgTPpVxlK0LoI7qp4h2H97MI7NpJRPV2YbLADDv4fkKOvHKY5bQn4mTvSY1KUZzIhmnDw3C4emnyOKYNZhps70bGQxledBRfKGeqxT7qV53aoZ1ny/10Rj+LdXg7hmwg0uwIDAQAB"
         },
         {
           name    = "google._domainkey"
