@@ -1604,6 +1604,13 @@ locals {
       type    = "TXT"
       value   = "qase-40db7bf7480a7e963d2cc6df9581286876de8705"
     },
+    {
+      name    = "dftsp._domainkey"
+      proxied = false
+      ttl     = 300
+      type    = "TXT"
+      value   = "v=DKIM1; k=rsa; h=sha256; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCpncN2uR1h3U9waNyIfsYWayMgVQs62wyMWoF/oQMxgTPpVxlK0LoI7qp4h2H97MI7NpJRPV2YbLADDv4fkKOvHKY5bQn4mTvSY1KUZzIhmnDw3C4emnyOKYNZhps70bGQxledBRfKGeqxT7qV53aoZ1ny/10Rj+LdXg7hmwg0uwIDAQAB"
+    },
   ]
 
   zercurity_tmp_records = [
@@ -2195,13 +2202,6 @@ locals {
           ttl     = 300
           type    = "TXT"
           value   = "v=DMARC1;p=none;pct=100;rua=mailto:dmarc.feedback@resmo.com;"
-        },
-        {
-          name    = "dftsp._domainkey"
-          proxied = false
-          ttl     = 300
-          type    = "TXT"
-          value   = "v=DKIM1; k=rsa; h=sha256; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCpncN2uR1h3U9waNyIfsYWayMgVQs62wyMWoF/oQMxgTPpVxlK0LoI7qp4h2H97MI7NpJRPV2YbLADDv4fkKOvHKY5bQn4mTvSY1KUZzIhmnDw3C4emnyOKYNZhps70bGQxledBRfKGeqxT7qV53aoZ1ny/10Rj+LdXg7hmwg0uwIDAQAB"
         },
         {
           name    = "google._domainkey"
