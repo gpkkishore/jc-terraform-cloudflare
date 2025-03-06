@@ -1611,6 +1611,13 @@ locals {
       type    = "TXT"
       value   = "v=DKIM1; k=rsa; h=sha256; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCpncN2uR1h3U9waNyIfsYWayMgVQs62wyMWoF/oQMxgTPpVxlK0LoI7qp4h2H97MI7NpJRPV2YbLADDv4fkKOvHKY5bQn4mTvSY1KUZzIhmnDw3C4emnyOKYNZhps70bGQxledBRfKGeqxT7qV53aoZ1ny/10Rj+LdXg7hmwg0uwIDAQAB"
     },
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 3600
+      type    = "TXT"
+      value   = "zoom-domain-verification=ZOOM_verify_43acaefd23ea473fa2bbb66524a9e72c"
+    }
   ]
 
   zercurity_tmp_records = [
