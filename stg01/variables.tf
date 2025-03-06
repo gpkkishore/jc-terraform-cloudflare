@@ -28,5 +28,5 @@ variable "dd_api_key" {
 
 variable regenerate_cloudflare_mtls_ca {
   description = "Regenerate the Cloudflare MTLS CA"
-  default     = true
+  default     = false
 }
