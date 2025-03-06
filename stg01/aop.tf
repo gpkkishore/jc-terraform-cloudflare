@@ -50,10 +50,39 @@ resource "aws_secretsmanager_secret_version" "stg01_aop_ca_secret_version" {
   secret_string = tls_self_signed_cert.stg01_aop_ca.cert_pem
 }
 
+resource "tls_private_key" "leaf_cert_private_key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "tls_cert_request" "leaf_cert_csr" {
+  private_key_pem = tls_private_key.leaf_cert_private_key.private_key_pem
+
+  subject {
+    common_name  = "stg01.jumpcloud.com"
+    organization = "stg01 Cloudflare cert"
+  }
+}
+
+resource "tls_locally_signed_cert" "leaf_cert" {
+  cert_request_pem   = tls_cert_request.leaf_cert_csr.cert_request_pem
+  ca_private_key_pem = local.private_key
+  ca_cert_pem        = tls_self_signed_cert.stg01_aop_ca.cert_pem
+
+  validity_period_hours = 9125 # 1 year
+
+  allowed_uses = [
+    "key_encipherment",
+    "digital_signature",
+    "client_auth",
+    "server_auth",
+  ]
+}
+
 resource "cloudflare_authenticated_origin_pulls_certificate" "stg01_aop_ca" {
   zone_id     = cloudflare_zone.cloudflare_zone_resource.id
-  private_key = local.private_key
-  certificate = tls_self_signed_cert.stg01_aop_ca.cert_pem
+  private_key = tls_private_key.leaf_cert_private_key.private_key_pem
+  certificate = tls_locally_signed_cert.leaf_cert.cert_pem
   type        = "per-hostname"
 }
 
