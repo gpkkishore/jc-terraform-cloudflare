@@ -25,7 +25,7 @@ locals {
     {
       action      = "block"
       description = "Allow Zscaler Only"
-      expression  = "(not ip.src in {52.57.217.97 3.79.78.24} and http.request.uri.path ne \"/google-emm/notifications\")"
+      expression  = "(not ip.src in {52.57.217.97 3.79.78.24} and http.request.uri.path ne \"/google-emm/notifications\" and http.request.uri.path ne \"/.well-known/jwks.json\")"
     },
     {
       action      = "block"
