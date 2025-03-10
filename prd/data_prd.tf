@@ -1279,6 +1279,22 @@ locals {
       value   = "19602_dkim2_jumpcloud.rocketlane.com"
     },
     // END ROCKETLANE
+    // START MARKETO
+    {
+      name    = "info"
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "706-RST-100.mktoweb.com"
+    },
+    {
+      name    = "email"
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "mkto-ab650156.com"
+    },
+    // END MARKETO
   ]
 
   prd_misc_records = [
@@ -1617,7 +1633,16 @@ locals {
       ttl     = 3600
       type    = "TXT"
       value   = "zoom-domain-verification=ZOOM_verify_43acaefd23ea473fa2bbb66524a9e72c"
-    }
+    },
+    // START MARKETO
+    {
+      name    = "m1._domainkey"
+      proxied = false
+      ttl     = 3600
+      type    = "TXT"
+      value   = "v=DKIM1;k=rsa;p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDR4uxprTLq7reHaYKtsmp987Q2qEI4aZGfIdYX+iDcwOh+m7rMMMux/wzb6rjqTzoayzaIWFTt5ttzCfTrUd0xTrmaB4D+jt4QQb1hSwbTKwR91jOdpWkZMxz3JptMJxwKHB6nYK1kGS88MvAZSOyg4hT7CfSavHoiss4crk4PYwIDAQAB"
+    },
+    // END MARKETO
   ]
 
   zercurity_tmp_records = [
