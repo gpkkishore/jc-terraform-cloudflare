@@ -1285,7 +1285,7 @@ locals {
       proxied = false
       ttl     = 60
       type    = "CNAME"
-      value   = "706-RST-100.mktoweb.com"
+      value   = "706-rst-100.mktoweb.com"
     },
     {
       name    = "email"
