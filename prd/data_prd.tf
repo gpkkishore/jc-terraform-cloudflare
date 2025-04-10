@@ -1285,7 +1285,7 @@ locals {
       proxied = false
       ttl     = 60
       type    = "CNAME"
-      value   = "706-RST-100.mktoweb.com"
+      value   = "706-rst-100.mktoweb.com"
     },
     {
       name    = "email"
@@ -2602,4 +2602,9 @@ locals {
   resmo_zone_name_to_zone = {
     for zone in local.resmo_zones : zone.name => zone
   }
+}
+
+moved {
+  from = module.dns.cloudflare_record.dns_records["info_706-RST-100.mktoweb.com"]
+  to   = module.dns.cloudflare_record.dns_records["info_706-rst-100.mktoweb.com"]
 }
