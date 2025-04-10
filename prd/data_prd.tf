@@ -2605,6 +2605,6 @@ locals {
 }
 
 moved {
-  from = "module.dns.cloudflare_record.dns_records[\"info_706-RST-100.mktoweb.com\"]"
-  to = "module.dns.cloudflare_record.dns_records[\"info_706-rst-100.mktoweb.com\"]"
+  from = module.dns.cloudflare_record.dns_records["info_706-RST-100.mktoweb.com"]
+  to   = module.dns.cloudflare_record.dns_records["info_706-rst-100.mktoweb.com"]
 }
