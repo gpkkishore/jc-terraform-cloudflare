@@ -1186,34 +1186,6 @@ locals {
       value   = "pwm-devices.prd-use1.jcplatform.dev"
     },
     {
-      name    = "grpc.pwm"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "pwm-grpc.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.grpc.pwm"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "pwm-grpc.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "scim.pwm"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "pwm-scim.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.scim.pwm"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "pwm-scim.prd-use1.jcplatform.dev"
-    },
-    {
       name    = "cdn.pwm"
       proxied = false
       ttl     = 1
