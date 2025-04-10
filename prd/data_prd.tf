@@ -2603,3 +2603,8 @@ locals {
     for zone in local.resmo_zones : zone.name => zone
   }
 }
+
+moved {
+  from = "module.dns.cloudflare_record.dns_records[\"info_706-RST-100.mktoweb.com\"]"
+  to = "module.dns.cloudflare_record.dns_records[\"info_706-rst-100.mktoweb.com\"]"
+}
