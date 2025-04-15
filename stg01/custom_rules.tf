@@ -49,6 +49,13 @@ locals {
       description = "Allow AzureActiveDirectory"
       expression  = format("(http.host eq \"api.stg01.jumpcloud.com\" and http.request.uri.path contains \"/scim/v2\" and ip.src in {%s})", join(" ", [for ip in local.azure_ad_ips : ip]))
     },
+    // Allow Salesforce
+    // https://help.salesforce.com/s/articleView?id=000384438&type=1
+    {
+      action      = "skip"
+      description = "Allow Salesforce"
+      expression  = "(http.host eq \"console.stg01.jumpcloud.com\" and ip.src in {3.146.43.224/28 13.56.32.176/28 13.58.135.64/28 13.108.0.0/14 34.211.108.32/28 34.226.36.48/28 35.182.14.32/28 66.231.80.0/20 68.232.192.0/20 96.43.144.0/20 128.17.0.0/16 128.245.0.0/16 136.146.0.0/15 198.245.80.0/20 199.122.120.0/21 204.14.232.0/21 3.225.151.145 3.225.240.254/32 18.204.28.162/32 18.211.105.61 34.197.58.108 34.204.111.166/32 52.3.16.30 52.22.251.194 52.70.135.185})"
+    },
     {
       action      = "block"
       description = "Block all traffic to Search API HTTP(s) endpoint"
