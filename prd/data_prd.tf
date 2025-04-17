@@ -648,14 +648,14 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "nli-haproxy.ue1-prd-p01.jcplatform.dev"
+      value   = "nli-haproxy.prd-use1.jcplatform.dev"
     },
     {
       name    = "*.nli"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "nli-haproxy.ue1-prd-p01.jcplatform.dev"
+      value   = "nli-haproxy.prd-use1.jcplatform.dev"
     },
     {
       name    = "oauth"
@@ -1799,7 +1799,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "nli-haproxy.ue1-prd-p01.jcplatform.dev"
+      value   = "nli-haproxy.prd-use1.jcplatform.dev"
     },
     {
       name     = "jumpcloud.ai."
