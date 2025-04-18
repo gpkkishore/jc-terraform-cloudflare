@@ -47,7 +47,7 @@ module "dns" {
 }
 
 module "security" {
-  source = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.0.1"
+  source = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.2.0"
 
   zone_id                    = cloudflare_zone.cloudflare_zone_resource.id
   additional_ratelimit_rules = local.add_ratelimit_rules
