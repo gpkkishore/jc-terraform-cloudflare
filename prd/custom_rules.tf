@@ -95,11 +95,6 @@ locals {
         expression  = "(ip.geoip.asnum eq 45102 and http.host eq \"jumpcloud.com\" and http.request.uri.path eq \"/careers\")"
       },
       {
-        action      = "block"
-        description = "IR-177-block-tan-stork-incident"
-        expression  = "(ip.src in {2804:1b2:82:7c21:d294:66ff:febb:ff7 105.105.63.193 51.79.55.221 2607:5300:201:3100::3381})"
-      },
-      {
         action       = "managed_challenge"
         description  = "Managed Captcha Abuse IP's 20241224-haproxy"
         expression   = "(ip.src in {52.13.24.213 34.208.1.174 44.245.128.2 44.244.196.227 3.211.203.108 44.237.194.38 54.69.0.153 44.235.57.22})"
@@ -110,11 +105,6 @@ locals {
         action      = "block"
         description = "Allow ZScaler only"
         expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204/32 3.134.71.189/32 3.130.21.136/32 3.23.44.17/32 3.23.121.107/32 ${local.stg01_use2_natgws}})"
-      },
-      {
-        action      = "block"
-        description = "IR-177-block-tan-stork-incident"
-        expression  = "(ip.src in {2804:1b2:82:7c21:d294:66ff:febb:ff7 105.105.63.193 51.79.55.221 2607:5300:201:3100::3381})"
       },
     ]
     "jumpcloud.ai" = [
@@ -127,11 +117,6 @@ locals {
         action      = "block"
         description = "Block labs.jumpcloud.ai requests requests from non-internal IPs"
         expression  = "(not ip.src in {34.195.141.99/32 3.226.52.173/32 44.194.86.168/32} and http.host eq \"labs.jumpcloud.ai\")"
-      },
-      {
-        action      = "block"
-        description = "IR-177-block-tan-stork-incident"
-        expression  = "(ip.src in {2804:1b2:82:7c21:d294:66ff:febb:ff7 105.105.63.193 51.79.55.221 2607:5300:201:3100::3381})"
       },
       {
         action      = "block"
