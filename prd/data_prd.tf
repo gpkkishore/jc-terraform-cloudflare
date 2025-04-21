@@ -1905,6 +1905,185 @@ locals {
     }
   ]
 
+  stackidentity_tmp_records = [
+    {
+      name    = "@",
+      proxied = false,
+      ttl     = 600,
+      type    = "A",
+      value   = "54.197.63.83"
+    },
+    {
+      name    = "@",
+      proxied = false,
+      ttl     = 3600,
+      type    = "TXT",
+      value   = "google-site-verification=GigGMaov2xNgLKVnXry-PwoP9ULiWW57vpfXg5E8Ejk"
+    },
+    // TXT
+    {
+      name    = "@",
+      proxied = false,
+      ttl     = 3600,
+      type    = "TXT",
+      value   = "v=spf1  include:_spf.google.com include:spf.protection.outlook.com include:zcsend.net ~all"
+    },
+    {
+      name    = "201034._domainkey",
+      proxied = false,
+      ttl     = 3600,
+      type    = "TXT",
+      value   = "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDkDYZCSfJZ9pw/sATNp6QoLdcOjF0hErKiepqDgVFFRjBA12VelBbLNF7byoyWDkmF5SIPONHfI4CfWo9UGgMEfR8fUrPYvWk+3FyfJSkNx3JJDGJxg4SEm4TyB6NUokwExpbS1yeV4TRaa17GJaszNpvsJAa7qRHqyuOMLZHs1wIDAQAB"
+    },
+    {
+      name    = "google._domainkey",
+      proxied = false,
+      ttl     = 3600,
+      type    = "TXT",
+      value   = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgGAA06VV/1sfK2TOTiy7gUHNadKiB+R5fexn059zij8BhXASdb6t2Pb0N5ssjjbypAhCULIE/l5NRfXF77MeQyxC/hV9iY7iSsG9DpAQ63DO575iMIKT0Yj6gs+ViAaPqZTZJRbsWhYErIDwcOEr87gb7eiA/emlCHn+tSunN3KIGuZopcug578vdZFcdyd4nyTFoDGzsLiAcTwhmlaof8UqeIvpWn6DhKO2tsWaDHkVYQNswrK90C4lAbLwggLLY4o+se8i3YjApr5ELaj5dEQMZwYq0Gs/20YrYjNxqtkR6RscEPJHxRGY2iTweQa78ABVhRab4GUYjk+NlmQeCQIDAQAB"
+    },
+    {
+      name    = "_acme-challenge",
+      proxied = false,
+      ttl     = 3600,
+      type    = "TXT",
+      value   = "i8ZT1YqybQEpFqJKDXZYgPnU8YbLQNazmNdt4anNxiw"
+    },
+    {
+      name    = "_amazonses",
+      proxied = false,
+      ttl     = 3600,
+      type    = "TXT",
+      value   = "FaEEbJq2BA2G2dwbUKzxtGsMGcorLtcTYGEIOCUU+bw="
+    },
+    {
+      name    = "_dmarc",
+      proxied = false,
+      ttl     = 3600,
+      type    = "TXT",
+      value   = "v=DMARC1; p=none; rua=mailto:postmaster@stackidentity.com; adkim=s; aspf=s"
+    },    
+    {
+      name    = "_gh-stackid-e",
+      proxied = false,
+      ttl     = 3600,
+      type    = "TXT",
+      value   = "a26e27f720"
+    },    
+    // CNAME
+    {
+      name    = "autodiscover"
+      proxied = false
+      ttl     = 3600
+      type    = "CNAME"
+      value   = "autodiscover.outlook.com."
+    },
+    {
+      name    = "enterpriseenrollment"
+      proxied = false
+      ttl     = 3600
+      type    = "CNAME"
+      value   = "enterpriseenrollment.manage.microsoft.com."
+    },
+    {
+      name    = "enterpriseregistration"
+      proxied = false
+      ttl     = 3600
+      type    = "CNAME"
+      value   = "enterpriseregistration.windows.net."
+    },
+    {
+      name    = "hs3zgaufq3ce7hho4rpi56uesnmaaafo._domainkey"
+      proxied = false
+      ttl     = 3600
+      type    = "CNAME"
+      value   = "hs3zgaufq3ce7hho4rpi56uesnmaaafo.dkim.amazonses.com."
+    },
+    {
+      name    = "htskszr2d6fr5nzb4dgoyiwwctxa6wj5._domainkey"
+      proxied = false
+      ttl     = 3600
+      type    = "CNAME"
+      value   = "htskszr2d6fr5nzb4dgoyiwwctxa6wj5.dkim.amazonses.com."
+    },    
+    {
+      name    = "xfxd6vlc6fqsfejgvtppnwe27n3qubw._domainkey"
+      proxied = false
+      ttl     = 3600
+      type    = "CNAME"
+      value   = "jxfxd6vlc6fqsfejgvtppnwe27n3qubw.dkim.amazonses.com."
+    },
+    {
+      name    = "lyncdiscover"
+      proxied = false
+      ttl     = 3600
+      type    = "CNAME"
+      value   = "webdir.online.lync.com."
+    },
+    {
+      name    = "sip"
+      proxied = false
+      ttl     = 3600
+      type    = "CNAME"
+      value   = "sipdir.online.lync.com."
+    },
+    {
+      name    = "www"
+      proxied = false
+      ttl     = 3600
+      type    = "CNAME"
+      value   = "@"
+    },
+    {
+      name    = "_domainconnect"
+      proxied = false
+      ttl     = 3600
+      type    = "CNAME"
+      value   = "_domainconnect.gd.domaincontrol.com."
+    },
+    // MX
+    {
+      name     = "@"
+      priority = 1
+      proxied  = false
+      ttl      = 3600
+      type     = "MX"
+      value    = "aspmx.l.google.com."
+    },
+    {
+      name     = "@"
+      priority = 10
+      proxied  = false
+      ttl      = 3600
+      type     = "MX"
+      value    = "alt4.aspmx.l.google.com."
+    },
+    {
+      name     = "@"
+      priority = 10
+      proxied  = false
+      ttl      = 3600
+      type     = "MX"
+      value    = "alt3.aspmx.l.google.com."
+    },
+    {
+      name     = "@"
+      priority = 5
+      proxied  = false
+      ttl      = 3600
+      type     = "MX"
+      value    = "alt1.aspmx.l.google.com."
+    },
+    {
+      name     = "@"
+      priority = 5
+      proxied  = false
+      ttl      = 3600
+      type     = "MX"
+      value    = "alt2.aspmx.l.google.com."
+    },
+  ]
+
   prd_dns_records = concat(local.prd_a_records, local.prd_mx_records, local.prd_cname_records, local.prd_misc_records)
 
   resmo_zones = [
