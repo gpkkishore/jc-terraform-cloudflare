@@ -55,8 +55,8 @@ locals {
       },
       {
         action      = "block"
-        description = "User and Admin Auth Request Rate Limit - ir-124 and ir-144"
-        expression  = "(http.request.uri.path in {\"/auth\" \"/userconsole/auth\"} and http.host eq \"console.jumpcloud.com\" and http.request.method eq \"POST\" and not http.user_agent contains \"Datadog\")"
+        description = "Admin Auth Request Rate Limit - ir-124"
+        expression  = "(http.request.uri.path eq \"/auth\" and http.host eq \"console.jumpcloud.com\" and http.request.method eq \"POST\" and not http.user_agent contains \"Datadog\")"
 
         ratelimit = {
           characteristics     = ["cf.colo.id", "ip.src"]
