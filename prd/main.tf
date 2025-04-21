@@ -175,16 +175,16 @@ resource "cloudflare_record" "jumpcloud_ai_records" {
 ####################################################
 # Temporary Zone configuration for stackidentity.com
 ####################################################
-resource "cloudflare_record" "stackidentity_records" {
-  for_each = { for record in local.stackidentity_tmp_records : "${record.type}_${record.name}_${record.value}" => record }
-  name     = each.value.name
-  value    = each.value.value
-  ttl      = each.value.ttl
-  type     = each.value.type
-  proxied  = each.value.proxied
-  priority = each.value.type == "MX" ? each.value.priority : null
-  zone_id  = cloudflare_zone.additional_zone["zercurity.com"].id
-}
+# resource "cloudflare_record" "stackidentity_records" {
+#   for_each = { for record in local.stackidentity_tmp_records : "${record.type}_${record.name}_${record.value}" => record }
+#   name     = each.value.name
+#   value    = each.value.value
+#   ttl      = each.value.ttl
+#   type     = each.value.type
+#   proxied  = each.value.proxied
+#   priority = each.value.type == "MX" ? each.value.priority : null
+#   zone_id  = cloudflare_zone.additional_zone["zercurity.com"].id
+# }
 
 #################################################################################################
 # Identity Security Response Headers for proxied cloudflare domains for the id.jumpcloud.com zone
