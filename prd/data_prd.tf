@@ -2084,6 +2084,7 @@ locals {
     # },
   ]
 
+  # Aggregate all the prd DNS records
   prd_dns_records = concat(local.prd_a_records, local.prd_mx_records, local.prd_cname_records, local.prd_misc_records)
 
   resmo_zones = [
