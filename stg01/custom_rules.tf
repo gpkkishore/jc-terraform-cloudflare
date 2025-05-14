@@ -161,7 +161,7 @@ locals {
     {
       action      = "skip"
       description = "Allow CrowdStrike"
-      expression  = "(http.host eq \"api.stg01.jumpcloud.com\" and http.request.uri.path eq \"/partners/v1/crowdstrike\" and http.user_agent eq \"Go-http-client/2.0\" and ip.src in {${join(" ", local.crowdstrike_ips)}})"
+      expression  = format("(http.host eq \"api.stg01.jumpcloud.com\" and http.request.uri.path eq \"/partners/v1/crowdstrike\" and http.user_agent eq \"Go-http-client/2.0\" and ip.src in {%s})", join(" ", [for ip in local.crowdstrike_ips : ip]))
     },
     {
       action      = "skip"
@@ -171,7 +171,7 @@ locals {
     {
       action      = "skip"
       description = "Allow TestIM"
-      expression  = format("(http.host eq \"console.stg01.jumpcloud.com\" and ip.src in {%s})", join(" ", local.testim_ips))
+      expression  = format("(http.host eq \"console.stg01.jumpcloud.com\" and ip.src in {%s})", join(" ", [for ip in local.testim_ips : ip]))
     },
     {
       action      = "skip"
@@ -186,13 +186,13 @@ locals {
     {
       action      = "skip"
       description = "Allow AWS VPCs"
-      expression  = "(http.host in {${join(" ", local.stg01_hostnames)}} and not http.user_agent contains \"Protect Staging/\" and ip.src in {${join(" ", local.aws_vpc_ips)}} and http.request.uri.path ne \"/google-emm/notifications\")"
+      expression  = format("(http.host in {%s} and not http.user_agent contains \"Protect Staging/\" and ip.src in {%s} and http.request.uri.path ne \"/google-emm/notifications\")", join(" ", [for host in local.stg01_hostnames : host]), join(" ", [for ip in local.aws_vpc_ips : ip]))
     },
     // Allow GHA runners nat gateways
     {
       action      = "skip"
       description = "Allow GHA Runners NAT Gateways"
-      expression  = "(http.host in {${join(" ", local.stg01_hostnames)}} and ip.src in {44.239.135.146 54.69.255.145 44.235.245.14})"
+      expression  = format("(http.host in {%s} and ip.src in {44.239.135.146 54.69.255.145 44.235.245.14})", join(" ", [for host in local.stg01_hostnames : host]))
     },
     // Allow Azure Active Directory
     {
@@ -205,7 +205,7 @@ locals {
     {
       action      = "skip"
       description = "Allow Salesforce"
-      expression  = format("(http.host eq \"console.stg01.jumpcloud.com\" and ip.src in {%s})", join(" ", local.salesforce_ips))
+      expression  = format("(http.host eq \"console.stg01.jumpcloud.com\" and ip.src in {%s})", join(" ", [for ip in local.salesforce_ips : ip]))
     },
     {
       action      = "block"
@@ -222,7 +222,7 @@ locals {
     {
       action      = "block"
       description = "Allow Zscaler Only"
-      expression  = "(http.host in {${join(" ", local.stg01_hostnames, local.prd02_hostnames)}} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")"
+      expression  = format("(http.host in {%s} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")", join(" ", [for host in local.stg01_hostnames : host], [for host in local.prd02_hostnames : host]))
     },
   ]
 }
