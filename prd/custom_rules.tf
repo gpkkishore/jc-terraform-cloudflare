@@ -123,7 +123,7 @@ locals {
       {
         action      = "block"
         description = "Block labs.jumpcloud.ai requests requests from non-internal IPs"
-        expression  = "(not ip.src in {34.195.141.99/32 3.226.52.173/32 44.194.86.168/32} and http.host eq \"labs.jumpcloud.ai\")"
+        expression  = "(not ip.src in {34.226.229.192/32 98.83.55.86/32 34.195.141.99/32 3.226.52.173/32 44.194.86.168/32} and http.host eq \"labs.jumpcloud.ai\")"
       },
       {
         action      = "block"
