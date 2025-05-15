@@ -16,9 +16,9 @@ locals {
     "saas.stg01.jumpcloud.com",
     "ssf.stg01.jumpcloud.com",
   ]
-  
+
   prd02_hostnames = [
-   "jumpdesk.prd02.stg01.jumpcloud.com",
+    "jumpdesk.prd02.stg01.jumpcloud.com",
     "catalog.prd02.stg01.jumpcloud.com",
     "console.prd02.stg01.jumpcloud.com",
     "api.prd02.stg01.jumpcloud.com",
@@ -44,7 +44,7 @@ locals {
     "13.108.0.0/14",
     "34.211.108.32/28",
     "34.226.36.48/28",
-    "35.182.14.32/28",  
+    "35.182.14.32/28",
     "66.231.80.0/20",
     "68.232.192.0/20",
     "96.43.144.0/20",
@@ -150,6 +150,14 @@ locals {
     "18.158.141.230"
   ]
 
+  apple_cidr_blocks = [
+    "17.249.0.0/16",
+    "17.252.0.0/16",
+    "17.57.144.0/22",
+    "17.188.128.0/18",
+    "17.188.20.0/23",
+  ]
+
   add_ratelimit_rules = []
 
   add_waf_rules = [
@@ -208,6 +216,11 @@ locals {
       expression  = format("(http.host eq \"console.stg01.jumpcloud.com\" and ip.src in {%s})", join(" ", [for ip in local.salesforce_ips : ip]))
     },
     {
+      action      = "skip"
+      description = "Allow Apple CIDR blocks for VPP Notifications"
+      expression  = format("(http.host eq \"apple.mdm.stg01.jumpcloud.com\" and http.request.uri.path eq \"/vpp/notifications\" and ip.src in {%s})", join(" ", [for ip in local.apple_cidr_blocks : ip]))
+    },
+    {
       action      = "block"
       description = "Block all traffic to Search API HTTP(s) endpoint"
       expression  = "(http.request.uri.path contains \"/api/v2/search/\" and http.host eq \"console.stg01.jumpcloud.com\" and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189})"
@@ -222,7 +235,7 @@ locals {
     {
       action      = "block"
       description = "Allow Zscaler Only"
-      expression  = format("(http.host in {%s} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")", join(" ", [for host in local.stg01_hostnames : host], [for host in local.prd02_hostnames : host]))
+      expression  = format("(http.host in {%s} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not ip.src in {%s} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\" and http.request.uri.path neq \"/vpp/notifications\")", join(" ", [for host in local.stg01_hostnames : host], [for host in local.prd02_hostnames : host]), join(" ", [for ip in local.apple_cidr_blocks : ip]))
     },
   ]
 }
