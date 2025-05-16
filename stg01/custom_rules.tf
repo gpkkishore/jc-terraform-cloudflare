@@ -235,7 +235,7 @@ locals {
     {
       action      = "block"
       description = "Allow Zscaler Only"
-      expression  = format("(http.host in {%s} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not ip.src in {%s} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\" and http.request.uri.path neq \"/vpp/notifications\")", join(" ", [for host in local.stg01_hostnames : host], [for host in local.prd02_hostnames : host]), join(" ", [for ip in local.apple_cidr_blocks : ip]))
+      expression  = format("(http.host in {%s} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")", join(" ", concat([for host in local.stg01_hostnames : host], [for host in local.prd02_hostnames : host])))
     },
   ]
 }
