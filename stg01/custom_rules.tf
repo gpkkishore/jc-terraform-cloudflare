@@ -150,6 +150,7 @@ locals {
     "18.158.141.230"
   ]
 
+  // Source: https://support.apple.com/en-us/102266
   apple_cidr_blocks = [
     "17.249.0.0/16",
     "17.252.0.0/16",
@@ -215,6 +216,7 @@ locals {
       description = "Allow Salesforce"
       expression  = format("(http.host eq \"console.stg01.jumpcloud.com\" and ip.src in {%s})", join(" ", [for ip in local.salesforce_ips : ip]))
     },
+    // Allow Apple CIDR blocks for VPP Notifications in the staging environment
     {
       action      = "skip"
       description = "Allow Apple CIDR blocks for VPP Notifications"
