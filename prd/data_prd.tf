@@ -2090,189 +2090,189 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "adbridge-kickstart.prd02.jumpcloud.com"
+      value   = "adbridge-kickstart.prd02.jumpcloud.com"
     },
     {
       name    = "adbridge.eu"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "adbridge.prd02.jumpcloud.com"
+      value   = "adbridge.prd02.jumpcloud.com"
     },
     {
       name    = "admin-oauth.id.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "admin-oauth.id.prd02.jumpcloud.com"
+      value   = "admin-oauth.id.prd02.jumpcloud.com"
     },
     {
       name    = "agent.eu"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "agent.prd02.jumpcloud.com"
+      value   = "agent.prd02.jumpcloud.com"
     },
     {
       name    = "api.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "api.prd02.jumpcloud.com"
+      value   = "api.prd02.jumpcloud.com"
     },
     {
       name    = "assist.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "assist.prd02.jumpcloud.com"
+      value   = "assist.prd02.jumpcloud.com"
     },
     {
       name    = "apple-mdm.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "apple-mdm.prd02.jumpcloud.com"
+      value   = "apple-mdm.prd02.jumpcloud.com"
     },
     {
       name    = "microsoft-mdm.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "microsoft-mdm.prd02.jumpcloud.com"
+      value   = "microsoft-mdm.prd02.jumpcloud.com"
     },
     {
       name    = "bss.eu"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "bss.prd02.jumpcloud.com"
+      value   = "bss.prd02.jumpcloud.com"
     },
     {
       name    = "console.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "console.prd02.jumpcloud.com"
+      value   = "console.prd02.jumpcloud.com"
     },
     {
       name    = "device-cert.eu"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "device-cert.prd02.jumpcloud.com"
+      value   = "device-cert.prd02.jumpcloud.com"
     },
     {
       name    = "kickstart.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "kickstart.prd02.jumpcloud.com"
+      value   = "kickstart.prd02.jumpcloud.com"
     },
     {
       name    = "apple.mdm.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "apple.mdm.prd02.jumpcloud.com"
+      value   = "apple.mdm.prd02.jumpcloud.com"
     },
     {
       name    = "go.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "go.prd02.jumpcloud.com"
+      value   = "go.prd02.jumpcloud.com"
     },
     {
       name    = "private-kickstart.eu"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value = "private-kickstart.prd02.jumpcloud.com"
+      value   = "private-kickstart.prd02.jumpcloud.com"
     },
     {
       name    = "jumpdesk.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "jumpdesk.prd02.jumpcloud.com"
+      value   = "jumpdesk.prd02.jumpcloud.com"
     },
     {
       name    = "login.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "login.prd02.jumpcloud.com"
+      value   = "login.prd02.jumpcloud.com"
     },
     {
-      name    = "mulesoft-api"
+      name    = "mulesoft-api.eu"
       proxied = false
       ttl     = 300
       type    = "CNAME"
-      value = "mulesoft-api.prd02.jumpcloud.com"
+      value   = "mulesoft-api.prd02.jumpcloud.com"
     },
     {
       name    = "nli.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "nli.prd02.jumpcloud.com"
+      value   = "nli.prd02.jumpcloud.com"
     },
     {
       name    = "oauth.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "oauth.prd02.jumpcloud.com"
+      value   = "oauth.prd02.jumpcloud.com"
     },
     {
       name    = "oauth.id.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "oauth.id.prd02.jumpcloud.com"
+      value   = "oauth.id.prd02.jumpcloud.com"
     },
     {
       name    = "devices.pwm.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "devices.pwm.prd02.jumpcloud.com"
+      value   = "devices.pwm.prd02.jumpcloud.com"
     },
     {
       name    = "grpc.pwm.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "grpc.pwm.prd02.jumpcloud.com"
+      value   = "grpc.pwm.prd02.jumpcloud.com"
     },
     {
       name    = "scim.pwm.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "scim.pwm.prd02.jumpcloud.com"
+      value   = "scim.pwm.prd02.jumpcloud.com"
     },
     {
       name    = "sso.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "sso.prd02.jumpcloud.com"
+      value   = "sso.prd02.jumpcloud.com"
     },
     {
       name    = "saas.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "saas.prd02.jumpcloud.com"
+      value   = "saas.prd02.jumpcloud.com"
     },
     {
       name    = "trampoline.id.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value = "trampoline.id.prd02.jumpcloud.com"
+      value   = "trampoline.id.prd02.jumpcloud.com"
     },
   ]
 
