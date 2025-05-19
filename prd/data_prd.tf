@@ -120,6 +120,11 @@ locals {
       name              = "saas"
       hosts             = ["*.saas.jumpcloud.com", "saas.jumpcloud.com"]
       validation_method = "txt"
+    },
+    {
+      name              = "eu"
+      hosts             = ["*.eu.jumpcloud.com", "eu.jumpcloud.com", "*.id.eu.jumpcloud.com", "*.mdm.eu.jumpcloud.com"]
+      validation_method = "txt"
     }
   ]
 
