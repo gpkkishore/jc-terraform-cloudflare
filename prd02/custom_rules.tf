@@ -5,43 +5,6 @@ locals {
   add_ratelimit_rules = [
     {
       action      = "block"
-      description = "Rate Limit api/commandresults by IP - 11 Jan 2024"
-      expression  = "(http.request.uri.path contains \"api/commandresults\" and ip.src in {52.77.97.81})"
-
-      ratelimit = {
-        counting_expression = null
-        characteristics     = ["cf.colo.id", "ip.src"]
-        period              = 60
-        requests_per_period = 20
-        mitigation_timeout  = 0
-      }
-    },
-    {
-      action      = "block"
-      description = "Rate Limit api/commandresults by IP - 25 May 2023"
-      expression  = "(http.request.uri.path contains \"api/commandresults\" and ip.src in {34.226.132.221 52.54.43.157})"
-
-      ratelimit = {
-        characteristics     = ["cf.colo.id", "ip.src"]
-        period              = 10
-        requests_per_period = 100
-        mitigation_timeout  = 10
-      }
-    },
-    {
-      action      = "block"
-      description = "Rate Limit api/commandresults by IP - 27 Mar 2024"
-      expression  = "(http.request.uri.path contains \"api/commandresults\" and ip.src in {186.193.232.31 191.243.208.231})"
-
-      ratelimit = {
-        characteristics     = ["cf.colo.id", "ip.src"]
-        period              = 10
-        requests_per_period = 50
-        mitigation_timeout  = 10
-      }
-    },
-    {
-      action      = "block"
       description = "Per IP rate limit on routes containing /api/systems"
       expression  = "(http.request.uri.path contains \"/api/systems\" and http.request.method eq \"PUT\")"
 
