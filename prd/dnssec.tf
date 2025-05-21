@@ -130,6 +130,75 @@ resource "aws_route53_record" "soa_zones_with_dnssec" {
   records         = each.value.soa.records
 }
 
+
+##############################################################
+# AWS ldap-mfa.eu.jumpcloud.com and ldap.eu.jumpcloud.com
+##############################################################
+locals {
+  route53_zones_with_dnssec_eu = [
+    {
+      name = "ldap-mfa.eu.jumpcloud.com"
+      ns = {
+        # original ns ttl is 172800
+        ttl = 300 # 5 Minutes
+      }
+      soa = {
+        # original soa ttl is 900
+        ttl = 300 # 5 Minutes
+        # original soa record is ["ns-1350.awsdns-40.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
+        records = ["ns-1350.awsdns-40.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 600"]
+      }
+    },
+    {
+      name = "ldap.eu.jumpcloud.com"
+      ns = {
+        # original ns ttl is 172800
+        ttl = 300 # 5 Minutes
+      }
+      soa = {
+        # original soa ttl is 900
+        ttl = 300 # 5 Minutes
+        # original soa record is ["ns-840.awsdns-41.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
+        records = ["ns-840.awsdns-41.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 600"]
+      }
+    },
+  ]
+
+  route53_zone_name_to_zone_eu = { for zone in local.route53_zones_with_dnssec_eu : zone.name => zone }
+}
+
+data "aws_route53_zone" "zones_with_dnssec_prd02" {
+  provider = aws.prd02
+  for_each = local.route53_zone_name_to_zone_eu
+
+  name = each.key
+}
+
+# take control of default zone ns and soa records
+resource "aws_route53_record" "ns_zones_with_dnssec_eu" {
+  provider = aws.prd02
+  for_each = local.route53_zone_name_to_zone_eu
+
+  name            = each.key
+  allow_overwrite = true
+  ttl             = each.value.ns.ttl
+  type            = "NS"
+  zone_id         = lookup(data.aws_route53_zone.zones_with_dnssec_prd02, each.key).zone_id
+  records         = formatlist("%s.", lookup(data.aws_route53_zone.zones_with_dnssec_prd02, each.key).name_servers)
+}
+
+resource "aws_route53_record" "soa_zones_with_dnssec_eu" {
+  provider = aws.prd02
+  for_each = local.route53_zone_name_to_zone_eu
+
+  name            = each.key
+  allow_overwrite = true
+  ttl             = each.value.soa.ttl
+  type            = "SOA"
+  zone_id         = lookup(data.aws_route53_zone.zones_with_dnssec_prd02, each.key).zone_id
+  records         = each.value.soa.records
+}
+
 ##################################################################
 # Prepare DNSSEC for Route53 zones
 # trailing date (ie 05222023) indicates the date of KSK rotation
@@ -181,4 +250,3 @@ resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec" {
 
   hosted_zone_id = lookup(aws_route53_key_signing_key.zones_with_dnssec_05222023, each.key).hosted_zone_id
 }
-
