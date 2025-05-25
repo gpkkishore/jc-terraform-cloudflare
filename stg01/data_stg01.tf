@@ -321,7 +321,7 @@ locals {
       value   = "d16mcbw7jdbt7n.cloudfront.net"
     },
     {
-      name    = "*.pwm"
+      name    = "pwm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
