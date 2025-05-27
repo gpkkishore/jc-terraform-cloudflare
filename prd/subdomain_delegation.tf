@@ -40,6 +40,16 @@ locals {
       name  = "prd02"
       ttl   = 300
       value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
-    }
+    },
+    {
+      name  = "ldap-mfa.eu"
+      ttl   = 300
+      value = ["ns-730.awsdns-27.net.", "ns-1350.awsdns-40.org.", "ns-484.awsdns-60.com.", "ns-2011.awsdns-59.co.uk."]
+    },
+    {
+      name  = "ldap.eu"
+      ttl   = 300
+      value = ["ns-840.awsdns-41.net.", "ns-450.awsdns-56.com.", "ns-1953.awsdns-52.co.uk.", "ns-1216.awsdns-24.org."]
+    },
   ]
 }

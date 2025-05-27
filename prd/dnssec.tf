@@ -181,4 +181,3 @@ resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec" {
 
   hosted_zone_id = lookup(aws_route53_key_signing_key.zones_with_dnssec_05222023, each.key).hosted_zone_id
 }
-
