@@ -276,7 +276,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "password-manager.stg01-use2-p00.jcplatform.dev"
+      value   = "password-manager.stg01-use2.jcplatform.dev"
     },
     {
       name    = "devices.pwm"
