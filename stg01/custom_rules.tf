@@ -13,6 +13,7 @@ locals {
     "login.stg01.jumpcloud.com",
     "oauth.stg01.jumpcloud.com",
     "go.stg01.jumpcloud.com",
+    "password-manager.stg01.jumpcloud.com",
     "saas.stg01.jumpcloud.com",
     "ssf.stg01.jumpcloud.com",
   ]

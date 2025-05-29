@@ -272,6 +272,13 @@ locals {
       value   = "agent.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "password-manager"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "password-manager.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "devices.pwm"
       proxied = false
       ttl     = 1

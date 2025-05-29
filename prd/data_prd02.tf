@@ -144,7 +144,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "nli-haproxy-haproxy.ue1-prd-p01.jcplatform.dev"
+      value   = "nli-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "oauth.prd02"
