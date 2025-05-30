@@ -418,22 +418,22 @@ locals {
   custom_certs = [
     {
       name              = "microsoft-mdm"
-      hosts             = ["microsoft-mdm.prd02.jumpcloud.com", "*.microsoft-mdm.prd02.jumpcloud.com"]
+      hosts             = ["microsoft-mdm.prd02.jumpcloud.com", "*.microsoft-mdm.prd02.jumpcloud.com", "microsoft-mdm.eu.jumpcloud.com", "*.microsoft-mdm.eu.jumpcloud.com"]
       validation_method = "txt"
     },
     {
       name              = "apple.mdm"
-      hosts             = ["apple.mdm.prd02.jumpcloud.com", "*.apple.mdm.prd02.jumpcloud.com"]
+      hosts             = ["apple.mdm.prd02.jumpcloud.com", "*.apple.mdm.prd02.jumpcloud.com", "apple.mdm.eu.jumpcloud.com", "*.apple.mdm.eu.jumpcloud.com"]
       validation_method = "txt"
     },
     {
       name              = "pwm"
-      hosts             = ["pwm.prd02.jumpcloud.com", "*.pwm.prd02.jumpcloud.com"]
+      hosts             = ["pwm.prd02.jumpcloud.com", "*.pwm.prd02.jumpcloud.com", "pwm.eu.jumpcloud.com", "*.pwm.eu.jumpcloud.com"]
       validation_method = "txt"
     },
     {
       name              = "id"
-      hosts             = ["id.prd02.jumpcloud.com", "*.id.prd02.jumpcloud.com"]
+      hosts             = ["id.prd02.jumpcloud.com", "*.id.prd02.jumpcloud.com", "id.eu.jumpcloud.com", "*.id.eu.jumpcloud.com"]
       validation_method = "txt"
     },
   ]
