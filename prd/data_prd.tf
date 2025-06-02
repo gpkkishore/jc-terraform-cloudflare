@@ -97,8 +97,18 @@ locals {
       validation_method = "txt"
     },
     {
+      name              = "pwm"
+      hosts             = ["*.pwm.eu.jumpcloud.com", "pwm.eu.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
       name              = "login"
       hosts             = ["*.login.jumpcloud.com", "login.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
+      name              = "microsoft-mdm-eu"
+      hosts             = ["*.microsoft-mdm.eu.jumpcloud.com", "microsoft-mdm.eu.jumpcloud.com"]
       validation_method = "txt"
     },
     {
@@ -125,7 +135,7 @@ locals {
       name              = "eu"
       hosts             = ["*.eu.jumpcloud.com", "eu.jumpcloud.com", "*.id.eu.jumpcloud.com", "*.mdm.eu.jumpcloud.com"]
       validation_method = "txt"
-    }
+    },
   ]
 
   prd_a_records = [
@@ -2279,7 +2289,7 @@ locals {
       type    = "CNAME"
       value   = "identity-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
-{
+    {
       name    = "*.adbridge-kickstart.eu"
       proxied = false
       ttl     = 1
