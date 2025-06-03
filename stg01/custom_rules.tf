@@ -196,7 +196,7 @@ locals {
     {
       action      = "skip"
       description = "Allow AWS VPCs"
-      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and not http.user_agent contains \"Protect Staging/\" and ip.src in {${join(" ", [for ip in local.aws_vpc_ips : ip])} and http.request.uri.path ne \"/google-emm/notifications\")"
+      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and not http.user_agent contains \"Protect Staging/\" and ip.src in {${join(" ", [for ip in local.aws_vpc_ips : ip])}} and http.request.uri.path ne \"/google-emm/notifications\")"
     },
     // Allow GHA runners nat gateways
     {
