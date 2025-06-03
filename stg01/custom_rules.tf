@@ -196,13 +196,13 @@ locals {
     {
       action      = "skip"
       description = "Allow AWS VPCs"
-      expression  = format("(http.host in {%s} and not http.user_agent contains \"Protect Staging/\" and ip.src in {%s} and http.request.uri.path ne \"/google-emm/notifications\")", join(" ", [for host in local.stg01_hostnames : host]), join(" ", [for ip in local.aws_vpc_ips : ip]))
+      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and not http.user_agent contains \"Protect Staging/\" and ip.src in {${join(" ", [for ip in local.aws_vpc_ips : ip])} and http.request.uri.path ne \"/google-emm/notifications\")"
     },
     // Allow GHA runners nat gateways
     {
       action      = "skip"
       description = "Allow GHA Runners NAT Gateways"
-      expression  = format("(http.host in {%s} and ip.src in {44.239.135.146 54.69.255.145 44.235.245.14})", join(" ", [for host in local.stg01_hostnames : host]))
+      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and ip.src in {44.239.135.146 54.69.255.145 44.235.245.14})"
     },
     // Allow Azure Active Directory
     {
@@ -238,7 +238,7 @@ locals {
     {
       action      = "block"
       description = "Allow Zscaler Only"
-      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}}) and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\""
+      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")"
     },
   ]
 }
