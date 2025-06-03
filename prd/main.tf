@@ -3,7 +3,7 @@ locals {
   account_id  = "3c96d914c0eaa62b7b4c9960e63818f7"
 
   # Aggregate of all DNS records
-  dns_records = concat(local.prd_dns_records, local.prd02_dns_records)
+  dns_records = concat(local.prd_dns_records)
 }
 
 data "cloudflare_zones" "production_zones" {
