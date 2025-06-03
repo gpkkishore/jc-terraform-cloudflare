@@ -238,7 +238,7 @@ locals {
     {
       action      = "block"
       description = "Allow Zscaler Only"
-      expression  = "(http.host in ${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}) and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\""
+      expression  = "(http.host in ${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}) and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")"
     },
   ]
 }
