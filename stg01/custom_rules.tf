@@ -153,11 +153,7 @@ locals {
 
   // Source: https://support.apple.com/en-us/102266
   apple_cidr_blocks = [
-    "17.249.0.0/16",
-    "17.252.0.0/16",
-    "17.57.144.0/22",
-    "17.188.128.0/18",
-    "17.188.20.0/23",
+    "17.0.0.0/8"
   ]
 
   add_ratelimit_rules = []
