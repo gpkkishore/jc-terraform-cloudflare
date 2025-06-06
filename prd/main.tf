@@ -186,7 +186,7 @@ resource "cloudflare_record" "stackidentity_records" {
   type     = each.value.type
   proxied  = each.value.proxied
   priority = each.value.type == "MX" ? each.value.priority : null
-  zone_id  = cloudflare_zone.additional_zone["zercurity.com"].id
+  zone_id  = cloudflare_zone.additional_zone["stackidentity.com"].id
 }
 
 #################################################################################################

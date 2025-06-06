@@ -1921,13 +1921,13 @@ locals {
   ]
 
   stackidentity_tmp_records = [
-    # {
-    #   name    = "@",
-    #   proxied = false,
-    #   ttl     = 600,
-    #   type    = "A",
-    #   value   = "54.197.63.83"
-    # },
+    {
+      name    = "@",
+      proxied = false,
+      ttl     = 600,
+      type    = "A",
+      value   = "54.197.63.83"
+    },
     {
       name    = "@",
       proxied = false,
@@ -2042,13 +2042,13 @@ locals {
       type    = "CNAME"
       value   = "sipdir.online.lync.com."
     },
-    # {
-    #   name    = "www"
-    #   proxied = false
-    #   ttl     = 3600
-    #   type    = "CNAME"
-    #   value   = "@"
-    # },
+    {
+      name    = "www"
+      proxied = false
+      ttl     = 3600
+      type    = "CNAME"
+      value   = "@"
+    },
     {
       name    = "_domainconnect"
       proxied = false
@@ -2057,14 +2057,14 @@ locals {
       value   = "_domainconnect.gd.domaincontrol.com."
     },
     // MX
-    # {
-    #   name     = "@"
-    #   priority = 1
-    #   proxied  = false
-    #   ttl      = 3600
-    #   type     = "MX"
-    #   value    = "aspmx.l.google.com."
-    # },
+    {
+      name     = "@"
+      priority = 1
+      proxied  = false
+      ttl      = 3600
+      type     = "MX"
+      value    = "aspmx.l.google.com."
+    },
     {
       name     = "@"
       priority = 10
@@ -2081,22 +2081,22 @@ locals {
       type     = "MX"
       value    = "alt3.aspmx.l.google.com."
     },
-    # {
-    #   name     = "@"
-    #   priority = 5
-    #   proxied  = false
-    #   ttl      = 3600
-    #   type     = "MX"
-    #   value    = "alt1.aspmx.l.google.com."
-    # },
-    # {
-    #   name     = "@"
-    #   priority = 5
-    #   proxied  = false
-    #   ttl      = 3600
-    #   type     = "MX"
-    #   value    = "alt2.aspmx.l.google.com."
-    # },
+    {
+      name     = "@"
+      priority = 5
+      proxied  = false
+      ttl      = 3600
+      type     = "MX"
+      value    = "alt1.aspmx.l.google.com."
+    },
+    {
+      name     = "@"
+      priority = 5
+      proxied  = false
+      ttl      = 3600
+      type     = "MX"
+      value    = "alt2.aspmx.l.google.com."
+    },
   ]
 
   prd_eu_records = [
