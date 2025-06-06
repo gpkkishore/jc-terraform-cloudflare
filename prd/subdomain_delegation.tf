@@ -4,7 +4,7 @@ locals {
     {
       name  = "vault"
       ttl   = 300
-      value = ["hope.ns.cloudflare.com.", "nile.ns.cloudflare.com."]
+      value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
     },
     {
       name  = "id"
