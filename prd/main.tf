@@ -6,32 +6,15 @@ locals {
   dns_records = concat(local.prd_dns_records)
 }
 
+####################################################
+# All Zones
+####################################################
 data "cloudflare_zones" "production_zones" {
   filter {
     # This creates a regex string that looks like the following: ^dundermifflin\.com|^wuphf\.com|^saber\.com
     match = replace(join("|", formatlist("^%s", concat([var.zone_name], local.cloudflare_zones))), ".", "\\.")
   }
 }
-
-resource "cloudflare_zone" "cloudflare_zone_resource" {
-  account_id = local.account_id
-  paused     = false
-  plan       = var.zone_plan
-  type       = "full"
-  zone       = var.zone_name
-}
-
-# This resource allows for the creation of additional zones that may not necessarily have their own workspace or are managed in other repos.
-# This allows us to centralize zone creation to one repo and limit permission scope on tokens
-resource "cloudflare_zone" "additional_zone" {
-  for_each   = toset(local.cloudflare_zones)
-  account_id = local.account_id
-  paused     = false
-  plan       = var.zone_plan
-  type       = "full"
-  zone       = each.key
-}
-
 module "dns" {
   source        = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=2.0.1"  
   zone_id       = cloudflare_zone.cloudflare_zone_resource.id
@@ -55,14 +38,29 @@ module "settings" {
   zone_id  = each.key
 }
 
-module "resmo_dns" {
-  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=2.0.1"  
+####################################################
+# Main Zone - jumpcloud.com
+####################################################
+resource "cloudflare_zone" "cloudflare_zone_resource" {
+  account_id = local.account_id
+  paused     = false
+  plan       = var.zone_plan
+  type       = "full"
+  zone       = var.zone_name
+}
 
-  for_each = local.resmo_zone_name_to_zone
+# CloudFlare Edge certificates
+resource "cloudflare_certificate_pack" "custom_cert_09042024" {
+  for_each = { for cert in local.custom_certs : cert.name => cert }
 
-  zone_id     = lookup(cloudflare_zone.additional_zone, each.key).id
-  zone_name   = each.key
-  dns_records = each.value.dns_records
+  zone_id                = cloudflare_zone.cloudflare_zone_resource.id
+  type                   = "advanced"
+  hosts                  = each.value.hosts
+  validation_method      = each.value.validation_method
+  validity_days          = 90
+  certificate_authority  = "google"
+  cloudflare_branding    = false
+  wait_for_active_status = true
 }
 
 # Page Rule for removed microsoft-mdm-configuration-files endpoint in console
@@ -79,49 +77,40 @@ resource "cloudflare_page_rule" "console_v2_microsoft_mdm_configuration_files" {
   }
 }
 
-/*
-# Redirect rule for iOS enrollment in Dogfood
-resource "cloudflare_ruleset" "ios_enrollment_redirect" {
-  zone_id     = cloudflare_zone.cloudflare_zone_resource.id
-  name        = "redirects"
-  description = "Redirects iOS enrollment"
-  kind        = "zone"
-  phase       = "http_request_dynamic_redirect"
+####################################################
+# Additional Zones - other domains
+####################################################
 
-  rules {
-    action = "redirect"
-    action_parameters {
-      from_value {
-        status_code = 301
-        target_url {
-          value = "*jumpcloud.com/.well-known/com.apple.remotemanagement*"
-        }
-        preserve_query_string = false
-      }
-    }
-    expression  = "(https://apple.mdm.jumpcloud.com/account-driven-service-discovery?organization_id=520d4262664b54bf1b004b8e)"
-    description = "Redirects iOS enrollment from remote management to account driven service discovery"
-    enabled     = true
+# Additional zones that may not necessarily have their own workspace or are managed in other repos.
+# This allows us to centralize zone creation to one repo and limit permission scope on tokens.
+resource "cloudflare_zone" "additional_zone" {
+  for_each   = toset(local.cloudflare_zones)
+  account_id = local.account_id
+  paused     = false
+  plan       = var.zone_plan
+  type       = "full"
+  zone       = each.key
+}
+
+####################################################
+# Resmo
+####################################################
+locals {
+    resmo_zone_name_to_zone = {
+    for zone in local.resmo_zones : zone.name => zone
   }
 }
-*/
-
-resource "cloudflare_certificate_pack" "custom_cert_09042024" {
-  for_each = { for cert in local.custom_certs : cert.name => cert }
-
-  zone_id                = cloudflare_zone.cloudflare_zone_resource.id
-  type                   = "advanced"
-  hosts                  = each.value.hosts
-  validation_method      = each.value.validation_method
-  validity_days          = 90
-  certificate_authority  = "google"
-  cloudflare_branding    = false
-  wait_for_active_status = true
+module "resmo_dns" {
+  source      = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=2.0.1"  
+  for_each    = local.resmo_zone_name_to_zone
+  zone_id     = lookup(cloudflare_zone.additional_zone, each.key).id
+  zone_name   = each.key
+  dns_records = each.value.dns_records
 }
 
-###########################################
-# DNS Configuration for jumpcloudlounge.com
-###########################################
+####################################################
+# jumpcloudlounge.com
+####################################################
 resource "cloudflare_record" "jumpcloud_lounge_faux_record" {
   depends_on = [cloudflare_zone.additional_zone]
 
@@ -147,9 +136,9 @@ resource "cloudflare_page_rule" "jumpcloud_lounge_page_rule" {
   }
 }
 
-################################################
-# Temporary Zone configuration for zercurity.com
-################################################
+####################################################
+# zercurity.com
+####################################################
 resource "cloudflare_record" "zercurity_records" {
   for_each = { for record in local.zercurity_tmp_records : "${record.type}_${record.name}_${record.value}" => record }
   name     = each.value.name
@@ -161,22 +150,8 @@ resource "cloudflare_record" "zercurity_records" {
   zone_id  = cloudflare_zone.additional_zone["zercurity.com"].id
 }
 
-################################################
-# Temporary Zone configuration for jumpcloud.ai
-################################################
-resource "cloudflare_record" "jumpcloud_ai_records" {
-  for_each = { for record in local.jumpcloud_ai_tmp_records : "${record.type}_${record.name}_${record.value}" => record }
-  name     = each.value.name
-  value    = each.value.value
-  ttl      = each.value.ttl
-  type     = each.value.type
-  proxied  = each.value.proxied
-  priority = each.value.type == "MX" ? each.value.priority : null
-  zone_id  = cloudflare_zone.additional_zone["jumpcloud.ai"].id
-}
-
 ####################################################
-# Temporary Zone configuration for stackidentity.com
+# stackidentity.com
 ####################################################
 resource "cloudflare_record" "stackidentity_records" {
   for_each = { for record in local.stackidentity_tmp_records : "${record.type}_${record.name}_${record.value}" => record }
@@ -189,9 +164,23 @@ resource "cloudflare_record" "stackidentity_records" {
   zone_id  = cloudflare_zone.additional_zone["stackidentity.com"].id
 }
 
-#################################################################################################
-# Identity Security Response Headers for proxied cloudflare domains for the id.jumpcloud.com zone
-#################################################################################################
+####################################################
+# jumpcloud.ai
+####################################################
+resource "cloudflare_record" "jumpcloud_ai_records" {
+  for_each = { for record in local.jumpcloud_ai_tmp_records : "${record.type}_${record.name}_${record.value}" => record }
+  name     = each.value.name
+  value    = each.value.value
+  ttl      = each.value.ttl
+  type     = each.value.type
+  proxied  = each.value.proxied
+  priority = each.value.type == "MX" ? each.value.priority : null
+  zone_id  = cloudflare_zone.additional_zone["jumpcloud.ai"].id
+}
+
+####################################################
+# id.jumpcloud.com
+####################################################
 
 data "cloudflare_zone" "id_jumpcloud_com" {
   account_id = local.account_id
@@ -221,6 +210,7 @@ locals {
   header_name_to_identity_security_response_header_value = { for this in local.identity_security_response_headers : this.name => this.value }
 }
 
+# Identity Security Response Headers for proxied cloudflare domains for the id.jumpcloud.com zone
 resource "cloudflare_ruleset" "security_response_headers" {
   zone_id = data.cloudflare_zone.id_jumpcloud_com.id
   name    = "Security Response Header Modifications"
