@@ -93,6 +93,20 @@ resource "cloudflare_zone" "additional_zone" {
 }
 
 ####################################################
+# vault.jumpcloud.com
+####################################################
+resource "cloudflare_record" "vault_records" {
+  for_each = { for record in local.vault_records : "${record.type}_${record.name}_${record.value}" => record }
+  name     = each.value.name
+  value    = each.value.value
+  ttl      = each.value.ttl
+  type     = each.value.type
+  proxied  = each.value.proxied
+  priority = each.value.type == "MX" ? each.value.priority : null
+  zone_id  = cloudflare_zone.additional_zone["vault.jumpcloud.com"].id
+}
+
+####################################################
 # Resmo
 ####################################################
 locals {
