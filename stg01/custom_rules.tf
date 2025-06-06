@@ -184,6 +184,11 @@ locals {
       description = "Tritium/Aluminium Internal Devices IP Skip"
       expression  = "(ip.src in {70.57.27.50 66.222.117.111 66.186.219.238 66.186.212.168 75.166.167.57 97.81.234.223})"
     },
+    {
+      action      = "skip"
+      description = "Allow GCS ProxMox"
+      expression  = "(ip.src in {50.194.147.163})"
+    },
     // skip action for allowing aws vpcs for stg01.jumpcloud.com
     // AWS Control account NATGW EIP mappting for stg01-use2-p00 VPC:
     //   stg01-use2-p00-nat-us-east-2a -> 3.146.242.224
