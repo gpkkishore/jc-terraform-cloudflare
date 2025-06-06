@@ -435,7 +435,7 @@ locals {
       proxied = false
       ttl     = 3600
       type    = "CNAME"
-      value   = "@"
+      value   = "stackidentity.com"
     },
     {
       name    = "_domainconnect"
