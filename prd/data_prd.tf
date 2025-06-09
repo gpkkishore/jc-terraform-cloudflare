@@ -940,13 +940,6 @@ locals {
       value   = "y8wu2d.usa-e1.cloudhub.io"
     },
     {
-      name    = "prd02-mulesoft-api",
-      proxied = false
-      ttl     = 300
-      type    = "CNAME"
-      value   = "jumpcloud-prod-dlb.lb.anypointdns.net"
-    },
-    {
       name    = "mulesoft-api",
       proxied = false
       ttl     = 1
