@@ -925,14 +925,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "jumpcloud-nonprod-dlb.lb.anypointdns.net"
-    },
-    {
-      name    = "prd02-mulesoft-api",
-      proxied = false
-      ttl     = 300
-      type    = "CNAME"
-      value   = "jumpcloud-prod-dlb.lb.anypointdns.net"
+      value   = "y8wu2d.usa-e1.cloudhub.io"
     },
     {
       name    = "mulesoft-api",
@@ -946,7 +939,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "jumpcloud-nonprod-dlb.lb.anypointdns.net"
+      value   = "y8wu2d.usa-e1.cloudhub.io"
     },
     {
       name    = "newton",
