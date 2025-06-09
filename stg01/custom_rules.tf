@@ -153,11 +153,7 @@ locals {
 
   // Source: https://support.apple.com/en-us/102266
   apple_cidr_blocks = [
-    "17.249.0.0/16",
-    "17.252.0.0/16",
-    "17.57.144.0/22",
-    "17.188.128.0/18",
-    "17.188.20.0/23",
+    "17.0.0.0/8"
   ]
 
   add_ratelimit_rules = []
@@ -188,6 +184,11 @@ locals {
       description = "Tritium/Aluminium Internal Devices IP Skip"
       expression  = "(ip.src in {70.57.27.50 66.222.117.111 66.186.219.238 66.186.212.168 75.166.167.57 97.81.234.223})"
     },
+    {
+      action      = "skip"
+      description = "Allow GCS ProxMox"
+      expression  = "(ip.src in {50.194.147.163})"
+    },
     // skip action for allowing aws vpcs for stg01.jumpcloud.com
     // AWS Control account NATGW EIP mappting for stg01-use2-p00 VPC:
     //   stg01-use2-p00-nat-us-east-2a -> 3.146.242.224
@@ -196,13 +197,13 @@ locals {
     {
       action      = "skip"
       description = "Allow AWS VPCs"
-      expression  = format("(http.host in {%s} and not http.user_agent contains \"Protect Staging/\" and ip.src in {%s} and http.request.uri.path ne \"/google-emm/notifications\")", join(" ", [for host in local.stg01_hostnames : host]), join(" ", [for ip in local.aws_vpc_ips : ip]))
+      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and not http.user_agent contains \"Protect Staging/\" and ip.src in {${join(" ", [for ip in local.aws_vpc_ips : ip])}} and http.request.uri.path ne \"/google-emm/notifications\")"
     },
     // Allow GHA runners nat gateways
     {
       action      = "skip"
       description = "Allow GHA Runners NAT Gateways"
-      expression  = format("(http.host in {%s} and ip.src in {44.239.135.146 54.69.255.145 44.235.245.14})", join(" ", [for host in local.stg01_hostnames : host]))
+      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and ip.src in {44.239.135.146 54.69.255.145 44.235.245.14})"
     },
     // Allow Azure Active Directory
     {
@@ -238,7 +239,7 @@ locals {
     {
       action      = "block"
       description = "Allow Zscaler Only"
-      expression  = "(http.host in ${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}) and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")"
+      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")"
     },
   ]
 }
