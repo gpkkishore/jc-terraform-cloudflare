@@ -333,6 +333,14 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "saas.stg01-use2.jcplatform.dev"
+    },
+    # PWM Validation CNAME Record
+    {
+      name    = "_b81caef9a3b98caf7d41f49d834622c9.pwm.stg01.jumpcloud.com."
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "_cc8d601da3b928d8aaf8829b723c5c96.mqrfdvtdxq.acm-validations.aws."
     }
   ]
 

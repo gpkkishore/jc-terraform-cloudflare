@@ -2,6 +2,11 @@
 locals {
   prd_ns_delegation_records = [
     {
+      name  = "vault"
+      ttl   = 300
+      value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
+    },
+    {
       name  = "id"
       ttl   = 300
       value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
