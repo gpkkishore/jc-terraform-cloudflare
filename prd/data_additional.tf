@@ -15,14 +15,59 @@ locals {
 
   ###########################################
   # Vault
-  ###########################################  
+  ###########################################
   vault_records = [
-
+    {
+      name    = "connect.dev.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-41.awsdns-05.com."
+    },
+    {
+      name    = "connect.dev.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-1550.awsdns-01.co.uk."
+    },
+    {
+      name    = "connect.dev.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-808.awsdns-37.net."
+    },
+    {
+      name    = "connect.dev.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-1256.awsdns-29.org."
+    },
+    # {
+    #   name  = "*.dev.vault.jumpcloud.com",
+    #   ttl   = 60,
+    #   type  = "CNAME",
+    #   value = ""
+    # },
+    # {
+    #   name  = "*.app.dev.vault.jumpcloud.com",
+    #   ttl   = 60,
+    #   type  = "CNAME",
+    #   value = ""
+    # },
+    # {
+    #   name  = "*.api.dev.vault.jumpcloud.com",
+    #   ttl   = 60,
+    #   type  = "CNAME",
+    #   value = ""
+    # },
   ]
 
   ###########################################
   # Zercurity
-  ###########################################  
+  ###########################################
   zercurity_tmp_records = [
     {
       name    = "zercurity.com",
@@ -197,7 +242,7 @@ locals {
       type    = "CNAME",
       value   = "d2s0xzif3whxwe.cloudfront.net"
     }
-  ]    
+  ]
 
   ###########################################
   # jumpcloud.ai
@@ -373,14 +418,14 @@ locals {
       ttl     = 3600,
       type    = "TXT",
       value   = "v=DMARC1; p=none; rua=mailto:postmaster@stackidentity.com; adkim=s; aspf=s"
-    },    
+    },
     {
       name    = "_gh-stackid-e",
       proxied = false,
       ttl     = 3600,
       type    = "TXT",
       value   = "a26e27f720"
-    },    
+    },
     // CNAME
     {
       name    = "autodiscover"
@@ -416,7 +461,7 @@ locals {
       ttl     = 3600
       type    = "CNAME"
       value   = "htskszr2d6fr5nzb4dgoyiwwctxa6wj5.dkim.amazonses.com."
-    },    
+    },
     {
       name    = "xfxd6vlc6fqsfejgvtppnwe27n3qubw._domainkey"
       proxied = false
