@@ -47,14 +47,14 @@ locals {
     },
     {
       name    = "*.app.dev.vault.jumpcloud.com",
-      ttl     = 60,
+      ttl     = 1,
       proxied = true,
       type    = "CNAME",
       value   = "vaultone-dev-alb-1549942740.us-west-2.elb.amazonaws.com"
     },
     {
       name    = "*.api.dev.vault.jumpcloud.com",
-      ttl     = 60,
+      ttl     = 1,
       proxied = true,
       type    = "CNAME",
       value   = "vaultone-dev-alb-1549942740.us-west-2.elb.amazonaws.com"
