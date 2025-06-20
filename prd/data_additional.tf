@@ -46,22 +46,25 @@ locals {
       value   = "ns-1256.awsdns-29.org."
     },
     {
-      name  = "*.app.dev.vault.jumpcloud.com",
-      ttl   = 60,
-      type  = "CNAME",
-      value = "vaultone-dev-alb-1549942740.us-west-2.elb.amazonaws.com"
+      name    = "*.app.dev.vault.jumpcloud.com",
+      ttl     = 60,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-dev-alb-1549942740.us-west-2.elb.amazonaws.com"
     },
     {
-      name  = "*.api.dev.vault.jumpcloud.com",
-      ttl   = 60,
-      type  = "CNAME",
-      value = "vaultone-dev-alb-1549942740.us-west-2.elb.amazonaws.com"
+      name    = "*.api.dev.vault.jumpcloud.com",
+      ttl     = 60,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-dev-alb-1549942740.us-west-2.elb.amazonaws.com"
     },
     {
-      name  = "_d27239f91af7dcbe19bd8508a911d0fb.dev.vault.jumpcloud.com.",
-      ttl   = 60,
-      type  = "CNAME",
-      value = "_dd6ba4ccac91674dbd7ff913cf8ceebf.xlfgrmvvlj.acm-validations.aws."
+      name    = "_d27239f91af7dcbe19bd8508a911d0fb.dev.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_dd6ba4ccac91674dbd7ff913cf8ceebf.xlfgrmvvlj.acm-validations.aws."
     },
   ]
 
