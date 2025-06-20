@@ -106,6 +106,12 @@ resource "cloudflare_record" "vault_records" {
   zone_id  = cloudflare_zone.additional_zone["vault.jumpcloud.com"].id
 }
 
+resource "cloudflare_total_tls" "vault_jumpcloud_com" {
+  zone_id               = cloudflare_zone.additional_zone["vault.jumpcloud.com"].id
+  enabled               = true
+  certificate_authority = "lets_encrypt"
+}
+
 ####################################################
 # Resmo
 ####################################################
