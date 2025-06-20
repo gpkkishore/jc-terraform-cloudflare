@@ -47,14 +47,14 @@ locals {
     },
     {
       name    = "*.app.dev.vault.jumpcloud.com",
-      ttl     = 60,
+      ttl     = 1,
       proxied = true,
       type    = "CNAME",
       value   = "vaultone-dev-alb-1549942740.us-west-2.elb.amazonaws.com"
     },
     {
       name    = "*.api.dev.vault.jumpcloud.com",
-      ttl     = 60,
+      ttl     = 1,
       proxied = true,
       type    = "CNAME",
       value   = "vaultone-dev-alb-1549942740.us-west-2.elb.amazonaws.com"
@@ -66,6 +66,20 @@ locals {
       type    = "CNAME",
       value   = "_dd6ba4ccac91674dbd7ff913cf8ceebf.xlfgrmvvlj.acm-validations.aws."
     },
+    {
+      name    = "_152afca5ed2cd9af9c3edd78cd712160.api.dev.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_f5bb8a6dac603e7ff5d2d30b85164537.xlfgrmvvlj.acm-validations.aws."
+    },
+    {
+      name    = "_a5e57a291c89b8dc3238293db095d812.app.dev.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_a7f0ad4c1052eb75a9b3c2c8d5889b46.xlfgrmvvlj.acm-validations.aws."
+    }
   ]
 
   ###########################################
