@@ -1264,6 +1264,20 @@ locals {
       value   = "mkto-ab650156.com"
     },
     // END MARKETO
+    {
+      name    = "intercom._domainkey.jumpcloud.com."
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "67e0f016-d98f-42f9-981a-6347be1b9dc6.dkim.intercom.io."
+    },
+    {
+      name    = "outbound.intercom.jumpcloud.com."
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "rp.jumpcloud-support.intercom-mail.com."
+    },    
   ]
 
   prd_misc_records = [
