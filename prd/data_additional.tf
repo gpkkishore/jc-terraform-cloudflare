@@ -60,6 +60,34 @@ locals {
       value   = "vaultone-dev-shared-public-alb-545851518.us-west-2.elb.amazonaws.com"
     },
     {
+      name    = "app.dev.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-dev-shared-public-alb-545851518.us-west-2.elb.amazonaws.com"
+    },
+    {
+      name    = "api.dev.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-dev-shared-public-alb-545851518.us-west-2.elb.amazonaws.com"
+    },
+    {
+      name    = "dev.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "d357i8njl4hvc1.cloudfront.net"
+    },
+    {
+      name    = "*.dev.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "d357i8njl4hvc1.cloudfront.net"
+    },
+    {
       name    = "_d27239f91af7dcbe19bd8508a911d0fb.dev.vault.jumpcloud.com.",
       ttl     = 60,
       proxied = false,
