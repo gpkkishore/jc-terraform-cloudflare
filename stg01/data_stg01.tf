@@ -146,6 +146,13 @@ locals {
       value   = "go.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "h-9d4953e0122bf"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "h-9d4953e0122bf.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "jumpdesk"
       proxied = true
       ttl     = 1
