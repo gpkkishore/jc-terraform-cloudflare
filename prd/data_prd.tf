@@ -932,7 +932,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "jumpcloud-prod-dlb.lb.anypointdns.net"
+      value   = "hnbh3q.usa-e1.cloudhub.io"
     },
     {
       name    = "mulesoft-api-qa",
@@ -1753,7 +1753,7 @@ locals {
       proxied = false
       ttl     = 300
       type    = "CNAME"
-      value   = "jumpcloud-prod-dlb.lb.anypointdns.net"
+      value   = "hnbh3q.usa-e1.cloudhub.io"
     },
     {
       name    = "nli.eu"
