@@ -1083,10 +1083,17 @@ locals {
     },
     {
       name    = "university",
-      proxied = false
+      proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "jumpcloud.thinkific.com"
+      value   = "lmsx7sxmk23m7c6vh01sl1s5ini1s980x.lb1.wl.lmspowered.com"
+    },
+    {
+      name    = "partnerjcu",
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "lmsyeso18yxkei5yaq1a65h7izi1skr86.lb1.wl.lmspowered.com"
     },
     {
       name    = "zb14758130",
