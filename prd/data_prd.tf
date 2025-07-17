@@ -1869,27 +1869,6 @@ locals {
       value   = "autodiscover.mail.us-west-2.awsapps.com."
     },
     {
-      name    = "labs.jumpcloud.ai."
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      value   = "44.216.106.214"
-    },
-    {
-      name    = "stg01.jumpcloud.ai."
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "nli.stg01.jumpcloud.com"
-    },
-    {
-      name    = "labs.stg01.jumpcloud.ai."
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      value   = "44.216.106.214"
-    },
-    {
       name    = "www.jumpcloud.ai."
       proxied = true
       ttl     = 1

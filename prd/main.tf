@@ -175,6 +175,20 @@ resource "cloudflare_record" "jumpcloud_ai_records" {
   zone_id  = cloudflare_zone.additional_zone["jumpcloud.ai"].id
 }
 
+resource "cloudflare_page_rule" "jumpcloud_ai_rule" {
+  depends_on = [cloudflare_record.jumpcloud_ai_records]
+
+  priority = 1
+  target   = "*jumpcloud.ai/*"
+  zone_id  = cloudflare_zone.additional_zone["jumpcloud.ai"].id
+  actions {
+    forwarding_url {
+      status_code = 301
+      url         = "https://jumpcloud.com/support/get-started-jumpcloud-ai-search"
+    }
+  }
+}
+
 ####################################################
 # Temporary Zone configuration for stackidentity.com
 ####################################################
