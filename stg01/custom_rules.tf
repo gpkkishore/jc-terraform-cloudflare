@@ -13,12 +13,13 @@ locals {
     "login.stg01.jumpcloud.com",
     "oauth.stg01.jumpcloud.com",
     "go.stg01.jumpcloud.com",
+    "password-manager.stg01.jumpcloud.com",
     "saas.stg01.jumpcloud.com",
     "ssf.stg01.jumpcloud.com",
   ]
-  
+
   prd02_hostnames = [
-   "jumpdesk.prd02.stg01.jumpcloud.com",
+    "jumpdesk.prd02.stg01.jumpcloud.com",
     "catalog.prd02.stg01.jumpcloud.com",
     "console.prd02.stg01.jumpcloud.com",
     "api.prd02.stg01.jumpcloud.com",
@@ -44,7 +45,7 @@ locals {
     "13.108.0.0/14",
     "34.211.108.32/28",
     "34.226.36.48/28",
-    "35.182.14.32/28",  
+    "35.182.14.32/28",
     "66.231.80.0/20",
     "68.232.192.0/20",
     "96.43.144.0/20",
@@ -150,6 +151,11 @@ locals {
     "18.158.141.230"
   ]
 
+  // Source: https://support.apple.com/en-us/102266
+  apple_cidr_blocks = [
+    "17.0.0.0/8"
+  ]
+
   add_ratelimit_rules = []
 
   add_waf_rules = [
@@ -178,6 +184,11 @@ locals {
       description = "Tritium/Aluminium Internal Devices IP Skip"
       expression  = "(ip.src in {70.57.27.50 66.222.117.111 66.186.219.238 66.186.212.168 75.166.167.57 97.81.234.223})"
     },
+    {
+      action      = "skip"
+      description = "Allow GCS ProxMox"
+      expression  = "(ip.src in {50.194.147.163})"
+    },
     // skip action for allowing aws vpcs for stg01.jumpcloud.com
     // AWS Control account NATGW EIP mappting for stg01-use2-p00 VPC:
     //   stg01-use2-p00-nat-us-east-2a -> 3.146.242.224
@@ -186,13 +197,13 @@ locals {
     {
       action      = "skip"
       description = "Allow AWS VPCs"
-      expression  = format("(http.host in {%s} and not http.user_agent contains \"Protect Staging/\" and ip.src in {%s} and http.request.uri.path ne \"/google-emm/notifications\")", join(" ", [for host in local.stg01_hostnames : host]), join(" ", [for ip in local.aws_vpc_ips : ip]))
+      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and not http.user_agent contains \"Protect Staging/\" and ip.src in {${join(" ", [for ip in local.aws_vpc_ips : ip])}} and http.request.uri.path ne \"/google-emm/notifications\")"
     },
     // Allow GHA runners nat gateways
     {
       action      = "skip"
       description = "Allow GHA Runners NAT Gateways"
-      expression  = format("(http.host in {%s} and ip.src in {44.239.135.146 54.69.255.145 44.235.245.14})", join(" ", [for host in local.stg01_hostnames : host]))
+      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and ip.src in {44.239.135.146 54.69.255.145 44.235.245.14})"
     },
     // Allow Azure Active Directory
     {
@@ -206,6 +217,12 @@ locals {
       action      = "skip"
       description = "Allow Salesforce"
       expression  = format("(http.host eq \"console.stg01.jumpcloud.com\" and ip.src in {%s})", join(" ", [for ip in local.salesforce_ips : ip]))
+    },
+    // Allow Apple CIDR blocks for VPP Notifications in the staging environment
+    {
+      action      = "skip"
+      description = "Allow Apple CIDR blocks for VPP Notifications"
+      expression  = format("(http.host eq \"apple.mdm.stg01.jumpcloud.com\" and http.request.uri.path eq \"/vpp/notifications\" and ip.src in {%s})", join(" ", [for ip in local.apple_cidr_blocks : ip]))
     },
     {
       action      = "block"
@@ -222,7 +239,7 @@ locals {
     {
       action      = "block"
       description = "Allow Zscaler Only"
-      expression  = format("(http.host in {%s} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")", join(" ", [for host in local.stg01_hostnames : host], [for host in local.prd02_hostnames : host]))
+      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")"
     },
   ]
 }

@@ -146,6 +146,13 @@ locals {
       value   = "go.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "h-9d4953e0122bf"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "h-9d4953e0122bf.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "jumpdesk"
       proxied = true
       ttl     = 1
@@ -272,6 +279,13 @@ locals {
       value   = "agent.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "password-manager"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "password-manager.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "devices.pwm"
       proxied = false
       ttl     = 1
@@ -326,6 +340,14 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "saas.stg01-use2.jcplatform.dev"
+    },
+    # PWM Validation CNAME Record
+    {
+      name    = "_b81caef9a3b98caf7d41f49d834622c9.pwm.stg01.jumpcloud.com."
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "_cc8d601da3b928d8aaf8829b723c5c96.mqrfdvtdxq.acm-validations.aws."
     }
   ]
 

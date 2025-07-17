@@ -141,7 +141,7 @@ locals {
       proxied = false
       ttl     = 300
       type    = "CNAME"
-      content = "jumpcloud-prod-dlb.lb.anypointdns.net"
+      content = "hnbh3q.usa-e1.cloudhub.io"
     },
     {
       name    = "nli"
