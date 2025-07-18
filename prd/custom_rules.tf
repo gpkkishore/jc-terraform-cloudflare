@@ -122,6 +122,13 @@ locals {
         expression  = "(ip.src in {183.83.227.182 183.83.226.136} and http.host contains \"jumpcloud.com\")"
       }
     ]
+    "id.jumpcloud.com" = [
+      {
+        action      = "block"
+        description = "Blocking Abuse IP's"
+        expression  = "(ip.src in {183.83.227.182 183.83.226.136} and http.host contains \"id.jumpcloud.com\")"
+      }
+    ]
     "id.stg01.jumpcloud.com" = [
       // Allow Salesforce
       // https://help.salesforce.com/s/articleView?id=000384438&type=1
