@@ -116,6 +116,11 @@ locals {
         description  = "Managed Captcha Abuse IP's 20241224-haproxy"
         expression   = "(ip.src in {52.13.24.213 34.208.1.174 44.245.128.2 44.244.196.227 3.211.203.108 44.237.194.38 54.69.0.153 44.235.57.22})"
       },
+      {
+        action      = "block"
+        description = "Blocking Abuse IP's"
+        expression  = "(ip.src in {183.83.227.182} and http.host contains \"jumpcloud.com\")"
+      }
     ]
     "id.stg01.jumpcloud.com" = [
       // Allow Salesforce
