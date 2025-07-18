@@ -233,7 +233,7 @@ locals {
     {
       action      = "block"
       description = "Blocking Abuse IP's"
-      expression  = "(ip.src in {183.83.227.182} and http.host contains \"jumpcloud.com\")"
+      expression  = "(ip.src in {183.83.227.182 183.83.226.136} and http.host contains \"stg01.jumpcloud.com\")"
     },
     # {
     #   action      = "skip"
