@@ -16,6 +16,7 @@ locals {
     "password-manager.stg01.jumpcloud.com",
     "saas.stg01.jumpcloud.com",
     "ssf.stg01.jumpcloud.com",
+    "*.prd02.stg01.jumpcloud.com",
   ]
 
   prd02_hostnames = [
@@ -228,6 +229,11 @@ locals {
       action      = "block"
       description = "Block all traffic to Search API HTTP(s) endpoint"
       expression  = "(http.request.uri.path contains \"/api/v2/search/\" and http.host eq \"console.stg01.jumpcloud.com\" and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189})"
+    },
+    {
+      action      = "block"
+      description = "Blocking Abuse IP's"
+      expression  = "(ip.src in {183.83.227.182} and http.host contains \"jumpcloud.com\")"
     },
     # {
     #   action      = "skip"
