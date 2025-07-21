@@ -1285,6 +1285,21 @@ locals {
       type    = "CNAME"
       value   = "rp.jumpcloud-support.intercom-mail.com."
     },    
+    # START PWM VALIDATION
+    {
+      name    = "_421057bc09925e1ad958bb32388d4926.pwm.jumpcloud.com."
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "_cfd405d688523fa0a9691e07b9f01221.gfjzbhpkrq.acm-validations.aws."
+    },
+    {
+      name    = "_ade2dd9076f3f452e005b7c0da0075e8.cdn.pwm.jumpcloud.com."
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "_a91e5e66fb71df666bd072660ecd6268.gfjzbhpkrq.acm-validations.aws."
+    },
   ]
 
   prd_misc_records = [
