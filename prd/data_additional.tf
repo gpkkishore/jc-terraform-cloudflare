@@ -17,6 +17,7 @@ locals {
   # Vault
   ###########################################
   vault_records = [
+    # Dev environment
     {
       name    = "connect.dev.vault.jumpcloud.com",
       ttl     = 300,
@@ -107,7 +108,85 @@ locals {
       proxied = false,
       type    = "CNAME",
       value   = "_a7f0ad4c1052eb75a9b3c2c8d5889b46.xlfgrmvvlj.acm-validations.aws."
-    }
+    },
+    # Staging environment
+   {
+      name    = "connect.stg.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-1504.awsdns-60.org."
+    },
+    {
+      name    = "connect.stg.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-1960.awsdns-53.co.uk."
+    },
+    {
+      name    = "connect.stg.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-528.awsdns-02.net."
+    },
+    {
+      name    = "connect.stg.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-481.awsdns-60.com."
+    },
+    {
+      name    = "*.app.stg.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-stg-shared-public-alb-1164184271.us-west-2.elb.amazonaws.com"
+    },
+    {
+      name    = "*.api.stg.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-stg-shared-public-alb-1164184271.us-west-2.elb.amazonaws.com"
+    },
+    {
+      name    = "app.stg.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-stg-shared-public-alb-1164184271.us-west-2.elb.amazonaws.com"
+    },
+    {
+      name    = "api.stg.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-stg-shared-public-alb-1164184271.us-west-2.elb.amazonaws.com"
+    },
+    {
+      name    = "_359cd8aa33ba139b1a5b72ab18df62e7.stg.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_78cfc067dc2c92cd241ad983a5b9cc34.xlfgrmvvlj.acm-validations.aws."
+    },
+    {
+      name    = "_f28d9e692ad7c43ef2e4fb1b06e0831a.api.stg.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_1dd11ea228b886030be225cbbc808cd6.xlfgrmvvlj.acm-validations.aws."
+    },
+    {
+      name    = "_1c0580639cb8f8a3388bcc5447eb1c91.app.stg.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_78cfc067dc2c92cd241ad983a5b9cc34.xlfgrmvvlj.acm-validations.aws."
+    },
   ]
 
   ###########################################
