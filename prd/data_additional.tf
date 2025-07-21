@@ -199,7 +199,7 @@ locals {
       ttl     = 60,
       proxied = false,
       type    = "CNAME",
-      value   = "_78cfc067dc2c92cd241ad983a5b9cc34.xlfgrmvvlj.acm-validations.aws."
+      value   = "_030a77ddc76e99a65c51294b9f04ebad.xlfgrmvvlj.acm-validations.aws."
     },
   ]
 
