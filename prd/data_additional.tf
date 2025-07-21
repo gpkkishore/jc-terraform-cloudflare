@@ -167,6 +167,20 @@ locals {
       value   = "vaultone-stg-shared-public-alb-1164184271.us-west-2.elb.amazonaws.com"
     },
     {
+      name    = "stg.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "d2z9kedgo3d1n6.cloudfront.net"
+    },
+    {
+      name    = "*.stg.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "d2z9kedgo3d1n6.cloudfront.net"
+    },
+    {
       name    = "_359cd8aa33ba139b1a5b72ab18df62e7.stg.vault.jumpcloud.com.",
       ttl     = 60,
       proxied = false,
