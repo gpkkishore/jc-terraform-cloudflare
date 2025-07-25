@@ -2,6 +2,18 @@ locals {
   # List of IP addresses to be whitelisted
   stg01_use2_natgws = join(" ", data.aws_ec2_managed_prefix_list.stg01_use2_natgws.entries[*].cidr)
 
+  us_east_1_zscaler_ngws = "52.73.14.42/32 3.219.213.81/32 44.216.132.195/32"
+  us_west_2_zscaler_ngws = "35.161.74.70/32 54.245.68.23/32 52.43.62.126/32"
+  dev_usw2_p03_ngws = "54.185.177.193/32 54.200.253.15/32 35.95.228.211/32"
+  vaultone_stg_usw2_natgws = "44.226.5.239/32 54.71.114.137/32 100.20.42.195/32"
+
+  vaultone_nonprod_allowed_ips = join(" ", [
+    us_east_1_zscaler_ngws,
+    us_west_2_zscaler_ngws,
+    dev_usw2_p03_ngws,
+    vaultone_stg_usw2_natgws
+  ])
+
   add_ratelimit_rules = {
     "jumpcloud.com" = [
       {
@@ -164,7 +176,7 @@ locals {
       {
         action      = "block"
         description = "Allow ZScaler only in non-prod environments"
-        expression  = "((http.host eq \"dev.vault.jumpcloud.com\" or http.host contains \"dev.vault.jumpcloud.com\") or (http.host eq \"stg.vault.jumpcloud.com\" or http.host contains \"stg.vault.jumpcloud.com\") or (http.host eq \"homolog.vault.jumpcloud.com\" or http.host contains \"homolog.vault.jumpcloud.com\")) and not ip.src in {35.161.74.70/32 54.245.68.23/32 52.43.62.126/32 52.73.14.42/32 3.219.213.81/32 44.216.132.195/32}"
+        expression  = "((http.host eq \"dev.vault.jumpcloud.com\" or http.host contains \"dev.vault.jumpcloud.com\") or (http.host eq \"stg.vault.jumpcloud.com\" or http.host contains \"stg.vault.jumpcloud.com\") or (http.host eq \"homolog.vault.jumpcloud.com\" or http.host contains \"homolog.vault.jumpcloud.com\")) and not ip.src in {${local.vaultone_nonprod_allowed_ips}}"
       }
     ]
   }
