@@ -8,10 +8,10 @@ locals {
   vaultone_stg_usw2_natgws = "44.226.5.239/32 54.71.114.137/32 100.20.42.195/32"
 
   vaultone_nonprod_allowed_ips = join(" ", [
-    us_east_1_zscaler_ngws,
-    us_west_2_zscaler_ngws,
-    dev_usw2_p03_ngws,
-    vaultone_stg_usw2_natgws
+    local.us_east_1_zscaler_ngws,
+    local.us_west_2_zscaler_ngws,
+    local.dev_usw2_p03_ngws,
+    local.vaultone_stg_usw2_natgws
   ])
 
   add_ratelimit_rules = {
