@@ -2,9 +2,9 @@ locals {
   # List of IP addresses to be whitelisted
   stg01_use2_natgws = join(" ", data.aws_ec2_managed_prefix_list.stg01_use2_natgws.entries[*].cidr)
 
-  us_east_1_zscaler_ngws = "52.73.14.42/32 3.219.213.81/32 44.216.132.195/32"
-  us_west_2_zscaler_ngws = "35.161.74.70/32 54.245.68.23/32 52.43.62.126/32"
-  dev_usw2_p03_ngws = "54.185.177.193/32 54.200.253.15/32 35.95.228.211/32"
+  us_east_1_zscaler_ngws   = "52.73.14.42/32 3.219.213.81/32 44.216.132.195/32"
+  us_west_2_zscaler_ngws   = "35.161.74.70/32 54.245.68.23/32 52.43.62.126/32"
+  dev_usw2_p03_ngws        = "54.185.177.193/32 54.200.253.15/32 35.95.228.211/32"
   vaultone_stg_usw2_natgws = "44.226.5.239/32 54.71.114.137/32 100.20.42.195/32"
 
   vaultone_nonprod_allowed_ips = join(" ", [
@@ -90,12 +90,12 @@ locals {
         }
       },
       {
-        action       = "block"
-        description  = "WAF Attack"
-        expression   = "(cf.waf.score lt 5)"
+        action      = "block"
+        description = "WAF Attack"
+        expression  = "(cf.waf.score lt 5)"
 
         ratelimit = {
-          characteristics     = ["cf.colo.id","ip.src",]
+          characteristics     = ["cf.colo.id", "ip.src", ]
           counting_expression = "(http.response.code eq 521)"
           mitigation_timeout  = 600
           period              = 10
@@ -124,9 +124,9 @@ locals {
         expression  = "(ip.geoip.asnum eq 45102 and http.host eq \"jumpcloud.com\" and http.request.uri.path eq \"/careers\")"
       },
       {
-        action       = "managed_challenge"
-        description  = "Managed Captcha Abuse IP's 20241224-haproxy"
-        expression   = "(ip.src in {52.13.24.213 34.208.1.174 44.245.128.2 44.244.196.227 3.211.203.108 44.237.194.38 54.69.0.153 44.235.57.22})"
+        action      = "managed_challenge"
+        description = "Managed Captcha Abuse IP's 20241224-haproxy"
+        expression  = "(ip.src in {52.13.24.213 34.208.1.174 44.245.128.2 44.244.196.227 3.211.203.108 44.237.194.38 54.69.0.153 44.235.57.22})"
       },
       {
         action      = "block"
