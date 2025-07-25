@@ -160,6 +160,13 @@ locals {
         expression  = "(ip.src eq 152.58.18.201)"
       }
     ]
+    "vault.jumpcloud.com" = [
+      {
+        action      = "block"
+        description = "Allow ZScaler only in non-prod environments"
+        expression  = "((http.host ends_with \"dev.vault.jumpcloud.com\" or http.host ends_with \"stg.vault.jumpcloud.com\" or http.host ends_with \"homolog.vault.jumpcloud.com\") and not ip.src in {35.161.74.70/32 54.245.68.23/32 52.43.62.126/32 52.73.14.42/32 3.219.213.81/32 44.216.132.195/32})"
+      }
+    ]
   }
 }
 
