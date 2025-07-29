@@ -110,7 +110,7 @@ locals {
       value   = "_a7f0ad4c1052eb75a9b3c2c8d5889b46.xlfgrmvvlj.acm-validations.aws."
     },
     # Staging environment
-   {
+    {
       name    = "connect.stg.vault.jumpcloud.com",
       ttl     = 300,
       proxied = false,
@@ -200,6 +200,190 @@ locals {
       proxied = false,
       type    = "CNAME",
       value   = "_030a77ddc76e99a65c51294b9f04ebad.xlfgrmvvlj.acm-validations.aws."
+    },
+    # Homolog environment
+    {
+      name    = "connect.homolog.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-1427.awsdns-50.org."
+    },
+    {
+      name    = "connect.homolog.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-1888.awsdns-44.co.uk."
+    },
+    {
+      name    = "connect.homolog.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-808.awsdns-37.net."
+    },
+    {
+      name    = "connect.homolog.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-206.awsdns-25.com."
+    },
+    {
+      name    = "*.app.homolog.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-homolog-alb-2078342682.us-east-1.elb.amazonaws.com"
+    },
+    {
+      name    = "*.api.homolog.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-homolog-alb-2078342682.us-east-1.elb.amazonaws.com"
+    },
+    {
+      name    = "app.homolog.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-homolog-alb-2078342682.us-east-1.elb.amazonaws.com"
+    },
+    {
+      name    = "api.homolog.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-homolog-alb-2078342682.us-east-1.elb.amazonaws.com"
+    },
+    # {
+    #   name    = "homolog.vault.jumpcloud.com",
+    #   ttl     = 1,
+    #   proxied = true,
+    #   type    = "CNAME",
+    #   value   = "TODO"
+    # },
+    # {
+    #   name    = "*.homolog.vault.jumpcloud.com",
+    #   ttl     = 1,
+    #   proxied = true,
+    #   type    = "CNAME",
+    #   value   = "TODO"
+    # },
+    {
+      name    = "_8e549b61c5e94f9d21c230960fce68f2.homolog.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_97d82db4dc06b5e9857cbd11fcb57931.xlfgrmvvlj.acm-validations.aws."
+    },
+    {
+      name    = "_fb2ff7c5ecd57886e1ec244942d6fecb.app.homolog.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_cc33ebee06c8b8f985cebb4ddf82ddda.xlfgrmvvlj.acm-validations.aws."
+    },
+    {
+      name    = "_8c28f45140c7eb1abbbd825e8f7e2555.api.homolog.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_336b6d11494b2ef7eea10bd0f146ed6a.xlfgrmvvlj.acm-validations.aws."
+    },
+    # Prod environment
+    {
+      name    = "connect.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-727.awsdns-26.net."
+    },
+    {
+      name    = "connect.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-123.awsdns-15.com."
+    },
+    {
+      name    = "connect.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-1034.awsdns-01.org."
+    },
+    {
+      name    = "connect.vault.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-1839.awsdns-37.co.uk."
+    },
+    {
+      name    = "*.app.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
+    },
+    {
+      name    = "*.api.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
+    },
+    {
+      name    = "app.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
+    },
+    {
+      name    = "api.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
+    },
+    # {
+    #   name    = "vault.jumpcloud.com",
+    #   ttl     = 1,
+    #   proxied = true,
+    #   type    = "CNAME",
+    #   value   = "TODO"
+    # },
+    # {
+    #   name    = "*.vault.jumpcloud.com",
+    #   ttl     = 1,
+    #   proxied = true,
+    #   type    = "CNAME",
+    #   value   = "TODO"
+    # },
+    {
+      name    = "_86ccc194fb9a107e2f3143de2e40e233.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_9f3f3821313d57a63cf4ddb36394bb26.xlfgrmvvlj.acm-validations.aws."
+    },
+    {
+      name    = "_967813379798eac53dff97f156b9bd89.api.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_699a235b734ec43e1510581f15c92cd6.xlfgrmvvlj.acm-validations.aws."
+    },
+    {
+      name    = "_8bc62664f1a971c631804cd436fa01b7.app.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_b025dcb084aabe277bed32548caf0c59.xlfgrmvvlj.acm-validations.aws."
     },
   ]
 
