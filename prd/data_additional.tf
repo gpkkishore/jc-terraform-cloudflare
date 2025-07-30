@@ -258,20 +258,20 @@ locals {
       type    = "CNAME",
       value   = "vaultone-homolog-alb-2078342682.us-east-1.elb.amazonaws.com"
     },
-    # {
-    #   name    = "homolog.vault.jumpcloud.com",
-    #   ttl     = 1,
-    #   proxied = true,
-    #   type    = "CNAME",
-    #   value   = "TODO"
-    # },
-    # {
-    #   name    = "*.homolog.vault.jumpcloud.com",
-    #   ttl     = 1,
-    #   proxied = true,
-    #   type    = "CNAME",
-    #   value   = "TODO"
-    # },
+    {
+      name    = "homolog.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "d2w91hk1xwxym1.cloudfront.net"
+    },
+    {
+      name    = "*.homolog.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "d2w91hk1xwxym1.cloudfront.net"
+    },
     {
       name    = "_8e549b61c5e94f9d21c230960fce68f2.homolog.vault.jumpcloud.com.",
       ttl     = 60,
@@ -350,20 +350,20 @@ locals {
       type    = "CNAME",
       value   = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
     },
-    # {
-    #   name    = "vault.jumpcloud.com",
-    #   ttl     = 1,
-    #   proxied = true,
-    #   type    = "CNAME",
-    #   value   = "TODO"
-    # },
-    # {
-    #   name    = "*.vault.jumpcloud.com",
-    #   ttl     = 1,
-    #   proxied = true,
-    #   type    = "CNAME",
-    #   value   = "TODO"
-    # },
+    {
+      name    = "vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "d1iz1fyeo9jhbg.cloudfront.net"
+    },
+    {
+      name    = "*.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "d1iz1fyeo9jhbg.cloudfront.net"
+    },
     {
       name    = "_86ccc194fb9a107e2f3143de2e40e233.vault.jumpcloud.com.",
       ttl     = 60,
