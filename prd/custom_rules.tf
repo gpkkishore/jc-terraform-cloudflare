@@ -19,6 +19,7 @@ locals {
     local.dev_usw2_p03_ngws,
     local.vaultone_stg_usw2_natgws,
     local.stg01_use2_natgws,
+    local.prd_use1_natgws,
     local.vaultone_homolog_use1_natgws,
     local.vaultone_prd_use1_natgws,
   ])
