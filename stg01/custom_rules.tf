@@ -154,6 +154,7 @@ locals {
 
   // Source: https://support.apple.com/en-us/102266
   apple_cidr_blocks = [
+    "17.0.0.0/8"
   ]
 
   add_ratelimit_rules = []
