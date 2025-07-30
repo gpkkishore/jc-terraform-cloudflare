@@ -1,17 +1,26 @@
 locals {
   # List of IP addresses to be whitelisted
   stg01_use2_natgws = join(" ", data.aws_ec2_managed_prefix_list.stg01_use2_natgws.entries[*].cidr)
+  prd_use1_natgws   = join(" ", data.aws_ec2_managed_prefix_list.prd_use1_natgws.entries[*].cidr)
 
-  us_east_1_zscaler_ngws   = "52.73.14.42/32 3.219.213.81/32 44.216.132.195/32"
-  us_west_2_zscaler_ngws   = "35.161.74.70/32 54.245.68.23/32 52.43.62.126/32"
-  dev_usw2_p03_ngws        = "54.185.177.193/32 54.200.253.15/32 35.95.228.211/32"
-  vaultone_stg_usw2_natgws = "44.226.5.239/32 54.71.114.137/32 100.20.42.195/32"
+  us_east_1_zscaler_ngws = "52.73.14.42/32 3.219.213.81/32 44.216.132.195/32"
+  us_west_2_zscaler_ngws = "35.161.74.70/32 54.245.68.23/32 52.43.62.126/32"
+
+  # Only using dev p03 for now -- plan to migrate to proper VaultOne Dev environment post-launch
+  dev_usw2_p03_ngws = "54.185.177.193/32 54.200.253.15/32 35.95.228.211/32"
+
+  vaultone_stg_usw2_natgws     = "44.226.5.239/32 54.71.114.137/32 100.20.42.195/32"
+  vaultone_homolog_use1_natgws = "44.205.147.222/32 3.221.141.250/32 34.199.245.208/32"
+  vaultone_prd_use1_natgws     = "34.235.10.125/32 52.0.246.11/32 107.20.185.164/32"
 
   vaultone_nonprod_allowed_ips = join(" ", [
     local.us_east_1_zscaler_ngws,
     local.us_west_2_zscaler_ngws,
     local.dev_usw2_p03_ngws,
-    local.vaultone_stg_usw2_natgws
+    local.vaultone_stg_usw2_natgws,
+    local.stg01_use2_natgws,
+    local.vaultone_homolog_use1_natgws,
+    local.vaultone_prd_use1_natgws,
   ])
 
   add_ratelimit_rules = {
@@ -184,4 +193,8 @@ locals {
 
 data "aws_ec2_managed_prefix_list" "stg01_use2_natgws" {
   name = "stg01-use2-natgws"
+}
+
+data "aws_ec2_managed_prefix_list" "prd_use1_natgws" {
+  name = "prd-use1-natgws"
 }
