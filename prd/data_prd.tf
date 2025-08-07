@@ -1648,6 +1648,13 @@ locals {
       value   = "v=DKIM1;k=rsa;p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDR4uxprTLq7reHaYKtsmp987Q2qEI4aZGfIdYX+iDcwOh+m7rMMMux/wzb6rjqTzoayzaIWFTt5ttzCfTrUd0xTrmaB4D+jt4QQb1hSwbTKwR91jOdpWkZMxz3JptMJxwKHB6nYK1kGS88MvAZSOyg4hT7CfSavHoiss4crk4PYwIDAQAB"
     },
     // END MARKETO
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 3600
+      type    = "TXT"
+      value   = "cursor-domain-verification-s3qxz4=4RsFe21qzUjCfusM2aAJzryZD"
+    },
   ]
 
   prd_eu_records = [
