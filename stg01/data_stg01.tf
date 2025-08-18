@@ -348,6 +348,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "_cc8d601da3b928d8aaf8829b723c5c96.mqrfdvtdxq.acm-validations.aws."
+    },
+    {
+      name    = "mcp"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "mcp.stg01-use2.jcplatform.dev"
     }
   ]
 
