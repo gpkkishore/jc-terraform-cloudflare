@@ -137,6 +137,13 @@ locals {
       content = "login-api-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
+      name    = "mcp"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+    },
+    {
       name    = "mulesoft-api",
       proxied = false
       ttl     = 300
@@ -319,6 +326,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "login-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+    },
+    {
+      name    = "*.mcp"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "*.nli"

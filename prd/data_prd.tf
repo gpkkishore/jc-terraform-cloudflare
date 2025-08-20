@@ -95,6 +95,11 @@ locals {
       validation_method = "txt"
     },
     {
+      name              = "mcp"
+      hosts             = ["*.mcp.jumpcloud.com", "mcp.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
       name              = "microsoft-mdm-eu"
       hosts             = ["*.microsoft-mdm.eu.jumpcloud.com", "microsoft-mdm.eu.jumpcloud.com"]
       validation_method = "txt"
@@ -632,6 +637,20 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "jumpdesk.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "mcp"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "mcp.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.mcp"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "mcp.prd-use1.jcplatform.dev"
     },
     {
       name    = "login"
@@ -1284,7 +1303,7 @@ locals {
       ttl     = 60
       type    = "CNAME"
       value   = "rp.jumpcloud-support.intercom-mail.com."
-    },    
+    },
     # START PWM VALIDATION
     {
       name    = "_421057bc09925e1ad958bb32388d4926.pwm.jumpcloud.com."
@@ -1778,6 +1797,13 @@ locals {
       value   = "login-api-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
+      name    = "mcp.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+    },
+    {
       name    = "mulesoft-api.eu"
       proxied = false
       ttl     = 300
@@ -1958,6 +1984,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "login-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+    },
+    {
+      name    = "*.mcp.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "*.nli.eu"

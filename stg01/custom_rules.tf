@@ -17,6 +17,7 @@ locals {
     "saas.stg01.jumpcloud.com",
     "ssf.stg01.jumpcloud.com",
     "*.prd02.stg01.jumpcloud.com",
+    "mcp.stg01.jumpcloud.com",
   ]
 
   prd02_hostnames = [
@@ -35,6 +36,7 @@ locals {
     "go.prd02.stg01.jumpcloud.com",
     "saas.prd02.stg01.jumpcloud.com",
     "ssf.prd02.stg01.jumpcloud.com",
+    "mcp.prd02.stg01.jumpcloud.com",
   ]
 
   stg01_ip_access = []

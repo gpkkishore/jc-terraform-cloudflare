@@ -173,6 +173,13 @@ locals {
       value   = "login-api.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "mcp.prd02"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "mcp.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "microsoft-mdm.prd02"
       proxied = true
       ttl     = 1
