@@ -350,6 +350,13 @@ locals {
       value   = "_cc8d601da3b928d8aaf8829b723c5c96.mqrfdvtdxq.acm-validations.aws."
     },
     {
+      name    = "_b265586d8c9ef0c56cfaedb47616c20c.cdn.pwm.stg01.jumpcloud.com."
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "_1387ae55e8aed920cec3cbc91ca8b9e3.mqrfdvtdxq.acm-validations.aws."
+    },
+    {
       name    = "mcp"
       proxied = true
       ttl     = 1
