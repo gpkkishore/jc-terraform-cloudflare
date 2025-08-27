@@ -1327,6 +1327,13 @@ locals {
       proxied = false
       ttl     = 60
       type    = "TXT"
+      value   = "openai-domain-verification=dv-y8FJwLynSyHRQ5k4CRHIAs0o"
+    },
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
       value   = "google-site-verification=Lsc8IrEquKnjM6ybUEPhDzAniM6mH9gxP1Pq6JbVncE"
     },
     {
