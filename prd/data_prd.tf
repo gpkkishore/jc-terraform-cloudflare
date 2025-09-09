@@ -1319,6 +1319,28 @@ locals {
       type    = "CNAME"
       value   = "_a91e5e66fb71df666bd072660ecd6268.gfjzbhpkrq.acm-validations.aws."
     },
+    # END PWM VALIDATION
+    {
+      name    = "em5848.em.sandbox.university"
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "u9987757.wl008.sendgrid.net"
+    },
+    {
+      name    = "s1._domainkey.em.sandbox.university"
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "s1.domainkey.u9987757.wl008.sendgrid.net"
+    },
+    {
+      name    = "s2._domainkey.em.sandbox.university"
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "s2.domainkey.u9987757.wl008.sendgrid.net"
+    },
   ]
 
   prd_misc_records = [
@@ -1680,6 +1702,13 @@ locals {
       ttl     = 3600
       type    = "TXT"
       value   = "cursor-domain-verification-s3qxz4=4RsFe21qzUjCfusM2aAJzryZD"
+    },
+    {
+      name    = "_dmarc.em.sandbox.university"
+      proxied = false
+      ttl     = 3600
+      type    = "TXT"
+      value   = "v=DMARC1; p=quarantine; aspf=r; pct=100; rua=mailto:rua_38b6f6b37e6ff565@us.report.letsdmarc.com,mailto:re+wmjldel3qjv@dmarc.postmarkapp.com"
     },
   ]
 
