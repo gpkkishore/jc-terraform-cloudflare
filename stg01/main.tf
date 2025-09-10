@@ -42,7 +42,7 @@ resource "cloudflare_total_tls" "wildcard_certs" {
 }
 
 module "dns" {
-  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=2.0.1"
+  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=3.1.0"
   zone_id       = cloudflare_zone.cloudflare_zone_resource.id
   zone_name     = var.zone_name
   dns_records   = local.dns_records
@@ -50,7 +50,7 @@ module "dns" {
 }
 
 module "security" {
-  source = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.2.0"
+  source = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.3.0"
 
   zone_id                    = cloudflare_zone.cloudflare_zone_resource.id
   additional_ratelimit_rules = local.add_ratelimit_rules
@@ -119,9 +119,4 @@ resource "cloudflare_ruleset" "security_response_headers" {
       }
     }
   }
-}
-
-import {
-  id = "203f44d064ccc019be1e40fa73c29bc3"
-  to = cloudflare_total_tls.wildcard_certs
 }
