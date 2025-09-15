@@ -18,6 +18,23 @@ locals {
     "ssf.stg01.jumpcloud.com",
     "*.prd02.stg01.jumpcloud.com",
     "mcp.stg01.jumpcloud.com",
+    "*.jumpdesk.stg01.jumpcloud.com",
+    "*.catalog.stg01.jumpcloud.com",
+    "*.console.stg01.jumpcloud.com",
+    "*.api.stg01.jumpcloud.com",
+    "*.sso.stg01.jumpcloud.com",
+    "*.kickstart.stg01.jumpcloud.com",
+    "*.apple-mdm.stg01.jumpcloud.com",
+    "*.apple.mdm.stg01.jumpcloud.com",
+    "*.assist.stg01.jumpcloud.com",
+    "*.microsoft-mdm.stg01.jumpcloud.com",
+    "*.login.stg01.jumpcloud.com",
+    "*.oauth.stg01.jumpcloud.com",
+    "*.go.stg01.jumpcloud.com",
+    "*.password-manager.stg01.jumpcloud.com",
+    "*.saas.stg01.jumpcloud.com",
+    "*.ssf.stg01.jumpcloud.com",
+    "*.mcp.stg01.jumpcloud.com",
   ]
 
   prd02_hostnames = [
