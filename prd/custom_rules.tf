@@ -141,14 +141,14 @@ locals {
       {
         action      = "block"
         description = "Blocking Abuse IP's"
-        expression  = "(ip.src in {183.83.227.182 183.83.226.136} and http.host contains \"jumpcloud.com\")"
+        expression  = "(ip.src in {183.83.227.182 183.83.226.136 144.91.66.213} and http.host contains \"jumpcloud.com\")"
       }
     ]
     "id.jumpcloud.com" = [
       {
         action      = "block"
         description = "Blocking Abuse IP's"
-        expression  = "(ip.src in {183.83.227.182 183.83.226.136} and http.host contains \"id.jumpcloud.com\")"
+        expression  = "(ip.src in {183.83.227.182 183.83.226.136 144.91.66.213} and http.host contains \"id.jumpcloud.com\")"
       }
     ]
     "id.stg01.jumpcloud.com" = [
@@ -180,6 +180,11 @@ locals {
         action      = "block"
         description = "IR-DDoS-attempts-9 Jan 2025"
         expression  = "(ip.src eq 152.58.18.201)"
+      },
+      {
+        action      = "block"
+        description = "Blocking Abuse IP's"
+        expression  = "(ip.src in {183.83.227.182 183.83.226.136 144.91.66.213} and http.host contains \"jumpcloud.ai\")"
       }
     ]
     "vault.jumpcloud.com" = [
@@ -192,6 +197,11 @@ locals {
         action      = "block"
         description = "Allow ZScaler only in non-prod environments"
         expression  = "(http.host eq \"dev.vault.jumpcloud.com\" or http.host contains \"dev.vault.jumpcloud.com\") or (http.host eq \"stg.vault.jumpcloud.com\" or http.host contains \"stg.vault.jumpcloud.com\") or (http.host eq \"homolog.vault.jumpcloud.com\" or http.host contains \"homolog.vault.jumpcloud.com\") or (http.host eq \"vault.jumpcloud.com\" or http.host eq \"api.vault.jumpcloud.com\" or http.host eq \"app.vault.jumpcloud.com\")) and not ip.src in {${local.vaultone_nonprod_allowed_ips}}"
+      },
+      {
+        action      = "block"
+        description = "Blocking Abuse IP's"
+        expression  = "(ip.src in {183.83.227.182 183.83.226.136 144.91.66.213} and http.host contains \"jumpcloud.com\")"
       }
     ]
   }
