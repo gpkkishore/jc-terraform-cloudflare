@@ -191,12 +191,12 @@ locals {
       {
         action      = "skip"
         description = "Allow vault.jumpcloud assets (404 page, etc.)"
-        expression  = "http.host eq \"vault.jumpcloud.com\" and starts_with(http.request.uri.path, \"/assets\")"
+        expression  = "(http.host eq \"vault.jumpcloud.com\" and starts_with(http.request.uri.path, \"/assets\"))"
       },
       {
         action      = "block"
         description = "Allow ZScaler only in non-prod environments"
-        expression  = "(http.host eq \"dev.vault.jumpcloud.com\" or http.host contains \"dev.vault.jumpcloud.com\") or (http.host eq \"stg.vault.jumpcloud.com\" or http.host contains \"stg.vault.jumpcloud.com\") or (http.host eq \"homolog.vault.jumpcloud.com\" or http.host contains \"homolog.vault.jumpcloud.com\") or (http.host eq \"vault.jumpcloud.com\" or http.host eq \"api.vault.jumpcloud.com\" or http.host eq \"app.vault.jumpcloud.com\")) and not ip.src in {${local.vaultone_nonprod_allowed_ips}}"
+        expression  = "((http.host eq \"dev.vault.jumpcloud.com\" or http.host contains \"dev.vault.jumpcloud.com\") or (http.host eq \"stg.vault.jumpcloud.com\" or http.host contains \"stg.vault.jumpcloud.com\") or (http.host eq \"homolog.vault.jumpcloud.com\" or http.host contains \"homolog.vault.jumpcloud.com\") or (http.host eq \"vault.jumpcloud.com\" or http.host eq \"api.vault.jumpcloud.com\" or http.host eq \"app.vault.jumpcloud.com\")) and not ip.src in {${local.vaultone_nonprod_allowed_ips}}"
       },
       {
         action      = "block"
