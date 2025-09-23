@@ -1386,7 +1386,7 @@ locals {
       type    = "CNAME"
       value   = "s2.domainkey.u817177.wl178.sendgrid.net"
     },
-    # END PARTNERJCU       
+    # END PARTNERJCU
   ]
 
   prd_misc_records = [
@@ -1774,6 +1774,13 @@ locals {
       value   = "v=DMARC1; p=quarantine; aspf=r; pct=100; rua=mailto:rua_38b6f6b37e6ff565@us.report.letsdmarc.com,mailto:re+wmjldel3qjv@dmarc.postmarkapp.com"
     },
     // END PARTNERJCU
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 3600
+      type    = "TXT"
+      value   = "v=MCPv1; k=ed25519; p=BhczxE2EljfcCMHGcIzTXKzpfaqz0wbmI4KTBaU42oo="
+    },
   ]
 
   prd_eu_records = [
