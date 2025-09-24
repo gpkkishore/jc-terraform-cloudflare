@@ -6,6 +6,8 @@ locals {
   us_east_1_zscaler_ngws = "52.73.14.42/32 3.219.213.81/32 44.216.132.195/32"
   us_west_2_zscaler_ngws = "35.161.74.70/32 54.245.68.23/32 52.43.62.126/32"
 
+  us_east_1_saleseng_ngw = "52.70.132.28/32"
+
   # Only using dev p03 for now -- plan to migrate to proper VaultOne Dev environment post-launch
   dev_usw2_p03_ngws = "54.185.177.193/32 54.200.253.15/32 35.95.228.211/32"
 
