@@ -1758,7 +1758,7 @@ locals {
       value   = "v=DMARC1; p=quarantine; aspf=r; pct=100; rua=mailto:rua_38b6f6b37e6ff565@us.report.letsdmarc.com,mailto:re+wmjldel3qjv@dmarc.postmarkapp.com"
     },
     {
-      name    = "_dmarc.university.jumpcloud.com"
+      name    = "_dmarc.university.jumpcloud.com."
       proxied = false
       ttl     = 3600
       type    = "TXT"
@@ -1767,7 +1767,7 @@ locals {
     // END UNIVERSITY
     // START PARTNERJCU
     {
-      name    = "_dmarc.partnerjcu.jumpcloud.com"
+      name    = "_dmarc.partnerjcu.jumpcloud.com."
       proxied = false
       ttl     = 3600
       type    = "TXT"
