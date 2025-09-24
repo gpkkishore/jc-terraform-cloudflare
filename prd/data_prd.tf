@@ -1343,21 +1343,21 @@ locals {
       value   = "s2.domainkey.u9987757.wl008.sendgrid.net"
     },
     {
-      name    = "em4681.university.jumpcloud.com"
+      name    = "em4681.university.jumpcloud.com."
       proxied = false
       ttl     = 60
       type    = "CNAME"
       value   = "u817177.wl178.sendgrid.net"
     },
     {
-      name    = "s1._domainkey.university.jumpcloud.com"
+      name    = "s1._domainkey.university.jumpcloud.com."
       proxied = false
       ttl     = 60
       type    = "CNAME"
       value   = "s1.domainkey.u817177.wl178.sendgrid.net"
     },
     {
-      name    = "s2._domainkey.university.jumpcloud.com"
+      name    = "s2._domainkey.university.jumpcloud.com."
       proxied = false
       ttl     = 60
       type    = "CNAME"
@@ -1366,21 +1366,21 @@ locals {
     # END UNIVERSITY
     # START PARTNERJCU
     {
-      name    = "em8565.partnerjcu.jumpcloud.com"
+      name    = "em8565.partnerjcu.jumpcloud.com."
       proxied = false
       ttl     = 60
       type    = "CNAME"
       value   = "u817177.wl178.sendgrid.net"
     },
     {
-      name    = "s1._domainkey.partnerjcu.jumpcloud.com"
+      name    = "s1._domainkey.partnerjcu.jumpcloud.com."
       proxied = false
       ttl     = 60
       type    = "CNAME"
       value   = "s1.domainkey.u817177.wl178.sendgrid.net"
     },
     {
-      name    = "s2._domainkey.partnerjcu.jumpcloud.com"
+      name    = "s2._domainkey.partnerjcu.jumpcloud.com."
       proxied = false
       ttl     = 60
       type    = "CNAME"
