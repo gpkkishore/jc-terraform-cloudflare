@@ -1320,6 +1320,7 @@ locals {
       value   = "_a91e5e66fb71df666bd072660ecd6268.gfjzbhpkrq.acm-validations.aws."
     },
     # END PWM VALIDATION
+    # START UNIVERSITY
     {
       name    = "em5848.em.sandbox.university"
       proxied = false
@@ -1341,6 +1342,51 @@ locals {
       type    = "CNAME"
       value   = "s2.domainkey.u9987757.wl008.sendgrid.net"
     },
+    {
+      name    = "em4681.university.jumpcloud.com."
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "u817177.wl178.sendgrid.net"
+    },
+    {
+      name    = "s1._domainkey.university.jumpcloud.com."
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "s1.domainkey.u817177.wl178.sendgrid.net"
+    },
+    {
+      name    = "s2._domainkey.university.jumpcloud.com."
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "s2.domainkey.u817177.wl178.sendgrid.net"
+    },
+    # END UNIVERSITY
+    # START PARTNERJCU
+    {
+      name    = "em8565.partnerjcu.jumpcloud.com."
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "u817177.wl178.sendgrid.net"
+    },
+    {
+      name    = "s1._domainkey.partnerjcu.jumpcloud.com."
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "s1.domainkey.u817177.wl178.sendgrid.net"
+    },
+    {
+      name    = "s2._domainkey.partnerjcu.jumpcloud.com."
+      proxied = false
+      ttl     = 60
+      type    = "CNAME"
+      value   = "s2.domainkey.u817177.wl178.sendgrid.net"
+    },
+    # END PARTNERJCU       
   ]
 
   prd_misc_records = [
@@ -1703,6 +1749,7 @@ locals {
       type    = "TXT"
       value   = "cursor-domain-verification-s3qxz4=4RsFe21qzUjCfusM2aAJzryZD"
     },
+    // START UNIVERSITY
     {
       name    = "_dmarc.em.sandbox.university"
       proxied = false
@@ -1710,6 +1757,23 @@ locals {
       type    = "TXT"
       value   = "v=DMARC1; p=quarantine; aspf=r; pct=100; rua=mailto:rua_38b6f6b37e6ff565@us.report.letsdmarc.com,mailto:re+wmjldel3qjv@dmarc.postmarkapp.com"
     },
+    {
+      name    = "_dmarc.university.jumpcloud.com."
+      proxied = false
+      ttl     = 3600
+      type    = "TXT"
+      value   = "v=DMARC1; p=quarantine; aspf=r; pct=100; rua=mailto:rua_38b6f6b37e6ff565@us.report.letsdmarc.com,mailto:re+wmjldel3qjv@dmarc.postmarkapp.com"
+    },
+    // END UNIVERSITY
+    // START PARTNERJCU
+    {
+      name    = "_dmarc.partnerjcu.jumpcloud.com."
+      proxied = false
+      ttl     = 3600
+      type    = "TXT"
+      value   = "v=DMARC1; p=quarantine; aspf=r; pct=100; rua=mailto:rua_38b6f6b37e6ff565@us.report.letsdmarc.com,mailto:re+wmjldel3qjv@dmarc.postmarkapp.com"
+    },
+    // END PARTNERJCU
   ]
 
   prd_eu_records = [
