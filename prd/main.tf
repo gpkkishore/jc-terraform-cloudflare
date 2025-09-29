@@ -25,11 +25,12 @@ module "dns" {
 
 module "security" {
   for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
-  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.2.0"
+  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.6.0"
 
   zone_id                    = each.key
   additional_ratelimit_rules = lookup(local.add_ratelimit_rules, each.value.name, [])
   additional_waf_rules       = lookup(local.add_waf_rules, each.value.name, [])
+  skip_managed_rulesets      = contains(["vault.jumpcloud.com"], each.value.name)
 }
 
 module "settings" {

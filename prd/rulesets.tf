@@ -1,9 +1,20 @@
-## Cloudflare Managed Ruleset
+# This file contains zone-specific managed WAF rulesets that override the 
+# default managed rulesets defined in the terraform-cloudflare-security module.
+# 
+# To use these overrides:
+# 1. Set skip_managed_rulesets = true in the security module for the specific zone
+# 2. Define the custom managed ruleset configuration in this file
+# 
+# This prevents conflicts between the default security module rulesets and 
+# zone-specific customizations.
 
+###########################################
 # vault.jumpcloud.com
-resource "cloudflare_ruleset" "cloudflare_managed_ruleset" {
+###########################################
+
+resource "cloudflare_ruleset" "vault_managed_waf" {
   zone_id = cloudflare_zone.additional_zone["vault.jumpcloud.com"].id
-  name    = "Cloudflare Managed Ruleset"
+  name    = "Managed WAF entry point ruleset"
   kind    = "zone"
   phase   = "http_request_firewall_managed"
 
@@ -11,26 +22,21 @@ resource "cloudflare_ruleset" "cloudflare_managed_ruleset" {
     action      = "execute"
     expression  = "true"
     description = "Cloudflare Managed Ruleset"
-
+    
     action_parameters {
       id = "efb7b8c949ac4650a09736fc376e9aee"
     }
   }
-}
-
-resource "cloudflare_ruleset" "cloudflare_owasp_core_ruleset" {
-  zone_id = cloudflare_zone.additional_zone["vault.jumpcloud.com"].id
-  name    = "Cloudflare OWASP Core Ruleset"
-  kind    = "zone"
-  phase   = "http_request_firewall_managed"
 
   rules {
     action      = "execute"
     expression  = "true"
-    description = "OWASP Core Ruleset"
+    description = "Cloudflare OWASP Core Ruleset"
 
     action_parameters {
       id = "4814384a9e5d4991b9815dcfc25d2f1f"
+
+
       overrides {
         action = "managed_challenge"
         rules {
@@ -40,21 +46,14 @@ resource "cloudflare_ruleset" "cloudflare_owasp_core_ruleset" {
       }
     }
   }
-}
-
-resource "cloudflare_ruleset" "cloudflare_leaked_credentials_check" {
-  zone_id = cloudflare_zone.additional_zone["vault.jumpcloud.com"].id
-  name    = "Cloudflare Leaked Credentials Check"
-  kind    = "zone"
-  phase   = "http_request_firewall_managed"
 
   rules {
     action      = "execute"
     expression  = "true"
     description = "Cloudflare Leaked Credentials Check"
-
     action_parameters {
       id = "c2e184081120413c86c3ab7e14069605"
+
       overrides {
         action = "log"
       }
