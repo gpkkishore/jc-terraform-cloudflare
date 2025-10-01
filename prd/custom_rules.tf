@@ -24,6 +24,7 @@ locals {
     local.prd_use1_natgws,
     local.vaultone_homolog_use1_natgws,
     local.vaultone_prd_use1_natgws,
+    local.us_east_1_saleseng_ngw,
   ])
 
   add_ratelimit_rules = {
