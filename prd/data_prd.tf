@@ -871,7 +871,7 @@ locals {
     },
     {
       name    = "community",
-      proxied = false
+      proxied = true
       ttl     = 1
       type    = "CNAME"
       value   = "zsupw73743.lithium.com"
