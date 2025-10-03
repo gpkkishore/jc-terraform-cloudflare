@@ -1594,6 +1594,13 @@ locals {
       value   = "t=y; o=~;"
     },
     {
+      name    = "dev"
+      proxied = false
+      ttl     = 3600
+      type    = "TXT"
+      value   = "google-site-verification=GBfYlqd6boNHZE7Q0Z5a8hw-N-LIAjC8f_ZpRzSELnw"
+    },
+    {
       name    = "dzc"
       proxied = false
       ttl     = 60
