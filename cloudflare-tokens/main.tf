@@ -54,7 +54,7 @@ resource "random_uuid" "uuid" {
   }
 }
 
-#All cloudflare API token resources MUST be depended on by the time_sleep resource to allow propagation of new tokens before destruction
+#All cloudflare API token resources MUST be depended on by the time_sleep resource to allow propagation of new tokens before destruction of old tokens
 resource "time_sleep" "wait" {
   depends_on = [
     cloudflare_api_token.dev-spacelift,
