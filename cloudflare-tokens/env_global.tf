@@ -11,6 +11,18 @@ resource "cloudflare_api_token" "global-spacelift" {
         },
       ]
       resources = {
+        "com.cloudflare.api.account.zone.*" = "*"
+      }
+    },
+    {
+      effect = "allow"
+      permission_groups = [
+
+        {
+          id = local.acct_permission_group_ids["Logs Write"]
+        },
+      ]
+      resources = {
         "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
       }
     }
