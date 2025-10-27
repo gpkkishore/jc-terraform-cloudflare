@@ -61,11 +61,11 @@ resource "time_sleep" "wait" {
     cloudflare_api_token.stg01-spacelift,
     cloudflare_api_token.stg01-cloudfront,
     cloudflare_api_token.stg01-use2-edge-tenancy,
-    # cloudflare_api_token.prd-spacelift,
-    # cloudflare_api_token.prd-cloudfront,
-    # cloudflare_api_token.prd-website,
-    # cloudflare_api_token.prd02-spacelift,
-    # cloudflare_api_token.prd02-euc1-edge-tenancy,
+    cloudflare_api_token.prd-spacelift,
+    cloudflare_api_token.prd-cloudfront,
+    cloudflare_api_token.prd-website,
+    cloudflare_api_token.prd02-spacelift,
+    cloudflare_api_token.prd02-euc1-edge-tenancy,
     cloudflare_api_token.global-spacelift
   ]
   destroy_duration = "10m"
