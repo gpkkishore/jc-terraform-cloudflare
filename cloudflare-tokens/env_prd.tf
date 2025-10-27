@@ -10,7 +10,7 @@ resource "cloudflare_api_token" "prd-spacelift" {
         },
         {
           id = local.zone_permission_group_ids["Managed headers Write"]
-        },        
+        },
         {
           id = local.zone_permission_group_ids["Zone Transform Rules Write"]
         },
@@ -28,7 +28,7 @@ resource "cloudflare_api_token" "prd-spacelift" {
         },
         {
           id = local.zone_permission_group_ids["Logs Write"]
-        },        
+        },
         {
           id = local.zone_permission_group_ids["Page Rules Write"]
         },
@@ -39,9 +39,9 @@ resource "cloudflare_api_token" "prd-spacelift" {
           id = local.zone_permission_group_ids["DNS Write"]
         },
       ]
-        resources = {
-            "com.cloudflare.api.account.zone.*" = "*"
-        }      
+      resources = {
+        "com.cloudflare.api.account.zone.*" = "*"
+      }
     },
     {
       effect = "allow"
@@ -56,10 +56,10 @@ resource "cloudflare_api_token" "prd-spacelift" {
           id = local.acct_permission_group_ids["Account Settings Write"]
         }
       ]
-        resources = {
-            "com.cloudflare.api.account.${cloudflare_account_id}" = "*"
-        }
-    }    
+      resources = {
+        "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
+      }
+    }
   ]
   lifecycle {
     create_before_destroy = true
@@ -116,7 +116,7 @@ resource "cloudflare_api_token" "prd-cloudfront" {
         },
         {
           id = local.zone_permission_group_ids["SSL and Certificates Write"]
-        },        
+        },
         {
           id = local.zone_permission_group_ids["Logs Write"]
         },
@@ -165,4 +165,57 @@ resource "spacelift_environment_variable" "prd-cloudfront-cloudflare-api-token" 
 import {
   to = spacelift_context.prd-cloudfront-cloudflare-api-token
   id = "prd-cloudfront"
+}
+
+
+#### Prd Website Cloudflare API Token for aws-website Spacelift Stack
+
+resource "cloudflare_api_token" "prd-website" {
+  name = "terraform-aws-website/prd-spacelift-${local.time}"
+  policies = [
+    {
+      effect = "allow"
+      permission_groups = [
+        {
+          id = local.zone_permission_group_ids["DNS Write"]
+        },
+      ]
+      resources = {
+        "com.cloudflare.api.account.zone.${local.zone_ids["jumpcloud.com"]}" = "*"
+      }
+    }
+  ]
+  lifecycle {
+    create_before_destroy = true
+    replace_triggered_by  = [random_uuid.uuid.result]
+  }
+}
+
+data "aws_secretsmanager_secret" "prd-website-cloudflare-api-token" {
+  name = "control/website/prd/cloudflare-api-token"
+}
+
+resource "aws_secretsmanager_secret_version" "prd-website-cloudflare-api-token" {
+  secret_id = data.aws_secretsmanager_secret.prd-website-cloudflare-api-token.id
+  secret_string = jsonencode({
+    api_token = cloudflare_api_token.prd-website.value
+  })
+}
+
+resource "spacelift_context" "prd-website-cloudflare-api-token" {
+  description = "prd website Cloudflare API Token"
+  name        = "prd-website"
+  space_id    = local.env_spaces["prd"]
+  labels      = ["autoattach:prd-website"]
+}
+
+resource "spacelift_environment_variable" "prd-website-cloudflare-api-token" {
+  context_id = spacelift_context.prd-website-cloudflare-api-token.id
+  name       = "TF_VAR_cloudflare_api_token"
+  value      = cloudflare_api_token.prd-website.value
+}
+
+import {
+  to = spacelift_context.prd-website-cloudflare-api-token
+  id = "prd-website"
 }
