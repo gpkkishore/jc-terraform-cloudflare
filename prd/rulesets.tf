@@ -61,3 +61,22 @@ resource "cloudflare_ruleset" "vault_managed_waf" {
     }
   }
 }
+
+## Disable Email Obfuscation for Support Resources
+resource "cloudflare_ruleset" "disable_email_obfuscation_support" {
+  zone_id     = cloudflare_zone.cloudflare_zone_resource.id
+  name        = "Disable Email Obfuscation for Support Resources"
+  description = "Disable Email Obfuscation for Support Resources"
+  kind        = "zone"
+  phase       = "http_config_settings"
+
+  rules {
+    ref         = "disable_email_obfuscation_support"
+    description = "Disable email obfuscation for Support requests"
+    expression  = "(http.request.uri.path matches \"^/support\")"
+    action      = "set_config"
+    action_parameters {
+      email_obfuscation = false
+    }
+  }
+}
