@@ -44,7 +44,7 @@ locals {
         # original soa record is ["ns-832.awsdns-40.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"]
         records = ["ns-832.awsdns-40.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 600"]
       }
-    }
+    },
   ]
 
   route53_zone_name_to_zone_eu = { for zone in local.route53_zones_with_dnssec_eu : zone.name => zone }

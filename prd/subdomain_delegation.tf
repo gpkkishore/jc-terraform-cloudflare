@@ -60,6 +60,6 @@ locals {
       name  = "radius.eu"
       ttl   = 300
       value = ["ns-832.awsdns-40.net.", "ns-40.awsdns-05.com.", "ns-1833.awsdns-37.co.uk.", "ns-1514.awsdns-61.org."]
-    }
+    },
   ]
 }
