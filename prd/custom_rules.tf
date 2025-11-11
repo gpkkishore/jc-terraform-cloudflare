@@ -144,7 +144,7 @@ locals {
       {
         action      = "block"
         description = "Blocking Abuse IP's"
-        expression  = "(ip.src in {183.83.227.182 183.83.226.136 144.91.66.213} and http.host contains \"jumpcloud.com\")"
+        expression  = "(ip.src in {183.83.227.182 183.83.226.136 144.91.66.213 80.94.93.220} and http.host contains \"jumpcloud.com\")"
       }
     ]
     "id.jumpcloud.com" = [
