@@ -1159,21 +1159,21 @@ locals {
     {
       name    = "biz",
       proxied = false
-      ttl     = 3600
+      ttl     = 300
       type    = "CNAME"
       value   = "u47372865.wl116.sendgrid.net"
     },
     {
       name    = "biz._domainkey",
       proxied = false
-      ttl     = 3600
+      ttl     = 300
       type    = "CNAME"
       value   = "biz.domainkey.u47372865.wl116.sendgrid.net"
     },
     {
       name    = "biz2._domainkey",
       proxied = false
-      ttl     = 3600
+      ttl     = 300
       type    = "CNAME"
       value   = "biz2.domainkey.u47372865.wl116.sendgrid.net"
     },
