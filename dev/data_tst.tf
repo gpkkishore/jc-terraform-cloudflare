@@ -100,13 +100,6 @@ locals {
       value   = "130.211.178.171"
     },
     {
-      name    = "remote"
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "3.90.90.234"
-    },
-    {
       name    = "delfingen-ldap"
       proxied = false
       ttl     = 1
@@ -182,13 +175,6 @@ locals {
       ttl     = 1
       type    = "A"
       value   = "54.225.98.126"
-    },
-    {
-      name    = "test-vpn",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "52.40.206.145"
     },
     {
       name    = "test",
