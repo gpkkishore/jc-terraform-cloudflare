@@ -11,6 +11,8 @@ locals {
   # Only using dev p03 for now -- plan to migrate to proper VaultOne Dev environment post-launch
   dev_usw2_p03_ngws = "54.185.177.193/32 54.200.253.15/32 35.95.228.211/32"
 
+  cicd_usw2_self_hosted_ngws = "44.239.135.146/32 54.69.255.145/32 44.235.245.14/32"
+
   vaultone_stg_usw2_natgws     = "44.226.5.239/32 54.71.114.137/32 100.20.42.195/32"
   vaultone_homolog_use1_natgws = "44.205.147.222/32 3.221.141.250/32 34.199.245.208/32"
   vaultone_prd_use1_natgws     = "34.235.10.125/32 52.0.246.11/32 107.20.185.164/32"
@@ -165,7 +167,7 @@ locals {
       {
         action      = "block"
         description = "Allow ZScaler only"
-        expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204/32 3.134.71.189/32 3.130.21.136/32 3.23.44.17/32 3.23.121.107/32 ${local.stg01_use2_natgws} ${local.vaultone_stg_usw2_natgws} ${local.vaultone_homolog_use1_natgws}})"
+        expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204/32 3.134.71.189/32 3.130.21.136/32 3.23.44.17/32 3.23.121.107/32 ${local.stg01_use2_natgws} ${local.vaultone_stg_usw2_natgws} ${local.vaultone_homolog_use1_natgws} ${local.cicd_usw2_self_hosted_ngws}})"
       },
     ]
     "jumpcloud.ai" = [
