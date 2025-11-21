@@ -328,6 +328,20 @@ locals {
       content = "pwm.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "search-api"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "search-api.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "*.search-api"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "search-api.stg01-use2.jcplatform.dev"
+    },    
+    {
       name    = "cdn.pwm"
       proxied = false
       ttl     = 1

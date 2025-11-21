@@ -16,6 +16,7 @@ locals {
     "password-manager.stg01.jumpcloud.com",
     "saas.stg01.jumpcloud.com",
     "ssf.stg01.jumpcloud.com",
+    "search-api.stg01.jumpcloud.com",
     "*.prd02.stg01.jumpcloud.com",
     "mcp.stg01.jumpcloud.com",
     "*.jumpdesk.stg01.jumpcloud.com",
@@ -35,6 +36,7 @@ locals {
     "*.saas.stg01.jumpcloud.com",
     "*.ssf.stg01.jumpcloud.com",
     "*.mcp.stg01.jumpcloud.com",
+    "*.search-api.stg01.jumpcloud.com",
   ]
 
   prd02_hostnames = [
