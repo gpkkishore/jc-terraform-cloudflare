@@ -47,6 +47,13 @@ locals {
       value   = "ns-1256.awsdns-29.org."
     },
     {
+      name    = "grpc.dev.vault.jumpcloud.com",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "internal-vaultone-dev-grpc-internal-1844655128.us-west-2.elb.amazonaws.com"
+    },
+    {
       name    = "*.app.dev.vault.jumpcloud.com",
       ttl     = 1,
       proxied = true,
