@@ -208,6 +208,13 @@ locals {
       content = "nli.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "slack.prd02"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "slack.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "oauth.prd02"
       proxied = true
       ttl     = 1

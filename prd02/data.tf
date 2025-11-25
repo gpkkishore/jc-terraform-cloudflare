@@ -172,6 +172,13 @@ locals {
       content = "identity-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
+      name    = "slack"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+    },    
+    {
       name    = "devices.pwm"
       proxied = true
       ttl     = 1
@@ -341,6 +348,13 @@ locals {
       type    = "CNAME"
       content = "nli-haproxy-haproxy.ue1-prd-p01.jcplatform.dev"
     },
+    {
+      name    = "*.slack"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+    },    
     {
       name    = "*.oauth"
       proxied = true

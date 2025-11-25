@@ -376,6 +376,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "mcp.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "slack"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "slack.stg01-use2.jcplatform.dev"
     }
   ]
 

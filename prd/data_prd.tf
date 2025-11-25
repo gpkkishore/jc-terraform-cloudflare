@@ -115,6 +115,11 @@ locals {
       validation_method = "txt"
     },
     {
+      name              = "slack"
+      hosts             = ["*.slack.jumpcloud.com", "slack.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
       name              = "sso"
       hosts             = ["*.sso.jumpcloud.com", "sso.jumpcloud.com"]
       validation_method = "txt"
@@ -679,6 +684,20 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "oauth.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "slack"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "slack.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.slack"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "slack.prd-use1.jcplatform.dev"
     },
     {
       name    = "sso"
@@ -1967,6 +1986,13 @@ locals {
       value   = "identity-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
+      name    = "slack.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+    },    
+    {
       name    = "devices.pwm.eu"
       proxied = true
       ttl     = 1
@@ -2148,6 +2174,13 @@ locals {
       type    = "CNAME"
       value   = "identity-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
+    {
+      name    = "*.slack.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+    },    
     {
       name    = "*.devices.pwm.eu"
       proxied = true
