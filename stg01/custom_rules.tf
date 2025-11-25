@@ -19,6 +19,7 @@ locals {
     "search-api.stg01.jumpcloud.com",
     "*.prd02.stg01.jumpcloud.com",
     "mcp.stg01.jumpcloud.com",
+    "slack.stg01.jumpcloud.com",
     "*.jumpdesk.stg01.jumpcloud.com",
     "*.catalog.stg01.jumpcloud.com",
     "*.console.stg01.jumpcloud.com",
@@ -37,6 +38,7 @@ locals {
     "*.ssf.stg01.jumpcloud.com",
     "*.mcp.stg01.jumpcloud.com",
     "*.search-api.stg01.jumpcloud.com",
+    "*.slack.stg01.jumpcloud.com",
   ]
 
   prd02_hostnames = [
@@ -56,6 +58,7 @@ locals {
     "saas.prd02.stg01.jumpcloud.com",
     "ssf.prd02.stg01.jumpcloud.com",
     "mcp.prd02.stg01.jumpcloud.com",
+    "slack.prd02.stg01.jumpcloud.com",
   ]
 
   stg01_ip_access = []
