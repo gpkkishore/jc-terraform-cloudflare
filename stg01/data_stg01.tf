@@ -328,6 +328,20 @@ locals {
       content = "pwm.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "schema-registry"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "schema-registry.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "*.schema-registry"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "schema-registry.stg01-use2.jcplatform.dev"
+    },    
+    {
       name    = "search-api"
       proxied = true
       ttl     = 1
@@ -340,7 +354,7 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "search-api.stg01-use2.jcplatform.dev"
-    },    
+    },
     {
       name    = "cdn.pwm"
       proxied = false
