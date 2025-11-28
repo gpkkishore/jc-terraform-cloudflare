@@ -238,6 +238,13 @@ locals {
       value   = "ns-206.awsdns-25.com."
     },
     {
+      name    = "grpc.homolog.vault.jumpcloud.com",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "internal-vaultone-homolog-grpc-internal-210913626.us-east-1.elb.amazonaws.com"
+    },
+    {
       name    = "*.app.homolog.vault.jumpcloud.com",
       ttl     = 1,
       proxied = true,
