@@ -19,6 +19,7 @@ locals {
     "search-api.stg01.jumpcloud.com",
     "*.prd02.stg01.jumpcloud.com",
     "mcp.stg01.jumpcloud.com",
+    "slack.stg01.jumpcloud.com",
     "*.jumpdesk.stg01.jumpcloud.com",
     "*.catalog.stg01.jumpcloud.com",
     "*.console.stg01.jumpcloud.com",
@@ -37,6 +38,7 @@ locals {
     "*.ssf.stg01.jumpcloud.com",
     "*.mcp.stg01.jumpcloud.com",
     "*.search-api.stg01.jumpcloud.com",
+    "*.slack.stg01.jumpcloud.com",
   ]
 
   prd02_hostnames = [
@@ -250,6 +252,11 @@ locals {
       description = "Allow Apple CIDR blocks for VPP Notifications"
       expression  = format("(http.host eq \"apple.mdm.stg01.jumpcloud.com\" and http.request.uri.path eq \"/vpp/notifications\" and ip.src in {%s})", join(" ", [for ip in local.apple_cidr_blocks : ip]))
     },
+    {
+      action      = "skip"
+      description = "Allow Slack Stg"
+      expression  = format("(http.host eq \"slack.stg01.jumpcloud.com\" and http.request.uri.path eq \"/api/slack/events\")")
+    },    
     {
       action      = "block"
       description = "Block all traffic to Search API HTTP(s) endpoint"
