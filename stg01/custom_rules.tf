@@ -255,6 +255,11 @@ locals {
       expression  = format("(http.host eq \"apple.mdm.stg01.jumpcloud.com\" and http.request.uri.path eq \"/vpp/notifications\" and ip.src in {%s})", join(" ", [for ip in local.apple_cidr_blocks : ip]))
     },
     {
+      action      = "skip"
+      description = "Allow Slack Stg"
+      expression  = format("(http.host eq \"slack.stg01.jumpcloud.com\" and http.request.uri.path eq \"/api/slack/events\")")
+    },    
+    {
       action      = "block"
       description = "Block all traffic to Search API HTTP(s) endpoint"
       expression  = "(http.request.uri.path contains \"/api/v2/search/\" and http.host eq \"console.stg01.jumpcloud.com\" and not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189})"
