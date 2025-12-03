@@ -17,6 +17,7 @@ locals {
     "saas.stg01.jumpcloud.com",
     "ssf.stg01.jumpcloud.com",
     "search-api.stg01.jumpcloud.com",
+    "schema-registry.stg01.jumpcloud.com",
     "*.prd02.stg01.jumpcloud.com",
     "mcp.stg01.jumpcloud.com",
     "slack.stg01.jumpcloud.com",
@@ -38,6 +39,7 @@ locals {
     "*.ssf.stg01.jumpcloud.com",
     "*.mcp.stg01.jumpcloud.com",
     "*.search-api.stg01.jumpcloud.com",
+    "*.schema-registry.stg01.jumpcloud.com",
     "*.slack.stg01.jumpcloud.com",
   ]
 
