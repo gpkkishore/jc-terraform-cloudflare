@@ -326,7 +326,7 @@ locals {
     // END - Marketing website
     {
       name    = "tools",
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "A"
       value   = "34.111.179.208"
