@@ -324,6 +324,13 @@ locals {
       value   = "52.13.15.220"
     },
     // END - Marketing website
+    {
+      name    = "tools",
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      value   = "34.111.179.208"
+    },
   ]
 
   prd_mx_records = [
@@ -1827,6 +1834,13 @@ locals {
       ttl     = 3600
       type    = "TXT"
       value   = "v=MCPv1; k=ed25519; p=BhczxE2EljfcCMHGcIzTXKzpfaqz0wbmI4KTBaU42oo="
+    },
+    {
+      name    = "tools"
+      proxied = false
+      ttl     = 300
+      type    = "TXT"
+      value   = "replit-verify=51107684-3c09-4673-853b-234f2aa50f05"
     },
   ]
 
