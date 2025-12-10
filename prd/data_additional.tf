@@ -337,6 +337,13 @@ locals {
       value   = "ns-1839.awsdns-37.co.uk."
     },
     {
+      name    = "grpc.vault.jumpcloud.com",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "internal-vaultone-prd-grpc-internal-353130988.us-east-1.elb.amazonaws.com"
+    },
+    {
       name    = "*.app.vault.jumpcloud.com",
       ttl     = 1,
       proxied = true,
