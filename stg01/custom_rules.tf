@@ -205,7 +205,7 @@ locals {
   add_ratelimit_rules = [
     {
       action      = "block"
-      description = "API rate limiting at the Egde"
+      description = "API rate limiting at the Edge"
       expression  = "(http.host in \"saas.stg01.jumpcloud.com\")"
 
       ratelimit = {
