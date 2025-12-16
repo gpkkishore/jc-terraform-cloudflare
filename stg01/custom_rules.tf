@@ -202,7 +202,20 @@ locals {
     "17.0.0.0/8"
   ]
 
-  add_ratelimit_rules = []
+  add_ratelimit_rules = [
+    {
+      action      = "block"
+      description = "API rate limiting at the Egde"
+      expression  = "(http.host in \"saas.stg01.jumpcloud.com\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        period              = 1
+        requests_per_period = 30
+        mitigation_timeout  = 10
+      }
+    }
+  ]
 
   add_waf_rules = [
     {
