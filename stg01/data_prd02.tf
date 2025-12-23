@@ -285,13 +285,6 @@ locals {
       content = "pwm.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.devices.pwm.prd02"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "grpc.pwm.prd02"
       proxied = false
       ttl     = 1

@@ -177,7 +177,7 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
-    },    
+    },
     {
       name    = "devices.pwm"
       proxied = true
@@ -354,7 +354,7 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
-    },    
+    },
     {
       name    = "*.oauth"
       proxied = true
@@ -368,13 +368,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "identity-haproxy.prd02-euc1-p00.jcplatform.dev"
-    },
-    {
-      name    = "*.devices.pwm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "*.grpc.pwm"

@@ -1235,13 +1235,6 @@ locals {
       value   = "pwm-devices.prd-use1.jcplatform.dev"
     },
     {
-      name    = "*.devices.pwm"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "pwm-devices.prd-use1.jcplatform.dev"
-    },
-    {
       name    = "cdn.pwm"
       proxied = false
       ttl     = 1
@@ -1436,7 +1429,7 @@ locals {
       ttl     = 60
       type    = "TXT"
       value   = "openai-domain-verification=dv-4fAxbZtGbLBhuCwIYmAVVxGy"
-    },    
+    },
     {
       name    = "@"
       proxied = false
@@ -1794,7 +1787,7 @@ locals {
       ttl     = 3600
       type    = "TXT"
       value   = "google-site-verification=_jPHdbG8FcQmWJ0Vm_Y3AxmBp-aSHGGXA8hBlr8pKmw"
-    },    
+    },
     // END MARKETO
     {
       name    = "@"
@@ -2005,7 +1998,7 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
-    },    
+    },
     {
       name    = "devices.pwm.eu"
       proxied = true
@@ -2194,13 +2187,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
-    },    
-    {
-      name    = "*.devices.pwm.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
     },
     {
       name    = "*.grpc.pwm.eu"
