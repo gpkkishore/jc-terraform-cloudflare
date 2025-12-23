@@ -206,7 +206,7 @@ locals {
     {
       action      = "block"
       description = "API rate limiting at the Edge"
-      expression  = "(http.host in \"saas.stg01.jumpcloud.com\")"
+      expression  = "(http.host in {\"saas.stg01.jumpcloud.com\"})"
 
       ratelimit = {
         characteristics     = ["cf.colo.id", "ip.src"]
