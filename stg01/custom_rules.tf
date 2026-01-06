@@ -210,8 +210,8 @@ locals {
 
       ratelimit = {
         characteristics     = ["cf.colo.id", "ip.src"]
-        period              = 1
-        requests_per_period = 30
+        period              = 10
+        requests_per_period = 300
         mitigation_timeout  = 10
       }
     }
