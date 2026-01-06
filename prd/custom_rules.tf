@@ -122,7 +122,19 @@ locals {
           requests_per_period = 100
           requests_to_origin  = false
         },
-      }
+      },
+      {
+        action      = "block"
+        description = "API rate limiting at the Edge"
+        expression  = "(http.host in {\"saas.jumpcloud.com\"})"
+
+        ratelimit = {
+          characteristics     = ["cf.colo.id", "ip.src"]
+          period              = 10
+          requests_per_period = 300
+          mitigation_timeout  = 10
+        }
+      }      
     ]
   }
 
