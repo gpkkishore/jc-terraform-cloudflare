@@ -165,7 +165,13 @@ locals {
     "23.83.156.26",
     "52.152.135.30",
     "52.152.135.120",
-    "51.4.0.77"
+    "51.4.0.77",
+    "199.7.167.11",
+    "199.7.167.12",
+    "199.7.167.13",
+    "199.7.167.14",
+    "199.7.167.8",
+    "199.7.167.9",
   ]
 
   aws_vpc_ips = [
@@ -287,7 +293,7 @@ locals {
       action      = "skip"
       description = "Allow Slack Stg"
       expression  = format("(http.host eq \"slack.stg01.jumpcloud.com\" and http.request.uri.path eq \"/api/slack/events\")")
-    },    
+    },
     {
       action      = "block"
       description = "Block all traffic to Search API HTTP(s) endpoint"
