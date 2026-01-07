@@ -21,98 +21,98 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      content = "adbridge-kickstart-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "adbridge-kickstart.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "adbridge"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      content = "adbridge-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "adbridge.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "admin-oauth.id"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "identity-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "identity.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "agent"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      content = "agent-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "agent.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "api"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "api-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "assist"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "assist-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "assist.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "apple-mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "apple-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "apple-mdm.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "microsoft-mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "microsoft-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "microsoft-mdm.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "bss"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      content = "si-bss-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "si-bss-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "console"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "console-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "console.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "device-cert"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      content = "device-cert-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "device-cert.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "kickstart"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "kickstart-public-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "kickstart-public.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "apple.mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "apple-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "apple-mdm.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "go"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "go-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "go.prd02-euc1.jcplatform.dev"
     },
 
     {
@@ -120,28 +120,28 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      content = "kickstart-private-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "kickstart-private.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "jumpdesk"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "jumpdesk-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "jumpdesk.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "login"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "login-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "login-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "mcp"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "mulesoft-api",
@@ -162,147 +162,147 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "oauth-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "oauth.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "oauth.id"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "identity-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "identity.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "slack"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "devices.pwm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "pwm.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "grpc.pwm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "pwm.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "scim.pwm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "pwm.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "sso"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "sso-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "sso.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "saas"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "trampoline.id"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "identity-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "identity.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.adbridge-kickstart"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      content = "adbridge-kickstart-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "adbridge-kickstart.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.adbridge"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      content = "adbridge-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "adbridge.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.admin-oauth.id"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "identity-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "identity.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.agent"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      content = "agent-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "agent.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.api"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "api-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.assist"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "assist-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "assist.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.apple-mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "apple-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "apple-mdm.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.microsoft-mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "microsoft-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "microsoft-mdm.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.console"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "console-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "console.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.device-cert"
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      content = "device-cert-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "device-cert.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.kickstart"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "kickstart-public-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "kickstart-public.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.apple.mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "apple-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "apple-mdm.prd02-euc1.jcplatform.dev"
     },
 
     {
@@ -310,7 +310,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "go-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "go.prd02-euc1.jcplatform.dev"
     },
 
     {
@@ -318,28 +318,28 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      content = "kickstart-private-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "kickstart-private.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.jumpdesk"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "jumpdesk-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "jumpdesk.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.login"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "login-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "login-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.mcp"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.nli"
@@ -353,56 +353,56 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.oauth"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "oauth-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "oauth.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.oauth.id"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "identity-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "identity.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.grpc.pwm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "pwm.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.scim.pwm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "pwm-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "pwm.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.sso"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "sso-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "sso.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.saas"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "standard-api-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.trampoline.id"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "identity-haproxy.prd02-euc1-p00.jcplatform.dev"
+      content = "identity.prd02-euc1.jcplatform.dev"
     }
   ]
 
