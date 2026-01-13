@@ -19,6 +19,7 @@ locals {
   vaultone_stg_usw2_natgws     = "44.226.5.239/32 54.71.114.137/32 100.20.42.195/32"
   vaultone_homolog_use1_natgws = "44.205.147.222/32 3.221.141.250/32 34.199.245.208/32"
   vaultone_prd_use1_natgws     = "34.235.10.125/32 52.0.246.11/32 107.20.185.164/32"
+  vaultone_homolog_msft_natgws = "13.216.65.20/32 34.204.246.90/32 54.227.37.138"
 
   vaultone_nonprod_allowed_ips = join(" ", [
     local.us_east_1_zscaler_ngws,
@@ -32,6 +33,7 @@ locals {
     local.vaultone_homolog_use1_natgws,
     local.vaultone_prd_use1_natgws,
     local.us_east_1_saleseng_ngw,
+    local.vaultone_homolog_msft_natgws,
   ])
 
   add_ratelimit_rules = {
@@ -214,11 +216,6 @@ locals {
         action      = "skip"
         description = "Allow vault.jumpcloud assets (404 page, etc.)"
         expression  = "(http.host eq \"vault.jumpcloud.com\" and starts_with(http.request.uri.path, \"/assets\"))"
-      },
-      {
-        action      = "skip"
-        description = "Allow mulesoft to homolog.vault.jumpcloud.com"
-        expression  = "(http.host eq \"homolog.vault.jumpcloud.com\" and ip.src in {13.216.65.20 34.204.246.90 54.227.37.138})"
       },
       {
         action      = "block"
