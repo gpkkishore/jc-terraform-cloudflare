@@ -16,10 +16,10 @@ locals {
   dev_usw2_p02_ngws = "54.185.216.161/32 54.70.45.159/32 44.241.153.15/32"
   dev_euc1_p04_ngws = "18.153.233.242/32 3.121.182.189/32 3.76.93.225/32"
 
-  vaultone_stg_usw2_natgws     = "44.226.5.239/32 54.71.114.137/32 100.20.42.195/32"
-  vaultone_homolog_use1_natgws = "44.205.147.222/32 3.221.141.250/32 34.199.245.208/32"
-  vaultone_prd_use1_natgws     = "34.235.10.125/32 52.0.246.11/32 107.20.185.164/32"
-  vaultone_homolog_msft_natgws = "13.216.65.20/32 34.204.246.90/32 54.227.37.138/32"
+  vaultone_stg_usw2_natgws      = "44.226.5.239/32 54.71.114.137/32 100.20.42.195/32"
+  vaultone_homolog_use1_natgws  = "44.205.147.222/32 3.221.141.250/32 34.199.245.208/32"
+  vaultone_prd_use1_natgws      = "34.235.10.125/32 52.0.246.11/32 107.20.185.164/32"
+  vaultone_homolog_mulesoft_ips = "13.216.65.20/32 34.204.246.90/32 54.227.37.138/32"
 
   vaultone_nonprod_allowed_ips = join(" ", [
     local.us_east_1_zscaler_ngws,
@@ -33,7 +33,7 @@ locals {
     local.vaultone_homolog_use1_natgws,
     local.vaultone_prd_use1_natgws,
     local.us_east_1_saleseng_ngw,
-    local.vaultone_homolog_msft_natgws,
+    local.vaultone_homolog_mulesoft_ips,
   ])
 
   add_ratelimit_rules = {
