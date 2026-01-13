@@ -33,7 +33,6 @@ locals {
     local.vaultone_homolog_use1_natgws,
     local.vaultone_prd_use1_natgws,
     local.us_east_1_saleseng_ngw,
-    local.vaultone_homolog_mulesoft_ips,
   ])
 
   add_ratelimit_rules = {
@@ -216,6 +215,11 @@ locals {
         action      = "skip"
         description = "Allow vault.jumpcloud assets (404 page, etc.)"
         expression  = "(http.host eq \"vault.jumpcloud.com\" and starts_with(http.request.uri.path, \"/assets\"))"
+      },
+      {
+        action      = "skip"
+        description = "Allow mulesoft to homolog.vault.jumpcloud.com"
+        expression  = "(http.host eq \"homolog.vault.jumpcloud.com\" and ip.src in {${local.vaultone_homolog_mulesoft_ips}})"
       },
       {
         action      = "block"
