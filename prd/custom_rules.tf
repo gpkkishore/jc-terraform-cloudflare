@@ -216,6 +216,11 @@ locals {
         expression  = "(http.host eq \"vault.jumpcloud.com\" and starts_with(http.request.uri.path, \"/assets\"))"
       },
       {
+        action      = "skip"
+        description = "Allow mulesoft to homolog.vault.jumpcloud.com"
+        expression  = "(http.host eq \"homolog.vault.jumpcloud.com\" and ip.src in {13.216.65.20 34.204.246.90 54.227.37.138})"
+      },
+      {
         action      = "block"
         description = "Allow ZScaler only in non-prod environments"
         expression  = "((http.host eq \"dev.vault.jumpcloud.com\" or http.host contains \"dev.vault.jumpcloud.com\") or (http.host eq \"stg.vault.jumpcloud.com\" or http.host contains \"stg.vault.jumpcloud.com\") or (http.host eq \"homolog.vault.jumpcloud.com\" or http.host contains \"homolog.vault.jumpcloud.com\") or (http.host eq \"vault.jumpcloud.com\" or http.host eq \"api.vault.jumpcloud.com\" or http.host eq \"app.vault.jumpcloud.com\")) and not ip.src in {${local.vaultone_nonprod_allowed_ips}}"
