@@ -172,6 +172,20 @@ locals {
       content = "identity.prd02-euc1.jcplatform.dev"
     },
     {
+      name    = "search-api"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      content = "search-api.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "schema-registry"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      content = "schema-registry.prd02-euc1.jcplatform.dev"
+    },
+    {
       name    = "slack"
       proxied = true
       ttl     = 1
@@ -347,6 +361,20 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "nli-haproxy-haproxy.ue1-prd-p01.jcplatform.dev"
+    },
+    {
+      name    = "*.search-api"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      content = "search-api.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "*.schema-registry"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      content = "schema-registry.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.slack"

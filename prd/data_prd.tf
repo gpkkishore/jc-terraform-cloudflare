@@ -693,6 +693,34 @@ locals {
       value   = "oauth.prd-use1.jcplatform.dev"
     },
     {
+      name    = "schema-registry"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "schema-registry.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.schema-registry"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "schema-registry.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "search-api"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "search-api.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.search-api"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "search-api.prd-use1.jcplatform.dev"
+    },
+    {
       name    = "slack"
       proxied = true
       ttl     = 1
