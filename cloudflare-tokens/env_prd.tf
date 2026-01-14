@@ -39,9 +39,9 @@ resource "cloudflare_api_token" "prd-spacelift" {
           id = local.zone_permission_group_ids["DNS Write"]
         },
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.zone.*" = "*"
-      }
+      })
     },
     {
       effect = "allow"
@@ -56,9 +56,9 @@ resource "cloudflare_api_token" "prd-spacelift" {
           id = local.acct_permission_group_ids["Account Settings Write"]
         }
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
-      }
+      })
     }
   ]
   lifecycle {
@@ -127,9 +127,9 @@ resource "cloudflare_api_token" "prd-cloudfront" {
           id = local.zone_permission_group_ids["DNS Write"]
         },
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.zone.${local.zone_ids["jumpcloud.com"]}" = "*"
-      }
+      })
     }
   ]
   lifecycle {
@@ -180,9 +180,9 @@ resource "cloudflare_api_token" "prd-website" {
           id = local.zone_permission_group_ids["DNS Write"]
         },
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.zone.${local.zone_ids["jumpcloud.com"]}" = "*"
-      }
+      })
     }
   ]
   lifecycle {

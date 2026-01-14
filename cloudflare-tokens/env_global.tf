@@ -10,9 +10,9 @@ resource "cloudflare_api_token" "global-spacelift" {
           id = local.zone_permission_group_ids["Logs Write"]
         },
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.zone.*" = "*"
-      }
+      })
     },
     {
       effect = "allow"
@@ -22,9 +22,9 @@ resource "cloudflare_api_token" "global-spacelift" {
           id = local.acct_permission_group_ids["Logs Write"]
         },
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
-      }
+      })
     }
   ]
   lifecycle {
