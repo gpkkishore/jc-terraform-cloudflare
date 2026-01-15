@@ -34,6 +34,20 @@ resource "cloudflare_api_token" "stg01-spacelift" {
         "com.cloudflare.api.account.zone.${local.zone_ids["id.stg01.jumpcloud.com"]}" = "*"
         "com.cloudflare.api.account.zone.${local.zone_ids["stg01.jumpcloud.com"]}"    = "*"
       })
+    },
+    {
+      effect = "allow"
+      permission_groups = [
+        {
+          id = local.acct_permission_group_ids["Account Rule Lists Read"]
+        },
+        {
+          id = local.acct_permission_group_ids["Account Rule Lists Write"]
+        },
+      ]
+      resources = jsonencode({
+        "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
+      })
     }
   ]
   lifecycle {
