@@ -42,9 +42,9 @@ resource "cloudflare_api_token" "prd02-spacelift" {
           id = local.zone_permission_group_ids["DNS Write"]
         },
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.zone.*" = "*"
-      }
+      })
     },
     {
       effect = "allow"
@@ -56,9 +56,9 @@ resource "cloudflare_api_token" "prd02-spacelift" {
           id = local.acct_permission_group_ids["Account Settings Write"]
         }
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.*" = "*"
-      }
+      })
     }
   ]
   lifecycle {
@@ -109,9 +109,9 @@ resource "cloudflare_api_token" "prd02-euc1-edge-tenancy" {
           id = local.acct_permission_group_ids["Workers KV Storage Write"]
         }
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.*" = "*"
-      }
+      })
     }
   ]
   lifecycle {

@@ -30,10 +30,24 @@ resource "cloudflare_api_token" "stg01-spacelift" {
           id = local.zone_permission_group_ids["DNS Write"]
         },
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.zone.${local.zone_ids["id.stg01.jumpcloud.com"]}" = "*"
         "com.cloudflare.api.account.zone.${local.zone_ids["stg01.jumpcloud.com"]}"    = "*"
-      }
+      })
+    },
+    {
+      effect = "allow"
+      permission_groups = [
+        {
+          id = local.acct_permission_group_ids["Account Rule Lists Read"]
+        },
+        {
+          id = local.acct_permission_group_ids["Account Rule Lists Write"]
+        },
+      ]
+      resources = jsonencode({
+        "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
+      })
     }
   ]
   lifecycle {
@@ -99,9 +113,9 @@ resource "cloudflare_api_token" "stg01-cloudfront" {
           id = local.zone_permission_group_ids["DNS Write"]
         },
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.zone.${local.zone_ids["stg01.jumpcloud.com"]}" = "*"
-      }
+      })
     }
   ]
   lifecycle {
@@ -151,9 +165,9 @@ resource "cloudflare_api_token" "stg01-use2-edge-tenancy" {
           id = local.acct_permission_group_ids["Workers KV Storage Write"]
         }
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.*" = "*"
-      }
+      })
     }
   ]
   lifecycle {

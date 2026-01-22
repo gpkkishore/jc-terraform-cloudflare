@@ -27,12 +27,12 @@ resource "cloudflare_api_token" "dev-spacelift" {
           id = local.zone_permission_group_ids["DNS Write"]
         },
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.zone.${local.zone_ids["cloudjump.dev"]}"              = "*"
         "com.cloudflare.api.account.zone.${local.zone_ids["devopsconsortium.org"]}"       = "*"
         "com.cloudflare.api.account.zone.${local.zone_ids["agent.devopsconsortium.org"]}" = "*"
         "com.cloudflare.api.account.zone.${local.zone_ids["dev.jcplatform.dev"]}"         = "*"
-      }
+      })
     }
   ]
   lifecycle {
