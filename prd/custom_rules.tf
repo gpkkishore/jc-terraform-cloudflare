@@ -216,7 +216,7 @@ locals {
       {
         action      = "skip"
         description = "Allow TestIM"
-        expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and not ip.src in {${local.testim_ips}})"
+        expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and ip.src in {${local.testim_ips}})"
       },
       {
         action      = "block"
