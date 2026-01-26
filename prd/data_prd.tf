@@ -203,13 +203,6 @@ locals {
       value   = "130.211.178.171"
     },
     {
-      name    = "delfingen-ldap"
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "34.204.118.37"
-    },
-    {
       name    = "devopsdays",
       proxied = false
       ttl     = 1
