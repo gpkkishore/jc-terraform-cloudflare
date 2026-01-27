@@ -607,7 +607,13 @@ locals {
       type    = "CNAME"
       value   = "go.prd-use1.jcplatform.dev"
     },
-
+    {
+      name    = "h-9d4953e0122bf"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "h-9d4953e0122bf.prd-use1.jcplatform.dev"
+    },
     {
       name    = "private-kickstart"
       proxied = false
