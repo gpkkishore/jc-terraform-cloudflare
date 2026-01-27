@@ -612,7 +612,7 @@ locals {
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      content = "h-9d4953e0122bf.prd-use1.jcplatform.dev"
+      value   = "h-9d4953e0122bf.prd-use1.jcplatform.dev"
     },
     {
       name    = "private-kickstart"
