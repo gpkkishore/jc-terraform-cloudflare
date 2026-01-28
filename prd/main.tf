@@ -138,8 +138,8 @@ resource "cloudflare_record" "jumpcloud_lounge_faux_record" {
   name    = "join"
   proxied = true
   ttl     = 1
-  type    = "A"
-  value   = "192.0.2.1"
+  type    = "CNAME"
+  value   = "standard-api.prd-use1.jcplatform.dev"
   zone_id = cloudflare_zone.additional_zone["jumpcloudlounge.com"].id
 }
 
