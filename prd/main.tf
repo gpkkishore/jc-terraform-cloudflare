@@ -136,7 +136,7 @@ resource "cloudflare_record" "jumpcloud_lounge_root_record" {
   depends_on = [cloudflare_zone.additional_zone]
 
   name    = "@"
-  proxied = false
+  proxied = true
   ttl     = 1
   type    = "CNAME"
   value   = "standard-api.prd-use1.jcplatform.dev"
