@@ -171,6 +171,12 @@ locals {
 
   add_waf_rules = {
     "jumpcloud.com" = [
+
+      { // allow pentest IP, to be removed after pentest is complete
+        action      = "skip"
+        description = "Allow Pentest IP"
+        expression  = "(ip.src in {216.71.114.64} and http.host contains \"jumpcloud.com\")"
+      },
       {
         action      = "block"
         description = "Allow ZScaler only"
