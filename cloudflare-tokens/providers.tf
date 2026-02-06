@@ -3,6 +3,7 @@ locals {
   stg01_account = "330105897241"
   prd_account   = "868503801984"
   prd02_account = "767397867240"
+  prd03_account = "569144120012"
   ctrl_account  = "607875384359"
   default_tags = {
     Team        = "Edge"
@@ -63,6 +64,17 @@ provider "aws" {
   region = "eu-central-1"
   assume_role {
     role_arn = format("arn:aws:iam::%s:role/terraform-admin", local.prd02_account)
+  }
+  default_tags {
+    tags = local.default_tags
+  }
+}
+
+provider "aws" {
+  alias  = "prd03"
+  region = "ap-south-1"
+  assume_role {
+    role_arn = format("arn:aws:iam::%s:role/terraform-admin", local.prd03_account)
   }
   default_tags {
     tags = local.default_tags
