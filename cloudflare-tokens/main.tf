@@ -67,7 +67,8 @@ resource "time_sleep" "wait" {
     cloudflare_api_token.prd02-spacelift,
     cloudflare_api_token.prd02-euc1-edge-tenancy,
     cloudflare_api_token.prd03-spacelift,
-    cloudflare_api_token.prd03-aps1-edge-tenancy,
+    # TODO: Uncomment once prd03 edge-tenancy resources are enabled in env_prd03.tf
+    # cloudflare_api_token.prd03-aps1-edge-tenancy,
     cloudflare_api_token.global-spacelift
   ]
 
