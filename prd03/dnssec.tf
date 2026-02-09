@@ -5,32 +5,30 @@ locals {
 
 # Cloudflare zones with DNSSEC
 locals {
-  cloudflare_root_zone         = "jumpcloud.com"
-  cloudflare_prd03_child_zone  = "prd03.jumpcloud.com"
-  cloudflare_child_zones       = [local.cloudflare_prd03_child_zone]
-  cloudflare_zones_with_dnssec = toset(concat([local.cloudflare_root_zone], local.cloudflare_child_zones))
+  cloudflare_root_zone        = "jumpcloud.com"
+  cloudflare_prd03_child_zone = "prd03.jumpcloud.com"
+  cloudflare_child_zones      = [local.cloudflare_prd03_child_zone]
 }
 
-# prepare cloudflare zone prd03.jumpcloud.com for dnssec by generating values for the DS record.
-# only need to create cloudflare_child_zones_with_dnssec because jumpcloud.com zone already has dnssec enabled in the prd env so we just need to read it with data source.
-data "cloudflare_zone" "zones_with_dnssec" {
-  for_each = local.cloudflare_zones_with_dnssec
-
+# Look up the root zone only (it already exists in Cloudflare).
+# The child zone prd03.jumpcloud.com is created by cloudflare_zone.cloudflare_zone_resource in main.tf,
+# so we reference that resource directly.
+data "cloudflare_zone" "root_zone" {
   account_id = local.account_id
-  name       = each.key
+  name       = local.cloudflare_root_zone
 }
 
 resource "cloudflare_zone_dnssec" "child_zones_with_dnssec" {
   for_each = toset(local.cloudflare_child_zones)
 
-  zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, each.key).id
+  zone_id = cloudflare_zone.cloudflare_zone_resource.id
 }
 
-# enable DNSSEC for child cloudflare zones
+# enable DNSSEC for child cloudflare zones — DS record goes in the root zone
 resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
   for_each = toset(local.cloudflare_child_zones)
 
-  zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_root_zone).id
+  zone_id = data.cloudflare_zone.root_zone.id
   name    = each.key
   type    = "DS"
   proxied = false
@@ -154,7 +152,7 @@ resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
 # resource "cloudflare_record" "ds_route53_zones_with_dnssec_08132024" {
 #   for_each = local.route53_zone_name_to_zone
 #
-#   zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_prd03_child_zone).id
+#   zone_id = cloudflare_zone.cloudflare_zone_resource.id
 #   name    = each.key
 #   type    = "DS"
 #   proxied = false
