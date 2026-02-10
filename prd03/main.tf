@@ -29,7 +29,7 @@ module "settings" {
 ############################################################
 # Custom Certificate Pack Resources for edge Certificates
 ############################################################
-resource "cloudflare_certificate_pack" "custom_cert_09042024" {
+resource "cloudflare_certificate_pack" "custom_cert_20260210" {
   for_each = { for cert in local.custom_certs : cert.name => cert }
 
   zone_id                = cloudflare_zone.cloudflare_zone_resource.id

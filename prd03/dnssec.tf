@@ -6,12 +6,12 @@ locals {
 # Cloudflare zones with DNSSEC
 locals {
   cloudflare_root_zone        = "jumpcloud.com"
-  cloudflare_prd03_child_zone = "prd03.jumpcloud.com"
+  cloudflare_prd03_child_zone = "in.jumpcloud.com"
   cloudflare_child_zones      = [local.cloudflare_prd03_child_zone]
 }
 
 # Look up the root zone only (it already exists in Cloudflare).
-# The child zone prd03.jumpcloud.com is created by cloudflare_zone.cloudflare_zone_resource in main.tf,
+# The child zone in.jumpcloud.com is created by cloudflare_zone.cloudflare_zone_resource in main.tf,
 # so we reference that resource directly.
 data "cloudflare_zone" "root_zone" {
   account_id = local.account_id
@@ -43,8 +43,8 @@ resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
 ##################################################################
 # Route53 zones with DNSSEC
 #
-# TODO: The Route53 hosted zones for ldap.prd03.jumpcloud.com and
-# ldap-mfa.prd03.jumpcloud.com do not exist yet. They will be created
+# TODO: The Route53 hosted zones for ldap.in.jumpcloud.com and
+# ldap-mfa.in.jumpcloud.com do not exist yet. They will be created
 # by the infra-layers edge deployment. Once they exist, uncomment
 # the sections below and update the SOA records with actual values
 # from the Route53 zones.
@@ -53,7 +53,7 @@ resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
 # locals {
 #   route53_zones_with_dnssec = [
 #     {
-#       name = "ldap.prd03.jumpcloud.com"
+#       name = "ldap.in.jumpcloud.com"
 #       ns = {
 #         # original ns ttl is 172800
 #         ttl = 86400 # 1-day
@@ -66,7 +66,7 @@ resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
 #       }
 #     },
 #     {
-#       name = "ldap-mfa.prd03.jumpcloud.com"
+#       name = "ldap-mfa.in.jumpcloud.com"
 #       ns = {
 #         # original ns ttl is 172800
 #         ttl = 86400 # 1-day
@@ -148,7 +148,7 @@ resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
 #   status                     = "ACTIVE"
 # }
 #
-# # create DS record in prd03.jumpcloud.com child zone relative to each route53 zone which verifies the related KSKs hosted zone's DNSKEY
+# # create DS record in in.jumpcloud.com child zone relative to each route53 zone which verifies the related KSKs hosted zone's DNSKEY
 # resource "cloudflare_record" "ds_route53_zones_with_dnssec_08132024" {
 #   for_each = local.route53_zone_name_to_zone
 #
