@@ -449,8 +449,8 @@ locals {
    * NS delegation records for the prd03 environment
    * This can be used to delegate subdomains to other DNS providers or other cloudflare zones
    *
-   * TODO: Update with actual NS values after Route53 hosted zones for ldap.in.jumpcloud.com and
-   * ldap-mfa.in.jumpcloud.com are created (by the infra-layers edge deployment).
+   * TODO: Update with actual NS values after Route53 hosted zones for ldap.prd03.jumpcloud.com and
+   * ldap-mfa.prd03.jumpcloud.com are created (by the infra-layers edge deployment).
    */
   prd03_ns_delegation_records = []
   # Uncomment and populate once Route53 zones exist:
