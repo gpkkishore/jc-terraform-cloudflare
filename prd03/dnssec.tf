@@ -25,20 +25,22 @@ resource "cloudflare_zone_dnssec" "child_zones_with_dnssec" {
 }
 
 # enable DNSSEC for child cloudflare zones — DS record goes in the root zone
-resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
-  for_each = toset(local.cloudflare_child_zones)
+# Uncomment after NS delegation for in.jumpcloud.com is added to the parent jumpcloud.com zone and propagated
 
-  zone_id = data.cloudflare_zone.root_zone.id
-  name    = each.key
-  type    = "DS"
-  proxied = false
-  data {
-    algorithm   = lookup(cloudflare_zone_dnssec.child_zones_with_dnssec, each.key).algorithm
-    digest      = lookup(cloudflare_zone_dnssec.child_zones_with_dnssec, each.key).digest
-    digest_type = lookup(cloudflare_zone_dnssec.child_zones_with_dnssec, each.key).digest_type
-    key_tag     = lookup(cloudflare_zone_dnssec.child_zones_with_dnssec, each.key).key_tag
-  }
-}
+# resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
+#   for_each = toset(local.cloudflare_child_zones)
+
+#   zone_id = data.cloudflare_zone.root_zone.id
+#   name    = each.key
+#   type    = "DS"
+#   proxied = false
+#   data {
+#     algorithm   = lookup(cloudflare_zone_dnssec.child_zones_with_dnssec, each.key).algorithm
+#     digest      = lookup(cloudflare_zone_dnssec.child_zones_with_dnssec, each.key).digest
+#     digest_type = lookup(cloudflare_zone_dnssec.child_zones_with_dnssec, each.key).digest_type
+#     key_tag     = lookup(cloudflare_zone_dnssec.child_zones_with_dnssec, each.key).key_tag
+#   }
+# }
 
 ##################################################################
 # Route53 zones with DNSSEC
