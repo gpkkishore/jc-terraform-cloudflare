@@ -240,8 +240,8 @@ locals {
     },
     {
       action      = "skip"
-      description = "Allow Apple CIDR blocks for apple-app-site-association"
-      expression  = format("(http.host eq \"console.stg01.jumpcloud.com\" and http.request.uri.path eq \"/.well-known/apple-app-site-association\" and ip.src in {%s})", join(" ", [for ip in local.apple_cidr_blocks : ip]))
+      description = "Allow for apple-app-site-association"
+      expression  = "(http.host eq \"console.stg01.jumpcloud.com\" and http.request.uri.path eq \"/.well-known/apple-app-site-association\")"
     },
     {
       action      = "skip"
