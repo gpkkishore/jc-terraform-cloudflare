@@ -1,7 +1,9 @@
 locals {
   # List of IP addresses to be whitelisted
-  stg01_use2_natgws = join(" ", data.aws_ec2_managed_prefix_list.stg01_use2_natgws.entries[*].cidr)
-  prd_use1_natgws   = join(" ", data.aws_ec2_managed_prefix_list.prd_use1_natgws.entries[*].cidr)
+  stg01_use2_natgws     = join(" ", data.aws_ec2_managed_prefix_list.stg01_use2_natgws.entries[*].cidr)
+  prd_use1_natgws       = join(" ", data.aws_ec2_managed_prefix_list.prd_use1_natgws.entries[*].cidr)
+  euc1_zscaler_natgws   = join(" ", data.aws_ec2_managed_prefix_list.euc1_zscaler_natgws.entries[*].cidr)
+  prd02_euc1_c00_natgws = join(" ", data.aws_ec2_managed_prefix_list.prd02_euc1_c00_natgws.entries[*].cidr)
 
   us_east_1_zscaler_ngws = "52.73.14.42/32 3.219.213.81/32 44.216.132.195/32"
   us_west_2_zscaler_ngws = "35.161.74.70/32 54.245.68.23/32 52.43.62.126/32"
@@ -48,6 +50,7 @@ locals {
   vaultone_stg_usw2_natgws      = "44.226.5.239/32 54.71.114.137/32 100.20.42.195/32"
   vaultone_homolog_use1_natgws  = "44.205.147.222/32 3.221.141.250/32 34.199.245.208/32"
   vaultone_prd_use1_natgws      = "34.235.10.125/32 52.0.246.11/32 107.20.185.164/32"
+  vaultone_prd02_euc1_natgws    = "18.199.25.0/32 3.125.68.115/32 3.76.171.84/32"
   vaultone_homolog_mulesoft_ips = "13.216.65.20/32 34.204.246.90/32 54.227.37.138/32 3.216.39.193/32 35.168.81.102/32 54.160.118.35/32 54.165.222.204/32 3.225.136.12/32"
 
   vaultone_nonprod_allowed_ips = join(" ", [
@@ -279,7 +282,12 @@ locals {
         action      = "block"
         description = "Blocking Abuse IP's"
         expression  = "(ip.src in {183.83.227.182 183.83.226.136 144.91.66.213} and http.host contains \"jumpcloud.com\")"
-      }
+      },
+      {
+        action      = "block"
+        description = "Allow ZScaler only for certain endpoints"
+        expression  = format("(http.host eq \"vault.eu.jumpcloud.com\" or http.host eq \"app.vault.eu.jumpcloud.com\") or http.host eq \"api.vault.eu.jumpcloud.com\") and not ip.src in {%s}", join(" ", [local.vaultone_nonprod_allowed_ips, local.prd02_euc1_c00_natgws, local.euc1_zscaler_natgws, local.vaultone_prd02_euc1_natgws]))
+      },
     ]
   }
 }
@@ -290,4 +298,12 @@ data "aws_ec2_managed_prefix_list" "stg01_use2_natgws" {
 
 data "aws_ec2_managed_prefix_list" "prd_use1_natgws" {
   name = "prd-use1-natgws"
+}
+
+data "aws_ec2_managed_prefix_list" "euc1_zscaler_natgws" {
+  name = "euc1-zscaler-natgws"
+}
+
+data "aws_ec2_managed_prefix_list" "prd02_euc1_c00_natgws" {
+  name = "prd02-euc1-c00-natgws"
 }
