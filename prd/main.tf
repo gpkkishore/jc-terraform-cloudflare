@@ -1,6 +1,6 @@
 locals {
   # Temporary workaround for a provider bug, more info: https://github.com/cloudflare/terraform-provider-cloudflare/issues/1711
-  account_id  = "3c96d914c0eaa62b7b4c9960e63818f7"
+  account_id = "3c96d914c0eaa62b7b4c9960e63818f7"
 
   # Aggregate of all DNS records
   dns_records = concat(local.prd_dns_records)
@@ -16,7 +16,7 @@ data "cloudflare_zones" "production_zones" {
   }
 }
 module "dns" {
-  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=2.0.1"  
+  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=2.0.1"
   zone_id       = cloudflare_zone.cloudflare_zone_resource.id
   zone_name     = var.zone_name
   dns_records   = local.dns_records
@@ -25,17 +25,17 @@ module "dns" {
 
 module "security" {
   for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
-  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.6.0"
+  source   = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.6.0"
 
   zone_id                    = each.key
   additional_ratelimit_rules = lookup(local.add_ratelimit_rules, each.value.name, [])
   additional_waf_rules       = lookup(local.add_waf_rules, each.value.name, [])
-  skip_managed_rulesets      = contains(["vault.jumpcloud.com"], each.value.name)
+  skip_managed_rulesets      = contains(["vault.jumpcloud.com", "vault.eu.jumpcloud.com"], each.value.name)
 }
 
 module "settings" {
   for_each = { for zone in toset(data.cloudflare_zones.production_zones.zones) : zone.id => zone }
-  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-zone-settings.git?ref=v2.0.2"  
+  source   = "git@github.com:TheJumpCloud/terraform-cloudflare-zone-settings.git?ref=v2.0.2"
   zone_id  = each.key
 }
 
@@ -69,7 +69,7 @@ resource "cloudflare_page_rule" "console_v2_microsoft_mdm_configuration_files" {
   priority = 1
   target   = "*console.jumpcloud.com/api/v2/microsoft-mdm-configuration-files"
   zone_id  = cloudflare_zone.cloudflare_zone_resource.id
-  status = "disabled"
+  status   = "disabled"
   actions {
     forwarding_url {
       status_code = 301
@@ -114,15 +114,35 @@ resource "cloudflare_total_tls" "vault_jumpcloud_com" {
 }
 
 ####################################################
+# vault.eu.jumpcloud.com
+####################################################
+resource "cloudflare_record" "vault_eu_records" {
+  for_each = { for record in local.vault_eu_records : "${record.type}_${record.name}_${record.value}" => record }
+  name     = each.value.name
+  value    = each.value.value
+  ttl      = each.value.ttl
+  type     = each.value.type
+  proxied  = each.value.proxied
+  priority = each.value.type == "MX" ? each.value.priority : null
+  zone_id  = cloudflare_zone.additional_zone["vault.eu.jumpcloud.com"].id
+}
+
+resource "cloudflare_total_tls" "vault_eu_jumpcloud_com" {
+  zone_id               = cloudflare_zone.additional_zone["vault.eu.jumpcloud.com"].id
+  enabled               = true
+  certificate_authority = "lets_encrypt"
+}
+
+####################################################
 # Resmo
 ####################################################
 locals {
-    resmo_zone_name_to_zone = {
+  resmo_zone_name_to_zone = {
     for zone in local.resmo_zones : zone.name => zone
   }
 }
 module "resmo_dns" {
-  source      = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=2.0.1"  
+  source      = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=2.0.1"
   for_each    = local.resmo_zone_name_to_zone
   zone_id     = lookup(cloudflare_zone.additional_zone, each.key).id
   zone_name   = each.key
