@@ -177,8 +177,8 @@ locals {
 
       { // allow pentest IP, to be removed after pentest is complete
         action      = "skip"
-        description = "Allow Pentest IP"
-        expression  = "(ip.src in {216.71.114.64} and http.host contains \"jumpcloud.com\")"
+        description = "Allow Pentest IPs"
+        expression  = "(ip.src in {216.71.114.64 50.34.38.206} and http.host contains \"jumpcloud.com\")"
       },
       {
         action      = "block"
