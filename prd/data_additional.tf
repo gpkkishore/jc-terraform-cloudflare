@@ -475,7 +475,7 @@ locals {
       value   = "vaultone-prd02-shared-public-alb-1710404515.eu-central-1.elb.amazonaws.com"
     },
     {
-      name    = "vault.eu.jumpcloud.com",
+      name    = "@",
       ttl     = 1,
       proxied = true,
       type    = "CNAME",
