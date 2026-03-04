@@ -474,21 +474,20 @@ locals {
       type    = "CNAME",
       value   = "vaultone-prd02-shared-public-alb-1710404515.eu-central-1.elb.amazonaws.com"
     },
-    # TODO: update the values once the acm certs are validated
-    #     {
-    #       name    = "vault.eu.jumpcloud.com",
-    #       ttl     = 1,
-    #       proxied = true,
-    #       type    = "CNAME",
-    #       value   = "d1iz1fyeo9jhbg.cloudfront.net"
-    #     },
-    #     {
-    #       name    = "*.vault.eu.jumpcloud.com",
-    #       ttl     = 1,
-    #       proxied = true,
-    #       type    = "CNAME",
-    #       value   = "d1iz1fyeo9jhbg.cloudfront.net"
-    #     },
+    {
+      name    = "vault.eu.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "d1l0uz48ej0js9.cloudfront.net"
+    },
+    {
+      name    = "*.vault.eu.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "d1l0uz48ej0js9.cloudfront.net"
+    },
     {
       name    = "_3afe2dbdfbe05a8d074067bb6ef7dfda.vault.eu.jumpcloud.com.",
       ttl     = 60,
