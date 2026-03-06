@@ -52,6 +52,7 @@ locals {
   vaultone_prd_use1_natgws      = "34.235.10.125/32 52.0.246.11/32 107.20.185.164/32"
   vaultone_prd02_euc1_natgws    = "18.199.25.0/32 3.125.68.115/32 3.76.171.84/32"
   vaultone_homolog_mulesoft_ips = "13.216.65.20/32 34.204.246.90/32 54.227.37.138/32 3.216.39.193/32 35.168.81.102/32 54.160.118.35/32 54.165.222.204/32 3.225.136.12/32"
+  vaultone_pentest_ips         = "50.34.38.206/32 216.71.114.64/32" #to be removed after pentest is complete
 
   vaultone_nonprod_allowed_ips = join(" ", [
     local.us_east_1_zscaler_ngws,
@@ -66,6 +67,7 @@ locals {
     local.vaultone_prd_use1_natgws,
     local.us_east_1_saleseng_ngw,
     local.vaultone_homolog_mulesoft_ips,
+    local.vaultone_pentest_ips
   ])
 
   add_ratelimit_rules = {
