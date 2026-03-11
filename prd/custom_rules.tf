@@ -288,7 +288,7 @@ locals {
       {
         action      = "block"
         description = "Allow ZScaler only for certain endpoints"
-        expression  = format("(http.host eq \"vault.eu.jumpcloud.com\" or http.host eq \"app.vault.eu.jumpcloud.com\" or http.host eq \"api.vault.eu.jumpcloud.com\") and not ip.src in {%s}", join(" ", [local.us_east_1_saleseng_ngw, local.prd02_euc1_c00_natgws, local.euc1_zscaler_natgws, local.vaultone_prd02_euc1_natgws]))
+        expression  = format("(http.host eq \"vault.eu.jumpcloud.com\" or http.host eq \"app.vault.eu.jumpcloud.com\" or http.host eq \"api.vault.eu.jumpcloud.com\") and not ip.src in {%s}", join(" ", [local.us_east_1_saleseng_ngw, local.prd02_euc1_c00_natgws, local.euc1_zscaler_natgws, local.vaultone_prd02_euc1_natgws, local.vaultone_homolog_mulesoft_ips]))
       },
     ]
   }
