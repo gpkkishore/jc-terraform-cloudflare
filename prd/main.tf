@@ -30,7 +30,7 @@ module "security" {
   zone_id                    = each.key
   additional_ratelimit_rules = lookup(local.add_ratelimit_rules, each.value.name, [])
   additional_waf_rules       = lookup(local.add_waf_rules, each.value.name, [])
-  skip_managed_rulesets      = contains(["vault.jumpcloud.com", "vault.eu.jumpcloud.com"], each.value.name)
+  skip_managed_rulesets      = contains(["vault.jumpcloud.com", "vault.eu.jumpcloud.com", "vault.in.jumpcloud.com"], each.value.name)
 }
 
 module "settings" {
@@ -129,6 +129,26 @@ resource "cloudflare_record" "vault_eu_records" {
 
 resource "cloudflare_total_tls" "vault_eu_jumpcloud_com" {
   zone_id               = cloudflare_zone.additional_zone["vault.eu.jumpcloud.com"].id
+  enabled               = true
+  certificate_authority = "lets_encrypt"
+}
+
+####################################################
+# vault.in.jumpcloud.com
+####################################################
+resource "cloudflare_record" "vault_in_records" {
+  for_each = { for record in local.vault_in_records : "${record.type}_${record.name}_${record.value}" => record }
+  name     = each.value.name
+  value    = each.value.value
+  ttl      = each.value.ttl
+  type     = each.value.type
+  proxied  = each.value.proxied
+  priority = each.value.type == "MX" ? each.value.priority : null
+  zone_id  = cloudflare_zone.additional_zone["vault.in.jumpcloud.com"].id
+}
+
+resource "cloudflare_total_tls" "vault_in_jumpcloud_com" {
+  zone_id               = cloudflare_zone.additional_zone["vault.in.jumpcloud.com"].id
   enabled               = true
   certificate_authority = "lets_encrypt"
 }

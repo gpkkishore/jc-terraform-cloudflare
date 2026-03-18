@@ -4,6 +4,8 @@ locals {
   prd_use1_natgws       = join(" ", data.aws_ec2_managed_prefix_list.prd_use1_natgws.entries[*].cidr)
   euc1_zscaler_natgws   = join(" ", data.aws_ec2_managed_prefix_list.euc1_zscaler_natgws.entries[*].cidr)
   prd02_euc1_c00_natgws = join(" ", data.aws_ec2_managed_prefix_list.prd02_euc1_c00_natgws.entries[*].cidr)
+  aps1_zscaler_natgws   = join(" ", data.aws_ec2_managed_prefix_list.aps1_zscaler_natgws.entries[*].cidr)
+  prd03_aps1_c00_natgws = join(" ", data.aws_ec2_managed_prefix_list.prd03_aps1_c00_natgws.entries[*].cidr)
 
   us_east_1_zscaler_ngws = "52.73.14.42/32 3.219.213.81/32 44.216.132.195/32"
   us_west_2_zscaler_ngws = "35.161.74.70/32 54.245.68.23/32 52.43.62.126/32"
@@ -51,8 +53,9 @@ locals {
   vaultone_homolog_use1_natgws  = "44.205.147.222/32 3.221.141.250/32 34.199.245.208/32"
   vaultone_prd_use1_natgws      = "34.235.10.125/32 52.0.246.11/32 107.20.185.164/32"
   vaultone_prd02_euc1_natgws    = "18.199.25.0/32 3.125.68.115/32 3.76.171.84/32"
+  vaultone_prd03_aps1_natgws    = "13.235.35.129/32 13.126.24.49/32 3.111.201.28/32"
   vaultone_homolog_mulesoft_ips = "13.216.65.20/32 34.204.246.90/32 54.227.37.138/32 3.216.39.193/32 35.168.81.102/32 54.160.118.35/32 54.165.222.204/32 3.225.136.12/32"
-  vaultone_pentest_ips         = "50.34.38.206/32 216.71.114.64/32" #to be removed after pentest is complete
+  vaultone_pentest_ips          = "50.34.38.206/32 216.71.114.64/32" #to be removed after pentest is complete
 
   vaultone_nonprod_allowed_ips = join(" ", [
     local.us_east_1_zscaler_ngws,
@@ -291,6 +294,23 @@ locals {
         expression  = format("(http.host eq \"vault.eu.jumpcloud.com\" or http.host eq \"app.vault.eu.jumpcloud.com\" or http.host eq \"api.vault.eu.jumpcloud.com\") and not ip.src in {%s}", join(" ", [local.us_east_1_saleseng_ngw, local.prd02_euc1_c00_natgws, local.euc1_zscaler_natgws, local.vaultone_prd02_euc1_natgws, local.vaultone_homolog_mulesoft_ips]))
       },
     ]
+    "vault.in.jumpcloud.com" = [
+      {
+        action      = "skip"
+        description = "Allow vault.in.jumpcloud assets (404 page, etc.)"
+        expression  = "(http.host eq \"vault.in.jumpcloud.com\" and starts_with(http.request.uri.path, \"/assets\"))"
+      },
+      {
+        action      = "block"
+        description = "Blocking Abuse IP's"
+        expression  = "(ip.src in {183.83.227.182 183.83.226.136 144.91.66.213} and http.host contains \"jumpcloud.com\")"
+      },
+      {
+        action      = "block"
+        description = "Allow ZScaler only for certain endpoints"
+        expression  = format("(http.host eq \"vault.in.jumpcloud.com\" or http.host eq \"app.vault.in.jumpcloud.com\" or http.host eq \"api.vault.in.jumpcloud.com\") and not ip.src in {%s}", join(" ", [local.us_east_1_saleseng_ngw, local.prd03_aps1_c00_natgws, local.aps1_zscaler_natgws, local.vaultone_prd03_aps1_natgws, local.vaultone_homolog_mulesoft_ips]))
+      },
+    ]
   }
 }
 
@@ -308,4 +328,12 @@ data "aws_ec2_managed_prefix_list" "euc1_zscaler_natgws" {
 
 data "aws_ec2_managed_prefix_list" "prd02_euc1_c00_natgws" {
   name = "prd02-euc1-c00-natgws"
+}
+
+data "aws_ec2_managed_prefix_list" "aps1_zscaler_natgws" {
+  name = "aps1-zscaler-natgws"
+}
+
+data "aws_ec2_managed_prefix_list" "prd03_aps1_c00_natgws" {
+  name = "prd03-aps1-c00-natgws"
 }
