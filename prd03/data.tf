@@ -456,7 +456,7 @@ locals {
     {
       name    = "vault"
       ttl     = 300
-      content = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
+      content = ["anita.ns.cloudflare.com.", "weston.ns.cloudflare.com."]
     },
   ]
   # Uncomment and populate once Route53 zones exist:
