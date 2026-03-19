@@ -452,7 +452,13 @@ locals {
    * TODO: Update with actual NS values after Route53 hosted zones for ldap.prd03.jumpcloud.com and
    * ldap-mfa.prd03.jumpcloud.com are created (by the infra-layers edge deployment).
    */
-  prd03_ns_delegation_records = []
+  prd03_ns_delegation_records = [
+    {
+      name    = "vault"
+      ttl     = 300
+      content = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
+    },
+  ]
   # Uncomment and populate once Route53 zones exist:
   # prd03_ns_delegation_records = [
   #   {
