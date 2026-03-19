@@ -1154,6 +1154,13 @@ locals {
       value   = "lmsyeso18yxkei5yaq1a65h7izi1skr86.lb1.wl.lmspowered.com"
     },
     {
+      name    = "partners",
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "jumpcloud.partner-experience.com"
+    },
+    {
       name    = "zb14758130",
       proxied = false
       ttl     = 1
