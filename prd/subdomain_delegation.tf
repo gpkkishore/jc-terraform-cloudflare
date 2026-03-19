@@ -12,6 +12,11 @@ locals {
       value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
     },
     {
+      name  = "vault.in"
+      ttl   = 300
+      value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
+    },
+    {
       name  = "id"
       ttl   = 300
       value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]

@@ -12,6 +12,7 @@ locals {
     "stackidentity.com",
     "vault.jumpcloud.com",
     "vault.eu.jumpcloud.com",
+    "vault.in.jumpcloud.com",
   ], local.resmo_zones[*].name)
 
   ###########################################
@@ -508,6 +509,109 @@ locals {
       proxied = false,
       type    = "CNAME",
       value   = "_0c99d46c624a7c714394f5537bb7ae47.jkddzztszm.acm-validations.aws."
+    },
+  ]
+
+  vault_in_records = [
+    # Prd03 environment
+    {
+      name    = "connect.vault.in.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-890.awsdns-47.net."
+    },
+    {
+      name    = "connect.vault.in.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-196.awsdns-24.com."
+    },
+    {
+      name    = "connect.vault.in.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-1081.awsdns-07.org."
+    },
+    {
+      name    = "connect.vault.in.jumpcloud.com",
+      ttl     = 300,
+      proxied = false,
+      type    = "NS",
+      value   = "ns-1612.awsdns-09.co.uk."
+    },
+    {
+      name    = "grpc.vault.in.jumpcloud.com",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "internal-vaultone-prd03-grpc-internal-763405070.ap-south-1.elb.amazonaws.com"
+    },
+    {
+      name    = "*.app.vault.in.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
+    },
+    {
+      name    = "*.api.vault.in.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
+    },
+    {
+      name    = "app.vault.in.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
+    },
+    {
+      name    = "api.vault.in.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
+    },
+    # TODO: update the values once the acm certs are validated
+    #     {
+    #       name    = "@",
+    #       ttl     = 1,
+    #       proxied = true,
+    #       type    = "CNAME",
+    #       value   = "d1l0uz48ej0js9.cloudfront.net"
+    #     },
+    #     {
+    #       name    = "*.vault.in.jumpcloud.com",
+    #       ttl     = 1,
+    #       proxied = true,
+    #       type    = "CNAME",
+    #       value   = "d1l0uz48ej0js9.cloudfront.net"
+    #     },
+    {
+      name    = "_de36f8e8d840dd449aa669abe493e7a0.vault.in.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_1b43242fe9b1b378f0080d81a59ff8d2.jkddzztszm.acm-validations.aws."
+    },
+    {
+      name    = "_c41736bfc1e23b0d8fec5d53c25e272d.api.vault.in.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_fdf1192de86a2ad7ca8cd31e43c11832.jkddzztszm.acm-validations.aws."
+    },
+    {
+      name    = "_925269e08a6490dc1ef143896ebdec9b.app.vault.in.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_ca94baadf6046fffe40b1ad6362d085e.jkddzztszm.acm-validations.aws."
     },
   ]
 
