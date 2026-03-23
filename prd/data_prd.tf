@@ -1154,6 +1154,13 @@ locals {
       value   = "lmsyeso18yxkei5yaq1a65h7izi1skr86.lb1.wl.lmspowered.com"
     },
     {
+      name    = "partners",
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "jumpcloud.partner-experience.com"
+    },
+    {
       name    = "zb14758130",
       proxied = false
       ttl     = 1
@@ -1736,6 +1743,13 @@ locals {
       ttl     = 300
       type    = "TXT"
       value   = "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCC7AFqc+rf9Wuw58oNK9KSVhUE2pDjheFtxX3u2ERVmUlVKajAL+Se31KBkdCKoyJffY+t8aYSOqL0bH5lnZdcE2XLlyGddss8h+eWf3gA/9LkXR6P31ueCpjEKzw30xKucEwPDPeJ+Ev2qBNASmrNZb51BXAl6d4YNBMOK1Dy9QIDAQAB"
+    },
+    {
+      name    = "scph1125._domainkey.partners.jumpcloud.com"
+      proxied = false
+      ttl     = 300
+      type    = "TXT"
+      value   = "v=DKIM1; k=rsa; h=sha256; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwDWmibxMkChOTrw0iLot8iD84fzklvlbt6wuQW+XB3Q+UO4QGjPyhmQc3/GkLPnpFjJqv+JD0ICwOdPBdr8DgLwyoKjBGGfB+1uFf/4KFX4PpU0IPU+aYhtLEGx/36jZkC6v4S7+G2coKv66eocteV9MbJEQ+ZVjmoWzaL8u/QZSffLbPspt8Xm2R5pKG3bGiczSftxz18M6oidYPi1c1unHMTxRFMCF4+7cGg9BPZ0Xo5eQepQ8zWhFpHBSajQcFoahQTsc14pq81NjBNPI5coRJcWinUp/TMZYlBBdv20j6C63eTVx51Mylp62v6V6tFTSHpBxVjcyqm3TdY5IgQIDAQAB"
     },
     {
       name    = "@"
