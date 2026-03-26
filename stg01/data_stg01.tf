@@ -322,14 +322,14 @@ locals {
     },
     {
       name    = "polaris-console"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       content = "polaris-console.stg01-use2.jcplatform.dev"
     },
     {
       name    = "*.polaris-console"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       content = "polaris-console.stg01-use2.jcplatform.dev"
