@@ -70,6 +70,13 @@ locals {
       value   = "vaultone-dev-shared-public-alb-545851518.us-west-2.elb.amazonaws.com"
     },
     {
+      name    = "*.ws.dev.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-dev-shared-public-alb-545851518.us-west-2.elb.amazonaws.com"
+    },
+    {
       name    = "app.dev.vault.jumpcloud.com",
       ttl     = 1,
       proxied = true,
@@ -78,6 +85,13 @@ locals {
     },
     {
       name    = "api.dev.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-dev-shared-public-alb-545851518.us-west-2.elb.amazonaws.com"
+    },
+    {
+      name    = "ws.dev.vault.jumpcloud.com",
       ttl     = 1,
       proxied = true,
       type    = "CNAME",
@@ -162,6 +176,13 @@ locals {
       value   = "vaultone-stg-shared-public-alb-1164184271.us-west-2.elb.amazonaws.com"
     },
     {
+      name    = "*.ws.stg.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-stg-shared-public-alb-1164184271.us-west-2.elb.amazonaws.com"
+    },
+    {
       name    = "app.stg.vault.jumpcloud.com",
       ttl     = 1,
       proxied = true,
@@ -170,6 +191,13 @@ locals {
     },
     {
       name    = "api.stg.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-stg-shared-public-alb-1164184271.us-west-2.elb.amazonaws.com"
+    },
+    {
+      name    = "ws.stg.vault.jumpcloud.com",
       ttl     = 1,
       proxied = true,
       type    = "CNAME",
@@ -261,6 +289,13 @@ locals {
       value   = "vaultone-homolog-alb-2078342682.us-east-1.elb.amazonaws.com"
     },
     {
+      name    = "*.ws.homolog.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-homolog-alb-2078342682.us-east-1.elb.amazonaws.com"
+    },
+    {
       name    = "app.homolog.vault.jumpcloud.com",
       ttl     = 1,
       proxied = true,
@@ -269,6 +304,13 @@ locals {
     },
     {
       name    = "api.homolog.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-homolog-alb-2078342682.us-east-1.elb.amazonaws.com"
+    },
+    {
+      name    = "ws.homolog.vault.jumpcloud.com",
       ttl     = 1,
       proxied = true,
       type    = "CNAME",
@@ -360,6 +402,13 @@ locals {
       value   = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
     },
     {
+      name    = "*.ws.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
+    },
+    {
       name    = "app.vault.jumpcloud.com",
       ttl     = 1,
       proxied = true,
@@ -368,6 +417,13 @@ locals {
     },
     {
       name    = "api.vault.jumpcloud.com",
+      ttl     = 1,
+      proxied = true,
+      type    = "CNAME",
+      value   = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
+    },
+    {
+      name    = "ws.vault.jumpcloud.com",
       ttl     = 1,
       proxied = true,
       type    = "CNAME",
