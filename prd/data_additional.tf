@@ -132,6 +132,13 @@ locals {
       type    = "CNAME",
       value   = "_a7f0ad4c1052eb75a9b3c2c8d5889b46.xlfgrmvvlj.acm-validations.aws."
     },
+    {
+      name    = "_238cf60eaffedeca6c2687f102c64be0.ws.dev.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_c9632f8dd199801c6e631a55a568c2ae.jkddzztszm.acm-validations.aws."
+    },
     # Staging environment
     {
       name    = "connect.stg.vault.jumpcloud.com",
