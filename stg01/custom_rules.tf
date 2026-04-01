@@ -15,6 +15,7 @@ locals {
     "go.stg01.jumpcloud.com",
     "password-manager.stg01.jumpcloud.com",
     "polaris.stg01.jumpcloud.com",
+    "polaris-internal.stg01.jumpcloud.com",
     "polaris-console.stg01.jumpcloud.com",
     "saas.stg01.jumpcloud.com",
     "ssf.stg01.jumpcloud.com",
@@ -38,6 +39,7 @@ locals {
     "*.go.stg01.jumpcloud.com",
     "*.password-manager.stg01.jumpcloud.com",
     "*.polaris.stg01.jumpcloud.com",
+    "*.polaris-internal.stg01.jumpcloud.com",
     "*.polaris-console.stg01.jumpcloud.com",
     "*.saas.stg01.jumpcloud.com",
     "*.ssf.stg01.jumpcloud.com",
@@ -251,6 +253,11 @@ locals {
       action      = "skip"
       description = "Allow Slack Stg"
       expression  = format("(http.host eq \"slack.stg01.jumpcloud.com\" and http.request.uri.path eq \"/api/slack/events\")")
+    },
+    {
+      action      = "skip"
+      description = "Allow Polaris-internal"
+      expression  = format("(http.host eq \"polaris-internal.stg01.jumpcloud.com\" and http.request.uri.path eq \"/api/catalog/v1/oauth/tokens\")")
     },
     {
       action      = "block"
