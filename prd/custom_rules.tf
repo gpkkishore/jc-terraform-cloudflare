@@ -73,6 +73,22 @@ locals {
     local.vaultone_pentest_ips
   ])
 
+  vaultone_vault_eu_allowed_ips = join(" ", [
+    local.us_east_1_saleseng_ngw,
+    local.prd02_euc1_c00_natgws,
+    local.euc1_zscaler_natgws,
+    local.vaultone_prd02_euc1_natgws,
+    local.vaultone_homolog_mulesoft_ips,
+  ])
+
+  vaultone_vault_in_allowed_ips = join(" ", [
+    local.us_east_1_saleseng_ngw,
+    local.prd03_aps1_c00_natgws,
+    local.aps1_zscaler_natgws,
+    local.vaultone_prd03_aps1_natgws,
+    local.vaultone_homolog_mulesoft_ips,
+  ])
+
   add_ratelimit_rules = {
     "jumpcloud.com" = [
       {
@@ -269,7 +285,7 @@ locals {
       {
         action      = "block"
         description = "Allow ZScaler only in non-prod environments"
-        expression  = "((http.host eq \"dev.vault.jumpcloud.com\" or http.host contains \"dev.vault.jumpcloud.com\") or (http.host eq \"stg.vault.jumpcloud.com\" or http.host contains \"stg.vault.jumpcloud.com\") or (http.host eq \"homolog.vault.jumpcloud.com\" or http.host contains \"homolog.vault.jumpcloud.com\") or (http.host eq \"vault.jumpcloud.com\" or http.host eq \"api.vault.jumpcloud.com\" or http.host eq \"app.vault.jumpcloud.com\")) and not ip.src in {${local.vaultone_nonprod_allowed_ips}}"
+        expression  = format("((http.host eq \"dev.vault.jumpcloud.com\" or http.host contains \"dev.vault.jumpcloud.com\" or http.host eq \"ws.dev.vault.jumpcloud.com\" or http.host contains \".ws.dev.vault.jumpcloud.com\") or (http.host eq \"stg.vault.jumpcloud.com\" or http.host contains \"stg.vault.jumpcloud.com\" or http.host eq \"ws.stg.vault.jumpcloud.com\" or http.host contains \".ws.stg.vault.jumpcloud.com\") or (http.host eq \"homolog.vault.jumpcloud.com\" or http.host contains \"homolog.vault.jumpcloud.com\" or http.host eq \"ws.homolog.vault.jumpcloud.com\" or http.host contains \".ws.homolog.vault.jumpcloud.com\") or (http.host eq \"vault.jumpcloud.com\" or http.host eq \"api.vault.jumpcloud.com\" or http.host eq \"app.vault.jumpcloud.com\" or http.host eq \"ws.vault.jumpcloud.com\" or http.host contains \".ws.vault.jumpcloud.com\")) and not ip.src in {%s}", local.vaultone_nonprod_allowed_ips)
       },
       {
         action      = "block"
@@ -291,7 +307,7 @@ locals {
       {
         action      = "block"
         description = "Allow ZScaler only for certain endpoints"
-        expression  = format("(http.host eq \"vault.eu.jumpcloud.com\" or http.host eq \"app.vault.eu.jumpcloud.com\" or http.host eq \"api.vault.eu.jumpcloud.com\") and not ip.src in {%s}", join(" ", [local.us_east_1_saleseng_ngw, local.prd02_euc1_c00_natgws, local.euc1_zscaler_natgws, local.vaultone_prd02_euc1_natgws, local.vaultone_homolog_mulesoft_ips]))
+        expression  = format("(http.host eq \"vault.eu.jumpcloud.com\" or http.host eq \"app.vault.eu.jumpcloud.com\" or http.host eq \"api.vault.eu.jumpcloud.com\" or http.host eq \"ws.vault.eu.jumpcloud.com\" or http.host contains \".ws.vault.eu.jumpcloud.com\") and not ip.src in {%s}", local.vaultone_vault_eu_allowed_ips)
       },
     ]
     "vault.in.jumpcloud.com" = [
@@ -308,7 +324,7 @@ locals {
       {
         action      = "block"
         description = "Allow ZScaler only for certain endpoints"
-        expression  = format("(http.host eq \"vault.in.jumpcloud.com\" or http.host eq \"app.vault.in.jumpcloud.com\" or http.host eq \"api.vault.in.jumpcloud.com\") and not ip.src in {%s}", join(" ", [local.us_east_1_saleseng_ngw, local.prd03_aps1_c00_natgws, local.aps1_zscaler_natgws, local.vaultone_prd03_aps1_natgws, local.vaultone_homolog_mulesoft_ips]))
+        expression  = format("(http.host eq \"vault.in.jumpcloud.com\" or http.host eq \"app.vault.in.jumpcloud.com\" or http.host eq \"api.vault.in.jumpcloud.com\" or http.host eq \"ws.vault.in.jumpcloud.com\" or http.host contains \".ws.vault.in.jumpcloud.com\") and not ip.src in {%s}", local.vaultone_vault_in_allowed_ips)
       },
     ]
   }
