@@ -257,7 +257,7 @@ locals {
     {
       action      = "skip"
       description = "Allow Polaris-internal"
-      expression  = format("(http.host eq \"polaris-internal.stg01.jumpcloud.com\" and http.request.uri.path eq \"/api/catalog/v1/oauth/tokens\")")
+      expression  = format("(http.host eq \"polaris-internal.stg01.jumpcloud.com\")")
     },
     {
       action      = "block"
