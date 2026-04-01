@@ -335,6 +335,20 @@ locals {
       content = "polaris-console.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "polaris-internal"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      content = "polaris.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "*.polaris-internal"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      content = "polaris.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "scim.pwm"
       proxied = false
       ttl     = 1
