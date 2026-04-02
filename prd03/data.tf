@@ -458,20 +458,37 @@ locals {
       ttl     = 300
       content = ["anita.ns.cloudflare.com.", "weston.ns.cloudflare.com."]
     },
+    {
+      name = "radius"
+      ttl  = 300
+      content = [
+        "ns-1845.awsdns-38.co.uk.",
+        "ns-881.awsdns-46.net.",
+        "ns-125.awsdns-15.com.",
+        "ns-1392.awsdns-46.org."
+      ]
+    },
+    {
+      name = "ldap"
+      ttl  = 300
+      content = [
+        "ns-1217.awsdns-24.org.",
+        "ns-623.awsdns-13.net.",
+        "ns-241.awsdns-30.com.",
+        "ns-2036.awsdns-62.co.uk."
+      ]
+    },
+    {
+      name = "ldap-mfa"
+      ttl  = 300
+      content = [
+        "ns-896.awsdns-48.net.",
+        "ns-475.awsdns-59.com.",
+        "ns-1339.awsdns-39.org.",
+        "ns-1647.awsdns-13.co.uk."
+      ]
+    },
   ]
-  # Uncomment and populate once Route53 zones exist:
-  # prd03_ns_delegation_records = [
-  #   {
-  #     name    = "ldap"
-  #     ttl     = 300
-  #     content = ["ns-XXXX.awsdns-XX.co.uk.", "ns-XXXX.awsdns-XX.com.", "ns-XXXX.awsdns-XX.net.", "ns-XXXX.awsdns-XX.org."]
-  #   },
-  #   {
-  #     name    = "ldap-mfa"
-  #     ttl     = 300
-  #     content = ["ns-XXXX.awsdns-XX.org.", "ns-XXXX.awsdns-XX.co.uk.", "ns-XXXX.awsdns-XX.com.", "ns-XXXX.awsdns-XX.net."]
-  #   },
-  # ]
 
   /**
    * Custom Certificates for the prd03 environment
