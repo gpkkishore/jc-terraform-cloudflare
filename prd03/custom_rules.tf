@@ -33,7 +33,7 @@ locals {
       expression  = "(cf.waf.score lt 5)"
 
       ratelimit = {
-        characteristics     = ["cf.colo.id", "ip.src",]
+        characteristics     = ["cf.colo.id", "ip.src", ]
         counting_expression = "(http.response.code eq 521)"
         mitigation_timeout  = 600
         period              = 10
