@@ -336,14 +336,14 @@ locals {
     },
     {
       name    = "polaris-internal"
-      proxied = false
+      proxied = true
       ttl     = 1
       type    = "CNAME"
       content = "polaris.stg01-use2.jcplatform.dev"
     },
     {
       name    = "*.polaris-internal"
-      proxied = false
+      proxied = true
       ttl     = 1
       type    = "CNAME"
       content = "polaris.stg01-use2.jcplatform.dev"
