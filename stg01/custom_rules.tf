@@ -169,6 +169,20 @@ locals {
   ]
 
   add_ratelimit_rules = [
+    # Keep existing API rule first to preserve its state
+    {
+      action      = "block"
+      description = "API rate limiting at the Edge"
+      expression  = "(http.host in {\"saas.stg01.jumpcloud.com\"})"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 10
+        requests_per_period = 300
+        mitigation_timeout  = 10
+      }
+    },
     # OCSP Rate Limiting Rules
     # Phase 1: Block clearly malformed requests before backend processing
     {
@@ -224,19 +238,6 @@ locals {
         period              = 10
         requests_per_period = 500
         mitigation_timeout  = 60
-      }
-    },
-    {
-      action      = "block"
-      description = "API rate limiting at the Edge"
-      expression  = "(http.host in {\"saas.stg01.jumpcloud.com\"})"
-
-      ratelimit = {
-        characteristics     = ["cf.colo.id", "ip.src"]
-        counting_expression = null
-        period              = 10
-        requests_per_period = 300
-        mitigation_timeout  = 10
       }
     }
   ]
