@@ -178,6 +178,7 @@ locals {
 
       ratelimit = {
         characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
         period              = 60
         requests_per_period = 2
         mitigation_timeout  = 300
@@ -219,6 +220,7 @@ locals {
 
       ratelimit = {
         characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
         period              = 10
         requests_per_period = 500
         mitigation_timeout  = 60
@@ -231,6 +233,7 @@ locals {
 
       ratelimit = {
         characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
         period              = 10
         requests_per_period = 300
         mitigation_timeout  = 10
