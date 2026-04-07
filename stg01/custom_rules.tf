@@ -169,7 +169,7 @@ locals {
   ]
 
   add_ratelimit_rules = [
-    # OCSP Rate Limiting Rules (Hybrid Approach)
+    # OCSP Rate Limiting Rules
     # Phase 1: Block clearly malformed requests before backend processing
     {
       action      = "block"
