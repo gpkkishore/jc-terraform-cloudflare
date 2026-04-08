@@ -188,7 +188,7 @@ locals {
     {
       action      = "block"
       description = "OCSP - Block requests missing Content-Type header"
-      expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}}) and not http.request.headers[\"content-type\"]"
+      expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}}) and not any(lower(http.request.headers.names[*])[*] eq \"content-type\")"
 
       ratelimit = {
         characteristics     = ["cf.colo.id", "ip.src"]
