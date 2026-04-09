@@ -53,29 +53,29 @@ resource "cloudflare_record" "ds_cloudflare_zones_with_dnssec" {
 locals {
   route53_zones_with_dnssec = [
     {
-      name = "ldap.prd03.jumpcloud.com"
+      name = "ldap.in.jumpcloud.com"
       ns = {
         # original ns ttl is 172800
         ttl = 86400 # 1-day
       }
       soa = {
         # original soa ttl is 900
-        # original soa record is ns-1845.awsdns-38.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400
+        # original soa record is ns-1217.awsdns-24.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400
         ttl = 900
-        records = ["ns-1845.awsdns-38.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
+        records = ["ns-1217.awsdns-24.org. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
       }
     },
     {
-      name = "ldap-mfa.prd03.jumpcloud.com"
+      name = "ldap-mfa.in.jumpcloud.com"
       ns = {
         # original ns ttl is 172800
         ttl = 86400 # 1-day
       }
       soa = {
         # original soa ttl is 900
-        # original soa record is ns-889.awsdns-47.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400
+        # original soa record is ns-896.awsdns-48.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400
         ttl     = 900
-        records = ["ns-889.awsdns-47.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
+        records = ["ns-896.awsdns-48.net. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 3600"]
       }
     },
   ]
