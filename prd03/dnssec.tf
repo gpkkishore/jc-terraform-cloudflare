@@ -115,13 +115,13 @@ resource "aws_route53_record" "soa_zones_with_dnssec" {
 
 ##################################################################
 # Prepare DNSSEC for Route53 zones
-# trailing date (ie 08132024) indicates the date of KSK rotation
+# trailing date (ie 09042026) indicates the date of KSK rotation
 # as to not collide with original ksk resources during rotation
 # asymmetric elliptic curve KMS keys that are used in DNSSEC Signing
 # must be built in us-east-1.
 ##################################################################
 
-module "kms_elliptic_curve_for_zones_with_dnssec_08132024" {
+module "kms_elliptic_curve_for_zones_with_dnssec_09042026" {
   source = "git@github.com:TheJumpCloud/terraform-modules.git//infrastructure/kms/kms_key?ref=v11.1.2"
 
   providers = {
@@ -130,7 +130,7 @@ module "kms_elliptic_curve_for_zones_with_dnssec_08132024" {
 
   for_each = local.route53_zone_name_to_zone
 
-  name                                     = format("%s-for-dnssec-ksk-%s", replace(each.key, ".", "-"), "08042026")
+  name                                     = format("%s-for-dnssec-ksk-%s", replace(each.key, ".", "-"), "09042026")
   customer_master_key_spec                 = "ECC_NIST_P256"
   key_usage                                = "SIGN_VERIFY"
   enable_dnssec_policy_with_hosted_zone_id = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).id
@@ -139,17 +139,17 @@ module "kms_elliptic_curve_for_zones_with_dnssec_08132024" {
   tags                                     = { Environment = var.env }
 }
 
-resource "aws_route53_key_signing_key" "zones_with_dnssec_08132024" {
+resource "aws_route53_key_signing_key" "zones_with_dnssec_09042026" {
   for_each = local.route53_zone_name_to_zone
 
-  name                       = format("%s-%s", each.key, "08132024")
+  name                       = format("%s-%s", each.key, "09042026")
   hosted_zone_id             = lookup(data.aws_route53_zone.zones_with_dnssec, each.key).zone_id
-  key_management_service_arn = lookup(module.kms_elliptic_curve_for_zones_with_dnssec_08132024, each.key).arn
+  key_management_service_arn = lookup(module.kms_elliptic_curve_for_zones_with_dnssec_09042026, each.key).arn
   status                     = "ACTIVE"
 }
 
 # create DS record in the child zone relative to each route53 zone which verifies the related KSKs hosted zone's DNSKEY
-resource "cloudflare_record" "ds_route53_zones_with_dnssec_08132024" {
+resource "cloudflare_record" "ds_route53_zones_with_dnssec_09042026" {
   for_each = local.route53_zone_name_to_zone
 
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
@@ -157,10 +157,10 @@ resource "cloudflare_record" "ds_route53_zones_with_dnssec_08132024" {
   type    = "DS"
   proxied = false
   data {
-    algorithm   = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).signing_algorithm_type
-    digest      = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).digest_value
-    digest_type = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).digest_algorithm_type
-    key_tag     = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).key_tag
+    algorithm   = lookup(aws_route53_key_signing_key.zones_with_dnssec_09042026, each.key).signing_algorithm_type
+    digest      = lookup(aws_route53_key_signing_key.zones_with_dnssec_09042026, each.key).digest_value
+    digest_type = lookup(aws_route53_key_signing_key.zones_with_dnssec_09042026, each.key).digest_algorithm_type
+    key_tag     = lookup(aws_route53_key_signing_key.zones_with_dnssec_09042026, each.key).key_tag
   }
 
   depends_on = [aws_route53_hosted_zone_dnssec.zones_with_dnssec]
@@ -169,5 +169,5 @@ resource "cloudflare_record" "ds_route53_zones_with_dnssec_08132024" {
 resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec" {
   for_each = local.route53_zone_name_to_zone
 
-  hosted_zone_id = lookup(aws_route53_key_signing_key.zones_with_dnssec_08132024, each.key).hosted_zone_id
+  hosted_zone_id = lookup(aws_route53_key_signing_key.zones_with_dnssec_09042026, each.key).hosted_zone_id
 }
