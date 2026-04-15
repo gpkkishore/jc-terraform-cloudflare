@@ -432,7 +432,14 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "identity.prd03-aps1.jcplatform.dev"
-    }
+    },
+    {
+      name    = "ocsp"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "ocsp.prd03-aps1.jcplatform.dev"
+    },
   ]
 
   /**

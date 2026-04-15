@@ -1291,6 +1291,13 @@ locals {
       type    = "CNAME"
       value   = "saas.prd-use1.jcplatform.dev" // Reuse Saas for now until we change dns to standard-api
     },
+    {
+      name    = "ocsp"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "ocsp.prd-use1.jcplatform.dev"
+    },
     // START ROCKETLANE
     {
       name    = "_1ed3637f5a8544a903875ba040c764c7.professionalservices"
@@ -2271,7 +2278,7 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "identity.prd02-euc1.jcplatform.dev"
-    }
+    },
   ]
 
   # Aggregate all the prd DNS records

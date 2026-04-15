@@ -447,6 +447,13 @@ locals {
     #   type    = "CNAME"
     #   content = "slack.stg01-use2.jcplatform.dev"
     # }
+    {
+      name    = "ocsp"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "ocsp.stg01-use2.jcplatform.dev"
+    },
   ]
 
   stg01_misc_records = []
