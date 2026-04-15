@@ -324,6 +324,14 @@ locals {
       type    = "A"
       value   = "34.111.179.208"
     },
+    // agent0 - GCP Load Balancer 
+    {
+      name    = "ai",
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      value   = "35.241.16.49"
+    },
   ]
 
   prd_mx_records = [

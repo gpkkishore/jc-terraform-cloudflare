@@ -41,13 +41,12 @@ locals {
     "52.73.252.191",
   ])
 
-  # Only using dev p03 for now -- plan to migrate to proper VaultOne Dev environment post-launch
-  dev_usw2_p03_ngws = "54.185.177.193/32 54.200.253.15/32 35.95.228.211/32"
 
   cicd_usw2_self_hosted_ngws = "44.239.135.146/32 54.69.255.145/32 44.235.245.14/32"
 
-  dev_usw2_p02_ngws = "54.185.216.161/32 54.70.45.159/32 44.241.153.15/32"
-  dev_euc1_p04_ngws = "18.153.233.242/32 3.121.182.189/32 3.76.93.225/32"
+  dev_usw2_ngws = join(" ", [for gw in data.aws_nat_gateway.dev-usw2-eks-nat-gw : "${gw.public_ip}/32"])
+  dev_euc1_ngws = join(" ", [for gw in data.aws_nat_gateway.dev-euc1-eks-nat-gw : "${gw.public_ip}/32"])
+  dev_aps1_ngws = join(" ", [for gw in data.aws_nat_gateway.dev-aps1-eks-nat-gw : "${gw.public_ip}/32"])
 
   vaultone_stg_usw2_natgws      = "44.226.5.239/32 54.71.114.137/32 100.20.42.195/32"
   vaultone_homolog_use1_natgws  = "44.205.147.222/32 3.221.141.250/32 34.199.245.208/32"
@@ -60,9 +59,9 @@ locals {
   vaultone_nonprod_allowed_ips = join(" ", [
     local.us_east_1_zscaler_ngws,
     local.us_west_2_zscaler_ngws,
-    local.dev_usw2_p03_ngws,
-    local.dev_usw2_p02_ngws,
-    local.dev_euc1_p04_ngws,
+    local.dev_usw2_ngws,
+    local.dev_euc1_ngws,
+    local.dev_aps1_ngws,
     local.vaultone_stg_usw2_natgws,
     local.stg01_use2_natgws,
     local.prd_use1_natgws,
