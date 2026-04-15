@@ -24,6 +24,7 @@ locals {
     "*.prd02.stg01.jumpcloud.com",
     "mcp.stg01.jumpcloud.com",
     "slack.stg01.jumpcloud.com",
+    "ai.stg01.jumpcloud.com",
     "*.jumpdesk.stg01.jumpcloud.com",
     "*.catalog.stg01.jumpcloud.com",
     "*.console.stg01.jumpcloud.com",
