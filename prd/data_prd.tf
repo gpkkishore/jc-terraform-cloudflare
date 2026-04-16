@@ -324,6 +324,14 @@ locals {
       type    = "A"
       value   = "34.111.179.208"
     },
+    // agent0 - GCP Load Balancer 
+    {
+      name    = "ai",
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      value   = "35.241.16.49"
+    },
   ]
 
   prd_mx_records = [
@@ -1282,6 +1290,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "saas.prd-use1.jcplatform.dev" // Reuse Saas for now until we change dns to standard-api
+    },
+    {
+      name    = "ocsp"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "ocsp.prd-use1.jcplatform.dev"
     },
     // START ROCKETLANE
     {
@@ -2263,7 +2278,7 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "identity.prd02-euc1.jcplatform.dev"
-    }
+    },
   ]
 
   # Aggregate all the prd DNS records
