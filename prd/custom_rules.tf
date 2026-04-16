@@ -259,7 +259,7 @@ locals {
       {
         action      = "managed_challenge"
         description = "Blocking Pentest Paths"
-        expression  = "(http.host in {\"jumpcloud.com\" \"saas.jumpcloud.com\" \"eu.jumpcloud.com\" \"saas.eu.jumpcloud.com\"} and http.request.uri.path in {\"/wp-login.php\" \"/wp-admin/index.php\"})"
+        expression  = "(http.host in {\"jumpcloud.com\" \"saas.jumpcloud.com\" \"saas.eu.jumpcloud.com\"} and http.request.uri.path in {\"/wp-login.php\" \"/wp-admin/index.php\"})"
       }
     ]
     "id.jumpcloud.com" = [
