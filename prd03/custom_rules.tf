@@ -57,7 +57,7 @@ locals {
     {
       action      = "managed_challenge"
       description = "Challenge Excessive 404s (Scanners)"
-      expression  = "(not cf.bot_management.verified_bot) and (http.host ne \"mcp.jumpcloud.com\") and (not http.host contains \"mdm\") and (not http.user_agent contains \"hubd\") and (http.host eq \"in.jumpcloud.com\" or ends_with(http.host, \".in.jumpcloud.com\"))"
+      expression  = "(not cf.bot_management.verified_bot) and (http.host ne \"mcp.in.jumpcloud.com\") and (not http.host contains \"mdm\") and (not http.user_agent contains \"hubd\")"
 
       ratelimit = {
         characteristics     = ["ip.src"]
@@ -88,7 +88,7 @@ locals {
     {
       action      = "managed_challenge"
       description = "Blocking Pentest Paths"
-      expression  = "(http.host in {\"in.jumpcloud.com\" \"saas.in.jumpcloud.com\"} and http.request.uri.path in {\"/wp-login.php\" \"/wp-admin/index.php\"})"
+      expression  = "(http.host in {\"saas.in.jumpcloud.com\"} and http.request.uri.path in {\"/wp-login.php\" \"/wp-admin/index.php\"})"
     },
   ]
 }
