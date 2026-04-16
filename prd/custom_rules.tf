@@ -188,6 +188,32 @@ locals {
           requests_per_period = 300
           mitigation_timeout  = 10
         }
+      },
+      {
+        action      = "managed_challenge"
+        description = "Rate Limit Login Attempts"
+        expression  = "(http.host in {\"console.jumpcloud.com\" \"console.eu.jumpcloud.com\"} and http.request.uri.path eq \"/login\")"
+
+        ratelimit = {
+          counting_expression = null
+          characteristics     = ["ip.src"]
+          period              = 60
+          requests_per_period = 10
+          mitigation_timeout  = 600
+        }
+      },
+      {
+        action      = "managed_challenge"
+        description = "Challenge Excessive 404s (Scanners)"
+        expression  = "(not cf.bot_management.verified_bot) and (http.host ne \"mcp.jumpcloud.com\") and (not http.host contains \"mdm\") and (not http.user_agent contains \"hubd\")"
+
+        ratelimit = {
+          characteristics     = ["ip.src"]
+          counting_expression = "(http.response.code eq 404)"
+          period              = 60
+          requests_per_period = 20
+          mitigation_timeout  = 600
+        }
       }
     ]
   }
@@ -229,6 +255,11 @@ locals {
         action      = "block"
         description = "Blocking Abuse IP's"
         expression  = "(ip.src in {183.83.227.182 183.83.226.136 144.91.66.213 80.94.93.220 136.0.213.5 172.239.50.62 134.199.209.82 2600:3c06:0:0:2000:9fff:feb2:5f63} and http.host contains \"jumpcloud.com\")"
+      },
+      {
+        action      = "managed_challenge"
+        description = "Blocking Pentest Paths"
+        expression  = "(http.host in {\"jumpcloud.com\" \"saas.jumpcloud.com\" \"eu.jumpcloud.com\" \"saas.eu.jumpcloud.com\"} and http.request.uri.path in {\"/wp-login.php\" \"/wp-admin/index.php\"})"
       }
     ]
     "id.jumpcloud.com" = [

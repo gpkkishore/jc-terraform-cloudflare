@@ -40,6 +40,32 @@ locals {
         requests_per_period = 100
         requests_to_origin  = false
       },
+    },
+    {
+      action      = "managed_challenge"
+      description = "Rate Limit Login Attempts"
+      expression  = "(http.host eq \"console.in.jumpcloud.com\" and http.request.uri.path eq \"/login\")"
+
+      ratelimit = {
+        counting_expression = null
+        characteristics     = ["ip.src"]
+        period              = 60
+        requests_per_period = 10
+        mitigation_timeout  = 600
+      }
+    },
+    {
+      action      = "managed_challenge"
+      description = "Challenge Excessive 404s (Scanners)"
+      expression  = "(not cf.bot_management.verified_bot) and (http.host ne \"mcp.jumpcloud.com\") and (not http.host contains \"mdm\") and (not http.user_agent contains \"hubd\") and (http.host eq \"in.jumpcloud.com\" or ends_with(http.host, \".in.jumpcloud.com\"))"
+
+      ratelimit = {
+        characteristics     = ["ip.src"]
+        counting_expression = "(http.response.code eq 404)"
+        period              = 60
+        requests_per_period = 20
+        mitigation_timeout  = 600
+      }
     }
   ]
 
@@ -58,6 +84,11 @@ locals {
       action      = "block"
       description = "Allow ZScaler only - IN"
       expression  = "(http.host in {\"jumpdesk.in.jumpcloud.com\"} and not ip.src in {54.187.222.118 54.218.209.46 35.165.242.218 54.86.134.208 54.86.96.53 54.86.131.111 52.70.132.28 52.43.62.126 54.245.68.23 35.161.74.70 52.73.14.42 3.219.213.81 44.216.132.195 13.235.236.32})"
+    },
+    {
+      action      = "managed_challenge"
+      description = "Blocking Pentest Paths"
+      expression  = "(http.host in {\"in.jumpcloud.com\" \"saas.in.jumpcloud.com\"} and http.request.uri.path in {\"/wp-login.php\" \"/wp-admin/index.php\"})"
     },
   ]
 }
