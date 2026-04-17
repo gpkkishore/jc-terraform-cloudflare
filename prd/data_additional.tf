@@ -245,6 +245,13 @@ locals {
       type    = "CNAME",
       value   = "_030a77ddc76e99a65c51294b9f04ebad.xlfgrmvvlj.acm-validations.aws."
     },
+    {
+      name    = "_0741b47f51307e909ddf8c3a2ecc41b8.ws.stg.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_2875da64c64a6142372d0d48d5d1aebd.jkddzztszm.acm-validations.aws."
+    },
     # Homolog environment
     {
       name    = "connect.homolog.vault.jumpcloud.com",
@@ -357,6 +364,13 @@ locals {
       proxied = false,
       type    = "CNAME",
       value   = "_336b6d11494b2ef7eea10bd0f146ed6a.xlfgrmvvlj.acm-validations.aws."
+    },
+    {
+      name    = "_3e2a091988619709cd5a3e2871a7def0.ws.homolog.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_3097479a3836887d94a02617756122c5.jkddzztszm.acm-validations.aws."
     },
     # Prod environment
     {
