@@ -485,6 +485,13 @@ locals {
       type    = "CNAME",
       value   = "_b025dcb084aabe277bed32548caf0c59.xlfgrmvvlj.acm-validations.aws."
     },
+    {
+      name    = "_bc7f85feb546673a5cbe549ae36e4062.ws.vault.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_496f09afc1b5695ae2193382480b2016.jkddzztszm.acm-validations.aws."
+    },
   ]
 
   vault_eu_records = [
