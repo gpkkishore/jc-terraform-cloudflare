@@ -40,6 +40,13 @@ locals {
       type    = "CNAME"
       content = "adbridge-kickstart.stg01-use2.jcplatform.dev"
     },
+    {
+      name    = "ai"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "ai.stg01-use2.jcplatform.dev"
+    },
     # {
     #   name    = "api"
     #   proxied = true
@@ -335,6 +342,20 @@ locals {
       content = "polaris-console.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "polaris-internal"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "polaris.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "*.polaris-internal"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "polaris.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "scim.pwm"
       proxied = false
       ttl     = 1
@@ -426,6 +447,13 @@ locals {
     #   type    = "CNAME"
     #   content = "slack.stg01-use2.jcplatform.dev"
     # }
+    {
+      name    = "ocsp"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "ocsp.stg01-use2.jcplatform.dev"
+    },
   ]
 
   stg01_misc_records = []

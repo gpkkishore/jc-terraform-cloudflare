@@ -57,8 +57,8 @@ locals {
       value = ["marvin.ns.cloudflare.com", "wanda.ns.cloudflare.com"]
     },
     {
-      name = "trust"
-      ttl  = 300
+      name  = "trust"
+      ttl   = 300
       value = ["ns-1069.awsdns-05.org", "ns-692.awsdns-22.net", "ns-1915.awsdns-47.co.uk", "ns-199.awsdns-24.com"]
     }
   ]
@@ -89,7 +89,7 @@ resource "aws_route53_record" "jc_internal_zone" {
 resource "aws_route53_record" "jc_insternal_only_records" {
   for_each = { for internal_only_record in local.internal_only_records : internal_only_record.name => internal_only_record }
   zone_id  = aws_route53_zone.jc_internal_zone.zone_id
-  name     = "${each.value.name}"
+  name     = each.value.name
   type     = each.value.type
   ttl      = each.value.ttl
   records  = [each.value.value]
