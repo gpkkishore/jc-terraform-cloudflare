@@ -190,29 +190,16 @@ locals {
         }
       },
       {
-        action      = "managed_challenge"
-        description = "Rate Limit Login Attempts"
-        expression  = "(http.host in {\"console.jumpcloud.com\" \"console.eu.jumpcloud.com\"} and http.request.uri.path eq \"/login\")"
-
-        ratelimit = {
-          counting_expression = null
-          characteristics     = ["ip.src"]
-          period              = 60
-          requests_per_period = 10
-          mitigation_timeout  = 600
-        }
-      },
-      {
-        action      = "managed_challenge"
-        description = "Challenge Excessive 404s (Scanners)"
-        expression  = "(not cf.bot_management.verified_bot) and (http.host ne \"mcp.jumpcloud.com\") and (not http.host contains \"mdm\") and (not http.user_agent contains \"hubd\")"
+        action      = "log"
+        description = "Challenge Excessive 404s (Scanners) - jumpcloud.com marketing"
+        expression  = "(http.host eq \"jumpcloud.com\") and (not cf.bot_management.verified_bot) and (not http.user_agent contains \"hubd\")"
 
         ratelimit = {
           characteristics     = ["ip.src"]
           counting_expression = "(http.response.code eq 404)"
           period              = 60
           requests_per_period = 20
-          mitigation_timeout  = 600
+          mitigation_timeout  = 0
         }
       }
     ]
