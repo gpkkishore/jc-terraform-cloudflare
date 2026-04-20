@@ -247,6 +247,16 @@ locals {
         action      = "managed_challenge"
         description = "Blocking Pentest Paths"
         expression  = "(http.host in {\"jumpcloud.com\" \"saas.jumpcloud.com\" \"saas.eu.jumpcloud.com\"} and http.request.uri.path in {\"/wp-login.php\" \"/wp-admin/index.php\"})"
+      },
+      {
+        action      = "block"
+        description = "Block path traversal / LFI probes (.. in path or query)"
+        expression  = "(http.host eq \"jumpcloud.com\") and ((http.request.uri.path contains \"..\") or (http.request.uri.query contains \"..\"))"
+      },
+      {
+        action      = "managed_challenge"
+        description = "Managed challenge on query string length over 512 chars"
+        expression  = "(http.host eq \"jumpcloud.com\") and (len(http.request.uri.query) gt 512)"
       }
     ]
     "id.jumpcloud.com" = [
