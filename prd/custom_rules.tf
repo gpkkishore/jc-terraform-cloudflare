@@ -191,7 +191,7 @@ locals {
       },
       {
         action      = "log"
-        description = "Challenge Excessive 404s (Scanners) - jumpcloud.com marketing"
+        description = "jumpcloud.com marketing - Challenge Excessive 404s (Scanners)"
         expression  = "(http.host eq \"jumpcloud.com\") and (not cf.bot_management.verified_bot) and (not http.user_agent contains \"hubd\")"
 
         ratelimit = {
@@ -245,17 +245,17 @@ locals {
       },
       {
         action      = "managed_challenge"
-        description = "Blocking Pentest Paths"
-        expression  = "(http.host in {\"jumpcloud.com\" \"saas.jumpcloud.com\" \"saas.eu.jumpcloud.com\"} and http.request.uri.path in {\"/wp-login.php\" \"/wp-admin/index.php\"})"
+        description = "jumpcloud.com marketing - Blocking Pentest Paths"
+        expression  = "(http.host eq \"jumpcloud.com\" and http.request.uri.path in {\"/wp-login.php\" \"/wp-admin/index.php\"})"
       },
       {
         action      = "block"
-        description = "Block path traversal / LFI probes (.. in path or query)"
+        description = "jumpcloud.com marketing - Block path traversal / LFI probes (.. in path or query)"
         expression  = "(http.host eq \"jumpcloud.com\") and ((http.request.uri.path contains \"..\") or (http.request.uri.query contains \"..\"))"
       },
       {
         action      = "managed_challenge"
-        description = "Managed challenge on query string length over 512 chars"
+        description = "jumpcloud.com marketing - Managed challenge on query string length over 512 chars"
         expression  = "(http.host eq \"jumpcloud.com\") and (len(http.request.uri.query) gt 512)"
       }
     ]
