@@ -199,7 +199,7 @@ locals {
           counting_expression = "(http.response.code eq 404)"
           period              = 60
           requests_per_period = 20
-          mitigation_timeout  = 0
+          mitigation_timeout  = 600
         }
       }
     ]
