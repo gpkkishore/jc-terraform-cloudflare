@@ -250,8 +250,8 @@ locals {
       },
       {
         action      = "managed_challenge"
-        description = "jumpcloud.com marketing - Managed challenge on query string length over 512 chars"
-        expression  = "(http.host eq \"jumpcloud.com\") and (len(http.request.uri.query) gt 512)"
+        description = "jumpcloud.com marketing - Managed challenge on query string length over 1024 chars"
+        expression  = "(http.host eq \"jumpcloud.com\") and (len(http.request.uri.query) gt 1024)"
       }
     ]
     "id.jumpcloud.com" = [
