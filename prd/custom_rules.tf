@@ -188,6 +188,19 @@ locals {
           requests_per_period = 300
           mitigation_timeout  = 10
         }
+      },
+      {
+        action      = "log"
+        description = "jumpcloud.com marketing - Challenge Excessive 404s (Scanners)"
+        expression  = "(http.host eq \"jumpcloud.com\") and (not cf.bot_management.verified_bot) and (not http.user_agent contains \"hubd\")"
+
+        ratelimit = {
+          characteristics     = ["ip.src"]
+          counting_expression = "(http.response.code eq 404)"
+          period              = 60
+          requests_per_period = 20
+          mitigation_timeout  = 600
+        }
       }
     ]
   }
@@ -229,6 +242,16 @@ locals {
         action      = "block"
         description = "Blocking Abuse IP's"
         expression  = "(ip.src in {183.83.227.182 183.83.226.136 144.91.66.213 80.94.93.220 136.0.213.5 172.239.50.62 134.199.209.82 2600:3c06:0:0:2000:9fff:feb2:5f63} and http.host contains \"jumpcloud.com\")"
+      },
+      {
+        action      = "block"
+        description = "jumpcloud.com marketing - Block pentest paths and path/query traversal (..)"
+        expression  = "(http.host eq \"jumpcloud.com\") and ((http.request.uri.path in {\"/wp-login.php\" \"/wp-admin/index.php\"}) or (http.request.uri.path contains \"..\") or (http.request.uri.query contains \"..\"))"
+      },
+      {
+        action      = "managed_challenge"
+        description = "jumpcloud.com marketing - Managed challenge on query string length over 512 chars"
+        expression  = "(http.host eq \"jumpcloud.com\") and (len(http.request.uri.query) gt 512)"
       }
     ]
     "id.jumpcloud.com" = [
