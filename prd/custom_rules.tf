@@ -195,7 +195,7 @@ locals {
         expression  = "(http.host eq \"jumpcloud.com\") and (not cf.bot_management.verified_bot) and (not http.user_agent contains \"hubd\")"
 
         ratelimit = {
-          characteristics     = ["ip.src"]
+          characteristics     = ["cf.colo.id", "ip.src"]
           counting_expression = "(http.response.code eq 404)"
           period              = 60
           requests_per_period = 20
