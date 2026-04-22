@@ -1,4 +1,9 @@
 locals {
+  # OCSP service hostnames
+  ocsp_hostnames = [
+    "ocsp.in.jumpcloud.com",
+  ]
+
   /**
    * Additonal Rate Limit Rules for the prd03 environment
    */
@@ -40,6 +45,63 @@ locals {
         requests_per_period = 100
         requests_to_origin  = false
       },
+    },
+    # OCSP Rate Limiting Rules
+    # Phase 1: Block clearly malformed requests before backend processing
+    {
+      action      = "block"
+      description = "OCSP - Block requests missing Content-Type header"
+      expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}}) and not any(lower(http.request.headers.names[*])[*] eq \"content-type\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 2
+        mitigation_timeout  = 300
+      }
+    },
+    # Phase 2: Cap successful responses at 3,000 per 5 minutes
+    {
+      action      = "block"
+      description = "OCSP - Successful response cap (5-minute, 3000 limit)"
+      expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}})"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = "(http.response.code eq 200)"
+        period              = 300
+        requests_per_period = 3000
+        mitigation_timeout  = 300
+      }
+    },
+    # Phase 3: Cap unauthorized responses at 300 per 5 minutes
+    {
+      action      = "block"
+      description = "OCSP - Unauthorized response cap (5-minute, 300 limit)"
+      expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}})"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = "(http.response.code eq 401)"
+        period              = 300
+        requests_per_period = 300
+        mitigation_timeout  = 300
+      }
+    },
+    # Phase 4: Safety net - overall per-IP rate limit (50 rps)
+    {
+      action      = "block"
+      description = "OCSP - Overall rate limit safety net (50 rps)"
+      expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}})"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 10
+        requests_per_period = 500
+        mitigation_timeout  = 60
+      }
     }
   ]
 
