@@ -4,7 +4,7 @@ variable "cloudflare_api_token" {
 
 variable "zone_name" {
   description = "Domain name"
-  default    = "jumpcloud.com"
+  default     = "jumpcloud.com"
 }
 
 variable "zone_plan" {

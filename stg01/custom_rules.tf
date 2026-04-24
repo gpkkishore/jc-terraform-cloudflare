@@ -15,6 +15,7 @@ locals {
     "go.stg01.jumpcloud.com",
     "password-manager.stg01.jumpcloud.com",
     "polaris.stg01.jumpcloud.com",
+    "polaris-internal.stg01.jumpcloud.com",
     "polaris-console.stg01.jumpcloud.com",
     "saas.stg01.jumpcloud.com",
     "ssf.stg01.jumpcloud.com",
@@ -23,6 +24,7 @@ locals {
     "*.prd02.stg01.jumpcloud.com",
     "mcp.stg01.jumpcloud.com",
     "slack.stg01.jumpcloud.com",
+    "ai.stg01.jumpcloud.com",
     "*.jumpdesk.stg01.jumpcloud.com",
     "*.catalog.stg01.jumpcloud.com",
     "*.console.stg01.jumpcloud.com",
@@ -38,6 +40,7 @@ locals {
     "*.go.stg01.jumpcloud.com",
     "*.password-manager.stg01.jumpcloud.com",
     "*.polaris.stg01.jumpcloud.com",
+    "*.polaris-internal.stg01.jumpcloud.com",
     "*.polaris-console.stg01.jumpcloud.com",
     "*.saas.stg01.jumpcloud.com",
     "*.ssf.stg01.jumpcloud.com",
@@ -68,6 +71,11 @@ locals {
   ]
 
   stg01_ip_access = []
+
+  # OCSP service hostnames
+  ocsp_hostnames = [
+    "ocsp.stg01.jumpcloud.com",
+  ]
 
   salesforce_ips = [
     "3.146.43.224/28",
@@ -162,6 +170,7 @@ locals {
   ]
 
   add_ratelimit_rules = [
+    # Keep existing API rule first to preserve its state
     {
       action      = "block"
       description = "API rate limiting at the Edge"
@@ -169,9 +178,67 @@ locals {
 
       ratelimit = {
         characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
         period              = 10
         requests_per_period = 300
         mitigation_timeout  = 10
+      }
+    },
+    # OCSP Rate Limiting Rules
+    # Phase 1: Block clearly malformed requests before backend processing
+    {
+      action      = "block"
+      description = "OCSP - Block requests missing Content-Type header"
+      expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}}) and not any(lower(http.request.headers.names[*])[*] eq \"content-type\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 2
+        mitigation_timeout  = 300
+      }
+    },
+    # Phase 2: Cap successful responses at 3,000 per 5 minutes
+    {
+      action      = "block"
+      description = "OCSP - Successful response cap (5-minute, 3000 limit)"
+      expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}})"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = "(http.response.code eq 200)"
+        period              = 300
+        requests_per_period = 3000
+        mitigation_timeout  = 300
+      }
+    },
+    # Phase 3: Cap unauthorized responses at 300 per 5 minutes
+    {
+      action      = "block"
+      description = "OCSP - Unauthorized response cap (5-minute, 300 limit)"
+      expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}})"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = "(http.response.code eq 401)"
+        period              = 300
+        requests_per_period = 300
+        mitigation_timeout  = 300
+      }
+    },
+    # Phase 4: Safety net - overall per-IP rate limit (50 rps)
+    {
+      action      = "block"
+      description = "OCSP - Overall rate limit safety net (50 rps)"
+      expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}})"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 10
+        requests_per_period = 500
+        mitigation_timeout  = 60
       }
     }
   ]
@@ -251,6 +318,11 @@ locals {
       action      = "skip"
       description = "Allow Slack Stg"
       expression  = format("(http.host eq \"slack.stg01.jumpcloud.com\" and http.request.uri.path eq \"/api/slack/events\")")
+    },
+    {
+      action      = "skip"
+      description = "Allow Polaris-internal"
+      expression  = format("(http.host eq \"polaris-internal.stg01.jumpcloud.com\")")
     },
     {
       action      = "block"
