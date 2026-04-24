@@ -608,6 +608,13 @@ locals {
       type    = "CNAME",
       value   = "_0c99d46c624a7c714394f5537bb7ae47.jkddzztszm.acm-validations.aws."
     },
+    {
+      name    = "_34fdbe6854fcc54741a7a6e45e430928.ws.vault.eu.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_001c1e84ae88d9e9aab017c080473e8e.jkddzztszm.acm-validations.aws."
+    },
   ]
 
   vault_in_records = [
@@ -723,6 +730,13 @@ locals {
       proxied = false,
       type    = "CNAME",
       value   = "_ca94baadf6046fffe40b1ad6362d085e.jkddzztszm.acm-validations.aws."
+    },
+    {
+      name    = "_9d7249c4ca69b4f1acfb92ce83cdfd65.ws.vault.in.jumpcloud.com.",
+      ttl     = 60,
+      proxied = false,
+      type    = "CNAME",
+      value   = "_bd75823ada3da22612b987d1cf1023dd.jkddzztszm.acm-validations.aws."
     },
   ]
 
