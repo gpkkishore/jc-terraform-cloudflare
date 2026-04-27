@@ -314,7 +314,7 @@ locals {
       {
         action      = "managed_challenge"
         description = "jumpcloud.com marketing - Managed challenge for WP probes, traversal, and abusive queries"
-        expression  = "(http.host eq \"jumpcloud.com\") and (not cf.bot_management.verified_bot) and ((http.request.uri.path contains \"/wp-login.php\") or (http.request.uri.path contains \"/xmlrpc.php\") or (http.request.uri.path contains \"/wp-admin/\") or (http.request.uri.path contains \"wp-json/wp/v2/users\") or (http.request.uri.path contains \"..\") or (http.request.uri.query contains \"..\") or (http.request.uri.query contains \"author=\") or (http.request.uri.query matches \"(^|&)s=\") or (len(http.request.uri.query) gt 1024))"
+        expression  = "(http.host eq \"jumpcloud.com\") and (not cf.client.bot) and ((http.request.uri.path contains \"/wp-login.php\") or (http.request.uri.path contains \"/xmlrpc.php\") or (http.request.uri.path contains \"/wp-admin/\") or (http.request.uri.path contains \"wp-json/wp/v2/users\") or (http.request.uri.path contains \"..\") or (http.request.uri.query contains \"..\") or (http.request.uri.query contains \"author=\") or (http.request.uri.query matches \"(^|&)s=\") or (len(http.request.uri.query) gt 1024))"
       }
     ]
     "id.jumpcloud.com" = [
