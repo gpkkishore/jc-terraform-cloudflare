@@ -2279,6 +2279,13 @@ locals {
       type    = "CNAME"
       value   = "identity.prd02-euc1.jcplatform.dev"
     },
+    {
+      name    = "ocsp.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "ocsp.prd02-euc1.jcplatform.dev"
+    },
   ]
 
   # Aggregate all the prd DNS records
