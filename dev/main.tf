@@ -21,6 +21,7 @@ module "security" {
 }
 
 module "settings" {
-  source  = "git@github.com:TheJumpCloud/terraform-cloudflare-zone-settings.git?ref=v2.0.1"
+  source  = "git@github.com:TheJumpCloud/terraform-cloudflare-zone-settings.git?ref=2.1.0"
   zone_id = cloudflare_zone.cloudflare_zone_resource.id
+  # Module default always_use_https = "on"; dev has no OCSP/plain-HTTP hosts at the edge.
 }

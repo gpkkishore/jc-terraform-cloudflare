@@ -3,7 +3,7 @@ locals {
   cloudflare_account = "3c96d914c0eaa62b7b4c9960e63818f7"
 
   # Aggregate of all DNS records
-  dns_records       = concat(local.stg01_dns_records, local.prd02_dns_records)  
+  dns_records = concat(local.stg01_dns_records, local.prd02_dns_records)
 }
 
 provider "cloudflare" {
@@ -58,8 +58,9 @@ module "security" {
 }
 
 module "settings" {
-  source  = "git@github.com:TheJumpCloud/terraform-cloudflare-zone-settings.git?ref=v2.0.2"
-  zone_id = cloudflare_zone.cloudflare_zone_resource.id
+  source           = "git@github.com:TheJumpCloud/terraform-cloudflare-zone-settings.git?ref=2.1.0"
+  zone_id          = cloudflare_zone.cloudflare_zone_resource.id
+  always_use_https = "off"
 }
 
 resource "aws_route53_zone" "r53_delegated_zone" {
