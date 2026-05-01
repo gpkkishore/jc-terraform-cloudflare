@@ -15,6 +15,7 @@ locals {
   # OCSP service hostnames
   ocsp_hostnames = [
     "ocsp.jumpcloud.com",
+    "ocsp.eu.jumpcloud.com",
   ]
 
   testim_ips = join(" ", [
