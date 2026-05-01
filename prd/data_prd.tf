@@ -1526,6 +1526,13 @@ locals {
       proxied = false
       ttl     = 60
       type    = "TXT"
+      value   = "00DOy00000NXOKu=1TBOy0000000a6j"
+    },
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
       value   = "apple-domain-verification=T2kDmjmutRnHcBwJ"
     },
     {
