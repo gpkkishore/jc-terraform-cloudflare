@@ -1526,6 +1526,13 @@ locals {
       proxied = false
       ttl     = 60
       type    = "TXT"
+      value   = "00DOy00000NXOKu=1TBOy0000000a6j"
+    },
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
       value   = "apple-domain-verification=T2kDmjmutRnHcBwJ"
     },
     {
@@ -2278,6 +2285,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "identity.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "ocsp.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "ocsp.prd02-euc1.jcplatform.dev"
     },
   ]
 

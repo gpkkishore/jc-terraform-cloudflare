@@ -192,7 +192,7 @@ locals {
       expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}}) and not any(lower(http.request.headers.names[*])[*] eq \"content-type\")"
 
       ratelimit = {
-        characteristics     = ["cf.colo.id", "ip.src"]
+        characteristics     = ["cf.colo.id", "cf.unique_visitor_id"]
         counting_expression = null
         period              = 60
         requests_per_period = 2
@@ -206,7 +206,7 @@ locals {
       expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}})"
 
       ratelimit = {
-        characteristics     = ["cf.colo.id", "ip.src"]
+        characteristics     = ["cf.colo.id", "cf.unique_visitor_id"]
         counting_expression = "(http.response.code eq 200)"
         period              = 300
         requests_per_period = 3000
@@ -220,7 +220,7 @@ locals {
       expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}})"
 
       ratelimit = {
-        characteristics     = ["cf.colo.id", "ip.src"]
+        characteristics     = ["cf.colo.id", "cf.unique_visitor_id"]
         counting_expression = "(http.response.code eq 401)"
         period              = 300
         requests_per_period = 300
@@ -234,7 +234,7 @@ locals {
       expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}})"
 
       ratelimit = {
-        characteristics     = ["cf.colo.id", "ip.src"]
+        characteristics     = ["cf.colo.id", "cf.unique_visitor_id"]
         counting_expression = null
         period              = 10
         requests_per_period = 500
