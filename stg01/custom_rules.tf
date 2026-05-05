@@ -347,4 +347,12 @@ locals {
       expression  = format("(http.host in $%s or http.host in $%s) and (not ip.src in {18.190.12.204 3.130.21.136 3.134.71.189} and not http.user_agent contains \"Protect Staging/\" and http.request.uri.path ne \"/google-emm/notifications\")", cloudflare_list.stg01_wildcard_hostname_list.name, cloudflare_list.stg01_nonwildcard_hostname_list.name)
     },
   ]
+
+  managed_ruleset_overrides = [
+    {
+      action  = "block"
+      id      = "c2a2f414a67c409f90cccb6c5bba0215"
+      enabled = true
+    }
+  ]
 }

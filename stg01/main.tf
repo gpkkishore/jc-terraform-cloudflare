@@ -50,11 +50,12 @@ module "dns" {
 }
 
 module "security" {
-  source = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.3.0"
+  source = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.7.0"
 
-  zone_id                    = cloudflare_zone.cloudflare_zone_resource.id
-  additional_ratelimit_rules = local.add_ratelimit_rules
-  additional_waf_rules       = local.add_waf_rules
+  zone_id                                   = cloudflare_zone.cloudflare_zone_resource.id
+  additional_ratelimit_rules                = local.add_ratelimit_rules
+  additional_waf_rules                      = local.add_waf_rules
+  cloudflare_managed_ruleset_rule_overrides = local.managed_ruleset_overrides
 }
 
 module "settings" {
