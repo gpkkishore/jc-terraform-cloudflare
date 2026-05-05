@@ -39,6 +39,9 @@ resource "cloudflare_api_token" "prd03-spacelift" {
           id = local.zone_permission_group_ids["Firewall Services Write"]
         },
         {
+          id = local.zone_permission_group_ids["Dynamic URL Redirects Write"]
+        },
+        {
           id = local.zone_permission_group_ids["DNS Write"]
         },
       ]
