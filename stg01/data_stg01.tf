@@ -356,6 +356,13 @@ locals {
       content = "polaris.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "scep"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      content = "ocsp.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "scim.pwm"
       proxied = false
       ttl     = 1
