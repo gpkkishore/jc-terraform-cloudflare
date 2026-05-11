@@ -357,7 +357,7 @@ locals {
     },
     {
       name    = "scep"
-      proxied = false
+      proxied = true
       ttl     = 1
       type    = "CNAME"
       content = "ocsp.stg01-use2.jcplatform.dev"
