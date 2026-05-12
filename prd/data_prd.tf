@@ -293,7 +293,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "A"
-      value   = "100.21.168.142"
+      value   = "32.194.81.196"
     },
     {
       name    = "dev",
