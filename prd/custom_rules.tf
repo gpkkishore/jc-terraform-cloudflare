@@ -305,7 +305,7 @@ locals {
       {
         action      = "block"
         description = "Blocking Abuse IP's"
-        expression  = "(ip.src in {183.83.227.182 183.83.226.136 144.91.66.213 80.94.93.220 136.0.213.5 172.239.50.62 134.199.209.82 2600:3c06:0:0:2000:9fff:feb2:5f63} and http.host contains \"jumpcloud.com\")"
+        expression  = "(ip.src in {183.83.227.182 183.83.226.136 144.91.66.213 80.94.93.220 136.0.213.5 172.239.50.62 134.199.209.82 2600:3c06:0:0:2000:9fff:feb2:5f63 2402:a00:402:5a6b:6caf:cea1:9ccf:9f99} and http.host contains \"jumpcloud.com\")"
       },
       {
         action      = "block"
