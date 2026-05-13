@@ -1015,6 +1015,13 @@ locals {
       value   = "u2555077.wl078.sendgrid.net"
     },
     {
+      name    = "partnermarketing",
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      value   = "jumpcloud.publisher.impartner.io"
+    },
+    {
       name    = "sales",
       proxied = false
       ttl     = 1
