@@ -342,6 +342,20 @@ locals {
       content = "polaris-console.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "trino"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      content = "trino.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "*.trino"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      content = "trino.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "scep"
       proxied = true
       ttl     = 1
