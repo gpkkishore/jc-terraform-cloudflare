@@ -15,7 +15,6 @@ locals {
     "go.stg01.jumpcloud.com",
     "password-manager.stg01.jumpcloud.com",
     "polaris.stg01.jumpcloud.com",
-    "polaris-internal.stg01.jumpcloud.com",
     "polaris-console.stg01.jumpcloud.com",
     "saas.stg01.jumpcloud.com",
     "ssf.stg01.jumpcloud.com",
@@ -41,7 +40,6 @@ locals {
     "*.go.stg01.jumpcloud.com",
     "*.password-manager.stg01.jumpcloud.com",
     "*.polaris.stg01.jumpcloud.com",
-    "*.polaris-internal.stg01.jumpcloud.com",
     "*.polaris-console.stg01.jumpcloud.com",
     "*.saas.stg01.jumpcloud.com",
     "*.ssf.stg01.jumpcloud.com",
@@ -323,8 +321,8 @@ locals {
     },
     {
       action      = "skip"
-      description = "Allow Polaris-internal"
-      expression  = format("(http.host eq \"polaris-internal.stg01.jumpcloud.com\")")
+      description = "Allow Polaris"
+      expression  = format("(http.host eq \"polaris.stg01.jumpcloud.com\")")
     },
     {
       action      = "block"
