@@ -280,7 +280,7 @@ locals {
       {
         action      = "managed_challenge"
         description = "WP-Admin Front Door Protection - Managed Challenge on /xvfep4u41z"
-        expression  = "(http.request.uri.path eq \"/xvfep4u41z\")"
+        expression  = "(http.host eq \"jumpcloud.com\" and http.request.uri.path eq \"/xvfep4u41z\")"
       },
       { // allow pentest IP, to be removed after pentest is complete
         action      = "skip"
