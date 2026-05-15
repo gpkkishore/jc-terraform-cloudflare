@@ -272,16 +272,6 @@ locals {
   add_waf_rules = {
     "jumpcloud.com" = [
 
-      {
-        action      = "skip"
-        description = "Allow JumpCloud users with WordPress session to bypass WAF challenges"
-        expression  = "(http.host eq \"jumpcloud.com\") and (http.cookie contains \"wordpress_logged_in_\" or http.cookie contains \"wordpress_sec_\" or http.cookie contains \"wp-settings-\")"
-      },
-      {
-        action      = "managed_challenge"
-        description = "WP-Admin Front Door Protection - Managed Challenge on /xvfep4u41z"
-        expression  = "(http.host eq \"jumpcloud.com\" and http.request.uri.path eq \"/xvfep4u41z\")"
-      },
       { // allow pentest IP, to be removed after pentest is complete
         action      = "skip"
         description = "Allow Pentest IPs"
@@ -321,6 +311,16 @@ locals {
         action      = "block"
         description = "jumpcloud.com marketing - Sensitive File Blockade (Hard Block)"
         expression  = "(http.host eq \"jumpcloud.com\") and ((http.request.uri.path matches \"(?i)(wp-config\\.php|config\\.php|\\.env|\\.htaccess|\\.bak|\\.sql|\\.log)$\"))"
+      },
+      {
+        action      = "skip"
+        description = "Allow JumpCloud users with WordPress session to bypass WAF challenges on /xvfep4u41z"
+        expression  = "(http.host eq \"jumpcloud.com\" and http.request.uri.path eq \"/xvfep4u41z\") and (http.cookie contains \"wordpress_logged_in_\" or http.cookie contains \"wordpress_sec_\" or http.cookie contains \"wp-settings-\")"
+      },
+      {
+        action      = "managed_challenge"
+        description = "WP-Admin Front Door Protection - Managed Challenge on /xvfep4u41z"
+        expression  = "(http.host eq \"jumpcloud.com\" and http.request.uri.path eq \"/xvfep4u41z\")"
       },
       {
         action      = "managed_challenge"
