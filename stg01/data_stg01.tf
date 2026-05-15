@@ -40,13 +40,13 @@ locals {
       type    = "CNAME"
       content = "adbridge-kickstart.stg01-use2.jcplatform.dev"
     },
-    {
-      name    = "ai"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "ai.stg01-use2.jcplatform.dev"
-    },
+    # {
+    #   name    = "ai"
+    #   proxied = true
+    #   ttl     = 1
+    #   type    = "CNAME"
+    #   content = "ai.stg01-use2.jcplatform.dev"
+    # },
     # {
     #   name    = "api"
     #   proxied = true
@@ -340,6 +340,20 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "polaris-console.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "trino"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      content = "trino.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "*.trino"
+      proxied = false
+      ttl     = 1
+      type    = "CNAME"
+      content = "trino.stg01-use2.jcplatform.dev"
     },
     {
       name    = "scep"
