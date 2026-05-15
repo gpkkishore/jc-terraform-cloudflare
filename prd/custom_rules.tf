@@ -272,6 +272,16 @@ locals {
   add_waf_rules = {
     "jumpcloud.com" = [
 
+      {
+        action      = "skip"
+        description = "Allow JumpCloud users with WordPress session to bypass WAF challenges"
+        expression  = "(http.referer contains \"jumpcloud.com\") and (http.cookie contains \"wordpress_logged_in_\" or http.cookie contains \"wordpress_sec_\" or http.cookie contains \"wp-settings-\")"
+      },
+      {
+        action      = "managed_challenge"
+        description = "WP-Admin Front Door Protection - Managed Challenge on /xvfep4u41z"
+        expression  = "(http.request.uri.path eq \"/xvfep4u41z\")"
+      },
       { // allow pentest IP, to be removed after pentest is complete
         action      = "skip"
         description = "Allow Pentest IPs"
