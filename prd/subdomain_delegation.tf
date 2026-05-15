@@ -71,5 +71,10 @@ locals {
       ttl   = 300
       value = ["ns-832.awsdns-40.net.", "ns-40.awsdns-05.com.", "ns-1833.awsdns-37.co.uk.", "ns-1514.awsdns-61.org."]
     },
+    {
+      name  = "dev-p03"
+      ttl   = 300
+      value = ["ns-1690.awsdns-19.co.uk.", "ns-1163.awsdns-17.org.", "ns-665.awsdns-19.net.", "ns-417.awsdns-52.com."]
+    },
   ]
 }
