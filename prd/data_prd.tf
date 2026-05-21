@@ -2300,6 +2300,14 @@ locals {
       type    = "CNAME"
       value   = "ocsp.prd02-euc1.jcplatform.dev"
     },
+    // agent0 - GCP Load Balancer EU
+    {
+      name    = "ai.eu",
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      value   = "x.x.x.x" #TODO: update with the GCP load balancer static IP
+    },
   ]
 
   # Aggregate all the prd DNS records
