@@ -5,7 +5,16 @@ locals {
   /**
    * DNS A records for the prd03 environment
    */
-  prd03_a_records = []
+  prd03_a_records = [
+    // agent0 - GCP Load Balancer IN
+    {
+      name    = "ai.in",
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      value   = "x.x.x.x" #TODO: update with the GCP load balancer static IP
+    },
+  ]
 
   /**
    * DNS CNAME records for the prd03 environment
