@@ -12,7 +12,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "A"
-      content = "x.x.x.x" #TODO: update with the GCP load balancer static IP
+      content = "8.232.53.32" #TODO: update with the GCP load balancer static IP
     },
   ]
 
