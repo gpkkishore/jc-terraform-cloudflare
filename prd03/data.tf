@@ -8,11 +8,11 @@ locals {
   prd03_a_records = [
     // agent0 - GCP Load Balancer IN
     {
-      name    = "ai.in",
+      name    = "ai",
       proxied = true
       ttl     = 1
       type    = "A"
-      content = "8.232.53.32" #TODO: update with the GCP load balancer static IP
+      content = "8.232.53.32"
     },
   ]
 
