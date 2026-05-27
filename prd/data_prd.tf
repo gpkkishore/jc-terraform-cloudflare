@@ -2306,7 +2306,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "A"
-      value   = "x.x.x.x" #TODO: update with the GCP load balancer static IP
+      value   = "34.120.238.176"
     },
   ]
 
