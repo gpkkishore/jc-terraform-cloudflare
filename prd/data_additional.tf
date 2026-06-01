@@ -6,13 +6,13 @@ locals {
   cloudflare_zones = concat([
     "id.jumpcloud.com",
     "id.stg01.jumpcloud.com",
-    "jumpcloudlounge.com",
-    "zercurity.com",
     "jumpcloud.ai",
+    "jumpcloudlounge.com",
     "stackidentity.com",
-    "vault.jumpcloud.com",
     "vault.eu.jumpcloud.com",
     "vault.in.jumpcloud.com",
+    "vault.jumpcloud.com",
+    "zercurity.com",
   ], local.resmo_zones[*].name)
 
   ###########################################
