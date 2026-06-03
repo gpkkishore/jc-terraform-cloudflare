@@ -72,9 +72,10 @@ locals {
 
   stg01_ip_access = []
 
-  # OCSP service hostnames
+  # OCSP and SCEP service hostnames (shared: redirect exemption + Cloudflare rate limiting)
   ocsp_hostnames = [
     "ocsp.stg01.jumpcloud.com",
+    "scep.stg01.jumpcloud.com",
   ]
 
   salesforce_ips = [
