@@ -189,8 +189,8 @@ locals {
     # Phase 1: Block clearly malformed requests before backend processing
     {
       action      = "block"
-      description = "PKI - Block requests missing Content-Type header"
-      expression  = "(http.host in {${join(" ", [for host in local.pki_hostnames : format("\"%s\"", host)])}}) and not any(lower(http.request.headers.names[*])[*] eq \"content-type\")"
+      description = "OCSP - Block requests missing Content-Type header"
+      expression  = "(http.host in {\"ocsp.stg01.jumpcloud.com\"}) and not any(lower(http.request.headers.names[*])[*] eq \"content-type\")"
 
       ratelimit = {
         characteristics     = ["cf.colo.id", "cf.unique_visitor_id"]
