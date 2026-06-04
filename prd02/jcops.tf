@@ -29,10 +29,24 @@ locals {
     },
   ]
 
-  # Filter: only proxied records from the existing prd02 DNS data
+  # Filter: proxied prd02 zone records, plus parent-zone EU labels (e.g. ai.eu) excluded from jcops.net.
+  prd02_proxied_jcops_mirrors = [for r in local.prd02_dns_records : r if lookup(r, "proxied", false) == true]
+  prd02_proxied_jcops_names   = toset([for r in local.prd02_proxied_jcops_mirrors : r.name])
+
+  jcops_eu_parent_zone_supplement = [
+    {
+      name    = "ai"
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      content = "34.120.238.176"
+    },
+  ]
+
   jcops_dns_records = concat(
     local.jcops_router_structural_dns_records,
-    [for r in local.prd02_dns_records : r if lookup(r, "proxied", false) == true]
+    local.prd02_proxied_jcops_mirrors,
+    [for r in local.jcops_eu_parent_zone_supplement : r if !contains(local.prd02_proxied_jcops_names, r.name)]
   )
 }
 
