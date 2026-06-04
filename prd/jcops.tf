@@ -30,10 +30,13 @@ locals {
     },
   ]
 
+  # EU app labels (api.eu, etc.) live in eu.jcops.net as api — do not duplicate on parent jcops.net.
+  prd_eu_jcops_record_names = toset([for r in local.prd_eu_records : r.name])
+
   # Filter: only proxied app records from jumpcloud.com (exclude apex @; jcops.net is its own zone).
   jcops_mirrored_dns_records = [
     for r in local.prd_dns_records : r
-    if lookup(r, "proxied", false) == true && lookup(r, "name", "") != "@"
+    if lookup(r, "proxied", false) == true && lookup(r, "name", "") != "@" && !contains(local.prd_eu_jcops_record_names, lookup(r, "name", ""))
   ]
 
   jcops_dns_records = concat(
