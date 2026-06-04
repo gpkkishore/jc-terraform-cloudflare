@@ -7,12 +7,32 @@
 # Each record points to the stg01-use2.jcplatform.dev origin.
 #
 # See: https://jumpcloud.atlassian.net/browse/TE-2005
+# ST-02 (TE-2006): proxied * catch-all and routing-edge-fallback structural DNS.
+# Zone Custom Hostnames fallback origin (prepares TE-2015); not Custom Hostname objects.
 ####################################################
 
 locals {
   jcops_zone_name = "stg01.jcops.net"
 
-  jcops_dns_records = [
+  # Router structural records (TE-2006). More-specific app records take precedence over *.
+  jcops_router_structural_dns_records = [
+    {
+      name    = "*"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "jumpcloud.com"
+    },
+    {
+      name    = "routing-edge-fallback"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "status.jumpcloud.com"
+    },
+  ]
+
+  jcops_app_dns_records = [
     {
       name    = "api"
       proxied = true
@@ -238,6 +258,8 @@ locals {
       content = "ocsp.stg01-use2.jcplatform.dev"
     },
   ]
+
+  jcops_dns_records = concat(local.jcops_router_structural_dns_records, local.jcops_app_dns_records)
 }
 
 resource "cloudflare_zone" "jcops_net" {
@@ -260,6 +282,13 @@ module "jcops_dns" {
   zone_name     = local.jcops_zone_name
   dns_records   = local.jcops_dns_records
   ns_delegation = []
+}
+
+resource "cloudflare_custom_hostname_fallback_origin" "jcops_router" {
+  zone_id = cloudflare_zone.jcops_net.id
+  origin  = "routing-edge-fallback.${local.jcops_zone_name}"
+
+  depends_on = [module.jcops_dns]
 }
 
 module "jcops_security" {

@@ -5,13 +5,35 @@
 # Each proxied record points to the same prd02-euc1.jcplatform.dev origin.
 #
 # See: https://jumpcloud.atlassian.net/browse/TE-2005
+# ST-02 (TE-2006): proxied * catch-all and routing-edge-fallback structural DNS.
+# Zone Custom Hostnames fallback origin (prepares TE-2015); not Custom Hostname objects.
 ####################################################
 
 locals {
   jcops_zone_name = "eu.jcops.net"
 
+  jcops_router_structural_dns_records = [
+    {
+      name    = "*"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "jumpcloud.com"
+    },
+    {
+      name    = "routing-edge-fallback"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "status.jumpcloud.com"
+    },
+  ]
+
   # Filter: only proxied records from the existing prd02 DNS data
-  jcops_dns_records = [for r in local.prd02_dns_records : r if lookup(r, "proxied", false) == true]
+  jcops_dns_records = concat(
+    local.jcops_router_structural_dns_records,
+    [for r in local.prd02_dns_records : r if lookup(r, "proxied", false) == true]
+  )
 }
 
 resource "cloudflare_zone" "jcops_net" {
@@ -34,6 +56,13 @@ module "jcops_dns" {
   zone_name     = local.jcops_zone_name
   dns_records   = local.jcops_dns_records
   ns_delegation = []
+}
+
+resource "cloudflare_custom_hostname_fallback_origin" "jcops_router" {
+  zone_id = cloudflare_zone.jcops_net.id
+  origin  = "routing-edge-fallback.${local.jcops_zone_name}"
+
+  depends_on = [module.jcops_dns]
 }
 
 module "jcops_security" {
