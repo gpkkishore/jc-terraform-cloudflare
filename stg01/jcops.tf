@@ -60,6 +60,20 @@ locals {
       content = "apple-mdm.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "apple-mdm"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "apple-mdm.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "*.apple-mdm"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "apple-mdm.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "assist"
       proxied = true
       ttl     = 1
@@ -75,6 +89,13 @@ locals {
     },
     {
       name    = "catalog"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "data-catalog.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "*.catalog"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -116,6 +137,13 @@ locals {
       content = "jumpdesk.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "*.jumpdesk"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "jumpdesk.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "kickstart"
       proxied = true
       ttl     = 1
@@ -145,6 +173,13 @@ locals {
     },
     {
       name    = "mcp"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "mcp.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "*.mcp"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -200,6 +235,13 @@ locals {
       content = "password-manager.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "*.password-manager"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "password-manager.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "polaris"
       proxied = true
       ttl     = 1
@@ -221,7 +263,21 @@ locals {
       content = "saas.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "*.saas"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "saas.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "ssf"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "saas.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "*.ssf"
       proxied = true
       ttl     = 1
       type    = "CNAME"
