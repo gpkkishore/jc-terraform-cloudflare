@@ -1,10 +1,8 @@
 ####################################################
 # stg01.jcops.net - Router Zone for Staging (parallel to stg01.jumpcloud.com)
 #
-# Mirrors proxied app DNS for stg01 (hand-maintained list; prd mirrors dynamically).
-# Sources of truth: infra-edge/terraform/stg01/data_cdn.tf and any proxied
-# records still in stg01/data_stg01.tf. See stg01/README-jcops-dns.md and
-# scripts/check-stg01-jcops-dns-sync.py before changing jcops_app_dns_records.
+# Mirrors proxied app DNS for stg01 (hand-maintained list; prd/prd02/prd03 mirror dynamically).
+# When editing jcops_app_dns_records, see TE-2007-handoff.md (stg01 jcops mirror maintenance).
 #
 # See: https://jumpcloud.atlassian.net/browse/TE-2005
 # ST-02 (TE-2006): proxied * catch-all and routing-edge-fallback structural DNS.
