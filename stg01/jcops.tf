@@ -202,6 +202,20 @@ locals {
       content = "password-manager.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "polaris"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "polaris.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "*.polaris"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "polaris.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "saas"
       proxied = true
       ttl     = 1
@@ -214,6 +228,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "saas.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "scep"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "ocsp.stg01-use2.jcplatform.dev"
     },
     {
       name    = "slack"
