@@ -313,6 +313,16 @@ locals {
         expression  = "(http.host eq \"jumpcloud.com\") and ((http.request.uri.path matches \"(?i)(wp-config\\.php|config\\.php|\\.env|\\.htaccess|\\.bak|\\.sql|\\.log)$\"))"
       },
       {
+        action      = "skip"
+        description = "Allow JumpCloud users with WordPress session to bypass WAF challenges on /xvfep4u41z"
+        expression  = "(http.host eq \"jumpcloud.com\" and http.request.uri.path eq \"/xvfep4u41z\") and (http.cookie contains \"wordpress_logged_in_\" or http.cookie contains \"wordpress_sec_\" or http.cookie contains \"wp-settings-\")"
+      },
+      {
+        action      = "managed_challenge"
+        description = "WP-Admin Front Door Protection - Managed Challenge on /xvfep4u41z"
+        expression  = "(http.host eq \"jumpcloud.com\" and http.request.uri.path eq \"/xvfep4u41z\")"
+      },
+      {
         action      = "managed_challenge"
         description = "jumpcloud.com marketing - Managed challenge for WP probes, traversal, and abusive queries"
         expression  = "(http.host eq \"jumpcloud.com\") and (not cf.client.bot) and ((http.request.uri.path contains \"/wp-login.php\") or (http.request.uri.path contains \"/xmlrpc.php\") or (http.request.uri.path contains \"/wp-admin/\") or (http.request.uri.path contains \"wp-json/wp/v2/users\") or (http.request.uri.path contains \"..\") or (http.request.uri.query contains \"..\") or (http.request.uri.query contains \"author=\") or (http.request.uri.query matches \"(^|&)s=\") or (len(http.request.uri.query) gt 1024))"
