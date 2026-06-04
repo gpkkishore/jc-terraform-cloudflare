@@ -19,21 +19,26 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "jumpcloud.com"
+      value   = "jumpcloud.com"
     },
     {
       name    = "routing-edge-fallback"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "status.jumpcloud.com"
+      value   = "status.jumpcloud.com"
     },
   ]
 
-  # Filter: only proxied records from the existing prd DNS data
+  # Filter: only proxied app records from jumpcloud.com (exclude apex @; jcops.net is its own zone).
+  jcops_mirrored_dns_records = [
+    for r in local.prd_dns_records : r
+    if lookup(r, "proxied", false) == true && lookup(r, "name", "") != "@"
+  ]
+
   jcops_dns_records = concat(
     local.jcops_router_structural_dns_records,
-    [for r in local.prd_dns_records : r if lookup(r, "proxied", false) == true]
+    local.jcops_mirrored_dns_records
   )
 }
 
