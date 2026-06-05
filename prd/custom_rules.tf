@@ -12,10 +12,12 @@ locals {
 
   us_east_1_saleseng_ngw = "52.70.132.28/32"
 
-  # OCSP service hostnames
-  ocsp_hostnames = [
+  # PKI service hostnames (OCSP + SCEP) (shared: redirect exemption + Cloudflare rate limiting)
+  pki_hostnames = [
     "ocsp.jumpcloud.com",
     "ocsp.eu.jumpcloud.com",
+    "scep.jumpcloud.com",
+    "scep.eu.jumpcloud.com",
   ]
 
   testim_ips = join(" ", [
@@ -196,12 +198,12 @@ locals {
           mitigation_timeout  = 10
         }
       },
-      # OCSP Rate Limiting Rules
+      # PKI Rate Limiting Rules
       # Phase 1: Block clearly malformed requests before backend processing
       {
         action      = "block"
         description = "OCSP - Block requests missing Content-Type header"
-        expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}}) and not any(lower(http.request.headers.names[*])[*] eq \"content-type\")"
+        expression  = "(http.host in {\"ocsp.jumpcloud.com\" \"ocsp.eu.jumpcloud.com\"}) and not any(lower(http.request.headers.names[*])[*] eq \"content-type\")"
 
         ratelimit = {
           characteristics     = ["cf.colo.id", "ip.src"]
@@ -214,8 +216,8 @@ locals {
       # Phase 2: Cap successful responses at 3,000 per 5 minutes
       {
         action      = "block"
-        description = "OCSP - Successful response cap (5-minute, 3000 limit)"
-        expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}})"
+        description = "PKI - Successful response cap (5-minute, 3000 limit)"
+        expression  = "(http.host in {${join(" ", [for host in local.pki_hostnames : format("\"%s\"", host)])}})"
 
         ratelimit = {
           characteristics     = ["cf.colo.id", "ip.src"]
@@ -228,8 +230,8 @@ locals {
       # Phase 3: Cap unauthorized responses at 300 per 5 minutes
       {
         action      = "block"
-        description = "OCSP - Unauthorized response cap (5-minute, 300 limit)"
-        expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}})"
+        description = "PKI - Unauthorized response cap (5-minute, 300 limit)"
+        expression  = "(http.host in {${join(" ", [for host in local.pki_hostnames : format("\"%s\"", host)])}})"
 
         ratelimit = {
           characteristics     = ["cf.colo.id", "ip.src"]
@@ -242,8 +244,8 @@ locals {
       # Phase 4: Safety net - overall per-IP rate limit (50 rps)
       {
         action      = "block"
-        description = "OCSP - Overall rate limit safety net (50 rps)"
-        expression  = "(http.host in {${join(" ", [for host in local.ocsp_hostnames : format("\"%s\"", host)])}})"
+        description = "PKI - Overall rate limit safety net (50 rps)"
+        expression  = "(http.host in {${join(" ", [for host in local.pki_hostnames : format("\"%s\"", host)])}})"
 
         ratelimit = {
           characteristics     = ["cf.colo.id", "ip.src"]

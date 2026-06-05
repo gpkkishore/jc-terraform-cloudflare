@@ -1,6 +1,6 @@
 locals {
   ocsp_https_redirect_exemptions_by_zone_name = {
-    "jumpcloud.com" = local.ocsp_hostnames
+    "jumpcloud.com" = local.pki_hostnames
   }
 
   jumpcloud_com_path_redirect_specs = [

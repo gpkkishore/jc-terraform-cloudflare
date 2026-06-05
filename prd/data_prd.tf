@@ -1305,6 +1305,13 @@ locals {
       type    = "CNAME"
       value   = "ocsp.prd-use1.jcplatform.dev"
     },
+    {
+      name    = "scep"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "ocsp.prd-use1.jcplatform.dev"
+    },
     // START ROCKETLANE
     {
       name    = "_1ed3637f5a8544a903875ba040c764c7.professionalservices"
@@ -2295,6 +2302,13 @@ locals {
     },
     {
       name    = "ocsp.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "ocsp.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "scep.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"

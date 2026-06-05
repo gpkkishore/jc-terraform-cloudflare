@@ -449,6 +449,13 @@ locals {
       type    = "CNAME"
       content = "ocsp.prd03-aps1.jcplatform.dev"
     },
+    {
+      name    = "scep"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "ocsp.prd03-aps1.jcplatform.dev"
+    },
   ]
 
   /**

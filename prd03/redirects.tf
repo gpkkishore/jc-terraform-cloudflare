@@ -1,5 +1,5 @@
 locals {
-  prd03_http_to_https_redirect_expression = length(local.ocsp_hostnames) == 0 ? "(not ssl)" : format("(not ssl) and not (http.host in {%s})", join(" ", [for h in local.ocsp_hostnames : format("\"%s\"", h)]))
+  prd03_http_to_https_redirect_expression = length(local.pki_hostnames) == 0 ? "(not ssl)" : format("(not ssl) and not (http.host in {%s})", join(" ", [for h in local.pki_hostnames : format("\"%s\"", h)]))
 }
 
 resource "cloudflare_ruleset" "http_to_https_redirect" {
