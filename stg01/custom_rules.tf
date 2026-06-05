@@ -23,6 +23,7 @@ locals {
     "trino.stg01.jumpcloud.com",
     "*.prd02.stg01.jumpcloud.com",
     "mcp.stg01.jumpcloud.com",
+    "mcpv2.stg01.jumpcloud.com",
     "slack.stg01.jumpcloud.com",
     "ai.stg01.jumpcloud.com",
     "ocsp.stg01.jumpcloud.com",

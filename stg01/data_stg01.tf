@@ -208,6 +208,13 @@ locals {
     #   type    = "CNAME"
     #   content = "microsoft-mdm.stg01-use2.jcplatform.dev"
     # },
+    {
+      name    = "mcpv2"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "mcpv2.stg01-use2.jcplatform.dev"
+    },
     # {
     #   name    = "nli"
     #   proxied = true
