@@ -100,6 +100,11 @@ locals {
       validation_method = "txt"
     },
     {
+      name              = "mcpv2"
+      hosts             = ["*.mcpv2.jumpcloud.com", "mcpv2.jumpcloud.com"]
+      validation_method = "txt"
+    },
+    {
       name              = "microsoft-mdm-eu"
       hosts             = ["*.microsoft-mdm.eu.jumpcloud.com", "microsoft-mdm.eu.jumpcloud.com"]
       validation_method = "txt"
@@ -656,6 +661,20 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "mcp.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "mcpv2"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "mcpv2.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.mcpv2"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "mcpv2.prd-use1.jcplatform.dev"
     },
     {
       name    = "login"
@@ -2042,6 +2061,13 @@ locals {
       value   = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
+      name    = "mcpv2.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "standard-api.prd02-euc1.jcplatform.dev"
+    },
+    {
       name    = "mulesoft-api.eu"
       proxied = false
       ttl     = 300
@@ -2232,6 +2258,13 @@ locals {
     },
     {
       name    = "*.mcp.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "standard-api.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "*.mcpv2.eu"
       proxied = true
       ttl     = 1
       type    = "CNAME"
