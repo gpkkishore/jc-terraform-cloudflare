@@ -152,6 +152,13 @@ locals {
       type    = "CNAME"
       content = "standard-api.prd03-aps1.jcplatform.dev"
     },
+    {
+      name    = "mcpv2"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "standard-api.prd03-aps1.jcplatform.dev"
+    },
     # TODO: Confirm if mulesoft-api is needed for prd03 and what the value should be.
     # {
     #   name    = "mulesoft-api",
@@ -359,6 +366,13 @@ locals {
     },
     {
       name    = "*.mcp"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "standard-api.prd03-aps1.jcplatform.dev"
+    },
+    {
+      name    = "*.mcpv2"
       proxied = true
       ttl     = 1
       type    = "CNAME"
