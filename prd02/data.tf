@@ -144,6 +144,13 @@ locals {
       content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
+      name    = "mcpv2"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "standard-api.prd02-euc1.jcplatform.dev"
+    },
+    {
       name    = "mulesoft-api",
       proxied = false
       ttl     = 300
@@ -350,6 +357,13 @@ locals {
     },
     {
       name    = "*.mcp"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "standard-api.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "*.mcpv2"
       proxied = true
       ttl     = 1
       type    = "CNAME"
