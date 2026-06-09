@@ -8,6 +8,10 @@ terraform {
       source  = "spacelift-io/spacelift"
       version = "~> 1.35"
     }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "6.44.0"
+    }
   }
   backend "s3" {
     bucket         = "jumpcloud-global-terraform-state"
