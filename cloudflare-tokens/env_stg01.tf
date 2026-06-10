@@ -36,6 +36,7 @@ resource "cloudflare_api_token" "stg01-spacelift" {
       resources = jsonencode({
         "com.cloudflare.api.account.zone.${local.zone_ids["id.stg01.jumpcloud.com"]}" = "*"
         "com.cloudflare.api.account.zone.${local.zone_ids["stg01.jumpcloud.com"]}"    = "*"
+        "com.cloudflare.api.account.zone.${local.zone_ids["stg01.jcops.net"]}"        = "*"
       })
     },
     {
