@@ -48,9 +48,6 @@ resource "cloudflare_api_token" "stg01-spacelift" {
         {
           id = local.acct_permission_group_ids["Account Rule Lists Write"]
         },
-        {
-          id = local.acct_permission_group_ids["Account Settings Write"]
-        },
       ]
       resources = jsonencode({
         "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
