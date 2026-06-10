@@ -64,7 +64,7 @@ module "jcops_dns" {
   zone_id       = cloudflare_zone.jcops_net.id
   zone_name     = local.jcops_zone_name
   dns_records   = local.jcops_dns_records
-  ns_delegation = []
+  ns_delegation = local.jcops_child_ns_delegation_records
 }
 
 resource "cloudflare_custom_hostname_fallback_origin" "jcops_router" {
