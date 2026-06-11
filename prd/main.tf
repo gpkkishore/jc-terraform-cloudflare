@@ -4,6 +4,7 @@ locals {
 
   # Aggregate of all DNS records
   dns_records = concat(local.prd_dns_records)
+  apn_id      = "pc:devhym6tcifll0asuswvuwxhm"
 }
 
 ####################################################
