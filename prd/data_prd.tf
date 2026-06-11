@@ -166,130 +166,11 @@ locals {
       value   = "10.31.1.25"
     },
     {
-      name    = "mgmt"
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "54.235.213.34"
-    },
-    {
       name    = "prd-jumpcloud-logging-rmq-use1c-02"
       proxied = false
       ttl     = 60
       type    = "A"
       value   = "10.30.3.24"
-    },
-    {
-      name    = "radius-proxy-1"
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "104.197.52.17"
-    },
-    {
-      name    = "radius-proxy-2"
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "130.211.179.88"
-    },
-    {
-      name    = "radius-proxy-3"
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "130.211.141.152"
-    },
-    {
-      name    = "radius-proxy-4"
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "130.211.178.171"
-    },
-    {
-      name    = "devopsdays",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "192.155.251.138"
-    },
-    {
-      name    = "kanban",
-      proxied = false
-      ttl     = 300
-      type    = "A"
-      value   = "10.240.0.53"
-    },
-    {
-      name    = "nat1b",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "54.86.131.111"
-    },
-    {
-      name    = "nat1c",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "54.86.134.208"
-    },
-    {
-      name    = "nat1d",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "54.86.96.53"
-    },
-    {
-      name    = "o1.em",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "198.21.2.137"
-    },
-    {
-      name    = "o2.ptr1370.test",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "168.245.76.83"
-    },
-    {
-      name    = "staging-radius-proxy",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "130.211.178.124"
-    },
-    {
-      name    = "staging-vpn",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "104.196.2.104"
-    },
-    {
-      name    = "test",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "54.235.82.193"
-    },
-    {
-      name    = "vpn",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "34.207.90.19"
-    },
-    {
-      name    = "www-old-maintain-sl-presence",
-      proxied = false
-      ttl     = 1
-      type    = "A"
-      value   = "50.23.90.245"
     },
     // START - Marketing website
     // These dev/staging records are for pre-prod envs on the marketing website (hosted through lightsail)
@@ -299,13 +180,6 @@ locals {
       ttl     = 1
       type    = "A"
       value   = "32.194.81.196"
-    },
-    {
-      name    = "dev",
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      value   = "100.20.80.37"
     },
     {
       name    = "ti-1",
@@ -789,13 +663,6 @@ locals {
       value   = "saas.prd-use1.jcplatform.dev"
     },
     {
-      name    = "devvpn",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "mgmt.jumpcloud.com"
-    },
-    {
       name    = "do-1241-test",
       proxied = false
       ttl     = 1
@@ -815,34 +682,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "staging.jumpcloud.com"
-    },
-    {
-      name    = "sysvpn",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "mgmt.jumpcloud.com"
-    },
-    {
-      name    = "test-agent",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "test.jumpcloud.com"
-    },
-    {
-      name    = "test-console",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "test.jumpcloud.com"
-    },
-    {
-      name    = "test-kickstart",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "test.jumpcloud.com"
     },
     {
       name    = "817177",
