@@ -663,13 +663,6 @@ locals {
       value   = "saas.prd-use1.jcplatform.dev"
     },
     {
-      name    = "do-1241-test",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "s3-website.us-east-2.amazonaws.com"
-    },
-    {
       name    = "staging-agent",
       proxied = false
       ttl     = 1
@@ -906,13 +899,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "staging-sso-jumpcloud-com-1641889118.us-east-1.elb.amazonaws.com"
-    },
-    {
-      name    = "static",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "static.jumpcloud.com.s3.amazonaws.com"
     },
     {
       name    = "status",
