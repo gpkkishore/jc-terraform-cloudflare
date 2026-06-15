@@ -7,7 +7,16 @@
 locals {
   r53_zones = []
 
-  stg01_a_records = []
+  stg01_a_records = [
+    // agent0 - GCP Load Balancer STG01
+    {
+      name    = "ai",
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      content = "8.228.229.144"
+    },
+  ]
 
   stg01_mx_records = []
 
