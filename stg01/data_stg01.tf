@@ -47,13 +47,13 @@ locals {
     #   type    = "CNAME"
     #   content = "ai.stg01-use2.jcplatform.dev"
     # },
-    {
-      name    = "ai-aws"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "ai.stg01-use2.jcplatform.dev"
-    },
+    # {
+    #   name    = "ai-aws"
+    #   proxied = true
+    #   ttl     = 1
+    #   type    = "CNAME"
+    #   content = "ai.stg01-use2.jcplatform.dev"
+    # },
     # {
     #   name    = "api"
     #   proxied = true
