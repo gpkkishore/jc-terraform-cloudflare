@@ -218,14 +218,14 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "polaris-haproxy.prd02-euc1.jcplatform.dev"
+      content = "polaris.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "polaris-console"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "standard-api-haproxy.prd02-euc1.jcplatform.dev"
+      content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "scim.pwm"
@@ -260,7 +260,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "standard-api-haproxy.prd02-euc1.jcplatform.dev"
+      content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.adbridge-kickstart"
@@ -444,14 +444,14 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "polaris-haproxy.prd02-euc1.jcplatform.dev"
+      content = "polaris.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.polaris-console"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "standard-api-haproxy.prd02-euc1.jcplatform.dev"
+      content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.scim.pwm"
@@ -486,7 +486,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "standard-api-haproxy.prd02-euc1.jcplatform.dev"
+      content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "ocsp"
