@@ -225,6 +225,20 @@ locals {
       content = "pwm.prd03-aps1.jcplatform.dev"
     },
     {
+      name    = "polaris"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "polaris.prd03-aps1.jcplatform.dev"
+    },
+    {
+      name    = "polaris-console"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "polaris-console.prd03-aps1.jcplatform.dev"
+    },
+    {
       name    = "scim.pwm"
       proxied = true
       ttl     = 1
@@ -251,6 +265,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "identity.prd03-aps1.jcplatform.dev"
+    },
+    {
+      name    = "trino"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "trino.prd03-aps1.jcplatform.dev"
     },
     {
       name    = "*.adbridge-kickstart"
@@ -386,6 +407,22 @@ locals {
     #   type    = "CNAME"
     #   content = "nli-haproxy-haproxy.ue1-prd-p01.jcplatform.dev"
     # },
+
+    {
+      name    = "*.polaris"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "polaris.prd03-aps1.jcplatform.dev"
+    },
+
+    {
+      name    = "*.polaris-console"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "polaris-console.prd03-aps1.jcplatform.dev"
+    },
     {
       name    = "*.search-api"
       proxied = false
@@ -455,6 +492,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "identity.prd03-aps1.jcplatform.dev"
+    },
+    {
+      name    = "*.trino"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "trino.prd03-aps1.jcplatform.dev"
     },
     {
       name    = "ocsp"
