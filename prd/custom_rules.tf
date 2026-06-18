@@ -316,8 +316,8 @@ locals {
       },
       {
         action      = "skip"
-        description = "Allow JumpCloud users with WordPress session to bypass WAF challenges on /xvfep4u41z"
-        expression  = "(http.host eq \"jumpcloud.com\" and http.request.uri.path eq \"/xvfep4u41z\") and (http.cookie contains \"wordpress_logged_in_\" or http.cookie contains \"wordpress_sec_\" or http.cookie contains \"wp-settings-\")"
+        description = "Allow JumpCloud users with WordPress session to bypass WAF challenges"
+        expression  = "(http.host eq \"jumpcloud.com\") and (http.cookie contains \"wordpress_logged_in_\")"
       },
       {
         action      = "managed_challenge"
