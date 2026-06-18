@@ -593,6 +593,34 @@ locals {
       value   = "oauth.prd-use1.jcplatform.dev"
     },
     {
+      name    = "polaris"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "polaris.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.polaris"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "polaris.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "polaris-console"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "polaris-console.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.polaris-console"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "polaris-console.prd-use1.jcplatform.dev"
+    },
+    {
       name    = "schema-registry"
       proxied = false
       ttl     = 1
@@ -675,6 +703,20 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "staging.jumpcloud.com"
+    },
+    {
+      name    = "trino"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "trino.prd-use1.jcplatform.dev"
+    },
+    {
+      name    = "*.trino"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "trino.prd-use1.jcplatform.dev"
     },
     {
       name    = "817177",
@@ -1920,6 +1962,21 @@ locals {
       type    = "CNAME"
       value   = "identity.prd02-euc1.jcplatform.dev"
     },
+
+    {
+      name    = "polaris.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "polaris.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "polaris-console.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "polaris-console.prd02-euc1.jcplatform.dev"
+    },
     {
       name    = "slack.eu"
       proxied = true
@@ -1968,6 +2025,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "identity.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "trino.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "trino.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.adbridge-kickstart.eu"
@@ -2116,6 +2180,21 @@ locals {
       type    = "CNAME"
       value   = "identity.prd02-euc1.jcplatform.dev"
     },
+
+    {
+      name    = "*.polaris.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "polaris.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "*.polaris-console.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "polaris-console.prd02-euc1.jcplatform.dev"
+    },
     {
       name    = "*.slack.eu"
       proxied = true
@@ -2157,6 +2236,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "identity.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "*.trino.eu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "trino.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "ocsp.eu"

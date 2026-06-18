@@ -214,20 +214,6 @@ locals {
       content = "pwm.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "polaris"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "polaris-console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris-console.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "scim.pwm"
       proxied = true
       ttl     = 1
@@ -254,13 +240,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "identity.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "trino"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "trino.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.adbridge-kickstart"
@@ -440,20 +419,6 @@ locals {
       content = "pwm.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "*.polaris"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.polaris-console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris-console.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "*.scim.pwm"
       proxied = true
       ttl     = 1
@@ -480,13 +445,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "identity.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.trino"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "trino.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "ocsp"
