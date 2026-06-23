@@ -193,6 +193,13 @@ locals {
       content = "mcp.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "mcpv2"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "mcpv2.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "microsoft-mdm"
       proxied = true
       ttl     = 1
@@ -338,6 +345,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "sso.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "ai-aws"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "ai.stg01-use2.jcplatform.dev"
     },
     {
       name    = "ai"
