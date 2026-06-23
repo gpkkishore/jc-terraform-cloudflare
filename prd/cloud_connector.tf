@@ -32,7 +32,7 @@ resource "cloudflare_cloud_connector_rules" "jumpcloud_com" {
   rules {
     description = "JC help center v2"
     enabled     = true
-    expression  = "(starts_with(http.request.full_uri, \"https://jumpcloud.com/v2/support\") or starts_with(http.request.full_uri, \"https://www.jumpcloud.com/v2/support\"))"
+    expression  = "(http.host in {\"jumpcloud.com\" \"www.jumpcloud.com\"} and http.request.uri.path matches \"^/v2/support(/.*)?$\")"
     provider    = "aws_s3"
 
     parameters {
