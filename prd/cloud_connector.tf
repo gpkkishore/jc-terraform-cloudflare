@@ -1,5 +1,6 @@
 locals {
-  help_center_v2_path_rewrite = "regex_replace(http.request.uri.path, r\"^/v2/support/?(.*)$\", r\"/$${1}\")"
+  help_center_v2_match_expression = "(http.host in {\"jumpcloud.com\" \"www.jumpcloud.com\"} and raw.http.request.uri.path matches \"^/v2/support(/.*)?$\")"
+  help_center_v2_path_rewrite     = "regex_replace(raw.http.request.uri.path, r\"^/v2/support/?(.*)$\", r\"/$${1}\")"
 }
 
 resource "cloudflare_ruleset" "help_center_v2_path_rewrite" {
@@ -13,7 +14,7 @@ resource "cloudflare_ruleset" "help_center_v2_path_rewrite" {
     ref         = "help_center_v2_strip_prefix"
     description = "JC help center v2 path rewrite"
     enabled     = true
-    expression  = "(http.host in {\"jumpcloud.com\" \"www.jumpcloud.com\"} and http.request.uri.path matches \"^/v2/support(/.*)?$\")"
+    expression  = local.help_center_v2_match_expression
     action      = "rewrite"
 
     action_parameters {
@@ -32,7 +33,7 @@ resource "cloudflare_cloud_connector_rules" "jumpcloud_com" {
   rules {
     description = "JC help center v2"
     enabled     = true
-    expression  = "(http.host in {\"jumpcloud.com\" \"www.jumpcloud.com\"} and http.request.uri.path matches \"^/v2/support(/.*)?$\")"
+    expression  = local.help_center_v2_match_expression
     provider    = "aws_s3"
 
     parameters {
