@@ -1384,6 +1384,13 @@ locals {
       proxied = false
       ttl     = 60
       type    = "TXT"
+      value   = "anthropic-domain-verification-d2y1h3=hgs2t15zExm5ufddrHso0KZwW"
+    },
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
       value   = "google-site-verification=Lsc8IrEquKnjM6ybUEPhDzAniM6mH9gxP1Pq6JbVncE"
     },
     {
