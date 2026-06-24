@@ -46,6 +46,13 @@ locals {
       content = "api.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "admin-oauth.id"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "admin_oauth_id.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "apple.mdm"
       proxied = true
       ttl     = 1
@@ -186,6 +193,13 @@ locals {
       content = "mcp.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "mcpv2"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "mcpv2.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "microsoft-mdm"
       proxied = true
       ttl     = 1
@@ -226,6 +240,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "oauth.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "oauth.id"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "oauth_id.stg01-use2.jcplatform.dev"
     },
     {
       name    = "password-manager"
@@ -312,11 +333,25 @@ locals {
       content = "sso.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "trampoline.id"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "trampoline_id.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "*.sso"
       proxied = true
       ttl     = 1
       type    = "CNAME"
       content = "sso.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "ai-aws"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "ai.stg01-use2.jcplatform.dev"
     },
     {
       name    = "ai"
