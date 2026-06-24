@@ -304,7 +304,7 @@ locals {
     // AI Gateway GCP Cloud NAT EIP for outbound MCP access
     {
       action      = "skip"
-      description = "Allow AI Gateway GCP NAT for MCP"
+      description = "Allow AI Gateway GCP NAT for JC MCP"
       expression  = "(http.host in {${join(" ", [for host in local.mcp_hostnames : format("\"%s\"", host)])}} and ip.src in {34.162.201.132})"
     },
     // Allow Azure Active Directory
