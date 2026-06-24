@@ -7,16 +7,8 @@
 locals {
   r53_zones = []
 
-  stg01_a_records = [
-    // agent0 - GCP Load Balancer STG01 — ai migrated to infra-edge CDN (grey + jcops)
-    # {
-    #   name    = "ai",
-    #   proxied = true
-    #   ttl     = 1
-    #   type    = "A"
-    #   content = "8.228.229.144"
-    # },
-  ]
+  # ai A record retired — infra-edge owns CDN + DNS cutover (state-rm, not destroy)
+  stg01_a_records = []
 
   stg01_mx_records = []
 
@@ -336,20 +328,6 @@ locals {
       type    = "CNAME"
       content = "pwm.stg01-use2.jcplatform.dev"
     },
-    # {
-    #   name    = "polaris"
-    #   proxied = true
-    #   ttl     = 1
-    #   type    = "CNAME"
-    #   content = "polaris.stg01-use2.jcplatform.dev"
-    # },
-    # {
-    #   name    = "*.polaris"
-    #   proxied = true
-    #   ttl     = 1
-    #   type    = "CNAME"
-    #   content = "polaris.stg01-use2.jcplatform.dev"
-    # },
     {
       name    = "polaris-console"
       proxied = false
@@ -378,13 +356,6 @@ locals {
       type    = "CNAME"
       content = "trino.stg01-use2.jcplatform.dev"
     },
-    # {
-    #   name    = "scep"
-    #   proxied = true
-    #   ttl     = 1
-    #   type    = "CNAME"
-    #   content = "ocsp.stg01-use2.jcplatform.dev"
-    # },
     {
       name    = "scim.pwm"
       proxied = false
@@ -477,13 +448,6 @@ locals {
     #   type    = "CNAME"
     #   content = "slack.stg01-use2.jcplatform.dev"
     # }
-    # {
-    #   name    = "ocsp"
-    #   proxied = true
-    #   ttl     = 1
-    #   type    = "CNAME"
-    #   content = "ocsp.stg01-use2.jcplatform.dev"
-    # },
   ]
 
   stg01_misc_records = []
