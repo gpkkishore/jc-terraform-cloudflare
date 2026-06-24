@@ -82,6 +82,12 @@ locals {
     "scep.stg01.jumpcloud.com",
   ]
 
+  mcp_hostnames = [
+    "mcp.stg01.jumpcloud.com",
+    "mcpv2.stg01.jumpcloud.com",
+    "*.mcp.stg01.jumpcloud.com",
+  ]
+
   salesforce_ips = [
     "3.146.43.224/28",
     "13.56.32.176/28",
@@ -294,6 +300,12 @@ locals {
       action      = "skip"
       description = "Allow GHA Runners NAT Gateways"
       expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and ip.src in {44.239.135.146 54.69.255.145 44.235.245.14})"
+    },
+    // AI Gateway GCP Cloud NAT EIP for outbound MCP access
+    {
+      action      = "skip"
+      description = "Allow AI Gateway GCP NAT for MCP"
+      expression  = "(http.host in {${join(" ", [for host in local.mcp_hostnames : format("\"%s\"", host)])}} and ip.src in {34.162.201.132})"
     },
     // Allow Azure Active Directory
     {
