@@ -85,7 +85,6 @@ locals {
   mcp_hostnames = [
     "mcp.stg01.jumpcloud.com",
     "mcpv2.stg01.jumpcloud.com",
-    "*.mcp.stg01.jumpcloud.com",
   ]
 
   salesforce_ips = [
