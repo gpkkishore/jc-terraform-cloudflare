@@ -357,8 +357,8 @@ locals {
       name    = "ai"
       proxied = true
       ttl     = 1
-      type    = "CNAME"
-      content = "ai.stg01-use2.jcplatform.dev"
+      type    = "A"
+      content = "8.228.229.144" # GCP LB STG01 — proxied-A dance custom origin for ai.stg01.jumpcloud.com CH
     },
     {
       name    = "ocsp"
