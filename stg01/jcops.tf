@@ -416,29 +416,6 @@ module "jcops_settings" {
   always_use_https = "off"
 }
 
-locals {
-  identity_security_response_headers = [
-    {
-      name  = "X-Content-Type-Options"
-      value = "no-sniff"
-    },
-    {
-      name  = "X-Frame-Options"
-      value = "DENY"
-    },
-    {
-      name  = "Strict-Transport-Security"
-      value = "max-age=86400; includeSubdomains; preload"
-    },
-    {
-      name  = "Content-Security-Policy"
-      value = "default-src 'self'; script-src 'unsafe-hashes' 'sha256-FRuPMoCm2v334i+3oP3jLBT4RnmwV1pycDQaxVXK4MY=';"
-    }
-  ]
-
-  header_name_to_identity_security_response_header_value = { for this in local.identity_security_response_headers : this.name => this.value }
-}
-
 resource "cloudflare_ruleset" "security_response_headers" {
   zone_id = cloudflare_zone.jcops_net.id
   name    = "Security Response Header Modifications"
