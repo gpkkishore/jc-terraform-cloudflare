@@ -416,7 +416,7 @@ module "jcops_settings" {
   always_use_https = "off"
 }
 
-resource "cloudflare_ruleset" "security_response_headers" {
+resource "cloudflare_ruleset" "jcops_security_response_headers" {
   zone_id = cloudflare_zone.jcops_net.id
   name    = "Security Response Header Modifications"
   kind    = "zone"
