@@ -405,8 +405,8 @@ module "jcops_security" {
   source = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.7.0"
 
   zone_id                                   = cloudflare_zone.jcops_net.id
-  additional_ratelimit_rules                = []
-  additional_waf_rules                      = []
+  additional_ratelimit_rules                = local.add_ratelimit_rules
+  additional_waf_rules                      = local.add_waf_rules
   cloudflare_managed_ruleset_rule_overrides = local.managed_ruleset_overrides
 }
 
@@ -414,4 +414,53 @@ module "jcops_settings" {
   source           = "git@github.com:TheJumpCloud/terraform-cloudflare-zone-settings.git?ref=2.1.0"
   zone_id          = cloudflare_zone.jcops_net.id
   always_use_https = "off"
+}
+
+locals {
+  identity_security_response_headers = [
+    {
+      name  = "X-Content-Type-Options"
+      value = "no-sniff"
+    },
+    {
+      name  = "X-Frame-Options"
+      value = "DENY"
+    },
+    {
+      name  = "Strict-Transport-Security"
+      value = "max-age=86400; includeSubdomains; preload"
+    },
+    {
+      name  = "Content-Security-Policy"
+      value = "default-src 'self'; script-src 'unsafe-hashes' 'sha256-FRuPMoCm2v334i+3oP3jLBT4RnmwV1pycDQaxVXK4MY=';"
+    }
+  ]
+
+  header_name_to_identity_security_response_header_value = { for this in local.identity_security_response_headers : this.name => this.value }
+}
+
+resource "cloudflare_ruleset" "security_response_headers" {
+  zone_id = cloudflare_zone.jcops_net.id
+  name    = "Security Response Header Modifications"
+  kind    = "zone"
+  phase   = "http_response_headers_transform"
+
+  rules {
+    description = "HTTP Response Header Security Modification Rules for domains within the id.stg01.jumpcloud.com zone"
+    expression  = "(ends_with(http.host, \".id.stg01.jumpcloud.com\"))"
+    enabled     = true
+    action      = "rewrite"
+
+    action_parameters {
+      dynamic "headers" {
+        for_each = local.header_name_to_identity_security_response_header_value
+
+        content {
+          operation = "add"
+          name      = headers.key
+          value     = headers.value
+        }
+      }
+    }
+  }
 }
