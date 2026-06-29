@@ -149,6 +149,18 @@ locals {
     "52.73.252.191",
   ]
 
+  # CICD self-hosted GitHub Actions runner NAT gateway EIPs (642920845081)
+  # us-west-2: cicd-usw2 runners VPC
+  # ap-south-1: cicd-aps1 geo load-test runners VPC
+  cicd_self_hosted_runner_natgws = [
+    "44.239.135.146",
+    "54.69.255.145",
+    "44.235.245.14",
+    "35.154.202.19",
+    "13.235.36.129",
+    "3.109.31.86",
+  ]
+
   aws_vpc_ips = [
     "18.218.84.91",
     "18.223.127.56",
@@ -302,7 +314,7 @@ locals {
     {
       action      = "skip"
       description = "Allow GHA Runners NAT Gateways"
-      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and ip.src in {44.239.135.146 54.69.255.145 44.235.245.14})"
+      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and ip.src in {${join(" ", local.cicd_self_hosted_runner_natgws)}})"
     },
     // AI Gateway GCP Cloud NAT EIP for outbound MCP access
     {
