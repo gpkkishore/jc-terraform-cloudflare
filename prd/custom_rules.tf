@@ -50,7 +50,17 @@ locals {
   ])
 
 
-  cicd_usw2_self_hosted_ngws = "44.239.135.146/32 54.69.255.145/32 44.235.245.14/32"
+  # CICD self-hosted GitHub Actions runner NAT gateway EIPs (642920845081)
+  # us-west-2: cicd-usw2 runners VPC
+  # ap-south-1: cicd-aps1 geo load-test runners VPC
+  cicd_self_hosted_runner_natgws = join(" ", [
+    "44.239.135.146",
+    "54.69.255.145",
+    "44.235.245.14",
+    "35.154.202.19",
+    "13.235.36.129",
+    "3.109.31.86",
+  ])
 
   dev_usw2_ngws = join(" ", [for gw in data.aws_nat_gateway.dev-usw2-eks-nat-gw : "${gw.public_ip}/32"])
   dev_euc1_ngws = join(" ", [for gw in data.aws_nat_gateway.dev-euc1-eks-nat-gw : "${gw.public_ip}/32"])
@@ -354,7 +364,7 @@ locals {
       {
         action      = "block"
         description = "Allow ZScaler only"
-        expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204/32 3.134.71.189/32 3.130.21.136/32 3.23.44.17/32 3.23.121.107/32 ${local.stg01_use2_natgws} ${local.vaultone_stg_usw2_natgws} ${local.vaultone_homolog_use1_natgws} ${local.cicd_usw2_self_hosted_ngws}})"
+        expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204/32 3.134.71.189/32 3.130.21.136/32 3.23.44.17/32 3.23.121.107/32 ${local.stg01_use2_natgws} ${local.vaultone_stg_usw2_natgws} ${local.vaultone_homolog_use1_natgws} ${local.cicd_self_hosted_runner_natgws}})"
       },
     ]
     "jumpcloud.ai" = [
