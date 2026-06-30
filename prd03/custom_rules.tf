@@ -103,7 +103,98 @@ locals {
         requests_per_period = 500
         mitigation_timeout  = 60
       }
-    }
+    },
+    {
+      action      = "log"
+      description = "ai.jumpcloud.com - GET /.well-known/* rate limit"
+      expression  = "(http.host in {\"ai.in.jumpcloud.com\"} and http.request.method eq \"GET\" and starts_with(http.request.uri.path, \"/.well-known/\"))"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 60
+        mitigation_timeout  = 60
+      }
+    },
+    {
+      action      = "log"
+      description = "ai.jumpcloud.com - POST /mcp/oauth/register rate limit"
+      expression  = "(http.host in {\"ai.in.jumpcloud.com\"} and http.request.method eq \"POST\" and http.request.uri.path eq \"/mcp/oauth/register\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 3600
+        requests_per_period = 10
+        mitigation_timeout  = 30
+      }
+    },
+    {
+      action      = "log"
+      description = "ai.jumpcloud.com - GET /mcp/oauth/authorize rate limit"
+      expression  = "(http.host in {\"ai.in.jumpcloud.com\"} and http.request.method eq \"GET\" and http.request.uri.path eq \"/mcp/oauth/authorize\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 30
+        mitigation_timeout  = 30
+      }
+    },
+    {
+      action      = "log"
+      description = "ai.jumpcloud.com - POST /mcp/oauth/token rate limit"
+      expression  = "(http.host in {\"ai.in.jumpcloud.com\"} and http.request.method eq \"POST\" and http.request.uri.path eq \"/mcp/oauth/token\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 60
+        mitigation_timeout  = 30
+      }
+    },
+    {
+      action      = "log"
+      description = "ai.jumpcloud.com - POST /mcp rate limit"
+      expression  = "(http.host in {\"ai.in.jumpcloud.com\"} and http.request.method eq \"POST\" and http.request.uri.path eq \"/mcp\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 60
+        mitigation_timeout  = 30
+      }
+    },
+    {
+      action      = "log"
+      description = "ai.jumpcloud.com - GET /mcp SSE rate limit"
+      expression  = "(http.host in {\"ai.in.jumpcloud.com\"} and http.request.method eq \"GET\" and http.request.uri.path eq \"/mcp\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 200
+        mitigation_timeout  = 30
+      }
+    },
+    {
+      action      = "log"
+      description = "ai.jumpcloud.com - DELETE /mcp rate limit"
+      expression  = "(http.host in {\"ai.in.jumpcloud.com\"} and http.request.method eq \"DELETE\" and http.request.uri.path eq \"/mcp\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 60
+        mitigation_timeout  = 30
+      }
+    },
   ]
 
   /**
