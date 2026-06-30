@@ -125,9 +125,9 @@ locals {
       ratelimit = {
         characteristics     = ["cf.colo.id", "ip.src"]
         counting_expression = null
-        period              = 3600
-        requests_per_period = 10
-        mitigation_timeout  = 30
+        period              = 1800
+        requests_per_period = 30
+        mitigation_timeout  = 0 # throttling
       }
     },
     {
@@ -140,7 +140,7 @@ locals {
         counting_expression = null
         period              = 60
         requests_per_period = 30
-        mitigation_timeout  = 30
+        mitigation_timeout  = 60
       }
     },
     {
@@ -153,7 +153,7 @@ locals {
         counting_expression = null
         period              = 60
         requests_per_period = 60
-        mitigation_timeout  = 30
+        mitigation_timeout  = 60
       }
     },
     {
@@ -166,7 +166,7 @@ locals {
         counting_expression = null
         period              = 60
         requests_per_period = 60
-        mitigation_timeout  = 30
+        mitigation_timeout  = 60
       }
     },
     {
@@ -179,7 +179,7 @@ locals {
         counting_expression = null
         period              = 60
         requests_per_period = 200
-        mitigation_timeout  = 30
+        mitigation_timeout  = 60
       }
     },
     {
@@ -192,7 +192,7 @@ locals {
         counting_expression = null
         period              = 60
         requests_per_period = 60
-        mitigation_timeout  = 30
+        mitigation_timeout  = 60
       }
     },
   ]
