@@ -152,6 +152,9 @@ locals {
   # CICD self-hosted GitHub Actions runner NAT gateway EIPs (642920845081)
   # us-west-2: cicd-usw2 runners VPC
   # ap-south-1: cicd-aps1 geo load-test runners VPC
+  # ap-southeast-1: cicd-apse1 geo load-test runners VPC
+  # eu-central-1: cicd-euc1 geo load-test runners VPC
+  # sa-east-1: cicd-sae1 geo load-test runners VPC
   cicd_self_hosted_runner_natgws = join(" ", [
     "44.239.135.146",
     "54.69.255.145",
@@ -159,6 +162,15 @@ locals {
     "35.154.202.19",
     "13.235.36.129",
     "3.109.31.86",
+    "54.254.109.30",
+    "52.77.135.47",
+    "54.169.19.43",
+    "63.184.219.181",
+    "35.157.150.81",
+    "3.77.113.127",
+    "54.233.65.182",
+    "54.126.151.185",
+    "18.228.229.70",
   ])
 
   aws_vpc_ips = [
