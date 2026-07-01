@@ -21,7 +21,6 @@ locals {
     "search-api.stg01.jumpcloud.com",
     "schema-registry.stg01.jumpcloud.com",
     "trino.stg01.jumpcloud.com",
-    "*.prd02.stg01.jumpcloud.com",
     "mcp.stg01.jumpcloud.com",
     "mcpv2.stg01.jumpcloud.com",
     "slack.stg01.jumpcloud.com",
@@ -52,26 +51,6 @@ locals {
     "*.schema-registry.stg01.jumpcloud.com",
     "*.slack.stg01.jumpcloud.com",
     "*.trino.stg01.jumpcloud.com",
-  ]
-
-  prd02_hostnames = [
-    "jumpdesk.prd02.stg01.jumpcloud.com",
-    "catalog.prd02.stg01.jumpcloud.com",
-    "console.prd02.stg01.jumpcloud.com",
-    "api.prd02.stg01.jumpcloud.com",
-    "sso.prd02.stg01.jumpcloud.com",
-    "kickstart.prd02.stg01.jumpcloud.com",
-    "apple-mdm.prd02.stg01.jumpcloud.com",
-    "apple.mdm.prd02.stg01.jumpcloud.com",
-    "assist.prd02.stg01.jumpcloud.com",
-    "microsoft-mdm.prd02.stg01.jumpcloud.com",
-    "login.prd02.stg01.jumpcloud.com",
-    "oauth.prd02.stg01.jumpcloud.com",
-    "go.prd02.stg01.jumpcloud.com",
-    "saas.prd02.stg01.jumpcloud.com",
-    "ssf.prd02.stg01.jumpcloud.com",
-    "mcp.prd02.stg01.jumpcloud.com",
-    "slack.prd02.stg01.jumpcloud.com",
   ]
 
   stg01_ip_access = []
