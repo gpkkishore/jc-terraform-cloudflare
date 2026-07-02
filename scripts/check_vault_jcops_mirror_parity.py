@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import sys
+from collections import Counter
 from pathlib import Path
 
 try:
@@ -20,7 +21,11 @@ RecordTuple = tuple[str, str, str]
 
 
 def hcl_string(value: object) -> str:
-    return str(value).strip().strip('"').rstrip(".")
+    return str(value).strip().rstrip(".")
+
+
+def record_label(name: str) -> str:
+    return name or "<unknown>"
 
 
 def normalize_name(name: str, child_zone: str) -> str:
@@ -49,10 +54,10 @@ def record_tuple(record: dict[str, object], child_zone: str) -> RecordTuple:
     record_type = hcl_string(record.get("type", "")).upper()
     target_key = "content" if "content" in record else "value"
     if target_key not in record:
-        raise ValueError(f"{name}: missing content/value target")
+        raise ValueError(f"{record_label(name)}: missing content/value target")
     target = hcl_string(record[target_key]).lower()
     if not name or not record_type or not target:
-        raise ValueError(f"{name or '<unknown>'}: incomplete proxied record")
+        raise ValueError(f"{record_label(name)}: incomplete proxied record")
     return name, record_type, target
 
 
@@ -102,13 +107,19 @@ def compare_region(
     )
 
     errors: list[str] = []
-    if prd_records != mirror_records:
-        prd_set = set(prd_records)
-        mirror_set = set(mirror_records)
-        for missing in sorted(prd_set - mirror_set):
-            errors.append(f"{region}: missing in {mirror_path.name}: {missing}")
-        for extra in sorted(mirror_set - prd_set):
-            errors.append(f"{region}: extra in {mirror_path.name}: {extra}")
+    prd_counts = Counter(prd_records)
+    mirror_counts = Counter(mirror_records)
+    if prd_counts != mirror_counts:
+        for key in sorted(set(prd_counts) | set(mirror_counts)):
+            diff = prd_counts[key] - mirror_counts[key]
+            if diff > 0:
+                errors.append(
+                    f"{region}: missing {diff} in {mirror_path.name}: {key}"
+                )
+            elif diff < 0:
+                errors.append(
+                    f"{region}: extra {-diff} in {mirror_path.name}: {key}"
+                )
     return errors
 
 
@@ -141,8 +152,8 @@ def main() -> int:
                     mirror_path,
                 )
             )
-        except ValueError as exc:
-            errors.append(str(exc))
+        except (ValueError, OSError) as exc:
+            errors.append(f"{region}: {exc}")
 
     if errors:
         print("vault jcops mirror parity check failed:", file=sys.stderr)
