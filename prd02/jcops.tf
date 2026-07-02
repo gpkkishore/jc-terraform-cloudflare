@@ -43,10 +43,26 @@ locals {
     },
   ]
 
+  # Proxied vault.eu child-zone rows → eu.jcops.net (TE-2005).
+  # Source list: data/vault_jcops_mirror_eu.tf (parity-checked against prd/data_additional.tf).
+  vault_eu_jcops_mirror_records = [
+    for r in local.vault_eu_proxied_source_records : merge(r, {
+      name = trimsuffix(
+        replace(
+          r.name == "@" ? local.vault_eu_child_zone : r.name,
+          ".jumpcloud.com",
+          ".jcops.net",
+        ),
+        ".${local.jcops_zone_name}",
+      )
+    })
+  ]
+
   jcops_dns_records = concat(
     local.jcops_router_structural_dns_records,
     local.prd02_proxied_jcops_mirrors,
-    [for r in local.jcops_eu_parent_zone_supplement : r if !contains(local.prd02_proxied_jcops_names, r.name)]
+    [for r in local.jcops_eu_parent_zone_supplement : r if !contains(local.prd02_proxied_jcops_names, r.name)],
+    local.vault_eu_jcops_mirror_records,
   )
 }
 

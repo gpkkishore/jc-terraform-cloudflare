@@ -30,9 +30,25 @@ locals {
   ]
 
   # Filter: only proxied records from the existing prd03 DNS data
+  # Proxied vault.in child-zone rows → in.jcops.net (TE-2005).
+  # Source list: data/vault_jcops_mirror_in.tf (parity-checked against prd/data_additional.tf).
+  vault_in_jcops_mirror_records = [
+    for r in local.vault_in_proxied_source_records : merge(r, {
+      name = trimsuffix(
+        replace(
+          r.name == "@" ? local.vault_in_child_zone : r.name,
+          ".jumpcloud.com",
+          ".jcops.net",
+        ),
+        ".${local.jcops_zone_name}",
+      )
+    })
+  ]
+
   jcops_dns_records = concat(
     local.jcops_router_structural_dns_records,
-    [for r in local.prd03_dns_records : r if lookup(r, "proxied", false) == true]
+    [for r in local.prd03_dns_records : r if lookup(r, "proxied", false) == true],
+    local.vault_in_jcops_mirror_records,
   )
 }
 
