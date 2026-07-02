@@ -91,6 +91,15 @@ locals {
     "console.stg01.jumpcloud.com",
   ])
 
+  # AI Gateway GCP Cloud NAT egress (jc-stg-ai-gateway, us-east5).
+  # Manual static IPs from terraform-jc-gcp-org vpcs/stg/us-east5.
+  # Legacy AUTO NAT IP kept until MANUAL_ONLY cutover verified, then remove.
+  gcp_stg01_ai_gateway_nat_egress_ips = [
+    "34.162.201.132", # legacy AUTO NAT — remove after manual NAT cutover
+    "8.231.42.108",   # jc-ai-gateway-stg-nat-egress-1
+    "8.231.43.130",   # jc-ai-gateway-stg-nat-egress-2
+  ]
+
   salesforce_ips = [
     "3.146.43.224/28",
     "13.56.32.176/28",
@@ -332,7 +341,7 @@ locals {
     {
       action      = "skip"
       description = "Allow AI Gateway GCP NAT for JC MCP and Console"
-      expression  = "(http.host in {${join(" ", [for host in local.ai_gateway_gcp_nat_hostnames : format("\"%s\"", host)])}} and ip.src in {34.162.201.132})"
+      expression  = "(http.host in {${join(" ", [for host in local.ai_gateway_gcp_nat_hostnames : format("\"%s\"", host)])}} and ip.src in {${join(" ", local.gcp_stg01_ai_gateway_nat_egress_ips)}})"
     },
     // Allow Azure Active Directory
     {
