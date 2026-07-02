@@ -30,9 +30,86 @@ locals {
   ]
 
   # Filter: only proxied records from the existing prd03 DNS data
+  # Proxied vault.in child-zone rows → in.jcops.net (TE-2005).
+  # Keep origins in sync with prd/data_additional.tf local.vault_in_records (proxied = true).
+  vault_in_child_zone = "vault.in.jumpcloud.com"
+
+  vault_in_proxied_source_records = [
+    {
+      name    = "*.app.vault.in.jumpcloud.com"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
+    },
+    {
+      name    = "*.api.vault.in.jumpcloud.com"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
+    },
+    {
+      name    = "app.vault.in.jumpcloud.com"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
+    },
+    {
+      name    = "api.vault.in.jumpcloud.com"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
+    },
+    {
+      name    = "*.ws.vault.in.jumpcloud.com"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
+    },
+    {
+      name    = "ws.vault.in.jumpcloud.com"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
+    },
+    {
+      name    = "@"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "d2notaopjayrxl.cloudfront.net"
+    },
+    {
+      name    = "*.vault.in.jumpcloud.com"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "d2notaopjayrxl.cloudfront.net"
+    },
+  ]
+
+  vault_in_jcops_mirror_records = [
+    for r in local.vault_in_proxied_source_records : merge(r, {
+      name = trimsuffix(
+        replace(
+          r.name == "@" ? local.vault_in_child_zone : r.name,
+          ".jumpcloud.com",
+          ".jcops.net",
+        ),
+        ".${local.jcops_zone_name}",
+      )
+    })
+  ]
+
   jcops_dns_records = concat(
     local.jcops_router_structural_dns_records,
-    [for r in local.prd03_dns_records : r if lookup(r, "proxied", false) == true]
+    [for r in local.prd03_dns_records : r if lookup(r, "proxied", false) == true],
+    local.vault_in_jcops_mirror_records,
   )
 }
 

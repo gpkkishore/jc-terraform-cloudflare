@@ -43,10 +43,87 @@ locals {
     },
   ]
 
+  # Proxied vault.eu child-zone rows → eu.jcops.net (TE-2005).
+  # Keep origins in sync with prd/data_additional.tf local.vault_eu_records (proxied = true).
+  vault_eu_child_zone = "vault.eu.jumpcloud.com"
+
+  vault_eu_proxied_source_records = [
+    {
+      name    = "*.app.vault.eu.jumpcloud.com"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "vaultone-prd02-shared-public-alb-1710404515.eu-central-1.elb.amazonaws.com"
+    },
+    {
+      name    = "*.api.vault.eu.jumpcloud.com"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "vaultone-prd02-shared-public-alb-1710404515.eu-central-1.elb.amazonaws.com"
+    },
+    {
+      name    = "app.vault.eu.jumpcloud.com"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "vaultone-prd02-shared-public-alb-1710404515.eu-central-1.elb.amazonaws.com"
+    },
+    {
+      name    = "api.vault.eu.jumpcloud.com"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "vaultone-prd02-shared-public-alb-1710404515.eu-central-1.elb.amazonaws.com"
+    },
+    {
+      name    = "*.ws.vault.eu.jumpcloud.com"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "vaultone-prd02-shared-public-alb-1710404515.eu-central-1.elb.amazonaws.com"
+    },
+    {
+      name    = "ws.vault.eu.jumpcloud.com"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "vaultone-prd02-shared-public-alb-1710404515.eu-central-1.elb.amazonaws.com"
+    },
+    {
+      name    = "@"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "d1l0uz48ej0js9.cloudfront.net"
+    },
+    {
+      name    = "*.vault.eu.jumpcloud.com"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "d1l0uz48ej0js9.cloudfront.net"
+    },
+  ]
+
+  vault_eu_jcops_mirror_records = [
+    for r in local.vault_eu_proxied_source_records : merge(r, {
+      name = trimsuffix(
+        replace(
+          r.name == "@" ? local.vault_eu_child_zone : r.name,
+          ".jumpcloud.com",
+          ".jcops.net",
+        ),
+        ".${local.jcops_zone_name}",
+      )
+    })
+  ]
+
   jcops_dns_records = concat(
     local.jcops_router_structural_dns_records,
     local.prd02_proxied_jcops_mirrors,
-    [for r in local.jcops_eu_parent_zone_supplement : r if !contains(local.prd02_proxied_jcops_names, r.name)]
+    [for r in local.jcops_eu_parent_zone_supplement : r if !contains(local.prd02_proxied_jcops_names, r.name)],
+    local.vault_eu_jcops_mirror_records,
   )
 }
 
