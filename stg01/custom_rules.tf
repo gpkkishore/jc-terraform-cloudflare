@@ -93,11 +93,9 @@ locals {
 
   # AI Gateway GCP Cloud NAT egress (jc-stg-ai-gateway, us-east5).
   # Manual static IPs from terraform-jc-gcp-org vpcs/stg/us-east5.
-  # Legacy AUTO NAT IP kept until MANUAL_ONLY cutover verified, then remove.
   gcp_stg01_ai_gateway_nat_egress_ips = [
-    "34.162.201.132", # legacy AUTO NAT — remove after manual NAT cutover
-    "8.231.42.108",   # jc-ai-gateway-stg-nat-egress-1
-    "8.231.43.130",   # jc-ai-gateway-stg-nat-egress-2
+    "8.231.42.108", # jc-ai-gateway-stg-nat-egress-1
+    "8.231.43.130", # jc-ai-gateway-stg-nat-egress-2
   ]
 
   salesforce_ips = [
