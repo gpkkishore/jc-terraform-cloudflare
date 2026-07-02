@@ -117,8 +117,12 @@ When opening a PR, the default branch is `master`. PRs merged into master will a
 ## Testing
 There are various test domains that can be added to CloudFlare (beyond stg01/prd). When doing dev testing, check out a domain from this [sheet](https://docs.google.com/spreadsheets/d/1pObexRFohAkdnYCccnV92GUOOn8ubYQDK_NsnOTIaow/edit). You can experiment on the `dev-cloudflare` workspace in TF Cloud. You will need to override the `zone_name` and `cloudflare_api_token` variables with a CLI var (see the [terraform documentation](https://www.terraform.io/cloud-docs/workspaces/variables) for overriding vars).
 
-**Vault jcops mirror parity:** proxied vault child-zone origins for `eu.jcops.net` / `in.jcops.net` live in `data/vault_jcops_mirror_*.tf` (symlinked into `prd02/` and `prd03/`). After editing those files or `prd/data_additional.tf` `vault_*_records`, run:
+**Vault jcops mirror parity:** proxied vault child-zone origins for `eu.jcops.net` /
+`in.jcops.net` live in `data/vault_jcops_mirror_*.tf` (symlinked into `prd02/` and
+`prd03/`). After editing those files or `prd/data_additional.tf` `vault_*_records`,
+run:
 
 ```bash
+pip install -r scripts/requirements.txt
 python3 scripts/check_vault_jcops_mirror_parity.py
 ```
