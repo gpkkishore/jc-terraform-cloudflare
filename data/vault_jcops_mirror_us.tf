@@ -12,56 +12,56 @@ locals {
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
+      value   = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
     },
     {
       name    = "*.api.vault.jumpcloud.com"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
+      value   = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
     },
     {
       name    = "app.vault.jumpcloud.com"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
+      value   = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
     },
     {
       name    = "api.vault.jumpcloud.com"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
+      value   = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
     },
     {
       name    = "*.ws.vault.jumpcloud.com"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
+      value   = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
     },
     {
       name    = "ws.vault.jumpcloud.com"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
+      value   = "vaultone-prd-shared-public-alb-186363599.us-east-1.elb.amazonaws.com"
     },
     {
       name    = "vault.jumpcloud.com"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "d1iz1fyeo9jhbg.cloudfront.net"
+      value   = "d1iz1fyeo9jhbg.cloudfront.net"
     },
     {
       name    = "*.vault.jumpcloud.com"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "d1iz1fyeo9jhbg.cloudfront.net"
+      value   = "d1iz1fyeo9jhbg.cloudfront.net"
     },
   ]
 }
