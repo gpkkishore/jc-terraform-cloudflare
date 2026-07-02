@@ -39,9 +39,25 @@ locals {
     if lookup(r, "proxied", false) == true && lookup(r, "name", "") != "@" && !contains(local.prd_eu_jcops_record_names, lookup(r, "name", ""))
   ]
 
+  # Proxied vault.jumpcloud.com production rows → jcops.net (TE-2005).
+  # Source list: data/vault_jcops_mirror_us.tf (parity-checked against prd/data_additional.tf).
+  vault_jumpcloud_jcops_mirror_records = [
+    for r in local.vault_jumpcloud_proxied_source_records : merge(r, {
+      name = trimsuffix(
+        replace(
+          contains(["@", local.vault_jumpcloud_child_zone], r.name) ? local.vault_jumpcloud_child_zone : r.name,
+          ".jumpcloud.com",
+          ".jcops.net",
+        ),
+        ".${local.jcops_zone_name}",
+      )
+    })
+  ]
+
   jcops_dns_records = concat(
     local.jcops_router_structural_dns_records,
-    local.jcops_mirrored_dns_records
+    local.jcops_mirrored_dns_records,
+    local.vault_jumpcloud_jcops_mirror_records,
   )
 }
 
