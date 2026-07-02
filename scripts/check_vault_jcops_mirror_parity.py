@@ -18,10 +18,19 @@ except ImportError:  # pragma: no cover - runtime dependency check
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 RecordTuple = tuple[str, str, str]
+VAULT_NONPROD_MARKERS = (".dev.vault.", ".stg.vault.", ".homolog.vault.")
+VAULT_NONPROD_PREFIXES = ("dev.vault.", "stg.vault.", "homolog.vault.")
+
+
+def is_production_vault_fqdn(fqdn: str) -> bool:
+    normalized = fqdn.rstrip(".").lower()
+    if any(normalized.startswith(prefix) for prefix in VAULT_NONPROD_PREFIXES):
+        return False
+    return not any(marker in normalized for marker in VAULT_NONPROD_MARKERS)
 
 
 def hcl_string(value: object) -> str:
-    return str(value).strip().rstrip(".")
+    return str(value).strip().strip('"').strip("'").rstrip(".")
 
 
 def record_label(name: str) -> str:
@@ -66,6 +75,8 @@ def proxied_records_from_locals(
     list_key: str,
     child_zone: str,
     source_label: str,
+    *,
+    production_only: bool = False,
 ) -> list[RecordTuple]:
     raw_records = locals_data.get(list_key)
     if not isinstance(raw_records, list):
@@ -78,9 +89,12 @@ def proxied_records_from_locals(
         if raw_record.get("proxied") is not True:
             continue
         try:
-            records.append(record_tuple(raw_record, child_zone))
+            record = record_tuple(raw_record, child_zone)
         except ValueError as exc:
             raise ValueError(f"{source_label}: {list_key}[{index}]: {exc}") from exc
+        if production_only and not is_production_vault_fqdn(record[0]):
+            continue
+        records.append(record)
     return sorted(records)
 
 
@@ -90,6 +104,8 @@ def compare_region(
     additional_var: str,
     mirror_list_key: str,
     mirror_path: Path,
+    *,
+    production_only: bool = False,
 ) -> list[str]:
     prd_locals = load_locals(REPO_ROOT / "prd" / "data_additional.tf")
     mirror_locals = load_locals(mirror_path)
@@ -98,6 +114,7 @@ def compare_region(
         additional_var,
         child_zone,
         "prd/data_additional.tf",
+        production_only=production_only,
     )
     mirror_records = proxied_records_from_locals(
         mirror_locals,
@@ -126,11 +143,20 @@ def compare_region(
 def main() -> int:
     checks = [
         (
+            "us",
+            "vault.jumpcloud.com",
+            "vault_records",
+            "vault_jumpcloud_proxied_source_records",
+            REPO_ROOT / "data" / "vault_jcops_mirror_us.tf",
+            True,
+        ),
+        (
             "eu",
             "vault.eu.jumpcloud.com",
             "vault_eu_records",
             "vault_eu_proxied_source_records",
             REPO_ROOT / "data" / "vault_jcops_mirror_eu.tf",
+            False,
         ),
         (
             "in",
@@ -138,10 +164,11 @@ def main() -> int:
             "vault_in_records",
             "vault_in_proxied_source_records",
             REPO_ROOT / "data" / "vault_jcops_mirror_in.tf",
+            False,
         ),
     ]
     errors: list[str] = []
-    for region, child_zone, additional_var, mirror_list_key, mirror_path in checks:
+    for region, child_zone, additional_var, mirror_list_key, mirror_path, production_only in checks:
         try:
             errors.extend(
                 compare_region(
@@ -150,6 +177,7 @@ def main() -> int:
                     additional_var,
                     mirror_list_key,
                     mirror_path,
+                    production_only=production_only,
                 )
             )
         except (ValueError, OSError) as exc:
@@ -161,7 +189,7 @@ def main() -> int:
             print(f"  - {error}", file=sys.stderr)
         return 1
 
-    print("vault jcops mirror parity check passed (eu + in)")
+    print("vault jcops mirror parity check passed (us + eu + in)")
     return 0
 
 
