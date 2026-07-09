@@ -1468,7 +1468,7 @@ locals {
       proxied = false
       ttl     = 60
       type    = "TXT"
-      value   = "v=spf1 redirect=92a9d6451b5c81c4b4f330465322362ff9ecd73b94ef247be6bdb1ca.us.rspf.letsdmarc.com"
+      value   = "v=spf1 include:_spf.google.com redirect=92a9d6451b5c81c4b4f330465322362ff9ecd73b94ef247be6bdb1ca.us.rspf.letsdmarc.com"
     },
     {
       name    = "@"
