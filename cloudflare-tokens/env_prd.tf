@@ -15,9 +15,6 @@ resource "cloudflare_api_token" "prd-spacelift" {
           id = local.zone_permission_group_ids["Zone Transform Rules Write"]
         },
         {
-          id = local.zone_permission_group_ids["Cloud Connector Write"]
-        },
-        {
           id = local.zone_permission_group_ids["Zone WAF Write"]
         },
         {

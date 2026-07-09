@@ -103,7 +103,98 @@ locals {
         requests_per_period = 500
         mitigation_timeout  = 60
       }
-    }
+    },
+    {
+      action      = "log"
+      description = "ai.jumpcloud.com - GET /.well-known/* rate limit"
+      expression  = "(http.host in {\"ai.in.jumpcloud.com\"} and http.request.method eq \"GET\" and starts_with(http.request.uri.path, \"/.well-known/\"))"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 60
+        mitigation_timeout  = 60
+      }
+    },
+    {
+      action      = "log"
+      description = "ai.jumpcloud.com - POST /mcp/oauth/register rate limit"
+      expression  = "(http.host in {\"ai.in.jumpcloud.com\"} and http.request.method eq \"POST\" and http.request.uri.path eq \"/mcp/oauth/register\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 1800
+        requests_per_period = 30
+        mitigation_timeout  = 0 # throttling
+      }
+    },
+    {
+      action      = "log"
+      description = "ai.jumpcloud.com - GET /mcp/oauth/authorize rate limit"
+      expression  = "(http.host in {\"ai.in.jumpcloud.com\"} and http.request.method eq \"GET\" and http.request.uri.path eq \"/mcp/oauth/authorize\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 30
+        mitigation_timeout  = 60
+      }
+    },
+    {
+      action      = "log"
+      description = "ai.jumpcloud.com - POST /mcp/oauth/token rate limit"
+      expression  = "(http.host in {\"ai.in.jumpcloud.com\"} and http.request.method eq \"POST\" and http.request.uri.path eq \"/mcp/oauth/token\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 60
+        mitigation_timeout  = 60
+      }
+    },
+    {
+      action      = "log"
+      description = "ai.jumpcloud.com - POST /mcp rate limit"
+      expression  = "(http.host in {\"ai.in.jumpcloud.com\"} and http.request.method eq \"POST\" and http.request.uri.path eq \"/mcp\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 60
+        mitigation_timeout  = 60
+      }
+    },
+    {
+      action      = "log"
+      description = "ai.jumpcloud.com - GET /mcp SSE rate limit"
+      expression  = "(http.host in {\"ai.in.jumpcloud.com\"} and http.request.method eq \"GET\" and http.request.uri.path eq \"/mcp\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 200
+        mitigation_timeout  = 60
+      }
+    },
+    {
+      action      = "log"
+      description = "ai.jumpcloud.com - DELETE /mcp rate limit"
+      expression  = "(http.host in {\"ai.in.jumpcloud.com\"} and http.request.method eq \"DELETE\" and http.request.uri.path eq \"/mcp\")"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 60
+        mitigation_timeout  = 60
+      }
+    },
   ]
 
   /**
@@ -120,7 +211,7 @@ locals {
     {
       action      = "block"
       description = "Allow ZScaler only - IN"
-      expression  = "(http.host in {\"jumpdesk.in.jumpcloud.com\"} and not ip.src in {54.187.222.118 54.218.209.46 35.165.242.218 54.86.134.208 54.86.96.53 54.86.131.111 52.70.132.28 52.43.62.126 54.245.68.23 35.161.74.70 52.73.14.42 3.219.213.81 44.216.132.195 13.235.236.32})"
+      expression  = "(http.host in {\"jumpdesk.in.jumpcloud.com\" \"polaris-console.in.jumpcloud.com\" \"trino.in.jumpcloud.com\" } and not ip.src in {54.187.222.118 54.218.209.46 35.165.242.218 54.86.134.208 54.86.96.53 54.86.131.111 52.70.132.28 52.43.62.126 54.245.68.23 35.161.74.70 52.73.14.42 3.219.213.81 44.216.132.195 13.235.236.32})"
     },
   ]
 }

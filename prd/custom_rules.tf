@@ -50,7 +50,17 @@ locals {
   ])
 
 
-  cicd_usw2_self_hosted_ngws = "44.239.135.146/32 54.69.255.145/32 44.235.245.14/32"
+  # CICD self-hosted GitHub Actions runner NAT gateway EIPs (642920845081)
+  # us-west-2: cicd-usw2 runners VPC
+  # ap-south-1: cicd-aps1 geo load-test runners VPC
+  cicd_self_hosted_runner_natgws = join(" ", [
+    "44.239.135.146",
+    "54.69.255.145",
+    "44.235.245.14",
+    "35.154.202.19",
+    "13.235.36.129",
+    "3.109.31.86",
+  ])
 
   dev_usw2_ngws = join(" ", [for gw in data.aws_nat_gateway.dev-usw2-eks-nat-gw : "${gw.public_ip}/32"])
   dev_euc1_ngws = join(" ", [for gw in data.aws_nat_gateway.dev-euc1-eks-nat-gw : "${gw.public_ip}/32"])
@@ -198,6 +208,98 @@ locals {
           mitigation_timeout  = 10
         }
       },
+      {
+        action      = "log"
+        description = "ai.jumpcloud.com - GET /.well-known/* rate limit"
+        expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"GET\" and starts_with(http.request.uri.path, \"/.well-known/\"))"
+
+        ratelimit = {
+          characteristics     = ["cf.colo.id", "ip.src"]
+          counting_expression = null
+          period              = 60
+          requests_per_period = 60
+          mitigation_timeout  = 60
+        }
+      },
+      {
+        action      = "log"
+        description = "ai.jumpcloud.com - POST /mcp/oauth/register rate limit"
+        expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"POST\" and http.request.uri.path eq \"/mcp/oauth/register\")"
+
+        ratelimit = {
+          characteristics     = ["cf.colo.id", "ip.src"]
+          counting_expression = null
+          period              = 1800
+          requests_per_period = 30
+          mitigation_timeout  = 0 # throttling
+        }
+      },
+      {
+        action      = "log"
+        description = "ai.jumpcloud.com - GET /mcp/oauth/authorize rate limit"
+        expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"GET\" and http.request.uri.path eq \"/mcp/oauth/authorize\")"
+
+        ratelimit = {
+          characteristics     = ["cf.colo.id", "ip.src"]
+          counting_expression = null
+          period              = 60
+          requests_per_period = 30
+          mitigation_timeout  = 60
+        }
+      },
+      {
+        action      = "log"
+        description = "ai.jumpcloud.com - POST /mcp/oauth/token rate limit"
+        expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"POST\" and http.request.uri.path eq \"/mcp/oauth/token\")"
+
+        ratelimit = {
+          characteristics     = ["cf.colo.id", "ip.src"]
+          counting_expression = null
+          period              = 60
+          requests_per_period = 60
+          mitigation_timeout  = 60
+        }
+      },
+      {
+        action      = "log"
+        description = "ai.jumpcloud.com - POST /mcp rate limit"
+        expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"POST\" and http.request.uri.path eq \"/mcp\")"
+
+        ratelimit = {
+          characteristics     = ["cf.colo.id", "ip.src"]
+          counting_expression = null
+          period              = 60
+          requests_per_period = 60
+          mitigation_timeout  = 60
+        }
+      },
+      {
+        action      = "log"
+        description = "ai.jumpcloud.com - GET /mcp SSE rate limit"
+        expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"GET\" and http.request.uri.path eq \"/mcp\")"
+
+        ratelimit = {
+          characteristics     = ["cf.colo.id", "ip.src"]
+          counting_expression = null
+          period              = 60
+          requests_per_period = 200
+          mitigation_timeout  = 60
+        }
+      },
+      {
+        action      = "log"
+        description = "ai.jumpcloud.com - DELETE /mcp rate limit"
+        expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"DELETE\" and http.request.uri.path eq \"/mcp\")"
+
+        ratelimit = {
+          characteristics     = ["cf.colo.id", "ip.src"]
+          counting_expression = null
+          period              = 60
+          requests_per_period = 60
+          mitigation_timeout  = 60
+        }
+      },
+      # OCSP Rate Limiting Rules
       # PKI Rate Limiting Rules
       # Phase 1: Block clearly malformed requests before backend processing
       {
@@ -282,12 +384,12 @@ locals {
       {
         action      = "block"
         description = "Allow ZScaler only"
-        expression  = "(http.host in {\"jumpdesk.jumpcloud.com\" \"dev.jumpcloud.com\"} and not ip.src in {54.187.222.118 54.218.209.46 35.165.242.218 54.86.134.208 54.86.96.53 54.86.131.111 52.70.132.28 52.43.62.126 54.245.68.23 35.161.74.70 52.73.14.42 3.219.213.81 44.216.132.195})"
+        expression  = "(http.host in {\"jumpdesk.jumpcloud.com\" \"dev.jumpcloud.com\" \"polaris-console.jumpcloud.com\" \"trino.jumpcloud.com\"} and not ip.src in {54.187.222.118 54.218.209.46 35.165.242.218 54.86.134.208 54.86.96.53 54.86.131.111 52.70.132.28 52.43.62.126 54.245.68.23 35.161.74.70 52.73.14.42 3.219.213.81 44.216.132.195})"
       },
       {
         action      = "block"
         description = "Allow ZScaler only - EU"
-        expression  = "(http.host in {\"jumpdesk.eu.jumpcloud.com\"} and not ip.src in {54.187.222.118 54.218.209.46 35.165.242.218 54.86.134.208 54.86.96.53 54.86.131.111 52.70.132.28 52.43.62.126 54.245.68.23 35.161.74.70 52.73.14.42 3.219.213.81 44.216.132.195 3.79.78.24 52.57.217.97})"
+        expression  = "(http.host in {\"jumpdesk.eu.jumpcloud.com\" \"polaris-console.eu.jumpcloud.com\" \"trino.eu.jumpcloud.com\"} and not ip.src in {54.187.222.118 54.218.209.46 35.165.242.218 54.86.134.208 54.86.96.53 54.86.131.111 52.70.132.28 52.43.62.126 54.245.68.23 35.161.74.70 52.73.14.42 3.219.213.81 44.216.132.195 3.79.78.24 52.57.217.97})"
       },
       {
         action      = "block"
@@ -354,7 +456,7 @@ locals {
       {
         action      = "block"
         description = "Allow ZScaler only"
-        expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204/32 3.134.71.189/32 3.130.21.136/32 3.23.44.17/32 3.23.121.107/32 ${local.stg01_use2_natgws} ${local.vaultone_stg_usw2_natgws} ${local.vaultone_homolog_use1_natgws} ${local.cicd_usw2_self_hosted_ngws}})"
+        expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204/32 3.134.71.189/32 3.130.21.136/32 3.23.44.17/32 3.23.121.107/32 ${local.stg01_use2_natgws} ${local.vaultone_stg_usw2_natgws} ${local.vaultone_homolog_use1_natgws} ${local.cicd_self_hosted_runner_natgws}})"
       },
     ]
     "jumpcloud.ai" = [

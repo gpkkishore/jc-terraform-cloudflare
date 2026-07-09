@@ -25,8 +25,3 @@ variable "project_name" {
 variable "dd_api_key" {
   description = "Access token for cloudflare to push logs to datadog"
 }
-
-variable regenerate_cloudflare_mtls_ca {
-  description = "Regenerate the Cloudflare MTLS CA"
-  default     = false
-}

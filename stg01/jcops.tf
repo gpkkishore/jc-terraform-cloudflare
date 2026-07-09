@@ -357,8 +357,8 @@ locals {
       name    = "ai"
       proxied = true
       ttl     = 1
-      type    = "CNAME"
-      content = "ai.stg01-use2.jcplatform.dev"
+      type    = "A"
+      content = "8.228.229.144" # GCP LB STG01 — proxied-A dance custom origin for ai.stg01.jumpcloud.com CH
     },
     {
       name    = "ocsp"
@@ -370,6 +370,34 @@ locals {
   ]
 
   jcops_dns_records = concat(local.jcops_router_structural_dns_records, local.jcops_app_dns_records)
+
+  # TODO: use data blocks to grab these IPs
+  vaultone_stg_usw2_natgws      = "44.226.5.239/32 54.71.114.137/32 100.20.42.195/32"
+  vaultone_homolog_use1_natgws  = "44.205.147.222/32 3.221.141.250/32 34.199.245.208/32"
+  stg01_use2_natgws             = join(" ", data.aws_ec2_managed_prefix_list.stg01_use2_natgws.entries[*].cidr)
+
+  id_stg01_waf_rules = [
+      // Allow Salesforce
+      // https://help.salesforce.com/s/articleView?id=000384438&type=1
+      {
+        action      = "skip"
+        description = "Allow Salesforce"
+        expression  = "(http.host eq \"admin-oauth.id.stg01.jumpcloud.com\" and ip.src in {3.146.43.224/28 13.56.32.176/28 13.58.135.64/28 13.108.0.0/14 34.211.108.32/28 34.226.36.48/28 35.182.14.32/28 66.231.80.0/20 68.232.192.0/20 96.43.144.0/20 128.17.0.0/16 128.245.0.0/16 136.146.0.0/15 198.245.80.0/20 199.122.120.0/21 204.14.232.0/21 3.225.151.145 3.225.240.254/32 18.204.28.162/32 18.211.105.61 34.197.58.108 34.204.111.166/32 52.3.16.30 52.22.251.194 52.70.135.185 155.226.0.0/16})"
+      },
+      // Allow TestIM IPs
+      {
+        action      = "skip"
+        description = "Allow TestIM"
+        expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and ip.src in {${join(" ", [for ip in local.testim_ips : ip])}})"
+      },
+      {
+        action      = "block"
+        description = "Allow ZScaler only"
+        expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and not ip.src in {18.190.12.204/32 3.134.71.189/32 3.130.21.136/32 3.23.44.17/32 3.23.121.107/32 ${local.stg01_use2_natgws} ${local.vaultone_stg_usw2_natgws} ${local.vaultone_homolog_use1_natgws} ${local.cicd_self_hosted_runner_natgws}})"
+      },
+  ]
+
+  stg01_jcops_add_waf_rules = concat(local.add_waf_rules, local.id_stg01_waf_rules)
 }
 
 resource "cloudflare_zone" "jcops_net" {
@@ -405,8 +433,8 @@ module "jcops_security" {
   source = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.7.0"
 
   zone_id                                   = cloudflare_zone.jcops_net.id
-  additional_ratelimit_rules                = []
-  additional_waf_rules                      = []
+  additional_ratelimit_rules                = local.add_ratelimit_rules
+  additional_waf_rules                      = local.stg01_jcops_add_waf_rules
   cloudflare_managed_ruleset_rule_overrides = local.managed_ruleset_overrides
 }
 
@@ -414,4 +442,34 @@ module "jcops_settings" {
   source           = "git@github.com:TheJumpCloud/terraform-cloudflare-zone-settings.git?ref=2.1.0"
   zone_id          = cloudflare_zone.jcops_net.id
   always_use_https = "off"
+}
+
+resource "cloudflare_ruleset" "jcops_security_response_headers" {
+  zone_id = cloudflare_zone.jcops_net.id
+  name    = "Security Response Header Modifications"
+  kind    = "zone"
+  phase   = "http_response_headers_transform"
+
+  rules {
+    description = "HTTP Response Header Security Modification Rules for domains within the id.stg01.jumpcloud.com zone"
+    expression  = "(ends_with(http.host, \".id.stg01.jumpcloud.com\"))"
+    enabled     = true
+    action      = "rewrite"
+
+    action_parameters {
+      dynamic "headers" {
+        for_each = local.header_name_to_identity_security_response_header_value
+
+        content {
+          operation = "add"
+          name      = headers.key
+          value     = headers.value
+        }
+      }
+    }
+  }
+}
+
+data "aws_ec2_managed_prefix_list" "stg01_use2_natgws" {
+  name = "stg01-use2-natgws"
 }

@@ -82,6 +82,22 @@ locals {
     "scep.stg01.jumpcloud.com",
   ]
 
+  mcp_hostnames = [
+    "mcp.stg01.jumpcloud.com",
+    "mcpv2.stg01.jumpcloud.com",
+  ]
+
+  ai_gateway_gcp_nat_hostnames = concat(local.mcp_hostnames, [
+    "console.stg01.jumpcloud.com",
+  ])
+
+  # AI Gateway GCP Cloud NAT egress (jc-stg-ai-gateway, us-east5).
+  # Manual static IPs from terraform-jc-gcp-org vpcs/stg/us-east5.
+  gcp_stg01_ai_gateway_nat_egress_ips = [
+    "8.231.42.108", # jc-ai-gateway-stg-nat-egress-1
+    "8.231.43.130", # jc-ai-gateway-stg-nat-egress-2
+  ]
+
   salesforce_ips = [
     "3.146.43.224/28",
     "13.56.32.176/28",
@@ -139,6 +155,30 @@ locals {
     "52.6.150.234",
     "52.73.252.191",
   ]
+
+  # CICD self-hosted GitHub Actions runner NAT gateway EIPs (642920845081)
+  # us-west-2: cicd-usw2 runners VPC
+  # ap-south-1: cicd-aps1 geo load-test runners VPC
+  # ap-southeast-1: cicd-apse1 geo load-test runners VPC
+  # eu-central-1: cicd-euc1 geo load-test runners VPC
+  # sa-east-1: cicd-sae1 geo load-test runners VPC
+  cicd_self_hosted_runner_natgws = join(" ", [
+    "44.239.135.146",
+    "54.69.255.145",
+    "44.235.245.14",
+    "35.154.202.19",
+    "13.235.36.129",
+    "3.109.31.86",
+    "54.254.109.30",
+    "52.77.135.47",
+    "54.169.19.43",
+    "63.184.219.181",
+    "35.157.150.81",
+    "3.77.113.127",
+    "54.233.65.182",
+    "56.126.151.185",
+    "18.228.229.70",
+  ])
 
   aws_vpc_ips = [
     "18.218.84.91",
@@ -293,7 +333,13 @@ locals {
     {
       action      = "skip"
       description = "Allow GHA Runners NAT Gateways"
-      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and ip.src in {44.239.135.146 54.69.255.145 44.235.245.14})"
+      expression  = "(http.host in {${join(" ", [for host in local.stg01_hostnames : format("\"%s\"", host)])}} and ip.src in {${local.cicd_self_hosted_runner_natgws}})"
+    },
+    // AI Gateway GCP Cloud NAT EIP for outbound MCP access
+    {
+      action      = "skip"
+      description = "Allow AI Gateway GCP NAT for JC MCP and Console"
+      expression  = "(http.host in {${join(" ", [for host in local.ai_gateway_gcp_nat_hostnames : format("\"%s\"", host)])}} and ip.src in {${join(" ", local.gcp_stg01_ai_gateway_nat_egress_ips)}})"
     },
     // Allow Azure Active Directory
     {
