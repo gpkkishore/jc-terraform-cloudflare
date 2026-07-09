@@ -298,20 +298,6 @@ locals {
 
   prd_cname_records = [
     {
-      name    = "events-internal-writes"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "dualstack.internal-prd-event-internal-writes-998198845.us-east-1.elb.amazonaws.com"
-    },
-    {
-      name    = "logging-rmq-admin-panel"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "dualstack.prd-logging-rmq-admin-panel-500485683.us-east-1.elb.amazonaws.com"
-    },
-    {
       name    = "adbridge-kickstart"
       proxied = false
       ttl     = 1
@@ -689,20 +675,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "saas.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "staging-agent",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "staging.jumpcloud.com"
-    },
-    {
-      name    = "staging-kickstart",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "staging.jumpcloud.com"
     },
     {
       name    = "trino"
