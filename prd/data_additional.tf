@@ -594,27 +594,8 @@ locals {
       type    = "CNAME",
       value   = "_9db7631f33fbd19e6cf173a109e5ef43.jkddzztszm.acm-validations.aws."
     },
-    {
-      name    = "_356d9a1a1794aedc9527c6cc09e1db16.api.vault.eu.jumpcloud.com.",
-      ttl     = 60,
-      proxied = false,
-      type    = "CNAME",
-      value   = "_027180c0995a6f6d437b5f1df507face.jkddzztszm.acm-validations.aws."
-    },
-    {
-      name    = "_476df96d191519bac91cd822344c8d78.app.vault.eu.jumpcloud.com.",
-      ttl     = 60,
-      proxied = false,
-      type    = "CNAME",
-      value   = "_0c99d46c624a7c714394f5537bb7ae47.jkddzztszm.acm-validations.aws."
-    },
-    {
-      name    = "_34fdbe6854fcc54741a7a6e45e430928.ws.vault.eu.jumpcloud.com.",
-      ttl     = 60,
-      proxied = false,
-      type    = "CNAME",
-      value   = "_001c1e84ae88d9e9aab017c080473e8e.jkddzztszm.acm-validations.aws."
-    },
+    # Stale api/app/ws ACM validation CNAMEs removed — no issued certs on those hosts
+    # (orange → ALB). New hashes land via infra-edge cdn-ng warm CloudFront ACM dual-write.
   ]
 
   vault_in_records = [
@@ -717,27 +698,8 @@ locals {
       type    = "CNAME",
       value   = "_1b43242fe9b1b378f0080d81a59ff8d2.jkddzztszm.acm-validations.aws."
     },
-    {
-      name    = "_c41736bfc1e23b0d8fec5d53c25e272d.api.vault.in.jumpcloud.com.",
-      ttl     = 60,
-      proxied = false,
-      type    = "CNAME",
-      value   = "_fdf1192de86a2ad7ca8cd31e43c11832.jkddzztszm.acm-validations.aws."
-    },
-    {
-      name    = "_925269e08a6490dc1ef143896ebdec9b.app.vault.in.jumpcloud.com.",
-      ttl     = 60,
-      proxied = false,
-      type    = "CNAME",
-      value   = "_ca94baadf6046fffe40b1ad6362d085e.jkddzztszm.acm-validations.aws."
-    },
-    {
-      name    = "_9d7249c4ca69b4f1acfb92ce83cdfd65.ws.vault.in.jumpcloud.com.",
-      ttl     = 60,
-      proxied = false,
-      type    = "CNAME",
-      value   = "_bd75823ada3da22612b987d1cf1023dd.jkddzztszm.acm-validations.aws."
-    },
+    # Stale api/app/ws ACM validation CNAMEs removed — no issued certs on those hosts
+    # (orange → ALB). New hashes land via infra-edge cdn-ng warm CloudFront ACM dual-write.
   ]
 
   ###########################################
