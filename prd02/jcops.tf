@@ -33,6 +33,10 @@ locals {
   prd02_proxied_jcops_mirrors = [for r in local.prd02_dns_records : r if lookup(r, "proxied", false) == true]
   prd02_proxied_jcops_names   = toset([for r in local.prd02_proxied_jcops_mirrors : r.name])
 
+  # Parent-zone EU labels on jumpcloud.com (e.g. polaris.eu) are not in prd02_dns_records,
+  # so they are not auto-mirrored. Warm R53 already CNAMEs those hosts to <label>.eu.jcops.net;
+  # without these rows the router path hits the structural * catch-all.
+  # Source: prd/data_prd.tf EU labels (TE-2074); polaris/trino/scep removed from prd02 in #860.
   jcops_eu_parent_zone_supplement = [
     {
       name    = "ai"
@@ -40,6 +44,55 @@ locals {
       ttl     = 1
       type    = "A"
       content = "34.120.238.176"
+    },
+    {
+      name    = "polaris"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "polaris.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "*.polaris"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "polaris.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "polaris-console"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "polaris-console.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "*.polaris-console"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "polaris-console.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "trino"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "trino.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "*.trino"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "trino.prd02-euc1.jcplatform.dev"
+    },
+    {
+      name    = "scep"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "ocsp.prd02-euc1.jcplatform.dev"
     },
   ]
 
