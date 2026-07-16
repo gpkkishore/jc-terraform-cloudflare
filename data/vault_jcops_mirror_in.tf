@@ -1,6 +1,8 @@
-# Proxied vault.in source rows for in.jcops.net mirror (TE-2005).
-# Keep in sync with prd/data_additional.tf local.vault_in_records (proxied = true).
+# Proxied vault.in rows mirrored into in.jcops.net (TE-2005).
+# Brand-zone vault api/app/ws orange CNAMEs moved to infra-edge; this list remains
+# the source of truth for jcops router mirrors (including apex SPA).
 # Run: python3 scripts/check_vault_jcops_mirror_parity.py
+# (IN api/app/ws may be mirror-only vs prd/data_additional.tf after brand retire).
 
 locals {
   vault_in_child_zone = "vault.in.jumpcloud.com"
