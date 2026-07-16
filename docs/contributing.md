@@ -120,7 +120,7 @@ There are various test domains that can be added to CloudFlare (beyond stg01/prd
 **Vault jcops mirror parity:** proxied vault child-zone origins for `eu.jcops.net` /
 `in.jcops.net` live in `data/vault_jcops_mirror_*.tf` (symlinked into `prd02/` and
 `prd03/`). After editing those files or `prd/data_additional.tf` `vault_*_records`,
-run:
+run (prd03 IN api/app/ws brand orange rows may be mirror-only after infra-edge cutover):
 
 ```bash
 pip install -r scripts/requirements.txt

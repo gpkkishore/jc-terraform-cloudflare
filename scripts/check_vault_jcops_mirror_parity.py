@@ -21,6 +21,19 @@ RecordTuple = tuple[str, str, str]
 VAULT_NONPROD_MARKERS = (".dev.vault.", ".stg.vault.", ".homolog.vault.")
 VAULT_NONPROD_PREFIXES = ("dev.vault.", "stg.vault.", "homolog.vault.")
 
+# Brand-zone orange CNAMEs for these FQDNs moved to infra-edge (prd03 cutover).
+# jcops mirror lists remain the source of truth for router-side orange origins.
+IN_MIRROR_ONLY_FQDNS = frozenset(
+    {
+        "api.vault.in.jumpcloud.com",
+        "app.vault.in.jumpcloud.com",
+        "ws.vault.in.jumpcloud.com",
+        "*.api.vault.in.jumpcloud.com",
+        "*.app.vault.in.jumpcloud.com",
+        "*.ws.vault.in.jumpcloud.com",
+    }
+)
+
 
 def is_production_vault_fqdn(fqdn: str) -> bool:
     normalized = fqdn.rstrip(".").lower()
@@ -106,6 +119,7 @@ def compare_region(
     mirror_path: Path,
     *,
     production_only: bool = False,
+    mirror_only_fqdns: frozenset[str] | None = None,
 ) -> list[str]:
     prd_locals = load_locals(REPO_ROOT / "prd" / "data_additional.tf")
     mirror_locals = load_locals(mirror_path)
@@ -126,6 +140,7 @@ def compare_region(
     errors: list[str] = []
     prd_counts = Counter(prd_records)
     mirror_counts = Counter(mirror_records)
+    allowed_mirror_only = mirror_only_fqdns or frozenset()
     if prd_counts != mirror_counts:
         for key in sorted(set(prd_counts) | set(mirror_counts)):
             diff = prd_counts[key] - mirror_counts[key]
@@ -134,6 +149,9 @@ def compare_region(
                     f"{region}: missing {diff} in {mirror_path.name}: {key}"
                 )
             elif diff < 0:
+                # Mirror-only rows after brand orange retire (infra-edge owns brand DNS).
+                if key[0] in allowed_mirror_only and prd_counts[key] == 0:
+                    continue
                 errors.append(
                     f"{region}: extra {-diff} in {mirror_path.name}: {key}"
                 )
@@ -149,6 +167,7 @@ def main() -> int:
             "vault_jumpcloud_proxied_source_records",
             REPO_ROOT / "data" / "vault_jcops_mirror_us.tf",
             True,
+            None,
         ),
         (
             "eu",
@@ -157,6 +176,7 @@ def main() -> int:
             "vault_eu_proxied_source_records",
             REPO_ROOT / "data" / "vault_jcops_mirror_eu.tf",
             False,
+            None,
         ),
         (
             "in",
@@ -165,10 +185,19 @@ def main() -> int:
             "vault_in_proxied_source_records",
             REPO_ROOT / "data" / "vault_jcops_mirror_in.tf",
             False,
+            IN_MIRROR_ONLY_FQDNS,
         ),
     ]
     errors: list[str] = []
-    for region, child_zone, additional_var, mirror_list_key, mirror_path, production_only in checks:
+    for (
+        region,
+        child_zone,
+        additional_var,
+        mirror_list_key,
+        mirror_path,
+        production_only,
+        mirror_only_fqdns,
+    ) in checks:
         try:
             errors.extend(
                 compare_region(
@@ -178,6 +207,7 @@ def main() -> int:
                     mirror_list_key,
                     mirror_path,
                     production_only=production_only,
+                    mirror_only_fqdns=mirror_only_fqdns,
                 )
             )
         except (ValueError, OSError) as exc:
