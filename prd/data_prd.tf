@@ -1787,6 +1787,11 @@ locals {
   ]
 
   prd_eu_records = [
+    # Orange brand CNAMEs for infra-edge prd02 cdn_list hosts retired — ownership
+    # moves to infra-edge module.cdn (migrate_cname). Prefer Spacelift state-rm on
+    # prd-cloudflare, then this HCL drop (not destroy). Companion: infra-edge PR B.
+    # Removed: *.admin-oauth.id.eu, *.api.eu, *.apple-mdm.eu, *.apple.mdm.eu, *.assist.eu, *.console.eu, *.go.eu, *.grpc.pwm.eu, *.jumpdesk.eu, *.kickstart.eu, *.login.eu, *.mcp.eu, *.mcpv2.eu, *.microsoft-mdm.eu, *.nli.eu, *.oauth.eu, *.oauth.id.eu, *.polaris-console.eu, *.polaris.eu, *.saas.eu, *.scim.pwm.eu, *.slack.eu, *.sso.eu, *.trampoline.id.eu, admin-oauth.id.eu, api.eu, apple-mdm.eu, apple.mdm.eu, assist.eu, console.eu, devices.pwm.eu, go.eu, grpc.pwm.eu, jumpdesk.eu, kickstart.eu, login.eu, mcp.eu, mcpv2.eu, microsoft-mdm.eu, nli.eu, oauth.eu, oauth.id.eu, ocsp.eu, polaris-console.eu, polaris.eu, saas.eu, scep.eu, scim.pwm.eu, slack.eu, sso.eu, trampoline.id.eu, trino.eu, *.trino.eu.
+    # Kept: non-cdn EU labels (adbridge, agent, ai, bss, device-cert, mulesoft-api, private-kickstart, …).
     {
       name    = "adbridge-kickstart.eu"
       proxied = false
@@ -1802,46 +1807,11 @@ locals {
       value   = "adbridge.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "admin-oauth.id.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "identity.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "agent.eu"
       proxied = false
       ttl     = 1
       type    = "CNAME"
       value   = "agent.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "api.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "assist.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "assist.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "apple-mdm.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple-mdm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "microsoft-mdm.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "microsoft-mdm.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "bss.eu"
@@ -1851,39 +1821,11 @@ locals {
       value   = "si-bss-api.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "console.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "console.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "device-cert.eu"
       proxied = false
       ttl     = 1
       type    = "CNAME"
       value   = "device-cert.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "kickstart.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "kickstart-public.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "apple.mdm.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple-mdm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "go.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "go.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "private-kickstart.eu"
@@ -1893,131 +1835,11 @@ locals {
       value   = "kickstart-private.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "jumpdesk.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "jumpdesk.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "login.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "login-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "mcp.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "mcpv2.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "mulesoft-api.eu"
       proxied = false
       ttl     = 300
       type    = "CNAME"
       value   = "hnbh3q.usa-e1.cloudhub.io"
-    },
-    {
-      name    = "nli.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "nli.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "oauth.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "oauth.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "oauth.id.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "identity.prd02-euc1.jcplatform.dev"
-    },
-
-    {
-      name    = "polaris.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "polaris-console.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris-console.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "slack.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "devices.pwm.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "pwm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "grpc.pwm.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "pwm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "scim.pwm.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "pwm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "sso.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "sso.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "saas.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "trampoline.id.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "identity.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "trino.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "trino.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.adbridge-kickstart.eu"
@@ -2034,53 +1856,11 @@ locals {
       value   = "adbridge.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "*.admin-oauth.id.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "identity.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "*.agent.eu"
       proxied = false
       ttl     = 1
       type    = "CNAME"
       value   = "agent.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.api.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.assist.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "assist.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.apple-mdm.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple-mdm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.microsoft-mdm.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "microsoft-mdm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.console.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "console.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.device-cert.eu"
@@ -2090,161 +1870,12 @@ locals {
       value   = "device-cert.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "*.kickstart.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "kickstart-public.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.apple.mdm.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple-mdm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.go.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "go.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "*.private-kickstart.eu"
       proxied = false
       ttl     = 1
       type    = "CNAME"
       value   = "kickstart-private.prd02-euc1.jcplatform.dev"
     },
-    {
-      name    = "*.jumpdesk.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "jumpdesk.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.login.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "login-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.mcp.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.mcpv2.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.nli.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "nli.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.oauth.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "oauth.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.oauth.id.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "identity.prd02-euc1.jcplatform.dev"
-    },
-
-    {
-      name    = "*.polaris.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.polaris-console.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris-console.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.slack.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.grpc.pwm.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "pwm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.scim.pwm.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "pwm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.sso.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "sso.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.saas.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.trampoline.id.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "identity.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.trino.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "trino.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "ocsp.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "ocsp.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "scep.eu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "ocsp.prd02-euc1.jcplatform.dev"
-    },
-    // agent0 - GCP Load Balancer EU
     {
       name    = "ai.eu",
       proxied = true
@@ -2253,8 +1884,6 @@ locals {
       value   = "34.120.238.176"
     },
   ]
-
-  # Aggregate all the prd DNS records
   prd_dns_records = concat(local.prd_a_records, local.prd_mx_records, local.prd_cname_records, local.prd_misc_records, local.prd_eu_records)
 
 }
