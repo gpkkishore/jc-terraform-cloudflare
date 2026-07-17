@@ -4,17 +4,10 @@ locals {
 
   /**
    * DNS A records for the prd03 environment
+   * Brand ai proxied A retired to infra-edge (ip-origin / cdn-ng this_proxied_a).
+   * Prefer state-rm then remove from this list — do not terraform destroy the live record.
    */
-  prd03_a_records = [
-    // agent0 - GCP Load Balancer IN
-    {
-      name    = "ai",
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      content = "8.232.53.32"
-    },
-  ]
+  prd03_a_records = []
 
   /**
    * DNS CNAME records for the prd03 environment
