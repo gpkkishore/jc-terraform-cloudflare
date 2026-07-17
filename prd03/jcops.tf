@@ -2,8 +2,8 @@
 # in.jcops.net - Router Zone for India (parallel to prd03.jumpcloud.com)
 #
 # Cutover app mirrors: jcops_app_dns_records (explicit; brand oranges retired to
-# infra-edge). Remaining proxied brand rows still mirror from prd03_dns_records
-# (e.g. ai). Vault.in mirrors: data/vault_jcops_mirror_in.tf.
+# infra-edge). Vault.in mirrors: data/vault_jcops_mirror_in.tf.
+# ai proxied A lives here explicitly (ip-origin / proxied-A dance for Custom Hostname).
 #
 # See: https://jumpcloud.atlassian.net/browse/TE-2005
 # ST-02 (TE-2006): proxied * catch-all and routing-edge-fallback structural DNS.
@@ -46,6 +46,13 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "identity.prd03-aps1.jcplatform.dev"
+    },
+    {
+      name    = "ai"
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      content = "8.232.53.32" # GCP LB prd03 IN — proxied-A dance custom origin for ai.in.jumpcloud.com CH
     },
     {
       name    = "api"
