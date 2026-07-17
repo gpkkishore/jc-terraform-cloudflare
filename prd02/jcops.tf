@@ -4,6 +4,10 @@
 # Mirrors all proxied DNS entries from prd02.jumpcloud.com.
 # Each proxied record points to the same prd02-euc1.jcplatform.dev origin.
 #
+# Brand cutover (api.eu.jumpcloud.com on parent jumpcloud.com) is separate:
+# retiring oranges from prd/data_prd.tf prd_eu_records does NOT shrink this
+# mirror set — eu.jcops.net still feeds from prd02_dns_records (+ supplements).
+#
 # See: https://jumpcloud.atlassian.net/browse/TE-2005
 # ST-02 (TE-2006): proxied * catch-all and routing-edge-fallback structural DNS.
 # Zone Custom Hostnames fallback origin (prepares TE-2015); not Custom Hostname objects.
