@@ -44,7 +44,12 @@ locals {
     {
       name  = "stg01"
       ttl   = 300
-      value = ["blakely.ns.cloudflare.com", "keenan.ns.cloudflare.com"]
+      value = [
+        "ns-480.awsdns-60.com.",
+        "ns-1647.awsdns-13.co.uk.",
+        "ns-1281.awsdns-32.org.",
+        "ns-949.awsdns-54.net.",
+      ]
     },
     {
       name  = "prd02"

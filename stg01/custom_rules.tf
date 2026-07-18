@@ -70,6 +70,13 @@ locals {
     "console.stg01.jumpcloud.com",
   ])
 
+  # AI Gateway GCP Cloud NAT egress (jc-stg-ai-gateway, us-east5).
+  # Manual static IPs from terraform-jc-gcp-org vpcs/stg/us-east5.
+  gcp_stg01_ai_gateway_nat_egress_ips = [
+    "8.231.42.108", # jc-ai-gateway-stg-nat-egress-1
+    "8.231.43.130", # jc-ai-gateway-stg-nat-egress-2
+  ]
+
   salesforce_ips = [
     "3.146.43.224/28",
     "13.56.32.176/28",
@@ -167,7 +174,8 @@ locals {
     "3.19.161.175",
     "13.58.217.67",
     "3.17.202.62",
-    "3.21.194.220"
+    "3.21.194.220",
+    "54.249.101.63" # stg01-apne1-edge NAT GW
   ]
 
   crowdstrike_ips = [
@@ -311,7 +319,7 @@ locals {
     {
       action      = "skip"
       description = "Allow AI Gateway GCP NAT for JC MCP and Console"
-      expression  = "(http.host in {${join(" ", [for host in local.ai_gateway_gcp_nat_hostnames : format("\"%s\"", host)])}} and ip.src in {34.162.201.132})"
+      expression  = "(http.host in {${join(" ", [for host in local.ai_gateway_gcp_nat_hostnames : format("\"%s\"", host)])}} and ip.src in {${join(" ", local.gcp_stg01_ai_gateway_nat_egress_ips)}})"
     },
     // Allow Azure Active Directory
     {

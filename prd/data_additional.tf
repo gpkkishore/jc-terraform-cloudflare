@@ -618,7 +618,10 @@ locals {
   ]
 
   vault_in_records = [
-    # Prd03 environment
+    # Prd03 vault api/app/ws orange CNAMEs retired — infra-edge owns grey cutover
+    # (infra-edge#167). Apex @ / *.vault.in stay (SPA dist outside module.cdn).
+    # jcops mirrors remain in prd03/vault_jcops_mirror_in.tf.
+    # Removed: *.api.vault.in.jumpcloud.com, *.app.vault.in.jumpcloud.com, *.ws.vault.in.jumpcloud.com, api.vault.in.jumpcloud.com, app.vault.in.jumpcloud.com, ws.vault.in.jumpcloud.com
     {
       name    = "connect.vault.in.jumpcloud.com",
       ttl     = 300,
@@ -653,48 +656,6 @@ locals {
       proxied = false,
       type    = "CNAME",
       value   = "internal-vaultone-prd03-grpc-internal-763405070.ap-south-1.elb.amazonaws.com"
-    },
-    {
-      name    = "*.app.vault.in.jumpcloud.com",
-      ttl     = 1,
-      proxied = true,
-      type    = "CNAME",
-      value   = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
-    },
-    {
-      name    = "*.api.vault.in.jumpcloud.com",
-      ttl     = 1,
-      proxied = true,
-      type    = "CNAME",
-      value   = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
-    },
-    {
-      name    = "app.vault.in.jumpcloud.com",
-      ttl     = 1,
-      proxied = true,
-      type    = "CNAME",
-      value   = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
-    },
-    {
-      name    = "api.vault.in.jumpcloud.com",
-      ttl     = 1,
-      proxied = true,
-      type    = "CNAME",
-      value   = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
-    },
-    {
-      name    = "*.ws.vault.in.jumpcloud.com",
-      ttl     = 1,
-      proxied = true,
-      type    = "CNAME",
-      value   = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
-    },
-    {
-      name    = "ws.vault.in.jumpcloud.com",
-      ttl     = 1,
-      proxied = true,
-      type    = "CNAME",
-      value   = "vaultone-prd03-shared-public-alb-836542350.ap-south-1.elb.amazonaws.com"
     },
     {
       name    = "@",
@@ -737,7 +698,7 @@ locals {
       proxied = false,
       type    = "CNAME",
       value   = "_bd75823ada3da22612b987d1cf1023dd.jkddzztszm.acm-validations.aws."
-    },
+    }
   ]
 
   ###########################################

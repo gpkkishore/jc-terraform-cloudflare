@@ -4,17 +4,10 @@ locals {
 
   /**
    * DNS A records for the prd03 environment
+   * Brand ai proxied A retired to infra-edge (ip-origin / cdn-ng this_proxied_a).
+   * Prefer state-rm then remove from this list — do not terraform destroy the live record.
    */
-  prd03_a_records = [
-    // agent0 - GCP Load Balancer IN
-    {
-      name    = "ai",
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      content = "8.232.53.32"
-    },
-  ]
+  prd03_a_records = []
 
   /**
    * DNS CNAME records for the prd03 environment
@@ -26,6 +19,14 @@ locals {
    * DNS MX records for the prd03 environment
    */
   prd03_cname_records = [
+    # Orange brand CNAMEs for infra-edge cdn_list hosts retired — ownership moved to
+    # infra-edge module.cdn (migrate_cname + jcops grey cutover). Prefer state-rm then
+    # this HCL drop (not destroy). See TheJumpCloud/infra-edge#167.
+    # Removed: admin-oauth.id, api, apple-mdm, apple.mdm, assist, console, devices.pwm,
+    # go, grpc.pwm, jumpdesk, kickstart, login, mcp, mcpv2, microsoft-mdm, oauth, oauth.id,
+    # ocsp, polaris, polaris-console, saas, scep, scim.pwm, slack, sso, trampoline.id, trino
+    # (+ matching *. wildcards where present).
+    # Commented legacy rows (mulesoft-api, nli) dropped with this cleanup.
     {
       name    = "adbridge-kickstart"
       proxied = false
@@ -41,46 +42,11 @@ locals {
       content = "adbridge.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "admin-oauth.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "agent"
       proxied = false
       ttl     = 1
       type    = "CNAME"
       content = "agent.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "api"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "assist"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "assist.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "apple-mdm.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "microsoft-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "microsoft-mdm.prd03-aps1.jcplatform.dev"
     },
     {
       name    = "bss"
@@ -90,13 +56,6 @@ locals {
       content = "si-bss-api.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "console.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "device-cert"
       proxied = false
       ttl     = 1
@@ -104,90 +63,11 @@ locals {
       content = "device-cert.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "kickstart"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "kickstart-public.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "apple.mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "apple-mdm.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "go"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "go.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "private-kickstart"
       proxied = false
       ttl     = 1
       type    = "CNAME"
       content = "kickstart-private.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "jumpdesk"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "jumpdesk.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "login"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "login-api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "mcp"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "mcpv2"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd03-aps1.jcplatform.dev"
-    },
-    # TODO: Confirm if mulesoft-api is needed for prd03 and what the value should be.
-    # {
-    #   name    = "mulesoft-api",
-    #   proxied = false
-    #   ttl     = 300
-    #   type    = "CNAME"
-    #   content = "TBD"
-    # },
-    # TODO: Confirm if nli is needed for prd03. The prd02 endpoint points to a US-based prd cluster (ue1-prd-p01).
-    # {
-    #   name    = "nli"
-    #   proxied = true
-    #   ttl     = 1
-    #   type    = "CNAME"
-    #   content = "nli-haproxy-haproxy.ue1-prd-p01.jcplatform.dev"
-    # },
-    {
-      name    = "oauth"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "oauth.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "oauth.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd03-aps1.jcplatform.dev"
     },
     {
       name    = "search-api"
@@ -204,76 +84,6 @@ locals {
       content = "schema-registry.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "slack"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "devices.pwm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "grpc.pwm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "polaris"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "polaris-console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris-console.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "scim.pwm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "sso"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "sso.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "saas"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "trampoline.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "trino"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "trino.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "*.adbridge-kickstart"
       proxied = false
       ttl     = 1
@@ -288,53 +98,11 @@ locals {
       content = "adbridge.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.admin-oauth.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "*.agent"
       proxied = false
       ttl     = 1
       type    = "CNAME"
       content = "agent.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.api"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.assist"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "assist.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "apple-mdm.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.microsoft-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "microsoft-mdm.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "console.prd03-aps1.jcplatform.dev"
     },
     {
       name    = "*.device-cert"
@@ -344,84 +112,11 @@ locals {
       content = "device-cert.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.kickstart"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "kickstart-public.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.apple.mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "apple-mdm.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.go"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "go.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "*.private-kickstart"
       proxied = false
       ttl     = 1
       type    = "CNAME"
       content = "kickstart-private.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.jumpdesk"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "jumpdesk.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.login"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "login-api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.mcp"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.mcpv2"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd03-aps1.jcplatform.dev"
-    },
-    # TODO: Uncomment if nli is deployed to prd03
-    # {
-    #   name    = "*.nli"
-    #   proxied = true
-    #   ttl     = 1
-    #   type    = "CNAME"
-    #   content = "nli-haproxy-haproxy.ue1-prd-p01.jcplatform.dev"
-    # },
-
-    {
-      name    = "*.polaris"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris.prd03-aps1.jcplatform.dev"
-    },
-
-    {
-      name    = "*.polaris-console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris-console.prd03-aps1.jcplatform.dev"
     },
     {
       name    = "*.search-api"
@@ -436,84 +131,7 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "schema-registry.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.slack"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.oauth"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "oauth.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.oauth.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.grpc.pwm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.scim.pwm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.sso"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "sso.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.saas"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.trampoline.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.trino"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "trino.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "ocsp"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "ocsp.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "scep"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "ocsp.prd03-aps1.jcplatform.dev"
-    },
+    }
   ]
 
   /**

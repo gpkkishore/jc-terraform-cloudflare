@@ -44,7 +44,7 @@ locals {
       name = "ldap.jumpcloud.com"
       ns = {
         # original ns ttl is 172800
-        ttl = 86400 # 1-day
+        ttl = 300 # 5-minutes
       }
       soa = {
         # original soa ttl is 900
@@ -58,7 +58,7 @@ locals {
       name = "ldap-mfa.jumpcloud.com"
       ns = {
         # original ns ttl is 172800
-        ttl = 86400 # 1-day
+        ttl = 300 # 5-minutes
       }
       soa = {
         # original soa ttl is 900
