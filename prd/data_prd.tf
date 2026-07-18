@@ -1876,13 +1876,7 @@ locals {
       type    = "CNAME"
       value   = "kickstart-private.prd02-euc1.jcplatform.dev"
     },
-    {
-      name    = "ai.eu",
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      value   = "34.120.238.176"
-    },
+    # ai.eu orange A retired to infra-edge prd02 ip-origin CDN (companion PR).
   ]
   prd_dns_records = concat(local.prd_a_records, local.prd_mx_records, local.prd_cname_records, local.prd_misc_records, local.prd_eu_records)
 
