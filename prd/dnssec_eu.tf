@@ -116,23 +116,10 @@ resource "aws_route53_key_signing_key" "zones_with_dnssec_eu_05212025" {
   status                     = "ACTIVE"
 }
 
-# create DS record in eu.jumpcloud.com child zone relative to each route53 zone which verifies the related KSKs hosted zone's DNSKEY
-resource "cloudflare_record" "ds_route53_zones_with_dnssec_eu_05212025" {
-  for_each = local.route53_zone_name_to_zone_eu
-
-  zone_id = lookup(data.cloudflare_zone.zones_with_dnssec, local.cloudflare_root_zone).id
-  name    = each.key
-  type    = "DS"
-  proxied = false
-  data {
-    algorithm   = lookup(aws_route53_key_signing_key.zones_with_dnssec_eu_05212025, each.key).signing_algorithm_type
-    digest      = lookup(aws_route53_key_signing_key.zones_with_dnssec_eu_05212025, each.key).digest_value
-    digest_type = lookup(aws_route53_key_signing_key.zones_with_dnssec_eu_05212025, each.key).digest_algorithm_type
-    key_tag     = lookup(aws_route53_key_signing_key.zones_with_dnssec_eu_05212025, each.key).key_tag
-  }
-
-  depends_on = [aws_route53_hosted_zone_dnssec.zones_with_dnssec_eu_05212025]
-}
+# Parent DS for ldap*.eu / radius.eu now lives on R53 eu.jumpcloud.com
+# (infra-edge/terraform/prd02 route53_eu_ds_records), not Cloudflare jumpcloud.com.
+# Destroy any leftover CF DS after the eu NS cutover so resolvers follow:
+#   jumpcloud.com (CF) → eu.jumpcloud.com (R53) → ldap*|radius.eu (R53 + DNSSEC).
 
 resource "aws_route53_hosted_zone_dnssec" "zones_with_dnssec_eu_05212025" {
   for_each = local.route53_zone_name_to_zone_eu
