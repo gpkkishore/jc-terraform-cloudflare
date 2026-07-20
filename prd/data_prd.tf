@@ -1786,98 +1786,11 @@ locals {
     },
   ]
 
-  prd_eu_records = [
-    # Orange brand CNAMEs for infra-edge prd02 cdn_list hosts retired — ownership
-    # moves to infra-edge module.cdn (migrate_cname). Prefer Spacelift state-rm on
-    # prd-cloudflare, then this HCL drop (not destroy). Companion: infra-edge PR B.
-    # Removed: *.admin-oauth.id.eu, *.api.eu, *.apple-mdm.eu, *.apple.mdm.eu, *.assist.eu, *.console.eu, *.go.eu, *.grpc.pwm.eu, *.jumpdesk.eu, *.kickstart.eu, *.login.eu, *.mcp.eu, *.mcpv2.eu, *.microsoft-mdm.eu, *.nli.eu, *.oauth.eu, *.oauth.id.eu, *.polaris-console.eu, *.polaris.eu, *.saas.eu, *.scim.pwm.eu, *.slack.eu, *.sso.eu, *.trampoline.id.eu, admin-oauth.id.eu, api.eu, apple-mdm.eu, apple.mdm.eu, assist.eu, console.eu, devices.pwm.eu, go.eu, grpc.pwm.eu, jumpdesk.eu, kickstart.eu, login.eu, mcp.eu, mcpv2.eu, microsoft-mdm.eu, nli.eu, oauth.eu, oauth.id.eu, ocsp.eu, polaris-console.eu, polaris.eu, saas.eu, scep.eu, scim.pwm.eu, slack.eu, sso.eu, trampoline.id.eu, trino.eu, *.trino.eu.
-    # Kept: non-cdn EU labels (adbridge, agent, ai, bss, device-cert, mulesoft-api, private-kickstart, …).
-    {
-      name    = "adbridge-kickstart.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "adbridge-kickstart.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "adbridge.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "adbridge.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "agent.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "agent.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "bss.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "si-bss-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "device-cert.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "device-cert.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "private-kickstart.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "kickstart-private.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "mulesoft-api.eu"
-      proxied = false
-      ttl     = 300
-      type    = "CNAME"
-      value   = "hnbh3q.usa-e1.cloudhub.io"
-    },
-    {
-      name    = "*.adbridge-kickstart.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "adbridge-kickstart.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.adbridge.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "adbridge.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.agent.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "agent.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.device-cert.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "device-cert.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.private-kickstart.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "kickstart-private.prd02-euc1.jcplatform.dev"
-    },
-    # ai.eu orange A retired to infra-edge prd02 ip-origin CDN (companion PR).
-  ]
+  # Empty after eu NS→R53 (#907). Remaining jcplatform/mulesoft labels already live in
+  # Route53 eu.jumpcloud.com (weighted O2O). CF parent AA answers shadowed R53; destroy
+  # these so recursion follows the eu NS. Companion: infra-edge create_cloudflare_cname=false.
+  # Keep eu NS elsewhere; do not put brand CNAMEs back here.
+  prd_eu_records = []
   prd_dns_records = concat(local.prd_a_records, local.prd_mx_records, local.prd_cname_records, local.prd_misc_records, local.prd_eu_records)
 
 }
