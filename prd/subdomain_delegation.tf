@@ -59,7 +59,7 @@ locals {
     {
       name  = "in"
       ttl   = 300
-      value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
+      value = ["ns-2009.awsdns-59.co.uk.", "ns-72.awsdns-09.com.", "ns-871.awsdns-44.net.", "ns-1111.awsdns-10.org."]
     },
     {
       name  = "ldap-mfa.eu"
