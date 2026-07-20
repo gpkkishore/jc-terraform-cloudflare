@@ -62,6 +62,11 @@ locals {
       value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
     },
     {
+      name  = "eu"
+      ttl   = 300
+      value = ["ns-1285.awsdns-32.org.", "ns-245.awsdns-30.com.", "ns-1894.awsdns-44.co.uk.", "ns-917.awsdns-50.net."]
+    },
+    {
       name  = "ldap-mfa.eu"
       ttl   = 300
       value = ["ns-730.awsdns-27.net.", "ns-1350.awsdns-40.org.", "ns-484.awsdns-60.com.", "ns-2011.awsdns-59.co.uk."]
