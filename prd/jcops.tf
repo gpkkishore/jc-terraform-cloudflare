@@ -59,6 +59,10 @@ locals {
     local.jcops_mirrored_dns_records,
     local.vault_jumpcloud_jcops_mirror_records,
   )
+
+  jcops_add_waf_rules = concat(local.add_waf_rules["jumpcloud.com"], local.add_waf_rules["id.jumpcloud.com"], local.add_waf_rules["vault.jumpcloud.com"])
+
+  jcops_add_ratelimit_rules = local.add_ratelimit_rules["jumpcloud.com"]
 }
 
 resource "cloudflare_zone" "jcops_net" {
@@ -93,8 +97,8 @@ resource "cloudflare_custom_hostname_fallback_origin" "jcops_router" {
 module "jcops_security" {
   source                     = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.6.0"
   zone_id                    = cloudflare_zone.jcops_net.id
-  additional_ratelimit_rules = []
-  additional_waf_rules       = []
+  additional_ratelimit_rules = local.jcops_add_ratelimit_rules
+  additional_waf_rules       = local.jcops_add_waf_rules
 }
 
 module "jcops_settings" {
