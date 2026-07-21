@@ -28,30 +28,4 @@ locals {
       value   = "trampoline_id.prd-use1.jcplatform.dev"
     },
   ]
-
-  # CDN+CH warm path hosts that are not yet proxied on jumpcloud.com (so they
-  # never enter jcops_mirrored_dns_records). Origins match infra-edge prd/data_cdn.tf.
-  jcops_ch_origin_only_records = [
-    {
-      name    = "ai-aws"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "ai.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "catalog"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "data-catalog.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "password-manager"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "password-manager.prd-use1.jcplatform.dev"
-    },
-  ]
 }
