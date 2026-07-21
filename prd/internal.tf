@@ -81,7 +81,9 @@ locals {
     },
   ]
 
-  # Alias A records in jcplatform.dev (Route 53 rejects CNAME-to-ELB at apex-style names).
+  # Alias A → ELB (Route 53 preference for load-balancer targets; a CNAME would also be
+  # valid here since marketing-internal is a subdomain of jcplatform.dev, not a zone apex).
+  # Formerly an NS-delegated child zone; collapsed into this parent zone.
   internal_alias_records = [
     {
       name                   = "marketing-internal"
