@@ -41,11 +41,6 @@ locals {
       value = ["ns-984.awsdns-59.net", "ns-1906.awsdns-46.co.uk", "ns-1433.awsdns-51.org", "ns-42.awsdns-05.com"]
     }, # Managed in jumpcloud/test-infra repo
     {
-      name  = "marketing-internal"
-      ttl   = 300
-      value = ["ns-1122.awsdns-12.org", "ns-888.awsdns-47.net", "ns-1722.awsdns-23.co.uk", "ns-267.awsdns-33.com"]
-    },
-    {
       name  = "design-internal"
       ttl   = 300
       value = ["ns-1264.awsdns-30.org", "ns-661.awsdns-18.net", "ns-1790.awsdns-31.co.uk", "ns-420.awsdns-52.com"]
@@ -71,6 +66,16 @@ locals {
       value = "d2k34i1ti5bssq.cloudfront.net"
     }
   ]
+
+  # Alias A records in jcplatform.dev (Route 53 rejects CNAME-to-ELB at apex-style names).
+  internal_alias_records = [
+    {
+      name                   = "marketing-internal"
+      alias_name             = "d3d61011c209cf0c2b83e5959e49829c-330411615.us-east-1.elb.amazonaws.com"
+      alias_zone_id          = "Z35SXDOTRQ7X7K"
+      evaluate_target_health = false
+    }
+  ]
 }
 
 resource "aws_route53_zone" "jc_internal_zone" {
@@ -93,4 +98,17 @@ resource "aws_route53_record" "jc_insternal_only_records" {
   type     = each.value.type
   ttl      = each.value.ttl
   records  = [each.value.value]
+}
+
+resource "aws_route53_record" "jc_internal_alias_records" {
+  for_each = { for record in local.internal_alias_records : record.name => record }
+  zone_id  = aws_route53_zone.jc_internal_zone.zone_id
+  name     = each.value.name
+  type     = "A"
+
+  alias {
+    name                   = each.value.alias_name
+    zone_id                = each.value.alias_zone_id
+    evaluate_target_health = each.value.evaluate_target_health
+  }
 }
