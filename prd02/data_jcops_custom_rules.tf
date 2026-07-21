@@ -248,7 +248,7 @@ locals {
     },
   ]
 
-  jcops_eu_waf_rules  = [
+  eu_jcops_waf_rules  = [
     { // allow pentest IP, to be removed after pentest is complete
       action      = "skip"
       description = "Allow Pentest IPs"
@@ -289,7 +289,7 @@ locals {
     },
   ]
 
-  jcops_eu_add_waf_rules = concat(local.jcops_eu_waf_rules, local.vault_eu_waf_rules)
+  eu_jcops_add_waf_rules = concat(local.eu_jcops_waf_rules, local.vault_eu_waf_rules)
 }
 
 data "aws_ec2_managed_prefix_list" "euc1_zscaler_natgws" {
