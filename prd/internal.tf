@@ -64,7 +64,21 @@ locals {
       ttl   = 300
       type  = "CNAME"
       value = "d2k34i1ti5bssq.cloudfront.net"
-    }
+    },
+    # ACM DNS validation CNAMEs formerly in marketing-internal.jcplatform.dev
+    # (orphaned when NS delegation collapsed into jcplatform.dev).
+    {
+      name  = "_c77f0fe692de5e10692c8cf01d088d74.marketing-internal"
+      ttl   = 300
+      type  = "CNAME"
+      value = "_ea6a4b2477d3bc329802eb1981967846.mhbtsbpdnt.acm-validations.aws"
+    },
+    {
+      name  = "_9306b0fc62e6f64e737011d2615c5a73.www.marketing-internal"
+      ttl   = 300
+      type  = "CNAME"
+      value = "_ff11cec1ef59555cc189d7c12ea1a8ad.mhbtsbpdnt.acm-validations.aws"
+    },
   ]
 
   # Alias A records in jcplatform.dev (Route 53 rejects CNAME-to-ELB at apex-style names).
