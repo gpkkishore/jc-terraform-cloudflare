@@ -54,10 +54,12 @@ locals {
     })
   ]
 
+  # id.jumpcloud.com: prd/id_jcops_mirror_us.tf (not in brand mirror).
   jcops_dns_records = concat(
     local.jcops_router_structural_dns_records,
     local.jcops_mirrored_dns_records,
     local.vault_jumpcloud_jcops_mirror_records,
+    local.id_jumpcloud_jcops_mirror_records,
   )
 
   jcops_add_waf_rules = concat(local.add_waf_rules["jumpcloud.com"], local.add_waf_rules["id.jumpcloud.com"], local.add_waf_rules["vault.jumpcloud.com"])
