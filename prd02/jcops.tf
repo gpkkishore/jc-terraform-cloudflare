@@ -98,6 +98,13 @@ locals {
       type    = "CNAME"
       content = "ocsp.prd02-euc1.jcplatform.dev"
     },
+    {
+      name    = "ssf"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "standard-api.prd02-euc1.jcplatform.dev"
+    },
   ]
 
   # Proxied vault.eu child-zone rows → eu.jcops.net (TE-2005).
