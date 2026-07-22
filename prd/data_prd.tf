@@ -1370,6 +1370,13 @@ locals {
       proxied = false
       ttl     = 60
       type    = "TXT"
+      value   = "pendo-domain-verification=nP--wi-vPNhIAj3UEf41veozcVU"
+    },
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
       value   = "google-site-verification=Lsc8IrEquKnjM6ybUEPhDzAniM6mH9gxP1Pq6JbVncE"
     },
     {
