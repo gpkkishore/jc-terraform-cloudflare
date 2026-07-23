@@ -120,7 +120,7 @@ resource "cloudflare_total_tls" "jcops_net" {
 }
 
 module "jcops_dns" {
-  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=2.0.1"
+  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=3.1.0"
   zone_id       = cloudflare_zone.jcops_net.id
   zone_name     = local.jcops_zone_name
   dns_records   = local.jcops_dns_records
