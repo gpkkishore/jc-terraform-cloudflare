@@ -47,7 +47,7 @@ locals {
       proxied = true
       ttl     = 1
       type    = "A"
-      content = "32.194.81.196" # Marketing Lightsail pre-prod env
+      content = "32.194.81.196"
     },
     {
       name    = "ti-1"
