@@ -34,34 +34,35 @@ locals {
   prd_eu_jcops_record_names = toset([for r in local.prd_eu_records : r.name])
 
   # Explicit jcops.net origins for brand rows retired from prd_a_records (stg01/prd03 jcops_app_dns_records pattern).
+  # module.jcops_dns ref 2.0.1 reads value (not content); stg01 uses dns module 3.1.0 + provider 4.52+.
   jcops_app_dns_records = [
     {
       name    = "ai"
       proxied = true
       ttl     = 1
       type    = "A"
-      content = "35.241.16.49" # GCP LB prd — proxied-A custom origin for ai.jumpcloud.com CH
+      value   = "35.241.16.49" # GCP LB prd — proxied-A custom origin for ai.jumpcloud.com CH
     },
     {
       name    = "staging"
       proxied = true
       ttl     = 1
       type    = "A"
-      content = "32.194.81.196"
+      value   = "32.194.81.196"
     },
     {
       name    = "ti-1"
       proxied = true
       ttl     = 1
       type    = "A"
-      content = "44.239.47.105"
+      value   = "44.239.47.105"
     },
     {
       name    = "ti-2"
       proxied = true
       ttl     = 1
       type    = "A"
-      content = "52.13.15.220"
+      value   = "52.13.15.220"
     },
   ]
 
@@ -120,7 +121,7 @@ resource "cloudflare_total_tls" "jcops_net" {
 }
 
 module "jcops_dns" {
-  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=3.1.0"
+  source        = "git@github.com:TheJumpCloud/terraform-cloudflare-dns.git?ref=2.0.1"
   zone_id       = cloudflare_zone.jcops_net.id
   zone_name     = local.jcops_zone_name
   dns_records   = local.jcops_dns_records
