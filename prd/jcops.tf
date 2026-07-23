@@ -1,9 +1,9 @@
 ####################################################
 # jcops.net - Primary Router Zone (parallel to jumpcloud.com)
 #
-# This zone mirrors all proxied DNS entries from jumpcloud.com.
-# Each proxied record points to the same jcplatform.dev origin.
-# Non-proxied records are NOT included (they go to AWS Route 53).
+# Proxied brand rows still in prd/data_prd.tf → jcops_mirrored_dns_records.
+# Retired brand proxied A (ai, staging, ti-1, ti-2) → jcops_app_dns_records (infra-edge owns brand CF).
+# Vault / id child zones: separate mirror locals below.
 #
 # See: https://jumpcloud.atlassian.net/browse/TE-2005
 # ST-02 (TE-2006): proxied * catch-all and routing-edge-fallback structural DNS.
@@ -33,10 +33,48 @@ locals {
   # EU app labels (api.eu, etc.) live in eu.jcops.net as api — do not duplicate on parent jcops.net.
   prd_eu_jcops_record_names = toset([for r in local.prd_eu_records : r.name])
 
+  # Explicit jcops.net origins for brand rows retired from prd_a_records (stg01/prd03 jcops_app_dns_records pattern).
+  # module.jcops_dns ref 2.0.1 reads value (not content); stg01 uses dns module 3.1.0 + provider 4.52+.
+  jcops_app_dns_records = [
+    {
+      name    = "ai"
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      value   = "35.241.16.49" # GCP LB prd — proxied-A custom origin for ai.jumpcloud.com CH
+    },
+    {
+      name    = "staging"
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      value   = "32.194.81.196"
+    },
+    {
+      name    = "ti-1"
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      value   = "44.239.47.105"
+    },
+    {
+      name    = "ti-2"
+      proxied = true
+      ttl     = 1
+      type    = "A"
+      value   = "52.13.15.220"
+    },
+  ]
+
+  jcops_app_dns_record_names = toset([for r in local.jcops_app_dns_records : r.name])
+
   # Filter: only proxied app records from jumpcloud.com (exclude apex @; jcops.net is its own zone).
   jcops_mirrored_dns_records = [
     for r in local.prd_dns_records : r
-    if lookup(r, "proxied", false) == true && lookup(r, "name", "") != "@" && !contains(local.prd_eu_jcops_record_names, lookup(r, "name", ""))
+    if lookup(r, "proxied", false) == true &&
+    lookup(r, "name", "") != "@" &&
+    !contains(local.jcops_app_dns_record_names, lookup(r, "name", "")) &&
+    !contains(local.prd_eu_jcops_record_names, lookup(r, "name", ""))
   ]
 
   # Proxied vault.jumpcloud.com production rows → jcops.net (TE-2005).
@@ -58,6 +96,7 @@ locals {
   jcops_dns_records = concat(
     local.jcops_router_structural_dns_records,
     local.jcops_mirrored_dns_records,
+    local.jcops_app_dns_records,
     local.vault_jumpcloud_jcops_mirror_records,
     local.id_jumpcloud_jcops_mirror_records,
   )

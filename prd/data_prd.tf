@@ -174,27 +174,8 @@ locals {
     },
     // START - Marketing website
     // These dev/staging records are for pre-prod envs on the marketing website (hosted through lightsail)
-    {
-      name    = "staging",
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      value   = "32.194.81.196"
-    },
-    {
-      name    = "ti-1",
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      value   = "44.239.47.105"
-    },
-    {
-      name    = "ti-2",
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      value   = "52.13.15.220"
-    },
+    # staging / ti-1 / ti-2 retired — infra-edge owns brand proxied A + R53 warm path (state-rm, not destroy).
+    # jcops.net: prd/jcops.tf jcops_app_dns_records.
     // END - Marketing website
     {
       name    = "tools",
@@ -203,14 +184,8 @@ locals {
       type    = "A"
       value   = "34.111.179.208"
     },
-    // agent0 - GCP Load Balancer 
-    {
-      name    = "ai",
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      value   = "35.241.16.49"
-    },
+    # Retired proxied A rows (state-rm from module.dns before apply — infra-edge owns brand CF):
+    #   ai, staging, ti-1, ti-2 → jcops.net: prd/jcops.tf jcops_app_dns_records
   ]
 
   prd_mx_records = [
