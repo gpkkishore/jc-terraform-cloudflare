@@ -5,11 +5,17 @@
 # external-dns-cloudflare (now disabled) and never ported to TF.
 # Adopt them here and flip orange → LB into grey → *.id.jcops.net
 # (stg01 mcpv2 pattern). Router origins stay in id_jcops_mirror_us.tf.
+#
+# Pre-cutover values (revert checklist — proxied = true):
+#   admin-oauth  → admin_oauth_id.prd-use1.jcplatform.dev
+#   oauth        → oauth_id.prd-use1.jcplatform.dev
+#   trampoline   → trampoline_id.prd-use1.jcplatform.dev
 ####################################################
 
 locals {
   id_jumpcloud_brand_cutover_records = [
     {
+      # was: proxied = true, value = "admin_oauth_id.prd-use1.jcplatform.dev"
       name    = "admin-oauth"
       proxied = false
       ttl     = 1
@@ -17,6 +23,7 @@ locals {
       value   = "admin-oauth.id.jcops.net"
     },
     {
+      # was: proxied = true, value = "oauth_id.prd-use1.jcplatform.dev"
       name    = "oauth"
       proxied = false
       ttl     = 1
@@ -24,6 +31,7 @@ locals {
       value   = "oauth.id.jcops.net"
     },
     {
+      # was: proxied = true, value = "trampoline_id.prd-use1.jcplatform.dev"
       name    = "trampoline"
       proxied = false
       ttl     = 1
