@@ -988,19 +988,23 @@ locals {
       type    = "CNAME"
       value   = "u515119.wl120.sendgrid.net"
     },
+    # LMS Powered (LearnUpon) origins are themselves on Cloudflare
+    # (*.cdn.cloudflare.net). Grey→jcops orange→LMS causes Error 1000
+    # (orange-to-orange). Keep DNS-only CNAMEs straight to LMS — same
+    # pattern as jumpcademy (never routed via jcops).
     {
       name    = "university",
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "university.jcops.net"
+      value   = "lmsx7sxmk23m7c6vh01sl1s5ini1s980x.lb1.wl.lmspowered.com"
     },
     {
       name    = "partnerjcu",
       proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "partnerjcu.jcops.net"
+      value   = "lmsyeso18yxkei5yaq1a65h7izi1skr86.lb1.wl.lmspowered.com"
     },
     {
       name    = "partners",

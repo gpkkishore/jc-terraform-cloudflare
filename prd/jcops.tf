@@ -360,7 +360,9 @@ locals {
       type    = "CNAME"
       value   = "ocsp.prd-use1.jcplatform.dev" # historical brand target
     },
-    # Marketing / third-party — pin orange origins when brand goes grey→jcops
+    # Marketing / third-party — pin orange origins when brand goes grey→jcops.
+    # Do NOT pin LMS (university/partnerjcu): lmspowered.com is on Cloudflare;
+    # orange→LMS is Error 1000. Those brand rows stay grey→LMS in data_prd.tf.
     {
       name    = "community"
       proxied = true
@@ -374,20 +376,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "support.jumpcloud.com.00dg0000000jusyma2.live.siteforce.com"
-    },
-    {
-      name    = "university"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "lmsx7sxmk23m7c6vh01sl1s5ini1s980x.lb1.wl.lmspowered.com"
-    },
-    {
-      name    = "partnerjcu"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "lmsyeso18yxkei5yaq1a65h7izi1skr86.lb1.wl.lmspowered.com"
     },
     {
       name    = "www"
