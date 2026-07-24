@@ -360,6 +360,42 @@ locals {
       type    = "CNAME"
       value   = "ocsp.prd-use1.jcplatform.dev" # historical brand target
     },
+    # Marketing / third-party — pin orange origins when brand goes grey→jcops
+    {
+      name    = "community"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "zsupw73743.lithium.com"
+    },
+    {
+      name    = "support"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "support.jumpcloud.com.00dg0000000jusyma2.live.siteforce.com"
+    },
+    {
+      name    = "university"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "lmsx7sxmk23m7c6vh01sl1s5ini1s980x.lb1.wl.lmspowered.com"
+    },
+    {
+      name    = "partnerjcu"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "lmsyeso18yxkei5yaq1a65h7izi1skr86.lb1.wl.lmspowered.com"
+    },
+    {
+      name    = "www"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "d3d61011c209cf0c2b83e5959e49829c-330411615.us-east-1.elb.amazonaws.com"
+    },
   ]
 
   jcops_app_dns_record_names = toset([for r in local.jcops_app_dns_records : r.name])
