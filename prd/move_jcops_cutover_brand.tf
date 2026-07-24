@@ -179,13 +179,14 @@ moved {
   from = module.dns.cloudflare_record.dns_records["support_support.jumpcloud.com.00dg0000000jusyma2.live.siteforce.com"]
   to   = module.dns.cloudflare_record.dns_records["support_support.jcops.net"]
 }
+# LMS hosts reverted grey→vendor (lmspowered is on Cloudflare; jcops orange→LMS = Error 1000).
 moved {
-  from = module.dns.cloudflare_record.dns_records["university_lmsx7sxmk23m7c6vh01sl1s5ini1s980x.lb1.wl.lmspowered.com"]
-  to   = module.dns.cloudflare_record.dns_records["university_university.jcops.net"]
+  from = module.dns.cloudflare_record.dns_records["university_university.jcops.net"]
+  to   = module.dns.cloudflare_record.dns_records["university_lmsx7sxmk23m7c6vh01sl1s5ini1s980x.lb1.wl.lmspowered.com"]
 }
 moved {
-  from = module.dns.cloudflare_record.dns_records["partnerjcu_lmsyeso18yxkei5yaq1a65h7izi1skr86.lb1.wl.lmspowered.com"]
-  to   = module.dns.cloudflare_record.dns_records["partnerjcu_partnerjcu.jcops.net"]
+  from = module.dns.cloudflare_record.dns_records["partnerjcu_partnerjcu.jcops.net"]
+  to   = module.dns.cloudflare_record.dns_records["partnerjcu_lmsyeso18yxkei5yaq1a65h7izi1skr86.lb1.wl.lmspowered.com"]
 }
 moved {
   from = module.dns.cloudflare_record.dns_records["www_d3d61011c209cf0c2b83e5959e49829c-330411615.us-east-1.elb.amazonaws.com"]
