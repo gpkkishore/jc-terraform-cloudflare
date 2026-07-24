@@ -166,6 +166,7 @@ locals {
       type    = "A"
       value   = "10.31.1.25"
     },
+    # o1.em A (SendGrid/Pardot) — cloudflare_record.o1_em (allow_overwrite; was orphaned).
     {
       name    = "prd-jumpcloud-logging-rmq-use1c-02"
       proxied = false
