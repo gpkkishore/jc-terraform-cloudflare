@@ -316,59 +316,59 @@ locals {
     },
     {
       name    = "api"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "api.prd-use1.jcplatform.dev"
+      value   = "api.jcops.net"
     },
     {
       name    = "*.api"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "api.prd-use1.jcplatform.dev"
+      value   = "api.jcops.net"
     },
     {
       name    = "assist"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "assist.prd-use1.jcplatform.dev"
+      value   = "assist.jcops.net"
     },
     {
       name    = "*.assist"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "assist.prd-use1.jcplatform.dev"
+      value   = "assist.jcops.net"
     },
     {
       name    = "apple-mdm"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "apple-mdm.prd-use1.jcplatform.dev"
+      value   = "apple-mdm.jcops.net"
     },
     {
       name    = "*.apple-mdm"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "apple-mdm.prd-use1.jcplatform.dev"
+      value   = "apple-mdm.jcops.net"
     },
     {
       name    = "microsoft-mdm"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "microsoft-mdm.prd-use1.jcplatform.dev"
+      value   = "microsoft-mdm.jcops.net"
     },
     {
       name    = "*.microsoft-mdm"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "microsoft-mdm.prd-use1.jcplatform.dev"
+      value   = "microsoft-mdm.jcops.net"
     },
     {
       name    = "bss"
@@ -386,17 +386,17 @@ locals {
     },
     {
       name    = "console"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "console.prd-use1.jcplatform.dev"
+      value   = "console.jcops.net"
     },
     {
       name    = "*.console"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "console.prd-use1.jcplatform.dev"
+      value   = "console.jcops.net"
     },
     {
       name    = "device-cert"
@@ -414,46 +414,46 @@ locals {
     },
     {
       name    = "kickstart"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "kickstart-public.prd-use1.jcplatform.dev"
+      value   = "kickstart.jcops.net"
     },
     {
       name    = "*.kickstart"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "kickstart-public.prd-use1.jcplatform.dev"
+      value   = "kickstart.jcops.net"
     },
     {
       name    = "apple.mdm"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "apple-mdm.prd-use1.jcplatform.dev"
+      value   = "apple.mdm.jcops.net"
     },
     {
       name    = "*.apple.mdm"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "apple-mdm.prd-use1.jcplatform.dev"
+      value   = "apple.mdm.jcops.net"
     },
 
     {
       name    = "go"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "go.prd-use1.jcplatform.dev"
+      value   = "go.jcops.net"
     },
     {
       name    = "*.go"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "go.prd-use1.jcplatform.dev"
+      value   = "go.jcops.net"
     },
     {
       name    = "h-9d4953e0122bf"
@@ -478,108 +478,108 @@ locals {
     },
     {
       name    = "jumpdesk"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "jumpdesk.prd-use1.jcplatform.dev"
+      value   = "jumpdesk.jcops.net"
     },
     {
       name    = "mcp"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "mcp.prd-use1.jcplatform.dev"
+      value   = "mcp.jcops.net"
     },
     {
       name    = "*.mcp"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "mcp.prd-use1.jcplatform.dev"
+      value   = "mcp.jcops.net"
     },
     {
       name    = "mcpv2"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "mcpv2.prd-use1.jcplatform.dev"
+      value   = "mcpv2.jcops.net"
     },
     {
       name    = "*.mcpv2"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "mcpv2.prd-use1.jcplatform.dev"
+      value   = "mcpv2.jcops.net"
     },
     {
       name    = "login"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "login-api.prd-use1.jcplatform.dev"
+      value   = "login.jcops.net"
     },
     {
       name    = "*.login"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "login-api.prd-use1.jcplatform.dev"
+      value   = "login.jcops.net"
     },
     {
       name    = "nli"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "nli.prd-use1.jcplatform.dev"
+      value   = "nli.jcops.net"
     },
     {
       name    = "*.nli"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "nli.prd-use1.jcplatform.dev"
+      value   = "nli.jcops.net"
     },
     {
       name    = "oauth"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "oauth.prd-use1.jcplatform.dev"
+      value   = "oauth.jcops.net"
     },
     {
       name    = "*.oauth"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "oauth.prd-use1.jcplatform.dev"
+      value   = "oauth.jcops.net"
     },
     {
       name    = "polaris"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "polaris.prd-use1.jcplatform.dev"
+      value   = "polaris.jcops.net"
     },
     {
       name    = "*.polaris"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "polaris.prd-use1.jcplatform.dev"
+      value   = "polaris.jcops.net"
     },
     {
       name    = "polaris-console"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "polaris-console.prd-use1.jcplatform.dev"
+      value   = "polaris-console.jcops.net"
     },
     {
       name    = "*.polaris-console"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "polaris-console.prd-use1.jcplatform.dev"
+      value   = "polaris-console.jcops.net"
     },
     {
       name    = "schema-registry"
@@ -611,59 +611,59 @@ locals {
     },
     {
       name    = "slack"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "slack.prd-use1.jcplatform.dev"
+      value   = "slack.jcops.net"
     },
     {
       name    = "*.slack"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "slack.prd-use1.jcplatform.dev"
+      value   = "slack.jcops.net"
     },
     {
       name    = "sso"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "sso.prd-use1.jcplatform.dev"
+      value   = "sso.jcops.net"
     },
     {
       name    = "*.sso"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "sso.prd-use1.jcplatform.dev"
+      value   = "sso.jcops.net"
     },
     {
       name    = "saas"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "saas.prd-use1.jcplatform.dev"
+      value   = "saas.jcops.net"
     },
     {
       name    = "*.saas"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "saas.prd-use1.jcplatform.dev"
+      value   = "saas.jcops.net"
     },
     {
       name    = "trino"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "trino.prd-use1.jcplatform.dev"
+      value   = "trino.jcops.net"
     },
     {
       name    = "*.trino"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "trino.prd-use1.jcplatform.dev"
+      value   = "trino.jcops.net"
     },
     {
       name    = "817177",
@@ -1126,24 +1126,24 @@ locals {
     // END PWM
     {
       name    = "ssf"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "saas.prd-use1.jcplatform.dev" // Reuse Saas for now until we change dns to standard-api
+      value   = "ssf.jcops.net"
     },
     {
       name    = "ocsp"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "ocsp.prd-use1.jcplatform.dev"
+      value   = "ocsp.jcops.net"
     },
     {
       name    = "scep"
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "ocsp.prd-use1.jcplatform.dev"
+      value   = "scep.jcops.net"
     },
     // START ROCKETLANE
     {
