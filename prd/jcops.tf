@@ -358,7 +358,30 @@ locals {
       type    = "CNAME"
       value   = "trino.prd-use1.jcplatform.dev"
     },
-  ]
+  
+    # Marketing/third-party orange origins (master #920); brand rows grey→jcops in data_prd.tf
+{
+      name    = "community"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "zsupw73743.lithium.com"
+    },
+{
+      name    = "support"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "support.jumpcloud.com.00dg0000000jusyma2.live.siteforce.com"
+    },
+{
+      name    = "www"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "d3d61011c209cf0c2b83e5959e49829c-330411615.us-east-1.elb.amazonaws.com"
+    },
+]
 
   jcops_app_dns_record_names = toset([for r in local.jcops_app_dns_records : r.name])
 

@@ -152,10 +152,10 @@ locals {
     },
     {
       name    = "www",
-      proxied = true
+      proxied = false
       ttl     = 1,
       type    = "CNAME",
-      value   = "d3d61011c209cf0c2b83e5959e49829c-330411615.us-east-1.elb.amazonaws.com",
+      value   = "www.jcops.net",
     },
     // END - Marketing website
     {
@@ -489,10 +489,10 @@ locals {
     },
     {
       name    = "community",
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "zsupw73743.lithium.com"
+      value   = "community.jcops.net"
     },
     {
       name    = "4i6erhepmezi.community",
@@ -636,10 +636,10 @@ locals {
     },
     {
       name    = "support",
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "support.jumpcloud.com.00dg0000000jusyma2.live.siteforce.com"
+      value   = "support.jcops.net"
     },
     {
       name    = "nrxzskeboxtp.support",
@@ -720,14 +720,14 @@ locals {
     },
     {
       name    = "university",
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value   = "lmsx7sxmk23m7c6vh01sl1s5ini1s980x.lb1.wl.lmspowered.com"
     },
     {
       name    = "partnerjcu",
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value   = "lmsyeso18yxkei5yaq1a65h7izi1skr86.lb1.wl.lmspowered.com"
