@@ -158,7 +158,6 @@ locals {
       value   = "www.jcops.net",
     },
     // END - Marketing website
-    # Apex @ stays orange → Lightsail ELB (cannot CNAME apex to jcops.net).
     {
       name    = "logging-rmq-use1b"
       proxied = false
@@ -188,6 +187,10 @@ locals {
     },
     # Retired proxied A rows (state-rm from module.dns before apply — infra-edge owns brand CF):
     #   ai, staging, ti-1, ti-2 → jcops.net: prd/jcops.tf jcops_app_dns_records
+    # Retired proxied brand CNAMEs (state-rm — infra-edge owns brand CF + grey→jcops cutover):
+    #   api, apple-mdm, apple.mdm, assist, console, go, jumpdesk, kickstart, login, mcp, mcpv2,
+    #   microsoft-mdm, nli, oauth, ocsp, polaris, polaris-console, saas, scep, slack, ssf, sso, trino
+    #   (+ matching *.<label> wildcards where present) → jcops.net: prd/jcops.tf jcops_app_dns_records
   ]
 
   prd_mx_records = [
@@ -317,62 +320,6 @@ locals {
       value   = "agent.prd-use1.jcplatform.dev"
     },
     {
-      name    = "api"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "api.jcops.net"
-    },
-    {
-      name    = "*.api"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "api.jcops.net"
-    },
-    {
-      name    = "assist"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "assist.jcops.net"
-    },
-    {
-      name    = "*.assist"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "assist.jcops.net"
-    },
-    {
-      name    = "apple-mdm"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple-mdm.jcops.net"
-    },
-    {
-      name    = "*.apple-mdm"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple-mdm.jcops.net"
-    },
-    {
-      name    = "microsoft-mdm"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "microsoft-mdm.jcops.net"
-    },
-    {
-      name    = "*.microsoft-mdm"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "microsoft-mdm.jcops.net"
-    },
-    {
       name    = "bss"
       proxied = false
       ttl     = 1
@@ -385,20 +332,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "si-bss-api.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "console"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "console.jcops.net"
-    },
-    {
-      name    = "*.console"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "console.jcops.net"
     },
     {
       name    = "device-cert"
@@ -414,49 +347,7 @@ locals {
       type    = "CNAME"
       value   = "device-cert.prd-use1.jcplatform.dev"
     },
-    {
-      name    = "kickstart"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "kickstart.jcops.net"
-    },
-    {
-      name    = "*.kickstart"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "kickstart.jcops.net"
-    },
-    {
-      name    = "apple.mdm"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple.mdm.jcops.net"
-    },
-    {
-      name    = "*.apple.mdm"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple.mdm.jcops.net"
-    },
 
-    {
-      name    = "go"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "go.jcops.net"
-    },
-    {
-      name    = "*.go"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "go.jcops.net"
-    },
     {
       name    = "h-9d4953e0122bf"
       proxied = false
@@ -477,111 +368,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "kickstart-private.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "jumpdesk"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "jumpdesk.jcops.net"
-    },
-    {
-      name    = "mcp"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "mcp.jcops.net"
-    },
-    {
-      name    = "*.mcp"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "mcp.jcops.net"
-    },
-    {
-      name    = "mcpv2"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "mcpv2.jcops.net"
-    },
-    {
-      name    = "*.mcpv2"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "mcpv2.jcops.net"
-    },
-    {
-      name    = "login"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "login.jcops.net"
-    },
-    {
-      name    = "*.login"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "login.jcops.net"
-    },
-    {
-      name    = "nli"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "nli.jcops.net"
-    },
-    {
-      name    = "*.nli"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "nli.jcops.net"
-    },
-    {
-      name    = "oauth"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "oauth.jcops.net"
-    },
-    {
-      name    = "*.oauth"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "oauth.jcops.net"
-    },
-    {
-      name    = "polaris"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris.jcops.net"
-    },
-    {
-      name    = "*.polaris"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris.jcops.net"
-    },
-    {
-      name    = "polaris-console"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris-console.jcops.net"
-    },
-    {
-      name    = "*.polaris-console"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris-console.jcops.net"
     },
     {
       name    = "schema-registry"
@@ -610,62 +396,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "search-api.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "slack"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "slack.jcops.net"
-    },
-    {
-      name    = "*.slack"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "slack.jcops.net"
-    },
-    {
-      name    = "sso"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "sso.jcops.net"
-    },
-    {
-      name    = "*.sso"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "sso.jcops.net"
-    },
-    {
-      name    = "saas"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "saas.jcops.net"
-    },
-    {
-      name    = "*.saas"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "saas.jcops.net"
-    },
-    {
-      name    = "trino"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "trino.jcops.net"
-    },
-    {
-      name    = "*.trino"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "trino.jcops.net"
     },
     {
       name    = "817177",
@@ -989,10 +719,6 @@ locals {
       type    = "CNAME"
       value   = "u515119.wl120.sendgrid.net"
     },
-    # LMS Powered (LearnUpon) origins are themselves on Cloudflare
-    # (*.cdn.cloudflare.net). Grey→jcops orange→LMS causes Error 1000
-    # (orange-to-orange). Keep DNS-only CNAMEs straight to LMS — same
-    # pattern as jumpcademy (never routed via jcops).
     {
       name    = "university",
       proxied = false
@@ -1130,27 +856,7 @@ locals {
       value   = "d37bnv0y5ohq9m.cloudfront.net"
     },
     // END PWM
-    {
-      name    = "ssf"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "ssf.jcops.net"
-    },
-    {
-      name    = "ocsp"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "ocsp.jcops.net"
-    },
-    {
-      name    = "scep"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "scep.jcops.net"
-    },
+    # ssf retired — infra-edge owns brand CF (was → saas.prd-use1.jcplatform.dev)
     // START ROCKETLANE
     {
       name    = "_1ed3637f5a8544a903875ba040c764c7.professionalservices"

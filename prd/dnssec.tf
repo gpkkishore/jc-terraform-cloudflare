@@ -1,7 +1,10 @@
 # Cloudflare zones with DNSSEC
 locals {
-  cloudflare_root_zone         = "jumpcloud.com" # needs to separate for reference of the root zone later
-  cloudflare_child_zones       = ["id.jumpcloud.com"]
+  cloudflare_root_zone = "jumpcloud.com" # needs to separate for reference of the root zone later
+  # id.jumpcloud.com DS removed on R53 NS cutover — dormant id zone is unsigned
+  # (ServeSignature NOT_SIGNING). Re-add here only if/when R53 id DNSSEC is enabled
+  # and a matching DS is published on the parent.
+  cloudflare_child_zones       = []
   cloudflare_zones_with_dnssec = toset(concat([local.cloudflare_root_zone], local.cloudflare_child_zones))
 }
 

@@ -8,10 +8,16 @@ locals {
     },
     # vault.eu / ldap*.eu / radius.eu NS live under R53 eu.jumpcloud.com after
     # the eu zone cutover — do not republish them on the CF jumpcloud.com parent.
+    # id.jumpcloud.com → Route 53 dormant warm zone (infra-edge aws_route53_zone.prd_id_jumpcloud_com).
     {
       name  = "id"
       ttl   = 300
-      value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
+      value = [
+        "ns-1136.awsdns-14.org.",
+        "ns-1608.awsdns-09.co.uk.",
+        "ns-317.awsdns-39.com.",
+        "ns-710.awsdns-24.net.",
+      ]
     },
     {
       name  = "ldap"

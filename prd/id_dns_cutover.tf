@@ -1,47 +1,19 @@
 ####################################################
-# id.jumpcloud.com ingress cutover (orphaned external-dns → IaC)
+# id.jumpcloud.com ingress cutover — retired to infra-edge #205.
 #
-# Live admin-oauth / oauth / trampoline CNAMEs were created by
-# external-dns-cloudflare (now disabled) and never ported to TF.
-# Adopt them here and flip orange → LB into grey → *.id.jcops.net
-# (stg01 mcpv2 pattern). Router origins stay in id_jcops_mirror_us.tf.
+# Live admin-oauth / oauth / trampoline grey→*.id.jcops.net were adopted here
+# from external-dns. Ownership moves to infra-edge module.cdn (migrate_cname).
 #
-# Adoption uses allow_overwrite (OpenTofu in this stack does not support
-# import { for_each = ... } / dynamic import ids).
+# Spacelift state-rm on prd-cloudflare before apply (leaves live DNS):
+#   cloudflare_record.id_jumpcloud_brand_cutover["admin-oauth"]
+#   cloudflare_record.id_jumpcloud_brand_cutover["oauth"]
+#   cloudflare_record.id_jumpcloud_brand_cutover["trampoline"]
 #
-# Pre-cutover values (revert checklist — proxied = true):
-#   admin-oauth  → admin_oauth_id.prd-use1.jcplatform.dev
-#   oauth        → oauth_id.prd-use1.jcplatform.dev
-#   trampoline   → trampoline_id.prd-use1.jcplatform.dev
+# Router origins stay in id_jcops_mirror_us.tf.
 ####################################################
 
 locals {
-  id_jumpcloud_brand_cutover_records = [
-    {
-      # was: proxied = true, value = "admin_oauth_id.prd-use1.jcplatform.dev"
-      name    = "admin-oauth"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "admin-oauth.id.jcops.net"
-    },
-    {
-      # was: proxied = true, value = "oauth_id.prd-use1.jcplatform.dev"
-      name    = "oauth"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "oauth.id.jcops.net"
-    },
-    {
-      # was: proxied = true, value = "trampoline_id.prd-use1.jcplatform.dev"
-      name    = "trampoline"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "trampoline.id.jcops.net"
-    },
-  ]
+  id_jumpcloud_brand_cutover_records = []
 
   id_jumpcloud_brand_cutover_by_name = {
     for r in local.id_jumpcloud_brand_cutover_records : r.name => r
