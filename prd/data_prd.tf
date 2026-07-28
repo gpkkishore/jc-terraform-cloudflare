@@ -531,13 +531,6 @@ locals {
       value   = "go.pardot.com"
     },
     {
-      name    = "demo",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "d38yxozcjb68y3.cloudfront.net"
-    },
-    {
       name    = "docs",
       proxied = false
       ttl     = 1
