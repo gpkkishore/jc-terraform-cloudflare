@@ -193,11 +193,11 @@ locals {
       content = "mcp.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "mcpv2"
+      name    = "usermcp"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "mcpv2.stg01-use2.jcplatform.dev"
+      content = "usermcp.stg01-use2.jcplatform.dev"
     },
     {
       name    = "microsoft-mdm"

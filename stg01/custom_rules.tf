@@ -24,7 +24,7 @@ locals {
     "trino.stg01.jumpcloud.com",
     "*.prd02.stg01.jumpcloud.com",
     "mcp.stg01.jumpcloud.com",
-    "mcpv2.stg01.jumpcloud.com",
+    "usermcp.stg01.jumpcloud.com",
     "slack.stg01.jumpcloud.com",
     "ai.stg01.jumpcloud.com",
     "ai-aws.stg01.jumpcloud.com",
@@ -86,7 +86,7 @@ locals {
 
   mcp_hostnames = [
     "mcp.stg01.jumpcloud.com",
-    "mcpv2.stg01.jumpcloud.com",
+    "usermcp.stg01.jumpcloud.com",
   ]
 
   ai_gateway_gcp_nat_hostnames = concat(local.mcp_hostnames, [
