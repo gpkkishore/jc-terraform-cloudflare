@@ -17,12 +17,13 @@ locals {
     "polaris.stg01.jumpcloud.com",
     "polaris-console.stg01.jumpcloud.com",
     "saas.stg01.jumpcloud.com",
+    "scim-bridge.stg01.jumpcloud.com",
     "ssf.stg01.jumpcloud.com",
     "search-api.stg01.jumpcloud.com",
     "schema-registry.stg01.jumpcloud.com",
     "trino.stg01.jumpcloud.com",
     "mcp.stg01.jumpcloud.com",
-    "mcpv2.stg01.jumpcloud.com",
+    "usermcp.stg01.jumpcloud.com",
     "slack.stg01.jumpcloud.com",
     "ai.stg01.jumpcloud.com",
     "ai-aws.stg01.jumpcloud.com",
@@ -45,6 +46,7 @@ locals {
     "*.polaris.stg01.jumpcloud.com",
     "*.polaris-console.stg01.jumpcloud.com",
     "*.saas.stg01.jumpcloud.com",
+    "*.scim-bridge.stg01.jumpcloud.com",
     "*.ssf.stg01.jumpcloud.com",
     "*.mcp.stg01.jumpcloud.com",
     "*.search-api.stg01.jumpcloud.com",
@@ -63,7 +65,7 @@ locals {
 
   mcp_hostnames = [
     "mcp.stg01.jumpcloud.com",
-    "mcpv2.stg01.jumpcloud.com",
+    "usermcp.stg01.jumpcloud.com",
   ]
 
   ai_gateway_gcp_nat_hostnames = concat(local.mcp_hostnames, [

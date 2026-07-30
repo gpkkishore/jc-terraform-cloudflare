@@ -152,10 +152,10 @@ locals {
     },
     {
       name    = "www",
-      proxied = true
+      proxied = false
       ttl     = 1,
       type    = "CNAME",
-      value   = "d3d61011c209cf0c2b83e5959e49829c-330411615.us-east-1.elb.amazonaws.com",
+      value   = "www.jcops.net",
     },
     // END - Marketing website
     {
@@ -165,6 +165,7 @@ locals {
       type    = "A"
       value   = "10.31.1.25"
     },
+    # o1.em A (SendGrid/Pardot) — cloudflare_record.o1_em (allow_overwrite; was orphaned).
     {
       name    = "prd-jumpcloud-logging-rmq-use1c-02"
       proxied = false
@@ -174,27 +175,8 @@ locals {
     },
     // START - Marketing website
     // These dev/staging records are for pre-prod envs on the marketing website (hosted through lightsail)
-    {
-      name    = "staging",
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      value   = "32.194.81.196"
-    },
-    {
-      name    = "ti-1",
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      value   = "44.239.47.105"
-    },
-    {
-      name    = "ti-2",
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      value   = "52.13.15.220"
-    },
+    # staging / ti-1 / ti-2 retired — infra-edge owns brand proxied A + R53 warm path (state-rm, not destroy).
+    # jcops.net: prd/jcops.tf jcops_app_dns_records.
     // END - Marketing website
     {
       name    = "tools",
@@ -203,14 +185,12 @@ locals {
       type    = "A"
       value   = "34.111.179.208"
     },
-    // agent0 - GCP Load Balancer 
-    {
-      name    = "ai",
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      value   = "35.241.16.49"
-    },
+    # Retired proxied A rows (state-rm from module.dns before apply — infra-edge owns brand CF):
+    #   ai, staging, ti-1, ti-2 → jcops.net: prd/jcops.tf jcops_app_dns_records
+    # Retired proxied brand CNAMEs (state-rm — infra-edge owns brand CF + grey→jcops cutover):
+    #   api, apple-mdm, apple.mdm, assist, console, go, jumpdesk, kickstart, login, mcp, mcpv2,
+    #   microsoft-mdm, nli, oauth, ocsp, polaris, polaris-console, saas, scep, slack, ssf, sso, trino
+    #   (+ matching *.<label> wildcards where present) → jcops.net: prd/jcops.tf jcops_app_dns_records
   ]
 
   prd_mx_records = [
@@ -340,62 +320,6 @@ locals {
       value   = "agent.prd-use1.jcplatform.dev"
     },
     {
-      name    = "api"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "api.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.api"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "api.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "assist"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "assist.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.assist"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "assist.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple-mdm.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple-mdm.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "microsoft-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "microsoft-mdm.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.microsoft-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "microsoft-mdm.prd-use1.jcplatform.dev"
-    },
-    {
       name    = "bss"
       proxied = false
       ttl     = 1
@@ -408,20 +332,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "si-bss-api.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "console.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "console.prd-use1.jcplatform.dev"
     },
     {
       name    = "device-cert"
@@ -437,49 +347,7 @@ locals {
       type    = "CNAME"
       value   = "device-cert.prd-use1.jcplatform.dev"
     },
-    {
-      name    = "kickstart"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "kickstart-public.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.kickstart"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "kickstart-public.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "apple.mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple-mdm.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.apple.mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple-mdm.prd-use1.jcplatform.dev"
-    },
 
-    {
-      name    = "go"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "go.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.go"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "go.prd-use1.jcplatform.dev"
-    },
     {
       name    = "h-9d4953e0122bf"
       proxied = false
@@ -500,111 +368,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "kickstart-private.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "jumpdesk"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "jumpdesk.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "mcp"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "mcp.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.mcp"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "mcp.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "mcpv2"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "mcpv2.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.mcpv2"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "mcpv2.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "login"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "login-api.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.login"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "login-api.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "nli"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "nli.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.nli"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "nli.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "oauth"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "oauth.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.oauth"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "oauth.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "polaris"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.polaris"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "polaris-console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris-console.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.polaris-console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris-console.prd-use1.jcplatform.dev"
     },
     {
       name    = "schema-registry"
@@ -633,62 +396,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "search-api.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "slack"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "slack.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.slack"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "slack.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "sso"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "sso.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.sso"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "sso.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "saas"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "saas.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.saas"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "saas.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "trino"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "trino.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.trino"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "trino.prd-use1.jcplatform.dev"
     },
     {
       name    = "817177",
@@ -783,10 +490,10 @@ locals {
     },
     {
       name    = "community",
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "zsupw73743.lithium.com"
+      value   = "community.jcops.net"
     },
     {
       name    = "4i6erhepmezi.community",
@@ -822,13 +529,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "go.pardot.com"
-    },
-    {
-      name    = "demo",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "d38yxozcjb68y3.cloudfront.net"
     },
     {
       name    = "docs",
@@ -930,10 +630,10 @@ locals {
     },
     {
       name    = "support",
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
-      value   = "support.jumpcloud.com.00dg0000000jusyma2.live.siteforce.com"
+      value   = "support.jcops.net"
     },
     {
       name    = "nrxzskeboxtp.support",
@@ -1014,14 +714,14 @@ locals {
     },
     {
       name    = "university",
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value   = "lmsx7sxmk23m7c6vh01sl1s5ini1s980x.lb1.wl.lmspowered.com"
     },
     {
       name    = "partnerjcu",
-      proxied = true
+      proxied = false
       ttl     = 1
       type    = "CNAME"
       value   = "lmsyeso18yxkei5yaq1a65h7izi1skr86.lb1.wl.lmspowered.com"
@@ -1149,27 +849,7 @@ locals {
       value   = "d37bnv0y5ohq9m.cloudfront.net"
     },
     // END PWM
-    {
-      name    = "ssf"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "saas.prd-use1.jcplatform.dev" // Reuse Saas for now until we change dns to standard-api
-    },
-    {
-      name    = "ocsp"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "ocsp.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "scep"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "ocsp.prd-use1.jcplatform.dev"
-    },
+    # ssf retired — infra-edge owns brand CF (was → saas.prd-use1.jcplatform.dev)
     // START ROCKETLANE
     {
       name    = "_1ed3637f5a8544a903875ba040c764c7.professionalservices"
@@ -1364,6 +1044,13 @@ locals {
       ttl     = 60
       type    = "TXT"
       value   = "anthropic-domain-verification-d2y1h3=hgs2t15zExm5ufddrHso0KZwW"
+    },
+    {
+      name    = "@"
+      proxied = false
+      ttl     = 60
+      type    = "TXT"
+      value   = "pendo-domain-verification=nP--wi-vPNhIAj3UEf41veozcVU"
     },
     {
       name    = "@"
@@ -1786,104 +1473,11 @@ locals {
     },
   ]
 
-  prd_eu_records = [
-    # Orange brand CNAMEs for infra-edge prd02 cdn_list hosts retired — ownership
-    # moves to infra-edge module.cdn (migrate_cname). Prefer Spacelift state-rm on
-    # prd-cloudflare, then this HCL drop (not destroy). Companion: infra-edge PR B.
-    # Removed: *.admin-oauth.id.eu, *.api.eu, *.apple-mdm.eu, *.apple.mdm.eu, *.assist.eu, *.console.eu, *.go.eu, *.grpc.pwm.eu, *.jumpdesk.eu, *.kickstart.eu, *.login.eu, *.mcp.eu, *.mcpv2.eu, *.microsoft-mdm.eu, *.nli.eu, *.oauth.eu, *.oauth.id.eu, *.polaris-console.eu, *.polaris.eu, *.saas.eu, *.scim.pwm.eu, *.slack.eu, *.sso.eu, *.trampoline.id.eu, admin-oauth.id.eu, api.eu, apple-mdm.eu, apple.mdm.eu, assist.eu, console.eu, devices.pwm.eu, go.eu, grpc.pwm.eu, jumpdesk.eu, kickstart.eu, login.eu, mcp.eu, mcpv2.eu, microsoft-mdm.eu, nli.eu, oauth.eu, oauth.id.eu, ocsp.eu, polaris-console.eu, polaris.eu, saas.eu, scep.eu, scim.pwm.eu, slack.eu, sso.eu, trampoline.id.eu, trino.eu, *.trino.eu.
-    # Kept: non-cdn EU labels (adbridge, agent, ai, bss, device-cert, mulesoft-api, private-kickstart, …).
-    {
-      name    = "adbridge-kickstart.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "adbridge-kickstart.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "adbridge.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "adbridge.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "agent.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "agent.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "bss.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "si-bss-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "device-cert.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "device-cert.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "private-kickstart.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "kickstart-private.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "mulesoft-api.eu"
-      proxied = false
-      ttl     = 300
-      type    = "CNAME"
-      value   = "hnbh3q.usa-e1.cloudhub.io"
-    },
-    {
-      name    = "*.adbridge-kickstart.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "adbridge-kickstart.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.adbridge.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "adbridge.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.agent.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "agent.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.device-cert.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "device-cert.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.private-kickstart.eu"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "kickstart-private.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "ai.eu",
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      value   = "34.120.238.176"
-    },
-  ]
+  # Empty after eu NS→R53 (#907). Remaining jcplatform/mulesoft labels already live in
+  # Route53 eu.jumpcloud.com (weighted O2O). CF parent AA answers shadowed R53; destroy
+  # these so recursion follows the eu NS. Companion: infra-edge create_cloudflare_cname=false.
+  # Keep eu NS elsewhere; do not put brand CNAMEs back here.
+  prd_eu_records = []
   prd_dns_records = concat(local.prd_a_records, local.prd_mx_records, local.prd_cname_records, local.prd_misc_records, local.prd_eu_records)
 
 }

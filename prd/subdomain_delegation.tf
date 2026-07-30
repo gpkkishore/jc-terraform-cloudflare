@@ -6,15 +6,18 @@ locals {
       ttl   = 300
       value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
     },
-    {
-      name  = "vault.eu"
-      ttl   = 300
-      value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
-    },
+    # vault.eu / ldap*.eu / radius.eu NS live under R53 eu.jumpcloud.com after
+    # the eu zone cutover — do not republish them on the CF jumpcloud.com parent.
+    # id.jumpcloud.com → Route 53 dormant warm zone (infra-edge aws_route53_zone.prd_id_jumpcloud_com).
     {
       name  = "id"
       ttl   = 300
-      value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
+      value = [
+        "ns-1136.awsdns-14.org.",
+        "ns-1608.awsdns-09.co.uk.",
+        "ns-317.awsdns-39.com.",
+        "ns-710.awsdns-24.net.",
+      ]
     },
     {
       name  = "ldap"
@@ -59,22 +62,12 @@ locals {
     {
       name  = "in"
       ttl   = 300
-      value = ["marvin.ns.cloudflare.com.", "wanda.ns.cloudflare.com."]
+      value = ["ns-2009.awsdns-59.co.uk.", "ns-72.awsdns-09.com.", "ns-871.awsdns-44.net.", "ns-1111.awsdns-10.org."]
     },
     {
-      name  = "ldap-mfa.eu"
+      name  = "eu"
       ttl   = 300
-      value = ["ns-730.awsdns-27.net.", "ns-1350.awsdns-40.org.", "ns-484.awsdns-60.com.", "ns-2011.awsdns-59.co.uk."]
-    },
-    {
-      name  = "ldap.eu"
-      ttl   = 300
-      value = ["ns-840.awsdns-41.net.", "ns-450.awsdns-56.com.", "ns-1953.awsdns-52.co.uk.", "ns-1216.awsdns-24.org."]
-    },
-    {
-      name  = "radius.eu"
-      ttl   = 300
-      value = ["ns-832.awsdns-40.net.", "ns-40.awsdns-05.com.", "ns-1833.awsdns-37.co.uk.", "ns-1514.awsdns-61.org."]
+      value = ["ns-1285.awsdns-32.org.", "ns-245.awsdns-30.com.", "ns-1894.awsdns-44.co.uk.", "ns-917.awsdns-50.net."]
     },
     {
       name  = "dev-p03"

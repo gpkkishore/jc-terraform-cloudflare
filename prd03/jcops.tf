@@ -397,6 +397,13 @@ locals {
       type    = "CNAME"
       content = "trino.prd03-aps1.jcplatform.dev"
     },
+    {
+      name    = "ssf"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "standard-api.prd03-aps1.jcplatform.dev"
+    },
   ]
 
   # Proxied vault.in child-zone rows → in.jcops.net (TE-2005).

@@ -41,11 +41,6 @@ locals {
       value = ["ns-984.awsdns-59.net", "ns-1906.awsdns-46.co.uk", "ns-1433.awsdns-51.org", "ns-42.awsdns-05.com"]
     }, # Managed in jumpcloud/test-infra repo
     {
-      name  = "marketing-internal"
-      ttl   = 300
-      value = ["ns-1122.awsdns-12.org", "ns-888.awsdns-47.net", "ns-1722.awsdns-23.co.uk", "ns-267.awsdns-33.com"]
-    },
-    {
       name  = "design-internal"
       ttl   = 300
       value = ["ns-1264.awsdns-30.org", "ns-661.awsdns-18.net", "ns-1790.awsdns-31.co.uk", "ns-420.awsdns-52.com"]
@@ -69,6 +64,32 @@ locals {
       ttl   = 300
       type  = "CNAME"
       value = "d2k34i1ti5bssq.cloudfront.net"
+    },
+    # ACM DNS validation CNAMEs formerly in marketing-internal.jcplatform.dev
+    # (orphaned when NS delegation collapsed into jcplatform.dev).
+    {
+      name  = "_c77f0fe692de5e10692c8cf01d088d74.marketing-internal"
+      ttl   = 300
+      type  = "CNAME"
+      value = "_ea6a4b2477d3bc329802eb1981967846.mhbtsbpdnt.acm-validations.aws"
+    },
+    {
+      name  = "_9306b0fc62e6f64e737011d2615c5a73.www.marketing-internal"
+      ttl   = 300
+      type  = "CNAME"
+      value = "_ff11cec1ef59555cc189d7c12ea1a8ad.mhbtsbpdnt.acm-validations.aws"
+    },
+  ]
+
+  # Alias A → ELB (Route 53 preference for load-balancer targets; a CNAME would also be
+  # valid here since marketing-internal is a subdomain of jcplatform.dev, not a zone apex).
+  # Formerly an NS-delegated child zone; collapsed into this parent zone.
+  internal_alias_records = [
+    {
+      name                   = "marketing-internal"
+      alias_name             = "d3d61011c209cf0c2b83e5959e49829c-330411615.us-east-1.elb.amazonaws.com"
+      alias_zone_id          = "Z35SXDOTRQ7X7K"
+      evaluate_target_health = false
     }
   ]
 }
@@ -93,4 +114,17 @@ resource "aws_route53_record" "jc_insternal_only_records" {
   type     = each.value.type
   ttl      = each.value.ttl
   records  = [each.value.value]
+}
+
+resource "aws_route53_record" "jc_internal_alias_records" {
+  for_each = { for record in local.internal_alias_records : record.name => record }
+  zone_id  = aws_route53_zone.jc_internal_zone.zone_id
+  name     = each.value.name
+  type     = "A"
+
+  alias {
+    name                   = each.value.alias_name
+    zone_id                = each.value.alias_zone_id
+    evaluate_target_health = each.value.evaluate_target_health
+  }
 }

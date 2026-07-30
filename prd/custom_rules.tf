@@ -209,7 +209,7 @@ locals {
         }
       },
       {
-        action      = "log"
+        action      = "block"
         description = "ai.jumpcloud.com - GET /.well-known/* rate limit"
         expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"GET\" and starts_with(http.request.uri.path, \"/.well-known/\"))"
 
@@ -222,7 +222,7 @@ locals {
         }
       },
       {
-        action      = "log"
+        action      = "block"
         description = "ai.jumpcloud.com - POST /mcp/oauth/register rate limit"
         expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"POST\" and http.request.uri.path eq \"/mcp/oauth/register\")"
 
@@ -235,7 +235,7 @@ locals {
         }
       },
       {
-        action      = "log"
+        action      = "block"
         description = "ai.jumpcloud.com - GET /mcp/oauth/authorize rate limit"
         expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"GET\" and http.request.uri.path eq \"/mcp/oauth/authorize\")"
 
@@ -248,7 +248,7 @@ locals {
         }
       },
       {
-        action      = "log"
+        action      = "block"
         description = "ai.jumpcloud.com - POST /mcp/oauth/token rate limit"
         expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"POST\" and http.request.uri.path eq \"/mcp/oauth/token\")"
 
@@ -261,7 +261,7 @@ locals {
         }
       },
       {
-        action      = "log"
+        action      = "block"
         description = "ai.jumpcloud.com - POST /mcp rate limit"
         expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"POST\" and http.request.uri.path eq \"/mcp\")"
 
@@ -274,7 +274,7 @@ locals {
         }
       },
       {
-        action      = "log"
+        action      = "block"
         description = "ai.jumpcloud.com - GET /mcp SSE rate limit"
         expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"GET\" and http.request.uri.path eq \"/mcp\")"
 
@@ -287,7 +287,7 @@ locals {
         }
       },
       {
-        action      = "log"
+        action      = "block"
         description = "ai.jumpcloud.com - DELETE /mcp rate limit"
         expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"DELETE\" and http.request.uri.path eq \"/mcp\")"
 

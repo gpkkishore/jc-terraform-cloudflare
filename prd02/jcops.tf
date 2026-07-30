@@ -98,6 +98,13 @@ locals {
       type    = "CNAME"
       content = "ocsp.prd02-euc1.jcplatform.dev"
     },
+    {
+      name    = "ssf"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "standard-api.prd02-euc1.jcplatform.dev"
+    },
   ]
 
   # Proxied vault.eu child-zone rows → eu.jcops.net (TE-2005).
@@ -155,8 +162,8 @@ resource "cloudflare_custom_hostname_fallback_origin" "jcops_router" {
 module "jcops_security" {
   source                     = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.2.0"
   zone_id                    = cloudflare_zone.jcops_net.id
-  additional_ratelimit_rules = []
-  additional_waf_rules       = []
+  additional_ratelimit_rules = local.eu_jcops_add_ratelimit_rules
+  additional_waf_rules       = local.eu_jcops_add_waf_rules
 }
 
 module "jcops_settings" {
