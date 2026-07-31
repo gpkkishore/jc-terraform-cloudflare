@@ -23,7 +23,7 @@ locals {
     # infra-edge module.cdn (migrate_cname + jcops grey cutover). Prefer state-rm then
     # this HCL drop (not destroy). See TheJumpCloud/infra-edge#167.
     # Removed: admin-oauth.id, api, apple-mdm, apple.mdm, assist, console, devices.pwm,
-    # go, grpc.pwm, jumpdesk, kickstart, login, mcp, mcpv2, microsoft-mdm, oauth, oauth.id,
+    # go, grpc.pwm, jumpdesk, kickstart, login, mcp, microsoft-mdm, oauth, oauth.id,
     # ocsp, polaris, polaris-console, saas, scep, scim.pwm, slack, sso, trampoline.id, trino
     # (+ matching *. wildcards where present).
     # Commented legacy rows (mulesoft-api, nli) dropped with this cleanup.

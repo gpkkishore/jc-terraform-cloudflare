@@ -128,11 +128,11 @@ locals {
       value   = "mcp.prd-use1.jcplatform.dev"
     },
     {
-      name    = "*.mcpv2"
+      name    = "*.usermcp"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "mcpv2.prd-use1.jcplatform.dev"
+      value   = "usermcp.prd-use1.jcplatform.dev"
     },
     {
       name    = "*.microsoft-mdm"
@@ -268,11 +268,11 @@ locals {
       value   = "mcp.prd-use1.jcplatform.dev"
     },
     {
-      name    = "mcpv2"
+      name    = "usermcp"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "mcpv2.prd-use1.jcplatform.dev"
+      value   = "usermcp.prd-use1.jcplatform.dev"
     },
     {
       name    = "microsoft-mdm"

@@ -144,7 +144,7 @@ locals {
       content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "mcpv2"
+      name    = "usermcp"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -363,7 +363,7 @@ locals {
       content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "*.mcpv2"
+      name    = "*.usermcp"
       proxied = true
       ttl     = 1
       type    = "CNAME"

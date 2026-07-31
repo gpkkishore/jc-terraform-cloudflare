@@ -71,10 +71,6 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["mcp_mcp.stg01-use2.jcplatform.dev_1"]
 }
 moved {
-  from = module.dns.cloudflare_record.dns_records["mcpv2_mcpv2.stg01-use2.jcplatform.dev_1"]
-  to   = module.dns.cloudflare_record.dns_records["mcpv2_mcpv2.stg01.jcops.net_1"]
-}
-moved {
   from = module.dns.cloudflare_record.dns_records["microsoft-mdm_microsoft-mdm.stg01-use2.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["microsoft-mdm_microsoft-mdm.stg01-use2.jcplatform.dev_1"]
 }

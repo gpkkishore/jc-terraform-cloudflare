@@ -100,8 +100,8 @@ locals {
       validation_method = "txt"
     },
     {
-      name              = "mcpv2"
-      hosts             = ["*.mcpv2.jumpcloud.com", "mcpv2.jumpcloud.com"]
+      name              = "usermcp"
+      hosts             = ["*.usermcp.jumpcloud.com", "usermcp.jumpcloud.com"]
       validation_method = "txt"
     },
     {
@@ -188,7 +188,7 @@ locals {
     # Retired proxied A rows (state-rm from module.dns before apply — infra-edge owns brand CF):
     #   ai, staging, ti-1, ti-2 → jcops.net: prd/jcops.tf jcops_app_dns_records
     # Retired proxied brand CNAMEs (state-rm — infra-edge owns brand CF + grey→jcops cutover):
-    #   api, apple-mdm, apple.mdm, assist, console, go, jumpdesk, kickstart, login, mcp, mcpv2,
+    #   api, apple-mdm, apple.mdm, assist, console, go, jumpdesk, kickstart, login, mcp,
     #   microsoft-mdm, nli, oauth, ocsp, polaris, polaris-console, saas, scep, slack, ssf, sso, trino
     #   (+ matching *.<label> wildcards where present) → jcops.net: prd/jcops.tf jcops_app_dns_records
   ]

@@ -80,14 +80,6 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["*.mcp_mcp.jcops.net"]
 }
 moved {
-  from = module.dns.cloudflare_record.dns_records["mcpv2_mcpv2.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["mcpv2_mcpv2.jcops.net"]
-}
-moved {
-  from = module.dns.cloudflare_record.dns_records["*.mcpv2_mcpv2.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.mcpv2_mcpv2.jcops.net"]
-}
-moved {
   from = module.dns.cloudflare_record.dns_records["login_login-api.prd-use1.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["login_login.jcops.net"]
 }

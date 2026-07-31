@@ -216,14 +216,14 @@ locals {
       content = "standard-api.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "mcpv2"
+      name    = "usermcp"
       proxied = true
       ttl     = 1
       type    = "CNAME"
       content = "standard-api.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.mcpv2"
+      name    = "*.usermcp"
       proxied = true
       ttl     = 1
       type    = "CNAME"
