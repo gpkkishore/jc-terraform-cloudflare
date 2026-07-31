@@ -99,11 +99,7 @@ locals {
       hosts             = ["*.mcp.jumpcloud.com", "mcp.jumpcloud.com"]
       validation_method = "txt"
     },
-    {
-      name              = "usermcp"
-      hosts             = ["*.usermcp.jumpcloud.com", "usermcp.jumpcloud.com"]
-      validation_method = "txt"
-    },
+    # usermcp edge cert pack removed — jumpcloud.com NS is R53; CF TXT DCV cannot complete.
     {
       name              = "microsoft-mdm-eu"
       hosts             = ["*.microsoft-mdm.eu.jumpcloud.com", "microsoft-mdm.eu.jumpcloud.com"]
