@@ -19,7 +19,7 @@ jobs:
     name: High Risk Extra Approval
     runs-on: ubuntu-latest
     steps:
-      - uses: TheJumpCloud/common-github-actions/check-bugbot-high-risk-approval@v3.10.0
+      - uses: TheJumpCloud/common-github-actions/check-bugbot-high-risk-approval@v3
         with:
           base_approval_count: "1"
           extra_approvals: "1"
