@@ -85,11 +85,6 @@ locals {
       validation_method = "txt"
     },
     {
-      name              = "pwm"
-      hosts             = ["*.pwm.eu.jumpcloud.com", "pwm.eu.jumpcloud.com"]
-      validation_method = "txt"
-    },
-    {
       name              = "login"
       hosts             = ["*.login.jumpcloud.com", "login.jumpcloud.com"]
       validation_method = "txt"
@@ -100,11 +95,6 @@ locals {
       validation_method = "txt"
     },
     # usermcp edge cert pack removed — jumpcloud.com NS is R53; CF TXT DCV cannot complete.
-    {
-      name              = "microsoft-mdm-eu"
-      hosts             = ["*.microsoft-mdm.eu.jumpcloud.com", "microsoft-mdm.eu.jumpcloud.com"]
-      validation_method = "txt"
-    },
     {
       name              = "nli"
       hosts             = ["*.nli.jumpcloud.com", "nli.jumpcloud.com"]
