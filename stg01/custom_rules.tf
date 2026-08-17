@@ -25,7 +25,6 @@ locals {
     "mcp.stg01.jumpcloud.com",
     "usermcp.stg01.jumpcloud.com",
     "slack.stg01.jumpcloud.com",
-    "ai.stg01.jumpcloud.com",
     "ai-aws.stg01.jumpcloud.com",
     "ocsp.stg01.jumpcloud.com",
     "scep.stg01.jumpcloud.com",
