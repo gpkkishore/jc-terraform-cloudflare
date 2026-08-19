@@ -11,12 +11,11 @@ resource "cloudflare_logpush_job" "stg01_jcops" {
   destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.dd_api_key}&ddsource=cloudflare&service=cloudflare&ddtags=zone_name:${local.jcops_zone_name},env:${var.env},cf_type:firewall_events"
 }
 
-# Commenting this out to remove from TF management so that we can manually create / test in the UI.
-# Resource to log HTTP requests with 4xx and 5xx response
+# Resource to log HTTP requests with >= 4xx responses
 resource "cloudflare_logpush_job" "stg01_jcops_http_events_job" {
   name             = "http-events-job-${local.jcops_zone_name}"
   zone_id          = cloudflare_zone.jcops_net.id
-  enabled          = false
+  enabled          = true
   dataset          = "http_requests"
   destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.dd_api_key}&ddsource=cloudflare&service=cloudflare&ddtags=zone_name:${local.jcops_zone_name},env:${var.env},cf_type:http_requests"
   filter = jsonencode({
