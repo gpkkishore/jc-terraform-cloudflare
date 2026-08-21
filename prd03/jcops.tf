@@ -41,13 +41,6 @@ locals {
       content = "identity.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.admin-oauth.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "ai"
       proxied = true
       ttl     = 1
@@ -223,13 +216,6 @@ locals {
       content = "standard-api.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.usermcp"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "microsoft-mdm"
       proxied = true
       ttl     = 1
@@ -265,13 +251,6 @@ locals {
       content = "identity.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.oauth.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "ocsp"
       proxied = true
       ttl     = 1
@@ -294,13 +273,6 @@ locals {
     },
     {
       name    = "polaris-console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris-console.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.polaris-console"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -377,21 +349,7 @@ locals {
       content = "identity.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.trampoline.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "trino"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "trino.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.trino"
       proxied = true
       ttl     = 1
       type    = "CNAME"
