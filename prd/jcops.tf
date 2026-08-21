@@ -128,25 +128,11 @@ locals {
       value   = "mcp.prd-use1.jcplatform.dev"
     },
     {
-      name    = "*.usermcp"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "usermcp.prd-use1.jcplatform.dev"
-    },
-    {
       name    = "*.microsoft-mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
       value   = "microsoft-mdm.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.nli"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "nli.prd-use1.jcplatform.dev"
     },
     {
       name    = "*.oauth"
@@ -161,13 +147,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "polaris.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.polaris-console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris-console.prd-use1.jcplatform.dev"
     },
     {
       name    = "*.saas"
@@ -189,13 +168,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       value   = "sso.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.trino"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "trino.prd-use1.jcplatform.dev"
     },
     {
       name    = "api"

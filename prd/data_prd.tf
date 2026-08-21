@@ -271,21 +271,7 @@ locals {
       value   = "adbridge-kickstart.prd-use1.jcplatform.dev"
     },
     {
-      name    = "*.adbridge-kickstart"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "adbridge-kickstart.prd-use1.jcplatform.dev"
-    },
-    {
       name    = "adbridge"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "adbridge.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.adbridge"
       proxied = false
       ttl     = 1
       type    = "CNAME"
@@ -299,13 +285,6 @@ locals {
       value   = "agent.prd-use1.jcplatform.dev"
     },
     {
-      name    = "*.agent"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "agent.prd-use1.jcplatform.dev"
-    },
-    {
       name    = "bss"
       proxied = false
       ttl     = 1
@@ -313,21 +292,7 @@ locals {
       value   = "si-bss-api.prd-use1.jcplatform.dev"
     },
     {
-      name    = "*.bss"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "si-bss-api.prd-use1.jcplatform.dev"
-    },
-    {
       name    = "device-cert"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "device-cert.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.device-cert"
       proxied = false
       ttl     = 1
       type    = "CNAME"
@@ -349,13 +314,6 @@ locals {
       value   = "kickstart-private.prd-use1.jcplatform.dev"
     },
     {
-      name    = "*.private-kickstart"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "kickstart-private.prd-use1.jcplatform.dev"
-    },
-    {
       name    = "schema-registry"
       proxied = false
       ttl     = 1
@@ -363,21 +321,7 @@ locals {
       value   = "schema-registry.prd-use1.jcplatform.dev"
     },
     {
-      name    = "*.schema-registry"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "schema-registry.prd-use1.jcplatform.dev"
-    },
-    {
       name    = "search-api"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "search-api.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.search-api"
       proxied = false
       ttl     = 1
       type    = "CNAME"
