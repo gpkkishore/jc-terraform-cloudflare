@@ -329,21 +329,7 @@ locals {
       content = "polaris-console.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.polaris-console"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris-console.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "trino"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "trino.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.trino"
       proxied = false
       ttl     = 1
       type    = "CNAME"
@@ -371,21 +357,7 @@ locals {
       content = "schema-registry.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.schema-registry"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "schema-registry.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "search-api"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "search-api.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.search-api"
       proxied = false
       ttl     = 1
       type    = "CNAME"

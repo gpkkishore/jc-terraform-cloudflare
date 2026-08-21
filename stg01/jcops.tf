@@ -221,13 +221,6 @@ locals {
       content = "nli.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.nli"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "nli.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "oauth"
       proxied = true
       ttl     = 1
