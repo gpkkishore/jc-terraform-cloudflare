@@ -242,34 +242,6 @@ locals {
       content = "identity.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "*.adbridge-kickstart"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "adbridge-kickstart.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.adbridge"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "adbridge.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.admin-oauth.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.agent"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "agent.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "*.api"
       proxied = true
       ttl     = 1
@@ -305,13 +277,6 @@ locals {
       content = "console.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "*.device-cert"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "device-cert.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "*.kickstart"
       proxied = true
       ttl     = 1
@@ -334,13 +299,6 @@ locals {
       content = "go.prd02-euc1.jcplatform.dev"
     },
 
-    {
-      name    = "*.private-kickstart"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "kickstart-private.prd02-euc1.jcplatform.dev"
-    },
     {
       name    = "*.jumpdesk"
       proxied = true
@@ -368,13 +326,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.nli"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "nli-haproxy-haproxy.ue1-prd-p01.jcplatform.dev"
     },
     {
       name    = "*.search-api"
@@ -405,13 +356,6 @@ locals {
       content = "oauth.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "*.oauth.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "*.grpc.pwm"
       proxied = true
       ttl     = 1
@@ -438,13 +382,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.trampoline.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "ocsp"

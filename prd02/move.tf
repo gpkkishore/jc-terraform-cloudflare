@@ -18,10 +18,6 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["*.adbridge-kickstart_adbridge-kickstart.prd02-euc1.jcplatform.dev"]
 }
 
-moved {
-  from = module.dns.cloudflare_record.dns_records["*.admin-oauth.id_identity-haproxy.prd02-euc1-p00.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.admin-oauth.id_identity.prd02-euc1.jcplatform.dev"]
-}
 
 moved {
   from = module.dns.cloudflare_record.dns_records["*.agent_agent-haproxy.prd02-euc1-p00.jcplatform.dev"]
@@ -98,10 +94,6 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["*.oauth_oauth.prd02-euc1.jcplatform.dev"]
 }
 
-moved {
-  from = module.dns.cloudflare_record.dns_records["*.oauth.id_identity-haproxy.prd02-euc1-p00.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.oauth.id_identity.prd02-euc1.jcplatform.dev"]
-}
 
 moved {
   from = module.dns.cloudflare_record.dns_records["*.private-kickstart_kickstart-private-haproxy.prd02-euc1-p00.jcplatform.dev"]
@@ -128,10 +120,6 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["*.sso_sso.prd02-euc1.jcplatform.dev"]
 }
 
-moved {
-  from = module.dns.cloudflare_record.dns_records["*.trampoline.id_identity-haproxy.prd02-euc1-p00.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.trampoline.id_identity.prd02-euc1.jcplatform.dev"]
-}
 
 moved {
   from = module.dns.cloudflare_record.dns_records["adbridge_adbridge-haproxy.prd02-euc1-p00.jcplatform.dev"]
@@ -143,10 +131,6 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["adbridge-kickstart_adbridge-kickstart.prd02-euc1.jcplatform.dev"]
 }
 
-moved {
-  from = module.dns.cloudflare_record.dns_records["admin-oauth.id_identity-haproxy.prd02-euc1-p00.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["admin-oauth.id_identity.prd02-euc1.jcplatform.dev"]
-}
 
 moved {
   from = module.dns.cloudflare_record.dns_records["agent_agent-haproxy.prd02-euc1-p00.jcplatform.dev"]
@@ -233,10 +217,6 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["oauth_oauth.prd02-euc1.jcplatform.dev"]
 }
 
-moved {
-  from = module.dns.cloudflare_record.dns_records["oauth.id_identity-haproxy.prd02-euc1-p00.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["oauth.id_identity.prd02-euc1.jcplatform.dev"]
-}
 
 moved {
   from = module.dns.cloudflare_record.dns_records["private-kickstart_kickstart-private-haproxy.prd02-euc1-p00.jcplatform.dev"]
@@ -263,8 +243,4 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["sso_sso.prd02-euc1.jcplatform.dev"]
 }
 
-moved {
-  from = module.dns.cloudflare_record.dns_records["trampoline.id_identity-haproxy.prd02-euc1-p00.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["trampoline.id_identity.prd02-euc1.jcplatform.dev"]
-}
 

@@ -71,21 +71,7 @@ locals {
       content = "polaris-console.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "*.polaris-console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris-console.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "trino"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "trino.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.trino"
       proxied = true
       ttl     = 1
       type    = "CNAME"
