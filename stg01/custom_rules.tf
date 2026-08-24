@@ -210,6 +210,35 @@ locals {
         mitigation_timeout  = 10
       }
     },
+    # Service account API keys (jcs_*) — global zone-wide rate limits (NA-4759).
+    # Org/provider fair-share is enforced in-app (service-accounts); credential + IP at Cloudflare.
+    # Omit cf.colo.id so counters aggregate across all edge PoPs (not per-colo / per-HAProxy-node).
+    {
+      action      = "block"
+      description = "Service account API key (jcs_*) global per-key rate limit - stg01"
+      expression  = "(http.host eq \"api.stg01.jumpcloud.com\" and len(http.request.headers[\"x-api-key\"]) > 0 and starts_with(lower(http.request.headers[\"x-api-key\"][0]), \"jcs_\"))"
+
+      ratelimit = {
+        characteristics     = ["http.request.headers[\"x-api-key\"]"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 100
+        mitigation_timeout  = 60
+      }
+    },
+    {
+      action      = "block"
+      description = "Service account API key (jcs_*) global per-IP rate limit - stg01"
+      expression  = "(http.host eq \"api.stg01.jumpcloud.com\" and len(http.request.headers[\"x-api-key\"]) > 0 and starts_with(lower(http.request.headers[\"x-api-key\"][0]), \"jcs_\"))"
+
+      ratelimit = {
+        characteristics     = ["ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 100
+        mitigation_timeout  = 60
+      }
+    },
     # PKI Rate Limiting Rules
     # Phase 1: Block clearly malformed requests before backend processing
     {
