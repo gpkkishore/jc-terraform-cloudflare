@@ -195,6 +195,9 @@ locals {
     "17.0.0.0/8"
   ]
 
+  # jcs_* service account API keys on any *.jumpcloud.com host in this zone (NA-4759).
+  jcs_api_key_ratelimit_expression = "((ends_with(http.host, \".jumpcloud.com\") or http.host eq \"jumpcloud.com\") and len(http.request.headers[\"x-api-key\"]) > 0 and starts_with(lower(http.request.headers[\"x-api-key\"][0]), \"jcs_\"))"
+
   add_ratelimit_rules = [
     # Keep existing API rule first to preserve its state
     {
@@ -216,8 +219,8 @@ locals {
     # all HAProxy nodes behind that colo, but not across colos).
     {
       action      = "block"
-      description = "Service account API key (jcs_*) per-key rate limit - stg01"
-      expression  = "(http.host eq \"api.stg01.jumpcloud.com\" and len(http.request.headers[\"x-api-key\"]) > 0 and starts_with(lower(http.request.headers[\"x-api-key\"][0]), \"jcs_\"))"
+      description = "Service account API key (jcs_*) per-key rate limit - all *.jumpcloud.com"
+      expression  = local.jcs_api_key_ratelimit_expression
 
       ratelimit = {
         characteristics     = ["cf.colo.id", "http.request.headers[\"x-api-key\"]"]
@@ -229,8 +232,8 @@ locals {
     },
     {
       action      = "block"
-      description = "Service account API key (jcs_*) per-IP rate limit - stg01"
-      expression  = "(http.host eq \"api.stg01.jumpcloud.com\" and len(http.request.headers[\"x-api-key\"]) > 0 and starts_with(lower(http.request.headers[\"x-api-key\"][0]), \"jcs_\"))"
+      description = "Service account API key (jcs_*) per-IP rate limit - all *.jumpcloud.com"
+      expression  = local.jcs_api_key_ratelimit_expression
 
       ratelimit = {
         characteristics     = ["cf.colo.id", "ip.src"]
