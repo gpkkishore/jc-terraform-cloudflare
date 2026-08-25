@@ -106,6 +106,11 @@ locals {
     local.vaultone_homolog_mulesoft_ips,
   ])
 
+  # jcs_* service account requests on US *.jumpcloud.com hosts (NA-4759).
+  # Excludes regional zones (eu, in, stg01, prd02) handled in their workspaces.
+  # Per-API-key CF counting requires Advanced Rate Limiting (not entitled) — HAProxy (NA-4759).
+  jcs_api_key_ratelimit_expression = "((ends_with(http.host, \".jumpcloud.com\") and not ends_with(http.host, \".eu.jumpcloud.com\") and not ends_with(http.host, \".in.jumpcloud.com\") and not ends_with(http.host, \".stg01.jumpcloud.com\") and not ends_with(http.host, \".prd02.jumpcloud.com\") and http.host ne \"jumpcloud.com\") and len(http.request.headers[\"x-api-key\"]) > 0 and starts_with(lower(http.request.headers[\"x-api-key\"][0]), \"jcs_\"))"
+
   add_ratelimit_rules = {
     "jumpcloud.com" = [
       {
@@ -206,6 +211,23 @@ locals {
           period              = 10
           requests_per_period = 300
           mitigation_timeout  = 10
+        }
+      },
+      # Service account API keys (jcs_*) — per-IP edge rate limit (NA-4759).
+      # Org/provider fair-share is enforced in-app (service-accounts).
+      # Per-API-key limits: HAProxy stick tables (NA-4759); CF header characteristics
+      # require Advanced Rate Limiting plan (not entitled).
+      {
+        action      = "block"
+        description = "Service account API key (jcs_*) per-IP rate limit - US *.jumpcloud.com"
+        expression  = local.jcs_api_key_ratelimit_expression
+
+        ratelimit = {
+          characteristics     = ["cf.colo.id", "ip.src"]
+          counting_expression = null
+          period              = 60
+          requests_per_period = 2000
+          mitigation_timeout  = 60
         }
       },
       {
