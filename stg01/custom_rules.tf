@@ -195,6 +195,9 @@ locals {
     "17.0.0.0/8"
   ]
 
+  # jcs_* service account API keys on any *.jumpcloud.com host in this zone (NA-4759).
+  jcs_api_key_ratelimit_expression = "((ends_with(http.host, \".jumpcloud.com\") or http.host eq \"jumpcloud.com\") and len(http.request.headers[\"x-api-key\"]) > 0 and starts_with(lower(http.request.headers[\"x-api-key\"][0]), \"jcs_\"))"
+
   add_ratelimit_rules = [
     # Keep existing API rule first to preserve its state
     {
@@ -210,16 +213,17 @@ locals {
         mitigation_timeout  = 10
       }
     },
-    # Service account API keys (jcs_*) — global zone-wide rate limits (NA-4759).
+    # Service account API keys (jcs_*) — edge rate limits (NA-4759).
     # Org/provider fair-share is enforced in-app (service-accounts); credential + IP at Cloudflare.
-    # Omit cf.colo.id so counters aggregate across all edge PoPs (not per-colo / per-HAProxy-node).
+    # cf.colo.id is required by Cloudflare (error 20155); counters are per-colo (aggregates
+    # all HAProxy nodes behind that colo, but not across colos).
     {
       action      = "block"
-      description = "Service account API key (jcs_*) global per-key rate limit - stg01"
-      expression  = "(http.host eq \"api.stg01.jumpcloud.com\" and len(http.request.headers[\"x-api-key\"]) > 0 and starts_with(lower(http.request.headers[\"x-api-key\"][0]), \"jcs_\"))"
+      description = "Service account API key (jcs_*) per-key rate limit - all *.jumpcloud.com"
+      expression  = local.jcs_api_key_ratelimit_expression
 
       ratelimit = {
-        characteristics     = ["http.request.headers[\"x-api-key\"]"]
+        characteristics     = ["cf.colo.id", "http.request.headers[\"x-api-key\"]"]
         counting_expression = null
         period              = 60
         requests_per_period = 100
@@ -228,11 +232,11 @@ locals {
     },
     {
       action      = "block"
-      description = "Service account API key (jcs_*) global per-IP rate limit - stg01"
-      expression  = "(http.host eq \"api.stg01.jumpcloud.com\" and len(http.request.headers[\"x-api-key\"]) > 0 and starts_with(lower(http.request.headers[\"x-api-key\"][0]), \"jcs_\"))"
+      description = "Service account API key (jcs_*) per-IP rate limit - all *.jumpcloud.com"
+      expression  = local.jcs_api_key_ratelimit_expression
 
       ratelimit = {
-        characteristics     = ["ip.src"]
+        characteristics     = ["cf.colo.id", "ip.src"]
         counting_expression = null
         period              = 60
         requests_per_period = 100
