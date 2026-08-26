@@ -4,7 +4,6 @@ locals {
     "api.stg01.jumpcloud.com",
     "sso.stg01.jumpcloud.com",
     "kickstart.stg01.jumpcloud.com",
-    "apple-mdm.stg01.jumpcloud.com",
     "apple.mdm.stg01.jumpcloud.com",
     "assist.stg01.jumpcloud.com",
     "microsoft-mdm.stg01.jumpcloud.com",

@@ -60,13 +60,6 @@ locals {
       content = "apple-mdm.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "apple-mdm.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "assist"
       proxied = true
       ttl     = 1
