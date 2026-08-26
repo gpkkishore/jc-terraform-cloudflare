@@ -242,46 +242,11 @@ locals {
       content = "identity.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "*.api"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.assist"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "assist.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "apple-mdm.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "*.microsoft-mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
       content = "microsoft-mdm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "console.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.kickstart"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "kickstart-public.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.apple.mdm"
@@ -291,13 +256,6 @@ locals {
       content = "apple-mdm.prd02-euc1.jcplatform.dev"
     },
 
-    {
-      name    = "*.go"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "go.prd02-euc1.jcplatform.dev"
-    },
 
     {
       name    = "*.jumpdesk"
@@ -305,20 +263,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "jumpdesk.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.login"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "login-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.mcp"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.usermcp"
@@ -342,20 +286,6 @@ locals {
       content = "schema-registry.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "*.slack"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.oauth"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "oauth.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "*.grpc.pwm"
       proxied = true
       ttl     = 1
@@ -368,20 +298,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "pwm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.sso"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "sso.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.saas"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "ocsp"
