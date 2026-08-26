@@ -111,21 +111,7 @@ locals {
       content = "pwm.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.grpc.pwm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "jumpdesk"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "jumpdesk.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.jumpdesk"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -224,13 +210,6 @@ locals {
     },
     {
       name    = "scim.pwm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.scim.pwm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
