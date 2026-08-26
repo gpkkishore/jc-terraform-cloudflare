@@ -207,13 +207,6 @@ locals {
       content = "saas.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "ssf"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "saas.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "*.ssf"
       proxied = true
       ttl     = 1
