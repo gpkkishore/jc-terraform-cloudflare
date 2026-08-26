@@ -182,6 +182,10 @@ locals {
     "17.0.0.0/8"
   ]
 
+  # jcs_* service account requests on *.stg01.jumpcloud.com hosts (NA-4759).
+  # Per-API-key CF counting requires Advanced Rate Limiting (not entitled) — HAProxy (NA-4759).
+  jcs_api_key_ratelimit_expression = "((ends_with(http.host, \".stg01.jumpcloud.com\") or http.host eq \"stg01.jumpcloud.com\") and len(http.request.headers[\"x-api-key\"]) > 0 and starts_with(lower(http.request.headers[\"x-api-key\"][0]), \"jcs_\"))"
+
   add_ratelimit_rules = [
     # Keep existing API rule first to preserve its state
     {
@@ -195,6 +199,24 @@ locals {
         period              = 10
         requests_per_period = 300
         mitigation_timeout  = 10
+      }
+    },
+    # Service account API keys (jcs_*) — per-IP edge rate limit (NA-4759).
+    # Org/provider fair-share is enforced in-app (service-accounts).
+    # Per-API-key limits: HAProxy stick tables (NA-4759); CF header characteristics
+    # require Advanced Rate Limiting plan (not available on stg01).
+    # cf.colo.id is required (error 20155); counters are per-colo.
+    {
+      action      = "block"
+      description = "Service account API key (jcs_*) per-IP rate limit - *.stg01.jumpcloud.com"
+      expression  = local.jcs_api_key_ratelimit_expression
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 100
+        mitigation_timeout  = 60
       }
     },
     # PKI Rate Limiting Rules
