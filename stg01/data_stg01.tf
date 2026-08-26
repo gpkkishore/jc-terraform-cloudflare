@@ -287,13 +287,6 @@ locals {
       content = "pwm.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.scim.pwm"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "schema-registry"
       proxied = false
       ttl     = 1

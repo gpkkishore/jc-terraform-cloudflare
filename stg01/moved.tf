@@ -147,14 +147,6 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["*.nli_nli.stg01-use2.jcplatform.dev_1"]
 }
 moved {
-  from = module.dns.cloudflare_record.dns_records["*.private-kickstart_kickstart-private.stg01-use2.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.private-kickstart_kickstart-private.stg01-use2.jcplatform.dev_1"]
-}
-moved {
-  from = module.dns.cloudflare_record.dns_records["*.scim.pwm_pwm.stg01-use2.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.scim.pwm_pwm.stg01-use2.jcplatform.dev_1"]
-}
-moved {
   from = module.dns.cloudflare_record.dns_records["console_console.stg01-use2.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["console_console.stg01-use2.jcplatform.dev_1"]
 }
