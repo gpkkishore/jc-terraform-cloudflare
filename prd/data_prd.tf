@@ -34,18 +34,18 @@ locals {
     },
     {
       name              = "api"
-      hosts             = ["*.api.jumpcloud.com", "api.jumpcloud.com"]
+      hosts             = ["api.jumpcloud.com"]
       validation_method = "txt"
     },
     {
       name              = "assist"
-      hosts             = ["*.assist.jumpcloud.com", "assist.jumpcloud.com"]
+      hosts             = ["assist.jumpcloud.com"]
       validation_method = "txt"
     },
     // Creating new and removing old later
     {
       name              = "apple-mdm-wildcard"
-      hosts             = ["apple-mdm.jumpcloud.com", "*.apple-mdm.jumpcloud.com"]
+      hosts             = ["apple-mdm.jumpcloud.com"]
       validation_method = "txt"
     },
     {
@@ -55,7 +55,7 @@ locals {
     },
     {
       name              = "console"
-      hosts             = ["*.console.jumpcloud.com", "console.jumpcloud.com"]
+      hosts             = ["console.jumpcloud.com"]
       validation_method = "txt"
     },
     {
@@ -65,7 +65,7 @@ locals {
     },
     {
       name              = "kickstart"
-      hosts             = ["*.kickstart.jumpcloud.com", "kickstart.jumpcloud.com"]
+      hosts             = ["kickstart.jumpcloud.com"]
       validation_method = "txt"
     },
     {
@@ -76,7 +76,7 @@ locals {
 
     {
       name              = "go"
-      hosts             = ["*.go.jumpcloud.com", "go.jumpcloud.com"]
+      hosts             = ["go.jumpcloud.com"]
       validation_method = "txt"
     },
     {
@@ -86,12 +86,12 @@ locals {
     },
     {
       name              = "login"
-      hosts             = ["*.login.jumpcloud.com", "login.jumpcloud.com"]
+      hosts             = ["login.jumpcloud.com"]
       validation_method = "txt"
     },
     {
       name              = "mcp"
-      hosts             = ["*.mcp.jumpcloud.com", "mcp.jumpcloud.com"]
+      hosts             = ["mcp.jumpcloud.com"]
       validation_method = "txt"
     },
     # usermcp edge cert pack removed — jumpcloud.com NS is R53; CF TXT DCV cannot complete.
@@ -102,22 +102,22 @@ locals {
     },
     {
       name              = "oauth"
-      hosts             = ["*.oauth.jumpcloud.com", "oauth.jumpcloud.com"]
+      hosts             = ["oauth.jumpcloud.com"]
       validation_method = "txt"
     },
     {
       name              = "slack"
-      hosts             = ["*.slack.jumpcloud.com", "slack.jumpcloud.com"]
+      hosts             = ["slack.jumpcloud.com"]
       validation_method = "txt"
     },
     {
       name              = "sso"
-      hosts             = ["*.sso.jumpcloud.com", "sso.jumpcloud.com"]
+      hosts             = ["sso.jumpcloud.com"]
       validation_method = "txt"
     },
     {
       name              = "saas"
-      hosts             = ["*.saas.jumpcloud.com", "saas.jumpcloud.com"]
+      hosts             = ["saas.jumpcloud.com"]
       validation_method = "txt"
     },
     {
