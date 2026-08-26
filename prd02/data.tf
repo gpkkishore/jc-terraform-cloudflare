@@ -258,13 +258,6 @@ locals {
 
 
     {
-      name    = "*.jumpdesk"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "jumpdesk.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "*.usermcp"
       proxied = true
       ttl     = 1
@@ -284,20 +277,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "schema-registry.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.grpc.pwm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.scim.pwm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "ocsp"
