@@ -13,7 +13,6 @@ locals {
     "go.stg01.jumpcloud.com",
     "polaris.stg01.jumpcloud.com",
     "saas.stg01.jumpcloud.com",
-    "ssf.stg01.jumpcloud.com",
     "schema-registry.stg01.jumpcloud.com",
     "mcp.stg01.jumpcloud.com",
     "usermcp.stg01.jumpcloud.com",

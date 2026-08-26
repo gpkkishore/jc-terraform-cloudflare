@@ -45,6 +45,7 @@ TCF_STG01_CUSTOM_EXACT = [
     "scim-bridge.stg01.jumpcloud.com",
     "trino.stg01.jumpcloud.com",
     "search-api.stg01.jumpcloud.com",
+    "ssf.stg01.jumpcloud.com",
 ]
 TCF_STG01_CUSTOM_WILD = [
     "*.jumpdesk.stg01.jumpcloud.com",
@@ -58,22 +59,22 @@ TCF_STG01_CUSTOM_WILD = [
 ]
 
 
-def remove_dns_blocks(content: str, names: set[str]) -> str:
+def remove_dns_blocks(content: str, names: set[str], flexible: bool = False) -> str:
     for name in sorted(names, key=len, reverse=True):
-        if name.startswith("*."):
+        if flexible or not name.startswith("*."):
             pattern = (
                 rf"\n    \{{\n"
                 rf'      name    = "{re.escape(name)}"\n'
-                rf"      type    = \"CNAME\"\n"
-                rf"      content = \"[^\"]+\"\n"
-                rf"      ttl     = \d+\n"
+                rf"(?:      [^\n]+\n)+?"
                 rf"    \}},?"
             )
         else:
             pattern = (
                 rf"\n    \{{\n"
                 rf'      name    = "{re.escape(name)}"\n'
-                rf"(?:      [^\n]+\n)+?"
+                rf"      type    = \"CNAME\"\n"
+                rf"      content = \"[^\"]+\"\n"
+                rf"      ttl     = \d+\n"
                 rf"    \}},?"
             )
         content = re.sub(pattern, "", content)
@@ -133,10 +134,10 @@ def apply_infra(env: str) -> None:
 def apply_tcf_stg01() -> None:
     tcf = ROOT
     data = tcf / "stg01" / "data_stg01.tf"
-    data.write_text(remove_dns_blocks(data.read_text(), TCF_STG01_STATIC))
+    data.write_text(remove_dns_blocks(data.read_text(), TCF_STG01_STATIC, flexible=True))
 
     jcops = tcf / "stg01" / "jcops.tf"
-    jcops.write_text(remove_dns_blocks(jcops.read_text(), TCF_STG01_JCOPS))
+    jcops.write_text(remove_dns_blocks(jcops.read_text(), TCF_STG01_JCOPS, flexible=True))
 
     cr = tcf / "stg01" / "custom_rules.tf"
     text = cr.read_text()
@@ -151,11 +152,11 @@ def apply_tcf_pwm(env: str) -> None:
 
     data = ROOT / env / "data.tf"
     if data.exists():
-        data.write_text(remove_dns_blocks(data.read_text(), static))
+        data.write_text(remove_dns_blocks(data.read_text(), static, flexible=True))
 
     jcops = ROOT / env / "jcops.tf"
     if jcops.exists():
-        jcops.write_text(remove_dns_blocks(jcops.read_text(), static))
+        jcops.write_text(remove_dns_blocks(jcops.read_text(), static, flexible=True))
 
     move = ROOT / env / "move.tf"
     if move.exists():
