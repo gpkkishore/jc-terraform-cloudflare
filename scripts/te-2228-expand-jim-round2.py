@@ -35,8 +35,9 @@ TCF_STG01_STATIC = {
     "*.private-kickstart",
     "*.agent",
     "*.grpc.pwm",
+    "polaris-console",
 }
-TCF_STG01_JCOPS = {"ssf", "*.ssf", "*.password-manager"}
+TCF_STG01_JCOPS = {"ssf", "*.ssf", "password-manager", "*.password-manager"}
 TCF_STG01_CUSTOM_EXACT = [
     "jumpdesk.stg01.jumpcloud.com",
     "catalog.stg01.jumpcloud.com",
