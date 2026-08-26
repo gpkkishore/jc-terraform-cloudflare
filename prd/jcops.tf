@@ -86,13 +86,6 @@ locals {
       value   = "api.prd-use1.jcplatform.dev"
     },
     {
-      name    = "apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple-mdm.prd-use1.jcplatform.dev"
-    },
-    {
       name    = "apple.mdm"
       proxied = true
       ttl     = 1
