@@ -95,6 +95,11 @@ moved {
 }
 
 moved {
+  from = module.dns.cloudflare_record.dns_records["apple-mdm_apple-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"]
+  to   = module.dns.cloudflare_record.dns_records["apple-mdm_apple-mdm.prd02-euc1.jcplatform.dev"]
+}
+
+moved {
   from = module.dns.cloudflare_record.dns_records["apple.mdm_apple-mdm-haproxy.prd02-euc1-p00.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["apple.mdm_apple-mdm.prd02-euc1.jcplatform.dev"]
 }

@@ -94,6 +94,13 @@ locals {
       content = "kickstart-public.prd02-euc1.jcplatform.dev"
     },
     {
+      name    = "apple-mdm"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "apple-mdm.prd02-euc1.jcplatform.dev"
+    },
+    {
       name    = "apple.mdm"
       proxied = true
       ttl     = 1
