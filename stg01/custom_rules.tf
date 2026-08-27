@@ -27,15 +27,8 @@ locals {
     "ai-aws.stg01.jumpcloud.com",
     "ocsp.stg01.jumpcloud.com",
     "scep.stg01.jumpcloud.com",
-    "*.catalog.stg01.jumpcloud.com",
     "*.apple.mdm.stg01.jumpcloud.com",
     "*.microsoft-mdm.stg01.jumpcloud.com",
-    "*.password-manager.stg01.jumpcloud.com",
-    "*.polaris-console.stg01.jumpcloud.com",
-    "*.scim-bridge.stg01.jumpcloud.com",
-    "*.search-api.stg01.jumpcloud.com",
-    "*.schema-registry.stg01.jumpcloud.com",
-    "*.trino.stg01.jumpcloud.com",
   ]
 
   stg01_ip_access = []

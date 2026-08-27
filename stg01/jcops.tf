@@ -165,6 +165,13 @@ locals {
       content = "oauth_id.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "password-manager"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "password-manager.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "polaris"
       proxied = true
       ttl     = 1
@@ -173,6 +180,13 @@ locals {
     },
     {
       name    = "saas"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "saas.stg01-use2.jcplatform.dev"
+    },
+    {
+      name    = "ssf"
       proxied = true
       ttl     = 1
       type    = "CNAME"
