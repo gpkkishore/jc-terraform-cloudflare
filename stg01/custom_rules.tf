@@ -46,6 +46,7 @@ locals {
 
   ai_gateway_gcp_nat_hostnames = concat(local.mcp_hostnames, [
     "console.stg01.jumpcloud.com",
+    "oauth.stg01.jumpcloud.com",
   ])
 
   # AI Gateway GCP Cloud NAT egress (jc-stg-ai-gateway, us-east5).
@@ -318,7 +319,7 @@ locals {
     // AI Gateway GCP Cloud NAT EIP for outbound MCP access
     {
       action      = "skip"
-      description = "Allow AI Gateway GCP NAT for JC MCP and Console"
+      description = "Allow AI Gateway GCP NAT"
       expression  = "(http.host in {${join(" ", [for host in local.ai_gateway_gcp_nat_hostnames : format("\"%s\"", host)])}} and ip.src in {${join(" ", local.gcp_stg01_ai_gateway_nat_egress_ips)}})"
     },
     // Allow Azure Active Directory
