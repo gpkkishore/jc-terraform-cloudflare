@@ -397,6 +397,12 @@ locals {
         description = "Allow TestIM"
         expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\" \"admin-oauth.id.stg01.jumpcloud.com\" \"trampoline.id.stg01.jumpcloud.com\"} and ip.src in {${join(" ", [for ip in local.testim_ips : ip])}})"
       },
+      // Allow AI Gateway GCP NAT
+      {
+        action      = "skip"
+        description = "Allow AI Gateway GCP NAT for oauth"
+        expression  = "(http.host in {\"oauth.id.stg01.jumpcloud.com\"} and ip.src in {${join(" ", local.gcp_stg01_ai_gateway_nat_egress_ips)}})"
+      },
       {
         action      = "block"
         description = "Allow ZScaler only"
