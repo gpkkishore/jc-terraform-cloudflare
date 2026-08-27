@@ -251,27 +251,6 @@ locals {
 
 
     {
-      name    = "*.usermcp"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.search-api"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "search-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.schema-registry"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "schema-registry.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "ocsp"
       proxied = true
       ttl     = 1
