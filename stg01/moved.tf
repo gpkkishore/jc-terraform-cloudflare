@@ -123,8 +123,16 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["*.apple.mdm_apple-mdm.stg01-use2.jcplatform.dev_1"]
 }
 moved {
+  from = module.dns.cloudflare_record.dns_records["*.assist_assist.stg01-use2.jcplatform.dev"]
+  to   = module.dns.cloudflare_record.dns_records["*.assist_assist.stg01-use2.jcplatform.dev_1"]
+}
+moved {
   from = module.dns.cloudflare_record.dns_records["*.bss_si-bss-api.stg01-use2.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["*.bss_si-bss-api.stg01-use2.jcplatform.dev_1"]
+}
+moved {
+  from = module.dns.cloudflare_record.dns_records["*.console_console.stg01-use2.jcplatform.dev"]
+  to   = module.dns.cloudflare_record.dns_records["*.console_console.stg01-use2.jcplatform.dev_1"]
 }
 moved {
   from = module.dns.cloudflare_record.dns_records["*.device-cert_device-cert.stg01-use2.jcplatform.dev"]
@@ -135,8 +143,20 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["*.devices.pwm_pwm.stg01-use2.jcplatform.dev_1"]
 }
 moved {
+  from = module.dns.cloudflare_record.dns_records["*.go_go.stg01-use2.jcplatform.dev"]
+  to   = module.dns.cloudflare_record.dns_records["*.go_go.stg01-use2.jcplatform.dev_1"]
+}
+moved {
   from = module.dns.cloudflare_record.dns_records["*.grpc.pwm_pwm.stg01-use2.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["*.grpc.pwm_pwm.stg01-use2.jcplatform.dev_1"]
+}
+moved {
+  from = module.dns.cloudflare_record.dns_records["*.kickstart_kickstart-public.stg01-use2.jcplatform.dev"]
+  to   = module.dns.cloudflare_record.dns_records["*.kickstart_kickstart-public.stg01-use2.jcplatform.dev_1"]
+}
+moved {
+  from = module.dns.cloudflare_record.dns_records["*.login_login-api.stg01-use2.jcplatform.dev"]
+  to   = module.dns.cloudflare_record.dns_records["*.login_login-api.stg01-use2.jcplatform.dev_1"]
 }
 moved {
   from = module.dns.cloudflare_record.dns_records["*.microsoft-mdm_microsoft-mdm.stg01-use2.jcplatform.dev"]
@@ -147,12 +167,20 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["*.nli_nli.stg01-use2.jcplatform.dev_1"]
 }
 moved {
+  from = module.dns.cloudflare_record.dns_records["*.oauth_oauth.stg01-use2.jcplatform.dev"]
+  to   = module.dns.cloudflare_record.dns_records["*.oauth_oauth.stg01-use2.jcplatform.dev_1"]
+}
+moved {
   from = module.dns.cloudflare_record.dns_records["*.private-kickstart_kickstart-private.stg01-use2.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["*.private-kickstart_kickstart-private.stg01-use2.jcplatform.dev_1"]
 }
 moved {
   from = module.dns.cloudflare_record.dns_records["*.scim.pwm_pwm.stg01-use2.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["*.scim.pwm_pwm.stg01-use2.jcplatform.dev_1"]
+}
+moved {
+  from = module.dns.cloudflare_record.dns_records["*.sso_sso.stg01-use2.jcplatform.dev"]
+  to   = module.dns.cloudflare_record.dns_records["*.sso_sso.stg01-use2.jcplatform.dev_1"]
 }
 moved {
   from = module.dns.cloudflare_record.dns_records["console_console.stg01-use2.jcplatform.dev"]
