@@ -12,10 +12,6 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["assist_assist.jcops.net"]
 }
 moved {
-  from = module.dns.cloudflare_record.dns_records["apple-mdm_apple-mdm.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["apple-mdm_apple-mdm.jcops.net"]
-}
-moved {
   from = module.dns.cloudflare_record.dns_records["microsoft-mdm_microsoft-mdm.prd-use1.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["microsoft-mdm_microsoft-mdm.jcops.net"]
 }

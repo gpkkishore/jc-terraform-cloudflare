@@ -8,11 +8,6 @@ locals {
   # The name used in the custom_certs object is only used for internal metadata
   custom_certs = [
     {
-      name              = "apple-mdm"
-      hosts             = ["apple.mdm.jumpcloud.com"]
-      validation_method = "txt"
-    },
-    {
       name              = "microsoft-mdm"
       hosts             = ["*.microsoft-mdm.jumpcloud.com", "microsoft-mdm.jumpcloud.com"]
       validation_method = "txt"
@@ -40,12 +35,6 @@ locals {
     {
       name              = "assist"
       hosts             = ["assist.jumpcloud.com"]
-      validation_method = "txt"
-    },
-    // Creating new and removing old later
-    {
-      name              = "apple-mdm-wildcard"
-      hosts             = ["apple-mdm.jumpcloud.com"]
       validation_method = "txt"
     },
     {
