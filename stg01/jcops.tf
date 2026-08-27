@@ -102,13 +102,6 @@ locals {
       content = "jumpdesk.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.jumpdesk"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "jumpdesk.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "kickstart"
       proxied = true
       ttl     = 1
