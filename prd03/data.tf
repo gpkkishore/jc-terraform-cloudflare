@@ -83,55 +83,6 @@ locals {
       type    = "CNAME"
       content = "schema-registry.prd03-aps1.jcplatform.dev"
     },
-    {
-      name    = "*.adbridge-kickstart"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "adbridge-kickstart.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.adbridge"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "adbridge.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.agent"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "agent.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.device-cert"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "device-cert.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.private-kickstart"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "kickstart-private.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.search-api"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "search-api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.schema-registry"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "schema-registry.prd03-aps1.jcplatform.dev"
-    }
   ]
 
   /**
