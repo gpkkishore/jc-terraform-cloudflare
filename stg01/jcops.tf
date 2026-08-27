@@ -74,13 +74,6 @@ locals {
       content = "data-catalog.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.catalog"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "data-catalog.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "console"
       proxied = true
       ttl     = 1

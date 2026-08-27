@@ -1,7 +1,5 @@
 locals {
   stg01_hostnames = [
-    "jumpdesk.stg01.jumpcloud.com",
-    "catalog.stg01.jumpcloud.com",
     "console.stg01.jumpcloud.com",
     "api.stg01.jumpcloud.com",
     "sso.stg01.jumpcloud.com",
@@ -12,15 +10,9 @@ locals {
     "login.stg01.jumpcloud.com",
     "oauth.stg01.jumpcloud.com",
     "go.stg01.jumpcloud.com",
-    "password-manager.stg01.jumpcloud.com",
     "polaris.stg01.jumpcloud.com",
-    "polaris-console.stg01.jumpcloud.com",
     "saas.stg01.jumpcloud.com",
-    "scim-bridge.stg01.jumpcloud.com",
     "ssf.stg01.jumpcloud.com",
-    "search-api.stg01.jumpcloud.com",
-    "schema-registry.stg01.jumpcloud.com",
-    "trino.stg01.jumpcloud.com",
     "mcp.stg01.jumpcloud.com",
     "usermcp.stg01.jumpcloud.com",
     "slack.stg01.jumpcloud.com",
