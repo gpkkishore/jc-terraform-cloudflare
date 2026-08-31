@@ -8,24 +8,8 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["api_api.jcops.net"]
 }
 moved {
-  from = module.dns.cloudflare_record.dns_records["*.api_api.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.api_api.jcops.net"]
-}
-moved {
   from = module.dns.cloudflare_record.dns_records["assist_assist.prd-use1.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["assist_assist.jcops.net"]
-}
-moved {
-  from = module.dns.cloudflare_record.dns_records["*.assist_assist.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.assist_assist.jcops.net"]
-}
-moved {
-  from = module.dns.cloudflare_record.dns_records["apple-mdm_apple-mdm.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["apple-mdm_apple-mdm.jcops.net"]
-}
-moved {
-  from = module.dns.cloudflare_record.dns_records["*.apple-mdm_apple-mdm.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.apple-mdm_apple-mdm.jcops.net"]
 }
 moved {
   from = module.dns.cloudflare_record.dns_records["microsoft-mdm_microsoft-mdm.prd-use1.jcplatform.dev"]
@@ -40,16 +24,8 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["console_console.jcops.net"]
 }
 moved {
-  from = module.dns.cloudflare_record.dns_records["*.console_console.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.console_console.jcops.net"]
-}
-moved {
   from = module.dns.cloudflare_record.dns_records["kickstart_kickstart-public.prd-use1.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["kickstart_kickstart.jcops.net"]
-}
-moved {
-  from = module.dns.cloudflare_record.dns_records["*.kickstart_kickstart-public.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.kickstart_kickstart.jcops.net"]
 }
 moved {
   from = module.dns.cloudflare_record.dns_records["apple.mdm_apple-mdm.prd-use1.jcplatform.dev"]
@@ -64,10 +40,6 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["go_go.jcops.net"]
 }
 moved {
-  from = module.dns.cloudflare_record.dns_records["*.go_go.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.go_go.jcops.net"]
-}
-moved {
   from = module.dns.cloudflare_record.dns_records["jumpdesk_jumpdesk.prd-use1.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["jumpdesk_jumpdesk.jcops.net"]
 }
@@ -76,16 +48,8 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["mcp_mcp.jcops.net"]
 }
 moved {
-  from = module.dns.cloudflare_record.dns_records["*.mcp_mcp.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.mcp_mcp.jcops.net"]
-}
-moved {
   from = module.dns.cloudflare_record.dns_records["login_login-api.prd-use1.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["login_login.jcops.net"]
-}
-moved {
-  from = module.dns.cloudflare_record.dns_records["*.login_login-api.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.login_login.jcops.net"]
 }
 moved {
   from = module.dns.cloudflare_record.dns_records["nli_nli.prd-use1.jcplatform.dev"]
@@ -100,16 +64,8 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["oauth_oauth.jcops.net"]
 }
 moved {
-  from = module.dns.cloudflare_record.dns_records["*.oauth_oauth.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.oauth_oauth.jcops.net"]
-}
-moved {
   from = module.dns.cloudflare_record.dns_records["polaris_polaris.prd-use1.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["polaris_polaris.jcops.net"]
-}
-moved {
-  from = module.dns.cloudflare_record.dns_records["*.polaris_polaris.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.polaris_polaris.jcops.net"]
 }
 moved {
   from = module.dns.cloudflare_record.dns_records["polaris-console_polaris-console.prd-use1.jcplatform.dev"]
@@ -124,24 +80,12 @@ moved {
   to   = module.dns.cloudflare_record.dns_records["slack_slack.jcops.net"]
 }
 moved {
-  from = module.dns.cloudflare_record.dns_records["*.slack_slack.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.slack_slack.jcops.net"]
-}
-moved {
   from = module.dns.cloudflare_record.dns_records["sso_sso.prd-use1.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["sso_sso.jcops.net"]
 }
 moved {
-  from = module.dns.cloudflare_record.dns_records["*.sso_sso.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.sso_sso.jcops.net"]
-}
-moved {
   from = module.dns.cloudflare_record.dns_records["saas_saas.prd-use1.jcplatform.dev"]
   to   = module.dns.cloudflare_record.dns_records["saas_saas.jcops.net"]
-}
-moved {
-  from = module.dns.cloudflare_record.dns_records["*.saas_saas.prd-use1.jcplatform.dev"]
-  to   = module.dns.cloudflare_record.dns_records["*.saas_saas.jcops.net"]
 }
 moved {
   from = module.dns.cloudflare_record.dns_records["trino_trino.prd-use1.jcplatform.dev"]
