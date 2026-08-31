@@ -55,6 +55,32 @@ locals {
       }
     },
     {
+      action      = "log"
+      description = "Per IP rate limit on POST /changepassword - 3000/60s"
+      expression  = "(http.request.method eq \"POST\" and (http.request.uri.path eq \"/changepassword\" or starts_with(http.request.uri.path, \"/changepassword/\")))"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 3000
+        mitigation_timeout  = 90
+      }
+    },
+    {
+      action      = "log"
+      description = "Per IP burst rate limit on POST /changepassword - 600/10s"
+      expression  = "(http.request.method eq \"POST\" and (http.request.uri.path eq \"/changepassword\" or starts_with(http.request.uri.path, \"/changepassword/\")))"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 10
+        requests_per_period = 600
+        mitigation_timeout  = 20
+      }
+    },
+    {
       action      = "block"
       description = "WAF Attack"
       expression  = "(cf.waf.score lt 5)"

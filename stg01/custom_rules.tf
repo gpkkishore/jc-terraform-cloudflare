@@ -6,7 +6,6 @@ locals {
     "api.stg01.jumpcloud.com",
     "sso.stg01.jumpcloud.com",
     "kickstart.stg01.jumpcloud.com",
-    "apple-mdm.stg01.jumpcloud.com",
     "apple.mdm.stg01.jumpcloud.com",
     "assist.stg01.jumpcloud.com",
     "microsoft-mdm.stg01.jumpcloud.com",
@@ -28,30 +27,8 @@ locals {
     "ai-aws.stg01.jumpcloud.com",
     "ocsp.stg01.jumpcloud.com",
     "scep.stg01.jumpcloud.com",
-    "*.jumpdesk.stg01.jumpcloud.com",
-    "*.catalog.stg01.jumpcloud.com",
-    "*.console.stg01.jumpcloud.com",
-    "*.api.stg01.jumpcloud.com",
-    "*.sso.stg01.jumpcloud.com",
-    "*.kickstart.stg01.jumpcloud.com",
-    "*.apple-mdm.stg01.jumpcloud.com",
     "*.apple.mdm.stg01.jumpcloud.com",
-    "*.assist.stg01.jumpcloud.com",
     "*.microsoft-mdm.stg01.jumpcloud.com",
-    "*.login.stg01.jumpcloud.com",
-    "*.oauth.stg01.jumpcloud.com",
-    "*.go.stg01.jumpcloud.com",
-    "*.password-manager.stg01.jumpcloud.com",
-    "*.polaris.stg01.jumpcloud.com",
-    "*.polaris-console.stg01.jumpcloud.com",
-    "*.saas.stg01.jumpcloud.com",
-    "*.scim-bridge.stg01.jumpcloud.com",
-    "*.ssf.stg01.jumpcloud.com",
-    "*.mcp.stg01.jumpcloud.com",
-    "*.search-api.stg01.jumpcloud.com",
-    "*.schema-registry.stg01.jumpcloud.com",
-    "*.slack.stg01.jumpcloud.com",
-    "*.trino.stg01.jumpcloud.com",
   ]
 
   stg01_ip_access = []
@@ -69,6 +46,7 @@ locals {
 
   ai_gateway_gcp_nat_hostnames = concat(local.mcp_hostnames, [
     "console.stg01.jumpcloud.com",
+    "oauth.stg01.jumpcloud.com",
   ])
 
   # AI Gateway GCP Cloud NAT egress (jc-stg-ai-gateway, us-east5).
@@ -195,11 +173,9 @@ locals {
     "17.0.0.0/8"
   ]
 
-  # jcs_* service account requests on any *.jumpcloud.com host in this zone (NA-4759).
-  # Header may appear in the rule expression; per-API-key counting via
-  # http.request.headers characteristic requires Cloudflare Advanced Rate Limiting
-  # (not entitled on stg01) — per-key limits are enforced at HAProxy (NA-4759).
-  jcs_api_key_ratelimit_expression = "((ends_with(http.host, \".jumpcloud.com\") or http.host eq \"jumpcloud.com\") and len(http.request.headers[\"x-api-key\"]) > 0 and starts_with(lower(http.request.headers[\"x-api-key\"][0]), \"jcs_\"))"
+  # jcs_* service account requests on *.stg01.jumpcloud.com hosts (NA-4759).
+  # Per-API-key CF counting requires Advanced Rate Limiting (not entitled) — HAProxy (NA-4759).
+  jcs_api_key_ratelimit_expression = "((ends_with(http.host, \".stg01.jumpcloud.com\") or http.host eq \"stg01.jumpcloud.com\") and len(http.request.headers[\"x-api-key\"]) > 0 and starts_with(lower(http.request.headers[\"x-api-key\"][0]), \"jcs_\"))"
 
   add_ratelimit_rules = [
     # Keep existing API rule first to preserve its state
@@ -223,7 +199,7 @@ locals {
     # cf.colo.id is required (error 20155); counters are per-colo.
     {
       action      = "block"
-      description = "Service account API key (jcs_*) per-IP rate limit - all *.jumpcloud.com"
+      description = "Service account API key (jcs_*) per-IP rate limit - *.stg01.jumpcloud.com"
       expression  = local.jcs_api_key_ratelimit_expression
 
       ratelimit = {
@@ -343,7 +319,7 @@ locals {
     // AI Gateway GCP Cloud NAT EIP for outbound MCP access
     {
       action      = "skip"
-      description = "Allow AI Gateway GCP NAT for JC MCP and Console"
+      description = "Allow AI Gateway GCP NAT"
       expression  = "(http.host in {${join(" ", [for host in local.ai_gateway_gcp_nat_hostnames : format("\"%s\"", host)])}} and ip.src in {${join(" ", local.gcp_stg01_ai_gateway_nat_egress_ips)}})"
     },
     // Allow Azure Active Directory
