@@ -188,30 +188,4 @@ locals {
       ]
     },
   ]
-
-  /**
-   * Custom Certificates for the prd03 environment
-   */
-  custom_certs = [
-    {
-      name              = "microsoft-mdm"
-      hosts             = ["microsoft-mdm.in.jumpcloud.com", "*.microsoft-mdm.in.jumpcloud.com"]
-      validation_method = "txt"
-    },
-    {
-      name              = "apple.mdm"
-      hosts             = ["apple.mdm.in.jumpcloud.com", "*.apple.mdm.in.jumpcloud.com"]
-      validation_method = "txt"
-    },
-    {
-      name              = "pwm"
-      hosts             = ["pwm.in.jumpcloud.com", "*.pwm.in.jumpcloud.com"]
-      validation_method = "txt"
-    },
-    {
-      name              = "id"
-      hosts             = ["id.in.jumpcloud.com", "*.id.in.jumpcloud.com"]
-      validation_method = "txt"
-    },
-  ]
 }
