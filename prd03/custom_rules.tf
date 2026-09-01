@@ -5,6 +5,10 @@ locals {
     "scep.in.jumpcloud.com",
   ]
 
+  # jcs_* service account requests on *.in.jumpcloud.com hosts (NA-4759).
+  # Per-API-key CF counting requires Advanced Rate Limiting (not entitled) — HAProxy (NA-4759).
+  jcs_api_key_ratelimit_expression = "((ends_with(http.host, \".in.jumpcloud.com\") or http.host eq \"in.jumpcloud.com\") and len(http.request.headers[\"x-api-key\"]) > 0 and starts_with(lower(http.request.headers[\"x-api-key\"][0]), \"jcs_\"))"
+
   /**
    * Additonal Rate Limit Rules for the prd03 environment
    */
@@ -31,6 +35,49 @@ locals {
         period              = 120
         requests_per_period = 10
         mitigation_timeout  = 300
+      }
+    },
+    # Service account API keys (jcs_*) — per-IP edge rate limit (NA-4759).
+    # Org/provider fair-share is enforced in-app (service-accounts).
+    # Per-API-key limits: HAProxy stick tables (NA-4759); CF header characteristics
+    # require Advanced Rate Limiting plan (not entitled).
+    {
+      action      = "block"
+      description = "Service account API key (jcs_*) per-IP rate limit - *.in.jumpcloud.com"
+      expression  = local.jcs_api_key_ratelimit_expression
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 2000
+        mitigation_timeout  = 60
+      }
+    },
+    {
+      action      = "block"
+      description = "Per IP rate limit on POST /changepassword - 3000/60s"
+      expression  = "(http.request.method eq \"POST\" and (http.request.uri.path eq \"/changepassword\" or starts_with(http.request.uri.path, \"/changepassword/\")))"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 3000
+        mitigation_timeout  = 90
+      }
+    },
+    {
+      action      = "block"
+      description = "Per IP burst rate limit on POST /changepassword - 600/10s"
+      expression  = "(http.request.method eq \"POST\" and (http.request.uri.path eq \"/changepassword\" or starts_with(http.request.uri.path, \"/changepassword/\")))"
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 10
+        requests_per_period = 600
+        mitigation_timeout  = 20
       }
     },
     {
