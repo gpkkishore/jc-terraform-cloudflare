@@ -187,7 +187,7 @@ locals {
         }
       },
       {
-        action      = "log"
+        action      = "block"
         description = "Per IP rate limit on POST /changepassword - 3000/60s"
         expression  = "(http.request.method eq \"POST\" and (http.request.uri.path eq \"/changepassword\" or starts_with(http.request.uri.path, \"/changepassword/\")))"
 
@@ -200,7 +200,7 @@ locals {
         }
       },
       {
-        action      = "log"
+        action      = "block"
         description = "Per IP burst rate limit on POST /changepassword - 600/10s"
         expression  = "(http.request.method eq \"POST\" and (http.request.uri.path eq \"/changepassword\" or starts_with(http.request.uri.path, \"/changepassword/\")))"
 
