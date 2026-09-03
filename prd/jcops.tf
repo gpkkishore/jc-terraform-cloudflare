@@ -44,13 +44,6 @@ locals {
       value   = "35.241.16.49" # GCP LB prd — proxied-A custom origin for ai.jumpcloud.com CH
     },
     {
-      name    = "staging"
-      proxied = true
-      ttl     = 1
-      type    = "A"
-      value   = "32.194.81.196"
-    },
-    {
       name    = "ti-1"
       proxied = true
       ttl     = 1
