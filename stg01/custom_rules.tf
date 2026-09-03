@@ -168,6 +168,27 @@ locals {
     "18.158.141.230"
   ]
 
+  # Datadog managed-location egress for P0 live-path synthetics (TE-2237).
+  # Source: https://ip-ranges.datadoghq.com/synthetics.json
+  # Locations: aws:us-east-1, aws:eu-west-1, aws:ap-southeast-2
+  datadog_p0_synthetics_ips = [
+    # aws:us-east-1
+    "3.41.176.48/29",
+    "3.92.150.182/32",
+    "52.55.56.26/32",
+    "107.21.25.247/32",
+    # aws:eu-west-1
+    "3.40.134.72/29",
+    "18.200.120.237/32",
+    "63.34.100.178/32",
+    "63.35.33.198/32",
+    # aws:ap-southeast-2
+    "13.54.169.48/32",
+    "13.236.246.161/32",
+    "13.238.14.57/32",
+    "18.98.196.216/29",
+  ]
+
   // Source: https://support.apple.com/en-us/102266
   apple_cidr_blocks = [
     "17.0.0.0/8"
@@ -355,6 +376,11 @@ locals {
       action      = "skip"
       description = "Allow Polaris"
       expression  = format("(http.host eq \"polaris.stg01.jumpcloud.com\")")
+    },
+    {
+      action      = "skip"
+      description = "Allow Datadog P0 live-path synthetics (TE-2237)"
+      expression  = format("(http.user_agent eq \"Datadog/Synthetics\" and ip.src in {%s} and ((http.host eq \"api.stg01.jumpcloud.com\" and http.request.uri.path eq \"/partners/__edge_probe__\") or http.host in {\"console.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\"}))", join(" ", local.datadog_p0_synthetics_ips))
     },
     {
       action      = "block"

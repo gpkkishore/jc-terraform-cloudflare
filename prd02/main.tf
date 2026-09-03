@@ -27,23 +27,6 @@ module "settings" {
   always_use_https = "off"
 }
 
-############################################################
-# Custom Certificate Pack Resources for edge Certificates
-############################################################
-resource "cloudflare_certificate_pack" "custom_cert_09042024" {
-  for_each = { for cert in local.custom_certs : cert.name => cert }
-
-  zone_id                = cloudflare_zone.cloudflare_zone_resource.id
-  type                   = "advanced"
-  hosts                  = each.value.hosts
-  validation_method      = each.value.validation_method
-  validity_days          = 90
-  certificate_authority  = "google"
-  cloudflare_branding    = false
-  wait_for_active_status = true
-}
-
-
 # locals {
 #   identity_security_response_headers = [
 #     {
