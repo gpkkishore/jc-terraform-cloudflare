@@ -24,6 +24,7 @@ resource "cloudflare_logpush_job" "jcops_net" {
       "ClientRequestHTTPHost",
       "ClientRequestHTTPPath",
     ]
+    record_suffix    = "}\n"
     timestamp_format = "rfc3339"
   }
   destination_conf = "datadog://http-intake.logs.datadoghq.com/v1/input?header_DD-API-KEY=${var.dd_api_key}&ddsource=cloudflare&service=cloudflare&ddtags=zone_name:${local.jcops_zone_name},env:prd,cf_type:firewall_events"
@@ -79,6 +80,7 @@ resource "cloudflare_logpush_job" "jcops_net_http_events_job" {
       "CacheCacheStatus",
       "RayID",
     ]
+    record_suffix    = "}\n"
     timestamp_format = "rfc3339"
   }
 }
