@@ -65,74 +65,11 @@ locals {
       value   = "52.13.15.220"
     },
     {
-      name    = "*.api"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "api.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple-mdm.prd-use1.jcplatform.dev"
-    },
-    {
       name    = "*.apple.mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
       value   = "apple-mdm.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.assist"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "assist.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "console.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.go"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "go.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.kickstart"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "kickstart-public.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.login"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "login-api.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.mcp"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "mcp.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.mcpv2"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "mcpv2.prd-use1.jcplatform.dev"
     },
     {
       name    = "*.microsoft-mdm"
@@ -142,74 +79,11 @@ locals {
       value   = "microsoft-mdm.prd-use1.jcplatform.dev"
     },
     {
-      name    = "*.nli"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "nli.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.oauth"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "oauth.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.polaris"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.polaris-console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "polaris-console.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.saas"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "saas.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.slack"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "slack.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.sso"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "sso.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "*.trino"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "trino.prd-use1.jcplatform.dev"
-    },
-    {
       name    = "api"
       proxied = true
       ttl     = 1
       type    = "CNAME"
       value   = "api.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "apple-mdm.prd-use1.jcplatform.dev"
     },
     {
       name    = "apple.mdm"
@@ -268,11 +142,11 @@ locals {
       value   = "mcp.prd-use1.jcplatform.dev"
     },
     {
-      name    = "mcpv2"
+      name    = "usermcp"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      value   = "mcpv2.prd-use1.jcplatform.dev"
+      value   = "usermcp.prd-use1.jcplatform.dev"
     },
     {
       name    = "microsoft-mdm"

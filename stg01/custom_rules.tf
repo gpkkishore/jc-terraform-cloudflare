@@ -6,7 +6,6 @@ locals {
     "api.stg01.jumpcloud.com",
     "sso.stg01.jumpcloud.com",
     "kickstart.stg01.jumpcloud.com",
-    "apple-mdm.stg01.jumpcloud.com",
     "apple.mdm.stg01.jumpcloud.com",
     "assist.stg01.jumpcloud.com",
     "microsoft-mdm.stg01.jumpcloud.com",
@@ -22,58 +21,14 @@ locals {
     "search-api.stg01.jumpcloud.com",
     "schema-registry.stg01.jumpcloud.com",
     "trino.stg01.jumpcloud.com",
-    "*.prd02.stg01.jumpcloud.com",
     "mcp.stg01.jumpcloud.com",
-    "mcpv2.stg01.jumpcloud.com",
+    "usermcp.stg01.jumpcloud.com",
     "slack.stg01.jumpcloud.com",
-    "ai.stg01.jumpcloud.com",
     "ai-aws.stg01.jumpcloud.com",
     "ocsp.stg01.jumpcloud.com",
     "scep.stg01.jumpcloud.com",
-    "*.jumpdesk.stg01.jumpcloud.com",
-    "*.catalog.stg01.jumpcloud.com",
-    "*.console.stg01.jumpcloud.com",
-    "*.api.stg01.jumpcloud.com",
-    "*.sso.stg01.jumpcloud.com",
-    "*.kickstart.stg01.jumpcloud.com",
-    "*.apple-mdm.stg01.jumpcloud.com",
     "*.apple.mdm.stg01.jumpcloud.com",
-    "*.assist.stg01.jumpcloud.com",
     "*.microsoft-mdm.stg01.jumpcloud.com",
-    "*.login.stg01.jumpcloud.com",
-    "*.oauth.stg01.jumpcloud.com",
-    "*.go.stg01.jumpcloud.com",
-    "*.password-manager.stg01.jumpcloud.com",
-    "*.polaris.stg01.jumpcloud.com",
-    "*.polaris-console.stg01.jumpcloud.com",
-    "*.saas.stg01.jumpcloud.com",
-    "*.scim-bridge.stg01.jumpcloud.com",
-    "*.ssf.stg01.jumpcloud.com",
-    "*.mcp.stg01.jumpcloud.com",
-    "*.search-api.stg01.jumpcloud.com",
-    "*.schema-registry.stg01.jumpcloud.com",
-    "*.slack.stg01.jumpcloud.com",
-    "*.trino.stg01.jumpcloud.com",
-  ]
-
-  prd02_hostnames = [
-    "jumpdesk.prd02.stg01.jumpcloud.com",
-    "catalog.prd02.stg01.jumpcloud.com",
-    "console.prd02.stg01.jumpcloud.com",
-    "api.prd02.stg01.jumpcloud.com",
-    "sso.prd02.stg01.jumpcloud.com",
-    "kickstart.prd02.stg01.jumpcloud.com",
-    "apple-mdm.prd02.stg01.jumpcloud.com",
-    "apple.mdm.prd02.stg01.jumpcloud.com",
-    "assist.prd02.stg01.jumpcloud.com",
-    "microsoft-mdm.prd02.stg01.jumpcloud.com",
-    "login.prd02.stg01.jumpcloud.com",
-    "oauth.prd02.stg01.jumpcloud.com",
-    "go.prd02.stg01.jumpcloud.com",
-    "saas.prd02.stg01.jumpcloud.com",
-    "ssf.prd02.stg01.jumpcloud.com",
-    "mcp.prd02.stg01.jumpcloud.com",
-    "slack.prd02.stg01.jumpcloud.com",
   ]
 
   stg01_ip_access = []
@@ -86,11 +41,12 @@ locals {
 
   mcp_hostnames = [
     "mcp.stg01.jumpcloud.com",
-    "mcpv2.stg01.jumpcloud.com",
+    "usermcp.stg01.jumpcloud.com",
   ]
 
   ai_gateway_gcp_nat_hostnames = concat(local.mcp_hostnames, [
     "console.stg01.jumpcloud.com",
+    "oauth.stg01.jumpcloud.com",
   ])
 
   # AI Gateway GCP Cloud NAT egress (jc-stg-ai-gateway, us-east5).
@@ -212,10 +168,35 @@ locals {
     "18.158.141.230"
   ]
 
+  # Datadog managed-location egress for P0 live-path synthetics (TE-2237).
+  # Source: https://ip-ranges.datadoghq.com/synthetics.json
+  # Locations: aws:us-east-1, aws:eu-west-1, aws:ap-southeast-2
+  datadog_p0_synthetics_ips = [
+    # aws:us-east-1
+    "3.41.176.48/29",
+    "3.92.150.182/32",
+    "52.55.56.26/32",
+    "107.21.25.247/32",
+    # aws:eu-west-1
+    "3.40.134.72/29",
+    "18.200.120.237/32",
+    "63.34.100.178/32",
+    "63.35.33.198/32",
+    # aws:ap-southeast-2
+    "13.54.169.48/32",
+    "13.236.246.161/32",
+    "13.238.14.57/32",
+    "18.98.196.216/29",
+  ]
+
   // Source: https://support.apple.com/en-us/102266
   apple_cidr_blocks = [
     "17.0.0.0/8"
   ]
+
+  # jcs_* service account requests on *.stg01.jumpcloud.com hosts (NA-4759).
+  # Per-API-key CF counting requires Advanced Rate Limiting (not entitled) — HAProxy (NA-4759).
+  jcs_api_key_ratelimit_expression = "((ends_with(http.host, \".stg01.jumpcloud.com\") or http.host eq \"stg01.jumpcloud.com\") and len(http.request.headers[\"x-api-key\"]) > 0 and starts_with(lower(http.request.headers[\"x-api-key\"][0]), \"jcs_\"))"
 
   add_ratelimit_rules = [
     # Keep existing API rule first to preserve its state
@@ -230,6 +211,24 @@ locals {
         period              = 10
         requests_per_period = 300
         mitigation_timeout  = 10
+      }
+    },
+    # Service account API keys (jcs_*) — per-IP edge rate limit (NA-4759).
+    # Org/provider fair-share is enforced in-app (service-accounts).
+    # Per-API-key limits: HAProxy stick tables (NA-4759); CF header characteristics
+    # require Advanced Rate Limiting plan (not available on stg01).
+    # cf.colo.id is required (error 20155); counters are per-colo.
+    {
+      action      = "block"
+      description = "Service account API key (jcs_*) per-IP rate limit - *.stg01.jumpcloud.com"
+      expression  = local.jcs_api_key_ratelimit_expression
+
+      ratelimit = {
+        characteristics     = ["cf.colo.id", "ip.src"]
+        counting_expression = null
+        period              = 60
+        requests_per_period = 100
+        mitigation_timeout  = 60
       }
     },
     # PKI Rate Limiting Rules
@@ -341,7 +340,7 @@ locals {
     // AI Gateway GCP Cloud NAT EIP for outbound MCP access
     {
       action      = "skip"
-      description = "Allow AI Gateway GCP NAT for JC MCP and Console"
+      description = "Allow AI Gateway GCP NAT"
       expression  = "(http.host in {${join(" ", [for host in local.ai_gateway_gcp_nat_hostnames : format("\"%s\"", host)])}} and ip.src in {${join(" ", local.gcp_stg01_ai_gateway_nat_egress_ips)}})"
     },
     // Allow Azure Active Directory
@@ -377,6 +376,11 @@ locals {
       action      = "skip"
       description = "Allow Polaris"
       expression  = format("(http.host eq \"polaris.stg01.jumpcloud.com\")")
+    },
+    {
+      action      = "skip"
+      description = "Allow Datadog P0 live-path synthetics (TE-2237)"
+      expression  = format("(http.user_agent eq \"Datadog/Synthetics\" and ip.src in {%s} and ((http.host eq \"api.stg01.jumpcloud.com\" and http.request.uri.path eq \"/partners/__edge_probe__\") or http.host in {\"console.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\"}))", join(" ", local.datadog_p0_synthetics_ips))
     },
     {
       action      = "block"

@@ -59,13 +59,6 @@ locals {
       content = "assist.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "apple-mdm.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "microsoft-mdm"
       proxied = true
       ttl     = 1
@@ -144,7 +137,7 @@ locals {
       content = "standard-api.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "mcpv2"
+      name    = "usermcp"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -242,81 +235,11 @@ locals {
       content = "identity.prd02-euc1.jcplatform.dev"
     },
     {
-      name    = "*.adbridge-kickstart"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "adbridge-kickstart.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.adbridge"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "adbridge.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.admin-oauth.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.agent"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "agent.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.api"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.assist"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "assist.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "apple-mdm.prd02-euc1.jcplatform.dev"
-    },
-    {
       name    = "*.microsoft-mdm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
       content = "microsoft-mdm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "console.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.device-cert"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "device-cert.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.kickstart"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "kickstart-public.prd02-euc1.jcplatform.dev"
     },
     {
       name    = "*.apple.mdm"
@@ -326,126 +249,7 @@ locals {
       content = "apple-mdm.prd02-euc1.jcplatform.dev"
     },
 
-    {
-      name    = "*.go"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "go.prd02-euc1.jcplatform.dev"
-    },
 
-    {
-      name    = "*.private-kickstart"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "kickstart-private.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.jumpdesk"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "jumpdesk.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.login"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "login-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.mcp"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.mcpv2"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.nli"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "nli-haproxy-haproxy.ue1-prd-p01.jcplatform.dev"
-    },
-    {
-      name    = "*.search-api"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "search-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.schema-registry"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "schema-registry.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.slack"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.oauth"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "oauth.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.oauth.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.grpc.pwm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.scim.pwm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.sso"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "sso.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.saas"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd02-euc1.jcplatform.dev"
-    },
-    {
-      name    = "*.trampoline.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd02-euc1.jcplatform.dev"
-    },
     {
       name    = "ocsp"
       proxied = true
@@ -479,32 +283,6 @@ locals {
       name    = "ldap-mfa"
       ttl     = 300
       content = ["ns-1147.awsdns-15.org.", "ns-1901.awsdns-45.co.uk.", "ns-52.awsdns-06.com.", "ns-747.awsdns-29.net."]
-    },
-  ]
-
-  /**
-   * Custom Certificates for the prd02 environment
-   */
-  custom_certs = [
-    {
-      name              = "microsoft-mdm"
-      hosts             = ["microsoft-mdm.prd02.jumpcloud.com", "*.microsoft-mdm.prd02.jumpcloud.com"]
-      validation_method = "txt"
-    },
-    {
-      name              = "apple.mdm"
-      hosts             = ["apple.mdm.prd02.jumpcloud.com", "*.apple.mdm.prd02.jumpcloud.com"]
-      validation_method = "txt"
-    },
-    {
-      name              = "pwm"
-      hosts             = ["pwm.prd02.jumpcloud.com", "*.pwm.prd02.jumpcloud.com"]
-      validation_method = "txt"
-    },
-    {
-      name              = "id"
-      hosts             = ["id.prd02.jumpcloud.com", "*.id.prd02.jumpcloud.com"]
-      validation_method = "txt"
     },
   ]
 }

@@ -21,21 +21,7 @@ locals {
       content = "adbridge.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.adbridge"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "adbridge.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "adbridge-kickstart"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "adbridge-kickstart.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.adbridge-kickstart"
       proxied = false
       ttl     = 1
       type    = "CNAME"
@@ -104,13 +90,6 @@ locals {
       type    = "CNAME"
       content = "si-bss-api.stg01-use2.jcplatform.dev"
     },
-    {
-      name    = "*.bss"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "si-bss-api.stg01-use2.jcplatform.dev"
-    },
     # {
     #   name    = "catalog"
     #   proxied = true
@@ -120,13 +99,6 @@ locals {
     # },
     {
       name    = "device-cert"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "device-cert.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.device-cert"
       proxied = false
       ttl     = 1
       type    = "CNAME"
@@ -217,13 +189,6 @@ locals {
     #   content = "microsoft-mdm.stg01-use2.jcplatform.dev"
     # },
     # {
-    #   name    = "mcpv2"
-    #   proxied = false
-    #   ttl     = 1
-    #   type    = "CNAME"
-    #   content = "mcpv2.stg01.jcops.net"
-    # },
-    # {
     #   name    = "nli"
     #   proxied = true
     #   ttl     = 1
@@ -258,13 +223,6 @@ locals {
       type    = "CNAME"
       content = "kickstart-private.stg01-use2.jcplatform.dev"
     },
-    {
-      name    = "*.private-kickstart"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "kickstart-private.stg01-use2.jcplatform.dev"
-    },
     # {
     #   name    = "saas"
     #   proxied = true
@@ -293,13 +251,6 @@ locals {
       type    = "CNAME"
       content = "agent.stg01-use2.jcplatform.dev"
     },
-    {
-      name    = "*.agent"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "agent.stg01-use2.jcplatform.dev"
-    },
     # {
     #   name    = "password-manager"
     #   proxied = true
@@ -322,21 +273,7 @@ locals {
       content = "pwm.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.grpc.pwm"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "polaris-console"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris-console.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.polaris-console"
       proxied = false
       ttl     = 1
       type    = "CNAME"
@@ -350,21 +287,7 @@ locals {
       content = "trino.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.trino"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "trino.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "scim.pwm"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.scim.pwm"
       proxied = false
       ttl     = 1
       type    = "CNAME"
@@ -378,21 +301,7 @@ locals {
       content = "schema-registry.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.schema-registry"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "schema-registry.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "search-api"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "search-api.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.search-api"
       proxied = false
       ttl     = 1
       type    = "CNAME"

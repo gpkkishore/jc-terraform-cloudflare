@@ -39,13 +39,6 @@ locals {
       content = "api.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.api"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "api.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "admin-oauth.id"
       proxied = true
       ttl     = 1
@@ -67,28 +60,7 @@ locals {
       content = "apple-mdm.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "apple-mdm.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "apple-mdm.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "assist"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "assist.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.assist"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -102,21 +74,7 @@ locals {
       content = "data-catalog.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.catalog"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "data-catalog.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "console.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.console"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -130,21 +88,7 @@ locals {
       content = "go.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.go"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "go.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "jumpdesk"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "jumpdesk.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.jumpdesk"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -158,21 +102,7 @@ locals {
       content = "kickstart-public.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.kickstart"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "kickstart-public.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "login"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "login-api.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.login"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -186,18 +116,11 @@ locals {
       content = "mcp.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.mcp"
+      name    = "usermcp"
       proxied = true
       ttl     = 1
       type    = "CNAME"
-      content = "mcp.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "mcpv2"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "mcpv2.stg01-use2.jcplatform.dev"
+      content = "usermcp.stg01-use2.jcplatform.dev"
     },
     {
       name    = "microsoft-mdm"
@@ -221,21 +144,7 @@ locals {
       content = "nli.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.nli"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "nli.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "oauth"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "oauth.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.oauth"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -256,21 +165,7 @@ locals {
       content = "password-manager.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.password-manager"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "password-manager.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "polaris"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.polaris"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -284,21 +179,7 @@ locals {
       content = "saas.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.saas"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "saas.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "ssf"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "saas.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.ssf"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -326,13 +207,6 @@ locals {
       content = "slack.stg01-use2.jcplatform.dev"
     },
     {
-      name    = "*.slack"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "slack.stg01-use2.jcplatform.dev"
-    },
-    {
       name    = "sso"
       proxied = true
       ttl     = 1
@@ -345,13 +219,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "trampoline_id.stg01-use2.jcplatform.dev"
-    },
-    {
-      name    = "*.sso"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "sso.stg01-use2.jcplatform.dev"
     },
     {
       name    = "ai-aws"
