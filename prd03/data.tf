@@ -23,7 +23,7 @@ locals {
     # infra-edge module.cdn (migrate_cname + jcops grey cutover). Prefer state-rm then
     # this HCL drop (not destroy). See TheJumpCloud/infra-edge#167.
     # Removed: admin-oauth.id, api, apple-mdm, apple.mdm, assist, console, devices.pwm,
-    # go, grpc.pwm, jumpdesk, kickstart, login, mcp, mcpv2, microsoft-mdm, oauth, oauth.id,
+    # go, grpc.pwm, jumpdesk, kickstart, login, mcp, microsoft-mdm, oauth, oauth.id,
     # ocsp, polaris, polaris-console, saas, scep, scim.pwm, slack, sso, trampoline.id, trino
     # (+ matching *. wildcards where present).
     # Commented legacy rows (mulesoft-api, nli) dropped with this cleanup.
@@ -83,55 +83,6 @@ locals {
       type    = "CNAME"
       content = "schema-registry.prd03-aps1.jcplatform.dev"
     },
-    {
-      name    = "*.adbridge-kickstart"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "adbridge-kickstart.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.adbridge"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "adbridge.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.agent"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "agent.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.device-cert"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "device-cert.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.private-kickstart"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "kickstart-private.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.search-api"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "search-api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.schema-registry"
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      content = "schema-registry.prd03-aps1.jcplatform.dev"
-    }
   ]
 
   /**
@@ -186,32 +137,6 @@ locals {
         "ns-1339.awsdns-39.org.",
         "ns-1647.awsdns-13.co.uk."
       ]
-    },
-  ]
-
-  /**
-   * Custom Certificates for the prd03 environment
-   */
-  custom_certs = [
-    {
-      name              = "microsoft-mdm"
-      hosts             = ["microsoft-mdm.in.jumpcloud.com", "*.microsoft-mdm.in.jumpcloud.com"]
-      validation_method = "txt"
-    },
-    {
-      name              = "apple.mdm"
-      hosts             = ["apple.mdm.in.jumpcloud.com", "*.apple.mdm.in.jumpcloud.com"]
-      validation_method = "txt"
-    },
-    {
-      name              = "pwm"
-      hosts             = ["pwm.in.jumpcloud.com", "*.pwm.in.jumpcloud.com"]
-      validation_method = "txt"
-    },
-    {
-      name              = "id"
-      hosts             = ["id.in.jumpcloud.com", "*.id.in.jumpcloud.com"]
-      validation_method = "txt"
     },
   ]
 }

@@ -1,0 +1,27 @@
+name: High Risk Extra Approval
+
+on:
+  pull_request:
+    types: [labeled, unlabeled]
+  pull_request_review:
+    types: [submitted, dismissed, edited]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  high-risk-extra-approval:
+    name: High Risk Extra Approval
+    runs-on: ubuntu-latest
+    steps:
+      - uses: TheJumpCloud/common-github-actions/check-bugbot-high-risk-approval@v3
+        with:
+          base_approval_count: "1"
+          extra_approvals: "1"
+          high_risk_label: "bugbot-high-risk"
+          sync_label_from_summary: "true"

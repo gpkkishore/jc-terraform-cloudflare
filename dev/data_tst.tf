@@ -424,20 +424,6 @@ locals {
       value   = "go.pardot.com"
     },
     {
-      name    = "demo",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "d38yxozcjb68y3.cloudfront.net"
-    },
-    {
-      name    = "_d21b7f7fe0a7da98155f2b96ee86ae4d.demo",
-      proxied = false
-      ttl     = 1
-      type    = "CNAME"
-      value   = "_95905cda44f586533206930d56ea9376.kirrbxfjtw.acm-validations.aws"
-    },
-    {
       name    = "docs",
       proxied = false
       ttl     = 1

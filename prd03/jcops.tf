@@ -41,13 +41,6 @@ locals {
       content = "identity.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.admin-oauth.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "ai"
       proxied = true
       ttl     = 1
@@ -60,27 +53,6 @@ locals {
       ttl     = 1
       type    = "CNAME"
       content = "api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.api"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "apple-mdm.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.apple-mdm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "apple-mdm.prd03-aps1.jcplatform.dev"
     },
     {
       name    = "apple.mdm"
@@ -104,21 +76,7 @@ locals {
       content = "assist.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.assist"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "assist.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "console.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.console"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -139,21 +97,7 @@ locals {
       content = "go.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.go"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "go.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "grpc.pwm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.grpc.pwm"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -167,21 +111,7 @@ locals {
       content = "jumpdesk.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.jumpdesk"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "jumpdesk.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "kickstart"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "kickstart-public.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.kickstart"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -195,13 +125,6 @@ locals {
       content = "login-api.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.login"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "login-api.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "mcp"
       proxied = true
       ttl     = 1
@@ -209,21 +132,7 @@ locals {
       content = "standard-api.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.mcp"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "mcpv2"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.mcpv2"
+      name    = "usermcp"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -251,21 +160,7 @@ locals {
       content = "oauth.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.oauth"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "oauth.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "oauth.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.oauth.id"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -286,13 +181,6 @@ locals {
       content = "polaris.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.polaris"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "polaris-console"
       proxied = true
       ttl     = 1
@@ -300,21 +188,7 @@ locals {
       content = "polaris-console.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.polaris-console"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "polaris-console.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "saas"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.saas"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -335,21 +209,7 @@ locals {
       content = "pwm.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.scim.pwm"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "pwm.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "slack"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "standard-api.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.slack"
       proxied = true
       ttl     = 1
       type    = "CNAME"
@@ -363,13 +223,6 @@ locals {
       content = "sso.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.sso"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "sso.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "trampoline.id"
       proxied = true
       ttl     = 1
@@ -377,21 +230,7 @@ locals {
       content = "identity.prd03-aps1.jcplatform.dev"
     },
     {
-      name    = "*.trampoline.id"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "identity.prd03-aps1.jcplatform.dev"
-    },
-    {
       name    = "trino"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      content = "trino.prd03-aps1.jcplatform.dev"
-    },
-    {
-      name    = "*.trino"
       proxied = true
       ttl     = 1
       type    = "CNAME"
