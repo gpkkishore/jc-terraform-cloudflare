@@ -223,6 +223,20 @@ locals {
       content = "sso.prd03-aps1.jcplatform.dev"
     },
     {
+      name    = "split-events-proxy.split-proxy"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "split-proxy.prd03-aps1.jcplatform.dev"
+    },
+    {
+      name    = "split-sdk-proxy.split-proxy"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "split-proxy.prd03-aps1.jcplatform.dev"
+    },
+    {
       name    = "trampoline.id"
       proxied = true
       ttl     = 1
