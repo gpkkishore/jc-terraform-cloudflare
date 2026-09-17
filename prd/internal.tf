@@ -55,6 +55,12 @@ locals {
       name  = "trust"
       ttl   = 300
       value = ["ns-1069.awsdns-05.org", "ns-692.awsdns-22.net", "ns-1915.awsdns-47.co.uk", "ns-199.awsdns-24.com"]
+    },
+    {
+
+      name  = "devg1-usw1-core-00"
+      ttl   = 300
+      value = ["ns-cloud-d1.googledomains.com."]
     }
   ]
 
