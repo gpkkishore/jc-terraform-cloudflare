@@ -10,19 +10,19 @@ resource "cloudflare_logpush_job" "jcops_net" {
   dataset = "firewall_events"
   output_options {
     field_names = [
-      "Action",
-      "ClientASNDescription",
-      "ClientCountryName",
-      "ClientIP",
-      "ClientRequestHTTPHost",
-      "ClientRequestHTTPMethodName",
-      "ClientRequestHTTPPath",
-      "EdgeColoName",
-      "EdgeResponseStatusDatetime",
       "RayName",
-      "RuleId",
       "Source",
+      "RuleId",
+      "Action",
+      "EdgeResponseStatusDatetime",
+      "EdgeColoName",
+      "ClientIP",
+      "ClientCountryName",
+      "ClientASNDescription",
       "UserAgent",
+      "ClientRequestHTTPMethodName",
+      "ClientRequestHTTPHost",
+      "ClientRequestHTTPPath",
     ]
     timestamp_format = "rfc3339"
   }
@@ -46,12 +46,10 @@ resource "cloudflare_logpush_job" "jcops_net_http_events_job" {
   })
   output_options {
     field_names = [
-      "CacheCacheStatus",
       "ClientASN",
       "ClientCountry",
       "ClientDeviceType",
       "ClientIP",
-      "ClientMTLSAuthStatus",
       "ClientRequestBytes",
       "ClientRequestHost",
       "ClientRequestMethod",
@@ -60,6 +58,7 @@ resource "cloudflare_logpush_job" "jcops_net_http_events_job" {
       "ClientRequestScheme",
       "ClientRequestUserAgent",
       "ClientSSLProtocol",
+      "ClientMTLSAuthStatus",
       "ClientTCPRTTMs",
       "EdgeEndTimestamp",
       "EdgeResponseBodyBytes",
@@ -76,8 +75,9 @@ resource "cloudflare_logpush_job" "jcops_net_http_events_job" {
       "OriginResponseStatus",
       "OriginTCPHandshakeDurationMs",
       "OriginTLSHandshakeDurationMs",
-      "RayID",
       "SecurityAction",
+      "CacheCacheStatus",
+      "RayID",
     ]
     timestamp_format = "rfc3339"
   }

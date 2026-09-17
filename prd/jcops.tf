@@ -219,20 +219,6 @@ locals {
       value   = "sso.prd-use1.jcplatform.dev"
     },
     {
-      name    = "split-events-proxy.split-proxy"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "split-proxy.prd-use1.jcplatform.dev"
-    },
-    {
-      name    = "split-sdk-proxy.split-proxy"
-      proxied = true
-      ttl     = 1
-      type    = "CNAME"
-      value   = "split-proxy.prd-use1.jcplatform.dev"
-    },
-    {
       name    = "trino"
       proxied = true
       ttl     = 1
