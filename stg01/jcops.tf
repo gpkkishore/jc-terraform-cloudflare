@@ -214,6 +214,13 @@ locals {
       content = "sso.stg01-use2.jcplatform.dev"
     },
     {
+      name    = "split-sdk-proxy.split-proxy"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      content = "split-proxy.stg01-use2.jcplatform.dev"
+    },
+    {
       name    = "trampoline.id"
       proxied = true
       ttl     = 1
