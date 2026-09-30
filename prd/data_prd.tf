@@ -55,6 +55,7 @@ locals {
     #   api, apple-mdm, apple.mdm, assist, console, go, jumpdesk, kickstart, login, mcp,
     #   microsoft-mdm, nli, oauth, ocsp, polaris, polaris-console, saas, scep, slack, ssf, sso, trino
     #   (+ matching *.<label> wildcards where present) → jcops.net: prd/jcops.tf jcops_app_dns_records
+    # Greenfield (never in this list): corporate-edge → Lightsail CS (TE-2250) in jcops_app_dns_records.
   ]
 
   prd_mx_records = [

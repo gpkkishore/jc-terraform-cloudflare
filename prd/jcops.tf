@@ -99,6 +99,14 @@ locals {
       type    = "CNAME"
       value   = "console.prd-use1.jcplatform.dev"
     },
+    # TE-2250: sGTM Lightsail Container Service (Titanium). Brand grey→jcops in infra-edge.
+    {
+      name    = "corporate-edge"
+      proxied = true
+      ttl     = 1
+      type    = "CNAME"
+      value   = "corporate-edge.0f5mswsdrze1t.us-east-1.cs.amazonlightsail.com"
+    },
     {
       name    = "go"
       proxied = true
