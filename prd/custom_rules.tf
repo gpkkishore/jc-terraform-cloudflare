@@ -295,16 +295,19 @@ locals {
           mitigation_timeout  = 60
         }
       },
+      # Token endpoint serves machine-to-machine client_credentials traffic (e.g. AWS
+      # AgentCore) arriving from a few shared cloud egress IPs, so per-IP limits must
+      # be high. A 60s cooldown still contains a single misbehaving client (CAT-2345).
       {
         action      = "block"
-        description = "ai.jumpcloud.com - POST /mcp/oauth/token rate limit"
-        expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"POST\" and http.request.uri.path eq \"/mcp/oauth/token\")"
+        description = "ai.jumpcloud.com - POST /mcp/oauth/token and /oauth/token rate limit"
+        expression  = "(http.host in {\"ai.jumpcloud.com\" \"ai.eu.jumpcloud.com\"} and http.request.method eq \"POST\" and http.request.uri.path in {\"/mcp/oauth/token\" \"/oauth/token\"})"
 
         ratelimit = {
           characteristics     = ["cf.colo.id", "ip.src"]
           counting_expression = null
           period              = 60
-          requests_per_period = 60
+          requests_per_period = 3000
           mitigation_timeout  = 60
         }
       },
