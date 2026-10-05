@@ -185,7 +185,7 @@ locals {
     },
     # Token endpoint serves machine-to-machine client_credentials traffic (e.g. AWS
     # AgentCore) arriving from a few shared cloud egress IPs, so per-IP limits must
-    # be high. Throttle only the excess rather than blocking the IP (CAT-2345).
+    # be high. A 60s cooldown still contains a single misbehaving client (CAT-2345).
     {
       action      = "block"
       description = "ai.eu.jumpcloud.com - POST /mcp/oauth/token and /oauth/token rate limit"
@@ -196,7 +196,7 @@ locals {
         counting_expression = null
         period              = 60
         requests_per_period = 3000
-        mitigation_timeout  = 0 # throttling
+        mitigation_timeout  = 60
       }
     },
     {
