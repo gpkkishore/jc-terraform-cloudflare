@@ -396,6 +396,13 @@ locals {
       value   = "jumpcloud.publisher.impartner.io"
     },
     {
+      name    = "bounce.partnermarketing.jumpcloud.com",
+      proxied = false
+      ttl     = 300
+      type    = "CNAME"
+      value   = "sparkpostmail.com"
+    },
+    {
       name    = "sales",
       proxied = false
       ttl     = 1
@@ -1147,6 +1154,13 @@ locals {
       ttl     = 300
       type    = "TXT"
       value   = "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCC7AFqc+rf9Wuw58oNK9KSVhUE2pDjheFtxX3u2ERVmUlVKajAL+Se31KBkdCKoyJffY+t8aYSOqL0bH5lnZdcE2XLlyGddss8h+eWf3gA/9LkXR6P31ueCpjEKzw30xKucEwPDPeJ+Ev2qBNASmrNZb51BXAl6d4YNBMOK1Dy9QIDAQAB"
+    },
+    {
+      name    = "scph1026._domainkey.partnermarketing.jumpcloud.com"
+      proxied = false
+      ttl     = 300
+      type    = "TXT"
+      value   = "v=DKIM1; k=rsa; h=sha256; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzRGA8qE+XV8lYNqBe5U42Igcwjf7GeHm5mpclLvnj34k3ZLnbGwn1E1GaPa4zCpxFMyFJv7peTtrGZoJ9hDbX5PZbNdbmxyYxlBeVhLIlj54407j5FszWRGSB5bK/8CMza31P3iDruo/2qjc26k4ppYny5Wb7hzIxu36zHXrd7q7/kGFjE6checS+Ud0pscPHwmA68/Oq6+9U/sBXIDR3Kci8dkGfqcYb4Emyu2UgA9O0SocDc+/BCda3Mghi3kdNO+jPmzPmjIETeoFr4e1orEmdEJWxMjX0BONThriALcOgWoGqLmvvbdvmOnQ/nw75/vjp3pVW6fceq9WlBCFTQIDAQAB"
     },
     {
       name    = "scph1125._domainkey.partners.jumpcloud.com"
