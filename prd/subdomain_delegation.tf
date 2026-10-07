@@ -54,6 +54,17 @@ locals {
         "ns-949.awsdns-54.net.",
       ]
     },
+    # devg1.jumpcloud.com → Route 53 (infra-edge terraform/gcp/dev).
+    {
+      name  = "devg1"
+      ttl   = 300
+      value = [
+        "ns-1207.awsdns-22.org.",
+        "ns-1948.awsdns-51.co.uk.",
+        "ns-491.awsdns-61.com.",
+        "ns-803.awsdns-36.net.",
+      ]
+    },
     {
       name  = "prd02"
       ttl   = 300
