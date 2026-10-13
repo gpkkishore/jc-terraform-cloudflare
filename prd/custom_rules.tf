@@ -20,6 +20,26 @@ locals {
     "scep.eu.jumpcloud.com",
   ]
 
+  # TE-2331 / IR-197: log anonymous Abp-TenantId requests to VaultOne pre-auth endpoints.
+  # Paths are lowercase on purpose; the rule compares against lower(http.request.uri.path).
+  vaultone_preauth_paths = [
+    "/api/services/app/session/getcurrentlogininformations",
+    "/abpuserconfiguration/getall",
+    "/api/tokenauth/getexternalauthenticationproviders",
+    "/api/services/app/account/istenantavailable",
+  ]
+
+  # Non-prod VaultOne environments share the US zone and are ZScaler-only; keep them out of the log rule.
+  vaultone_nonprod_labels = ["dev", "stg", "homolog"]
+
+  vaultone_abp_tenantid_log_rule = {
+    for d in ["vault.jumpcloud.com", "vault.eu.jumpcloud.com", "vault.in.jumpcloud.com"] : d => {
+      action      = "log"
+      description = "TE-2331 / IR-197 - Log anonymous Abp-TenantId requests to VaultOne pre-auth endpoints"
+      expression  = format("(http.host eq \"%s\" or ends_with(http.host, \".%s\")) and not (%s) and lower(http.request.uri.path) in {%s} and len(http.request.headers[\"abp-tenantid\"]) > 0 and not any(starts_with(lower(http.request.headers[\"authorization\"][*])[*], \"bearer \"))", d, d, join(" or ", flatten([for e in local.vaultone_nonprod_labels : [format("http.host eq \"%s.%s\"", e, d), format("ends_with(http.host, \".%s.%s\")", e, d)]])), join(" ", [for p in local.vaultone_preauth_paths : format("\"%s\"", p)]))
+    }
+  }
+
   testim_ips = join(" ", [
     "100.20.244.103",
     "103.231.42.40/29",
@@ -533,6 +553,7 @@ locals {
       }
     ]
     "vault.jumpcloud.com" = [
+      local.vaultone_abp_tenantid_log_rule["vault.jumpcloud.com"],
       {
         action      = "skip"
         description = "Allow vault.jumpcloud assets (404 page, etc.)"
@@ -550,6 +571,7 @@ locals {
       }
     ]
     "vault.eu.jumpcloud.com" = [
+      local.vaultone_abp_tenantid_log_rule["vault.eu.jumpcloud.com"],
       {
         action      = "skip"
         description = "Allow vault.eu.jumpcloud assets (404 page, etc.)"
@@ -567,6 +589,7 @@ locals {
       },
     ]
     "vault.in.jumpcloud.com" = [
+      local.vaultone_abp_tenantid_log_rule["vault.in.jumpcloud.com"],
       {
         action      = "skip"
         description = "Allow vault.in.jumpcloud assets (404 page, etc.)"
