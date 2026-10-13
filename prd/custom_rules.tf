@@ -29,11 +29,14 @@ locals {
     "/api/services/app/account/istenantavailable",
   ]
 
+  # Non-prod VaultOne environments share the US zone and are ZScaler-only; keep them out of the log rule.
+  vaultone_nonprod_labels = ["dev", "stg", "homolog"]
+
   vaultone_abp_tenantid_log_rule = {
     for d in ["vault.jumpcloud.com", "vault.eu.jumpcloud.com", "vault.in.jumpcloud.com"] : d => {
       action      = "log"
       description = "TE-2331 / IR-197 - Log anonymous Abp-TenantId requests to VaultOne pre-auth endpoints"
-      expression  = format("(http.host eq \"%s\" or ends_with(http.host, \".%s\")) and lower(http.request.uri.path) in {%s} and len(http.request.headers[\"abp-tenantid\"]) > 0 and not any(starts_with(http.request.headers[\"authorization\"][*], \"Bearer \"))", d, d, join(" ", [for p in local.vaultone_preauth_paths : format("\"%s\"", p)]))
+      expression  = format("(http.host eq \"%s\" or ends_with(http.host, \".%s\")) and not (%s) and lower(http.request.uri.path) in {%s} and len(http.request.headers[\"abp-tenantid\"]) > 0 and not any(starts_with(lower(http.request.headers[\"authorization\"][*])[*], \"bearer \"))", d, d, join(" or ", flatten([for e in local.vaultone_nonprod_labels : [format("http.host eq \"%s.%s\"", e, d), format("ends_with(http.host, \".%s.%s\")", e, d)]])), join(" ", [for p in local.vaultone_preauth_paths : format("\"%s\"", p)]))
     }
   }
 

@@ -329,10 +329,13 @@ locals {
     "/api/services/app/account/istenantavailable",
   ]
 
+  # Same exclusion as prd/custom_rules.tf for parity; this zone has no non-prod VaultOne hosts today.
+  vaultone_nonprod_labels = ["dev", "stg", "homolog"]
+
   vaultone_abp_tenantid_log_rule = {
     action      = "log"
     description = "TE-2331 / IR-197 - Log anonymous Abp-TenantId requests to VaultOne pre-auth endpoints"
-    expression  = format("(http.host eq \"%s\" or ends_with(http.host, \".%s\")) and lower(http.request.uri.path) in {%s} and len(http.request.headers[\"abp-tenantid\"]) > 0 and not any(starts_with(http.request.headers[\"authorization\"][*], \"Bearer \"))", "vault.eu.jumpcloud.com", "vault.eu.jumpcloud.com", join(" ", [for p in local.vaultone_preauth_paths : format("\"%s\"", p)]))
+    expression  = format("(http.host eq \"%s\" or ends_with(http.host, \".%s\")) and not (%s) and lower(http.request.uri.path) in {%s} and len(http.request.headers[\"abp-tenantid\"]) > 0 and not any(starts_with(lower(http.request.headers[\"authorization\"][*])[*], \"bearer \"))", "vault.eu.jumpcloud.com", "vault.eu.jumpcloud.com", join(" or ", flatten([for e in local.vaultone_nonprod_labels : [format("http.host eq \"%s.%s\"", e, "vault.eu.jumpcloud.com"), format("ends_with(http.host, \".%s.%s\")", e, "vault.eu.jumpcloud.com")]])), join(" ", [for p in local.vaultone_preauth_paths : format("\"%s\"", p)]))
   }
 
   vault_eu_waf_rules = [
