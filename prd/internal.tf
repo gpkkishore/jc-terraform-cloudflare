@@ -65,6 +65,16 @@ locals {
       name  = "stgg1-usw1-core-00"
       ttl   = 300
       value = ["ns-cloud-a1.googledomains.com."]
+    },
+    {
+      name  = "ctrl-usw1-control-00"
+      ttl   = 300
+      value = [
+        "ns-cloud-a1.googledomains.com.",
+        "ns-cloud-a2.googledomains.com.",
+        "ns-cloud-a3.googledomains.com.",
+        "ns-cloud-a4.googledomains.com.",
+      ]
     }
   ]
 
