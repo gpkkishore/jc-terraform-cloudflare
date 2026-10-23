@@ -82,6 +82,27 @@ locals {
     "3.109.31.86",
   ])
 
+  # Datadog managed-location egress for approved synthetic probe locations.
+  # Source: https://ip-ranges.datadoghq.com/synthetics.json
+  # Locations: aws:us-east-1, aws:eu-west-1, aws:ap-southeast-2
+  datadog_managed_synthetics_ips = [
+    # aws:us-east-1
+    "3.41.176.48/29",
+    "3.92.150.182/32",
+    "52.55.56.26/32",
+    "107.21.25.247/32",
+    # aws:eu-west-1
+    "3.40.134.72/29",
+    "18.200.120.237/32",
+    "63.34.100.178/32",
+    "63.35.33.198/32",
+    # aws:ap-southeast-2
+    "13.54.169.48/32",
+    "13.236.246.161/32",
+    "13.238.14.57/32",
+    "18.98.196.216/29",
+  ]
+
   dev_usw2_ngws = join(" ", [for gw in data.aws_nat_gateway.dev-usw2-eks-nat-gw : "${gw.public_ip}/32"])
   dev_euc1_ngws = join(" ", [for gw in data.aws_nat_gateway.dev-euc1-eks-nat-gw : "${gw.public_ip}/32"])
   dev_aps1_ngws = join(" ", [for gw in data.aws_nat_gateway.dev-aps1-eks-nat-gw : "${gw.public_ip}/32"])
@@ -451,6 +472,13 @@ locals {
         action      = "skip"
         description = "Allow Pentest IPs"
         expression  = "(ip.src in {216.71.114.64 50.34.38.206} and http.host contains \"jumpcloud.com\")"
+      },
+      // TE-2367 Directory Insights representative-path synthetic only (paging/corroboration;
+      // not P0 actuation or automation-eligible). Production console/login P0 probes are unchanged.
+      {
+        action      = "skip"
+        description = "Allow Datadog managed-location TE-2367 Directory Insights canary (paging-only; not P0/automation-eligible)"
+        expression  = format("(http.user_agent eq \"Datadog/Synthetics\" and ip.src in {%s} and http.host eq \"api.jumpcloud.com\" and http.request.uri.path eq \"/insights/directory/v1/__edge_probe__\")", join(" ", local.datadog_managed_synthetics_ips))
       },
       {
         action      = "block"
