@@ -474,12 +474,11 @@ locals {
         expression  = "(ip.src in {216.71.114.64 50.34.38.206} and http.host contains \"jumpcloud.com\")"
       },
       // TE-2367 Directory Insights representative-path synthetic only (paging/corroboration;
-      // not P0 actuation or automation-eligible). api.eu.jumpcloud.com is on the jumpcloud.com zone.
-      // Production console/login P0 probes are unchanged.
+      // not P0 actuation or automation-eligible). Production console/login P0 probes are unchanged.
       {
         action      = "skip"
         description = "Allow Datadog managed-location TE-2367 Directory Insights canary (paging-only; not P0/automation-eligible)"
-        expression  = format("(http.user_agent eq \"Datadog/Synthetics\" and ip.src in {%s} and ((http.host eq \"api.jumpcloud.com\" or http.host eq \"api.eu.jumpcloud.com\") and http.request.uri.path eq \"/insights/directory/v1/__edge_probe__\"))", join(" ", local.datadog_managed_synthetics_ips))
+        expression  = format("(http.user_agent eq \"Datadog/Synthetics\" and ip.src in {%s} and http.host eq \"api.jumpcloud.com\" and http.request.uri.path eq \"/insights/directory/v1/__edge_probe__\")", join(" ", local.datadog_managed_synthetics_ips))
       },
       {
         action      = "block"
