@@ -315,7 +315,7 @@ module "jcops_security" {
 
   zone_id                                   = cloudflare_zone.jcops_net.id
   additional_ratelimit_rules                = local.add_ratelimit_rules
-  additional_waf_rules                      = local.stg01_jcops_add_waf_rules
+  additional_waf_rules                      = concat(local.cve_2026_111497_waf_rules, local.stg01_jcops_add_waf_rules)
   cloudflare_managed_ruleset_rule_overrides = local.managed_ruleset_overrides
 }
 

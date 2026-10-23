@@ -30,7 +30,7 @@ module "security" {
 
   zone_id                    = each.key
   additional_ratelimit_rules = lookup(local.add_ratelimit_rules, each.value.name, [])
-  additional_waf_rules       = lookup(local.add_waf_rules, each.value.name, [])
+  additional_waf_rules       = concat(local.cve_2026_111497_waf_rules, lookup(local.add_waf_rules, each.value.name, []))
   skip_managed_rulesets      = contains(["vault.jumpcloud.com", "vault.eu.jumpcloud.com", "vault.in.jumpcloud.com"], each.value.name)
 }
 
