@@ -18,7 +18,7 @@ module "security" {
 
   zone_id                    = cloudflare_zone.cloudflare_zone_resource.id
   additional_ratelimit_rules = local.add_ratelimit_rules
-  additional_waf_rules       = local.add_waf_rules
+  additional_waf_rules       = concat(local.cve_2026_111497_waf_rules, local.add_waf_rules)
 }
 
 module "settings" {
