@@ -395,10 +395,12 @@ locals {
       description = "Allow Polaris"
       expression  = format("(http.host eq \"polaris.stg01.jumpcloud.com\")")
     },
+    // Datadog managed-location egress (local.datadog_p0_synthetics_ips): TE-2237 P0 live-path
+    // probes plus TE-2367 representative-path API canary (paging-only; not P0/automation-eligible).
     {
       action      = "skip"
-      description = "Allow Datadog P0 live-path synthetics (TE-2237)"
-      expression  = format("(http.user_agent eq \"Datadog/Synthetics\" and ip.src in {%s} and ((http.host eq \"api.stg01.jumpcloud.com\" and http.request.uri.path eq \"/partners/__edge_probe__\") or http.host in {\"console.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\"}))", join(" ", local.datadog_p0_synthetics_ips))
+      description = "Allow Datadog managed-location synthetics (TE-2237 P0; TE-2367 representative-path API)"
+      expression  = format("(http.user_agent eq \"Datadog/Synthetics\" and ip.src in {%s} and ((http.host eq \"api.stg01.jumpcloud.com\" and (http.request.uri.path eq \"/partners/__edge_probe__\" or http.request.uri.path eq \"/insights/directory/v1/__edge_probe__\")) or http.host in {\"console.stg01.jumpcloud.com\" \"login.stg01.jumpcloud.com\"}))", join(" ", local.datadog_p0_synthetics_ips))
     },
     {
       action      = "skip"
