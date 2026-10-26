@@ -6,13 +6,13 @@
 # Matching is case-insensitive and covers repeated Content-Encoding headers.
 # Browsers and API clients essentially never send Brotli-compressed request bodies.
 #
-# Rollout: ships as "log" so we can confirm there is no legitimate traffic in Security Events,
-# then flip cve_2026_111497_action to "block". Remove once remediation is complete.
+# Rollout: shipped as "log" to confirm there was no legitimate traffic in Security Events,
+# now enforced as "block". Remove once remediation is complete.
 #
 # This rule is prepended to every additional_waf_rules list in this workspace so that no
 # existing "skip" rule can bypass it.
 locals {
-  cve_2026_111497_action = "log"
+  cve_2026_111497_action = "block"
 
   cve_2026_111497_waf_rules = [
     {
