@@ -48,14 +48,14 @@ locals {
       proxied = true
       ttl     = 1
       type    = "A"
-      value   = "44.239.47.105"
+      value   = "16.144.165.16" # TE-2410: JC-Corporate-TI-1 (us-west-2); was Bitnami 44.239.47.105
     },
     {
       name    = "ti-2"
       proxied = true
       ttl     = 1
       type    = "A"
-      value   = "52.13.15.220"
+      value   = "35.166.236.151" # TE-2410: JC-Corporate-TI-2 (us-west-2); was Bitnami 52.13.15.220
     },
     {
       name    = "*.apple.mdm"
