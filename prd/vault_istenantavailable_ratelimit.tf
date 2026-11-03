@@ -25,7 +25,7 @@
 locals {
   vault_istenantavailable_action = "log"
 
-  vault_istenantavailable_expression = "(lower(http.request.uri.path) in {\"/api/services/app/account/istenantavailable\" \"/api/services/app/account/istenantavailable/\"})"
+  vault_istenantavailable_expression = "(lower(http.request.uri.path) in {\"/api/services/app/account/istenantavailable\" \"/api/services/app/account/istenantavailable/\"} and http.host matches r\"(^|\\.)vault\\.((eu|in)\\.)?(jumpcloud\\.com|jcops\\.net)$\")"
 
   vault_istenantavailable_zones = [
     "vault.jumpcloud.com",
