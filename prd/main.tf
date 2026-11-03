@@ -29,7 +29,7 @@ module "security" {
   source   = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.6.0"
 
   zone_id                    = each.key
-  additional_ratelimit_rules = lookup(local.add_ratelimit_rules, each.value.name, [])
+  additional_ratelimit_rules = concat(lookup(local.add_ratelimit_rules, each.value.name, []), contains(local.vault_istenantavailable_zones, each.value.name) ? local.vault_istenantavailable_ratelimit_rules : [])
   additional_waf_rules       = concat(local.cve_2026_111497_waf_rules, lookup(local.add_waf_rules, each.value.name, []))
   skip_managed_rulesets      = contains(["vault.jumpcloud.com", "vault.eu.jumpcloud.com", "vault.in.jumpcloud.com"], each.value.name)
 }

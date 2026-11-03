@@ -295,7 +295,8 @@ locals {
 
   jcops_add_waf_rules = concat(local.add_waf_rules["jumpcloud.com"], local.add_waf_rules["id.jumpcloud.com"], local.add_waf_rules["vault.jumpcloud.com"])
 
-  jcops_add_ratelimit_rules = local.add_ratelimit_rules["jumpcloud.com"]
+  # Vault hostnames are mirrored here (TE-2005), so carry the TE-2401 IsTenantAvailable limits too.
+  jcops_add_ratelimit_rules = concat(local.add_ratelimit_rules["jumpcloud.com"], local.vault_istenantavailable_ratelimit_rules)
 }
 
 resource "cloudflare_zone" "jcops_net" {
