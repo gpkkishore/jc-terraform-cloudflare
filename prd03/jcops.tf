@@ -352,7 +352,7 @@ resource "cloudflare_custom_hostname_fallback_origin" "jcops_router" {
 module "jcops_security" {
   source                     = "git@github.com:TheJumpCloud/terraform-cloudflare-security.git?ref=v3.2.0"
   zone_id                    = cloudflare_zone.jcops_net.id
-  additional_ratelimit_rules = local.add_ratelimit_rules
+  additional_ratelimit_rules = concat(local.add_ratelimit_rules, local.vault_istenantavailable_ratelimit_rules) # TE-2401: vault.in mirrored here
   additional_waf_rules       = concat(local.cve_2026_111497_waf_rules, local.in_jcops_add_waf_rules)
 }
 
