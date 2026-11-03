@@ -236,7 +236,7 @@ locals {
         characteristics     = ["cf.colo.id", "ip.src"]
         counting_expression = null
         period              = 60
-        requests_per_period = 60
+        requests_per_period = 180
         mitigation_timeout  = 60
       }
     },
