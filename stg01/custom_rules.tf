@@ -47,6 +47,8 @@ locals {
   ai_gateway_gcp_nat_hostnames = concat(local.mcp_hostnames, [
     "console.stg01.jumpcloud.com",
     "oauth.stg01.jumpcloud.com",
+    # sso-hydra: the Gateway fetches its JWKS to verify user id_tokens on token exchange.
+    "oauth.id.stg01.jumpcloud.com",
   ])
 
   # AI Gateway GCP Cloud NAT egress (jc-stg-ai-gateway, us-east5).
