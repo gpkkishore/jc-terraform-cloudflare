@@ -23,7 +23,7 @@
 #
 # Identical copies live in prd/, prd02/ and prd03/ (one per workspace). Keep them in sync.
 locals {
-  vault_istenantavailable_action = "log"
+  vault_istenantavailable_action = "block"
 
   vault_istenantavailable_expression = "(lower(http.request.uri.path) in {\"/api/services/app/account/istenantavailable\" \"/api/services/app/account/istenantavailable/\"} and http.host matches r\"(^|\\.)vault\\.((eu|in)\\.)?(jumpcloud\\.com|jcops\\.net)$\")"
 
